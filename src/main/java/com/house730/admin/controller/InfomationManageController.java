@@ -68,7 +68,7 @@ public class InfomationManageController {
 	@GetMapping(value ="/getCategoryPage")
     public Object  getCategoryPage( HttpServletResponse response, HttpServletRequest request,@RequestParam Map<String, String> paramMap) {
         try {
-        	//log.debug(msg);
+        	
         	paramMap.put("parentcategoryid", "0");
         	PageInfo<InformationCategory> pageList= infomationManageService.findCategory(paramMap);
 			Map<String, Object> mp = PageUtils.getMap(pageList);
