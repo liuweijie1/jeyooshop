@@ -53,7 +53,6 @@ public class InfomationManageController {
     @GetMapping("/category")
 	public String toProcess(Model model) {
 		return "infomationManage/category";
-		
 	}
     
     
