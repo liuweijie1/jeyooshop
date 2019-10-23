@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserOrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserOrderRecord" >
+    <constructor >
+      <arg column="OrderID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertyCoin" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Money" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="OrderStatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PaymentType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PropertyCoinSetID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SourceID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserOrderRecord" >
+    insert into user_orderrecord (OrderID, UserID, OrderCode, 
+      Item, PropertyCoin, Money, 
+      Status, PaymentType, PropertyCoinSetID, 
+      SourceID, CreateTime, UpdateTime, 
+      IsDelete)
+    values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=INTEGER}, #{ordercode,jdbcType=VARCHAR}, 
+      #{item,jdbcType=VARCHAR}, #{propertycoin,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{paymenttype,jdbcType=INTEGER}, #{propertycoinsetid,jdbcType=INTEGER}, 
+      #{sourceid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserOrderRecord" >
+    insert into user_orderrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="ordercode != null" >
+        OrderCode,
+      </if>
+      <if test="item != null" >
+        Item,
+      </if>
+      <if test="propertycoin != null" >
+        PropertyCoin,
+      </if>
+      <if test="money != null" >
+        Money,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="paymenttype != null" >
+        PaymentType,
+      </if>
+      <if test="propertycoinsetid != null" >
+        PropertyCoinSetID,
+      </if>
+      <if test="sourceid != null" >
+        SourceID,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ordercode != null" >
+        #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="propertycoin != null" >
+        #{propertycoin,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="paymenttype != null" >
+        #{paymenttype,jdbcType=INTEGER},
+      </if>
+      <if test="propertycoinsetid != null" >
+        #{propertycoinsetid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <!-- <resultMap id="TradManagerResultMap" type="com.house730.admin.resultpojo.UserOrderRecordResult" >
+    <constructor >
+      <arg column="OrderID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertyCoin" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Money" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="OrderStatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PaymentType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IsUploadEvidence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="EvidenceTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap> -->
+<!--   <select id="getPage"   resultMap="TradManagerResultMap"> -->
+ 	<select id="getPage"   resultType="com.house730.admin.resultpojo.UserOrderRecordResult">
+  		select 
+			o.OrderID,
+			u.UserCode as usercode,
+			o.Item,
+			o.SourceType,
+			o.PropertyCoin,
+			o.Money,
+			o.OrderStatus,
+			o.PaymentType,
+			o.AccountID,
+			o.IsUploadEvidence,
+			d.CreateTime as evidenceTime,
+			o.CreateTime
+ 		from user_orderrecord o 
+ 				left join user_orderevidence d on o.OrderID = d.OrderID  and d.IsDelete = '0'
+	 			left join user u on u.UserID=o.UserID and u.IsDelete = '0'
+		where o.IsDelete = '0'
+       
+				<if test="orderstatus != null and orderstatus != ''">
+					AND o.OrderStatus = #{orderstatus,jdbcType=BIGINT} 
+				</if> 
+				<if test="paymenttype != null and paymenttype != ''">
+					AND o.PaymentType = #{paymenttype,jdbcType=BIGINT} 
+				</if>
+				<if test="isUploadEvidence != null and isUploadEvidence != ''">
+					AND o.IsUploadEvidence = #{isUploadEvidence} 
+				</if>
+				<if test="propertycoin == 'true'">
+					AND o.PropertyCoin > 0
+				</if>
+				<if test="beginTime != null and beginTime != ''">
+				 	<![CDATA[ and o.CreateTime >=  STR_TO_DATE(#{beginTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+				</if>
+				<if test="endTime != null and endTime != ''">
+					<![CDATA[ and o.CreateTime <=  STR_TO_DATE(#{endTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+				</if>
+				<if test="beginEvidenceTime != null and beginEvidenceTime != ''">
+					<![CDATA[ and d.CreateTime >=  STR_TO_DATE(#{beginEvidenceTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+				</if>
+				<if test="endEvidenceTime != null and endEvidenceTime != ''">
+					<![CDATA[ and d.CreateTime <=  STR_TO_DATE(#{endEvidenceTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+				</if> 
+				<if test="orderIdOrUserId != null and orderIdOrUserId != ''">
+					AND (o.OrderID = #{orderIdOrUserId} or u.UserCode = #{orderIdOrUserId})
+				</if> 
+			ORDER BY o.CreateTime desc
+        <!-- limit #{page},#{limit} -->
+    </select>
+  	
+  	<select id="findTradeDetailByOrderId"   resultType="com.house730.admin.resultpojo.UserOrderRecordResult">
+  		select 
+			o.OrderID,
+			o.UserID,
+			u.UserCode,
+			o.SourceType,
+			o.PropertyCoin,
+			o.Money,
+			o.OrderStatus,
+			o.PaymentType,
+			o.Item,
+			o.IsUploadEvidence,
+			d.CreateTime as evidenceTime,
+			o.CreateTime
+ 		from user_orderrecord o LEFT JOIN user_orderevidence d on o.OrderID = d.OrderID and d.IsDelete = '0'
+ 			left join user u on u.UserID = o.UserID and u.IsDelete = '0'
+		where o.IsDelete = '0'
+            
+				AND o.OrderID = #{orderid,jdbcType=BIGINT}
+  	</select>
+  	
+  	<update id="updateStoreValue" parameterType="com.house730.admin.resultpojo.UserOrderRecordResult" >
+    update user_orderrecord
+    <set>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="item != null" >
+        Item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="propertycoin != null" >
+        PropertyCoin = #{propertycoin,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        Money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="orderstatus != null" >
+        OrderStatus = #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="paymenttype != null" >
+        PaymentType = #{paymenttype,jdbcType=INTEGER},
+      </if>
+      <if test="propertycoinsetid != null" >
+        PropertyCoinSetID = #{propertycoinsetid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceid != null" >
+        SourceID = #{sourceid,jdbcType=BIGINT},
+      </if>
+      <if test="sourcetype != null" >
+        SourceType = #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isUploadEvidence != null" >
+        IsUploadEvidence = #{isUploadEvidence,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    ,IsDelete=0
+    where OrderID = #{orderid,jdbcType=BIGINT}
+  </update>
+  	
+</mapper>

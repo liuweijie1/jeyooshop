@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.DealGscopedealhistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.DealGscopedealhistory" >
+    <constructor >
+      <arg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Year" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Month" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DealNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DealTotalPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Rise" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Level" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SaleableAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.DealGscopedealhistory" >
+    insert into deal_gscopedealhistory (ID, GscopeCode, Year, 
+      Month, DealNumber, DealTotalPrice, 
+      Rise, Level, BuildingAvgPrice, 
+      SaleableAvgPrice)
+    values (#{id,jdbcType=INTEGER}, #{gscopecode,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{dealnumber,jdbcType=INTEGER}, #{dealtotalprice,jdbcType=DECIMAL}, 
+      #{rise,jdbcType=DECIMAL}, #{level,jdbcType=INTEGER}, #{buildingavgprice,jdbcType=DECIMAL}, 
+      #{saleableavgprice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.DealGscopedealhistory" >
+    insert into deal_gscopedealhistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="year != null" >
+        Year,
+      </if>
+      <if test="month != null" >
+        Month,
+      </if>
+      <if test="dealnumber != null" >
+        DealNumber,
+      </if>
+      <if test="dealtotalprice != null" >
+        DealTotalPrice,
+      </if>
+      <if test="rise != null" >
+        Rise,
+      </if>
+      <if test="level != null" >
+        Level,
+      </if>
+      <if test="buildingavgprice != null" >
+        BuildingAvgPrice,
+      </if>
+      <if test="saleableavgprice != null" >
+        SaleableAvgPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="dealnumber != null" >
+        #{dealnumber,jdbcType=INTEGER},
+      </if>
+      <if test="dealtotalprice != null" >
+        #{dealtotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rise != null" >
+        #{rise,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="buildingavgprice != null" >
+        #{buildingavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleableavgprice != null" >
+        #{saleableavgprice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

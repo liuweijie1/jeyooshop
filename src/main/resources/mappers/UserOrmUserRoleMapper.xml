@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserOrmUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserOrmUserRole" >
+    <constructor >
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RoleID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserOrmUserRole" >
+    insert into user_orm_user_role (UserID, RoleID, CreateTime
+      )
+    values (#{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserOrmUserRole" >
+    insert into user_orm_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="roleid != null" >
+        RoleID,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

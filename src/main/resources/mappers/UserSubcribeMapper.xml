@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserSubcribeMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserSubcribe" >
+    <constructor >
+      <arg column="SubscribeID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PropertyType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertySource" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PropertyCategory" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PriceRange" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AreaType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AreaRange" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RoomNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingAge" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PushNotification" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PushTime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PushMethod" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserSubcribe" >
+    insert into user_subscribe (SubscribeID, UserID, PropertyType, 
+      GscopeCode, PropertySource, PropertyCategory, 
+      PriceRange, AreaType, AreaRange, 
+      RoomNumber, BuildingAge, PushNotification, 
+      PushTime, PushMethod, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete)
+    values (#{subscribeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{propertytype,jdbcType=INTEGER}, 
+      #{gscopecode,jdbcType=VARCHAR}, #{propertysource,jdbcType=INTEGER}, #{propertycategory,jdbcType=INTEGER}, 
+      #{pricerange,jdbcType=VARCHAR}, #{areatype,jdbcType=VARCHAR}, #{arearange,jdbcType=VARCHAR}, 
+      #{roomnumber,jdbcType=INTEGER}, #{buildingage,jdbcType=INTEGER}, #{pushnotification,jdbcType=INTEGER}, 
+      #{pushtime,jdbcType=INTEGER}, #{pushmethod,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserSubcribe" >
+    insert into user_subscribe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subscribeid != null" >
+        SubscribeID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="propertytype != null" >
+        PropertyType,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="propertysource != null" >
+        PropertySource,
+      </if>
+      <if test="propertycategory != null" >
+        PropertyCategory,
+      </if>
+      <if test="pricerange != null" >
+        PriceRange,
+      </if>
+      <if test="areatype != null" >
+        AreaType,
+      </if>
+      <if test="arearange != null" >
+        AreaRange,
+      </if>
+      <if test="roomnumber != null" >
+        RoomNumber,
+      </if>
+      <if test="buildingage != null" >
+        BuildingAge,
+      </if>
+      <if test="pushnotification != null" >
+        PushNotification,
+      </if>
+      <if test="pushtime != null" >
+        PushTime,
+      </if>
+      <if test="pushmethod != null" >
+        PushMethod,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subscribeid != null" >
+        #{subscribeid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="propertytype != null" >
+        #{propertytype,jdbcType=INTEGER},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertysource != null" >
+        #{propertysource,jdbcType=INTEGER},
+      </if>
+      <if test="propertycategory != null" >
+        #{propertycategory,jdbcType=INTEGER},
+      </if>
+      <if test="pricerange != null" >
+        #{pricerange,jdbcType=VARCHAR},
+      </if>
+      <if test="areatype != null" >
+        #{areatype,jdbcType=VARCHAR},
+      </if>
+      <if test="arearange != null" >
+        #{arearange,jdbcType=VARCHAR},
+      </if>
+      <if test="roomnumber != null" >
+        #{roomnumber,jdbcType=INTEGER},
+      </if>
+      <if test="buildingage != null" >
+        #{buildingage,jdbcType=INTEGER},
+      </if>
+      <if test="pushnotification != null" >
+        #{pushnotification,jdbcType=INTEGER},
+      </if>
+      <if test="pushtime != null" >
+        #{pushtime,jdbcType=INTEGER},
+      </if>
+      <if test="pushmethod != null" >
+        #{pushmethod,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

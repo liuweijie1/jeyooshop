@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.PropertySimilarMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertySimilar" >
+    <constructor >
+      <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="SalePrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="RentPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="BuildingArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SaleableArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="BuildingAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SaleableAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="UnitRemark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.PropertySimilar" >
+    insert into property_similar (PropertyID, SalePrice, RentPrice, 
+      BuildingArea, SaleableArea, BuildingAvgPrice, 
+      SaleableAvgPrice, UnitRemark, Sequence
+      )
+    values (#{propertyid,jdbcType=BIGINT}, #{saleprice,jdbcType=DECIMAL}, #{rentprice,jdbcType=DECIMAL}, 
+      #{buildingarea,jdbcType=DECIMAL}, #{saleablearea,jdbcType=DECIMAL}, #{buildingavgprice,jdbcType=DECIMAL}, 
+      #{saleableavgprice,jdbcType=DECIMAL}, #{unitremark,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertySimilar" >
+    insert into property_similar
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        PropertyID,
+      </if>
+      <if test="saleprice != null" >
+        SalePrice,
+      </if>
+      <if test="rentprice != null" >
+        RentPrice,
+      </if>
+      <if test="buildingarea != null" >
+        BuildingArea,
+      </if>
+      <if test="saleablearea != null" >
+        SaleableArea,
+      </if>
+      <if test="buildingavgprice != null" >
+        BuildingAvgPrice,
+      </if>
+      <if test="saleableavgprice != null" >
+        SaleableAvgPrice,
+      </if>
+      <if test="unitremark != null" >
+        UnitRemark,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        #{propertyid,jdbcType=BIGINT},
+      </if>
+      <if test="saleprice != null" >
+        #{saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rentprice != null" >
+        #{rentprice,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingarea != null" >
+        #{buildingarea,jdbcType=DECIMAL},
+      </if>
+      <if test="saleablearea != null" >
+        #{saleablearea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingavgprice != null" >
+        #{buildingavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleableavgprice != null" >
+        #{saleableavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="unitremark != null" >
+        #{unitremark,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

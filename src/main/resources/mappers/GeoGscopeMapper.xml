@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.GeoGscopeMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.GeoGscope" >
+    <constructor >
+      <arg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RegionCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegionName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegionNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ZoneName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ZoneNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GscopeName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GscopeNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Longitudes" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="Latitudes" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IsShow" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.GeoGscope" >
+    insert into geo_gscope (ID, RegionCode, GscopeCode, 
+      RegionName, RegionNameEN, ZoneName, 
+      ZoneNameEN, GscopeName, GscopeNameEN, 
+      Longitudes, Latitudes, Sequence, 
+      IsShow, IsDelete)
+    values (#{id,jdbcType=INTEGER}, #{regioncode,jdbcType=VARCHAR}, #{gscopecode,jdbcType=VARCHAR}, 
+      #{regionname,jdbcType=VARCHAR}, #{regionnameen,jdbcType=VARCHAR}, #{zonename,jdbcType=VARCHAR}, 
+      #{zonenameen,jdbcType=VARCHAR}, #{gscopename,jdbcType=VARCHAR}, #{gscopenameen,jdbcType=VARCHAR}, 
+      #{longitudes,jdbcType=REAL}, #{latitudes,jdbcType=REAL}, #{sequence,jdbcType=INTEGER}, 
+      #{isshow,jdbcType=BIT}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.GeoGscope" >
+    insert into geo_gscope
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="regioncode != null" >
+        RegionCode,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="regionname != null" >
+        RegionName,
+      </if>
+      <if test="regionnameen != null" >
+        RegionNameEN,
+      </if>
+      <if test="zonename != null" >
+        ZoneName,
+      </if>
+      <if test="zonenameen != null" >
+        ZoneNameEN,
+      </if>
+      <if test="gscopename != null" >
+        GscopeName,
+      </if>
+      <if test="gscopenameen != null" >
+        GscopeNameEN,
+      </if>
+      <if test="longitudes != null" >
+        Longitudes,
+      </if>
+      <if test="latitudes != null" >
+        Latitudes,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+      <if test="isshow != null" >
+        IsShow,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regioncode != null" >
+        #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionname != null" >
+        #{regionname,jdbcType=VARCHAR},
+      </if>
+      <if test="regionnameen != null" >
+        #{regionnameen,jdbcType=VARCHAR},
+      </if>
+      <if test="zonename != null" >
+        #{zonename,jdbcType=VARCHAR},
+      </if>
+      <if test="zonenameen != null" >
+        #{zonenameen,jdbcType=VARCHAR},
+      </if>
+      <if test="gscopename != null" >
+        #{gscopename,jdbcType=VARCHAR},
+      </if>
+      <if test="gscopenameen != null" >
+        #{gscopenameen,jdbcType=VARCHAR},
+      </if>
+      <if test="longitudes != null" >
+        #{longitudes,jdbcType=REAL},
+      </if>
+      <if test="latitudes != null" >
+        #{latitudes,jdbcType=REAL},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null" >
+        #{isshow,jdbcType=BIT},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

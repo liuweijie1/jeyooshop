@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserLeaveMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserLeaveMessage" >
+    <constructor >
+      <arg column="MessageID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="SourceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SourceID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ContactName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContactWay" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UserType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LeaveMessage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ReplyMessage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+
+  <select id="selectLeaveMessage"  resultType="java.util.Map">
+    select u. UserCode as usercode ,m.Source as source ,m.LeaveMessage as leavemessage ,m.CreateTime as createtime from user_leavemessage m left join   user u on u.UserID = m.UserID
+       <where>
+        m.IsDelete=0 and u.IsDelete =0
+           <if test="usercode!=null and usercode!=''">
+               and  u.UserCode = #{usercode}
+           </if>
+           <if test="source!=null and source!=''">
+             and m. Source =#{source}
+           </if>
+           <if test="startTime !=null and startTime!='' ">
+               <![CDATA[ and m. createTime  >=  #{startTime}  ]]>
+           </if>
+           <if test="endTime !=null and endTime!='' " >
+               <![CDATA[ and m. createTime <=  #{endTime}  ]]>
+           </if>
+       </where>
+  </select>
+
+</mapper>

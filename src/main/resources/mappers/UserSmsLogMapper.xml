@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserSmsLogMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserSmsLog" >
+    <constructor >
+      <arg column="SMSID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="SendType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UserID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="Mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SourceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SendContent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="SendTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsSuccess" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserSmsLog" >
+    insert into user_smslog (SMSID, SendType, UserID, 
+      Mobile, SourceType, SendContent, 
+      Remark, CreateTime, SendTime, 
+      IsSuccess)
+    values (#{smsid,jdbcType=BIGINT}, #{sendtype,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, 
+      #{mobile,jdbcType=VARCHAR}, #{sourcetype,jdbcType=VARCHAR}, #{sendcontent,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{sendtime,jdbcType=TIMESTAMP}, 
+      #{issuccess,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserSmsLog" >
+    insert into user_smslog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smsid != null" >
+        SMSID,
+      </if>
+      <if test="sendtype != null" >
+        SendType,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="sourcetype != null" >
+        SourceType,
+      </if>
+      <if test="sendcontent != null" >
+        SendContent,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="issuccess != null" >
+        IsSuccess,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smsid != null" >
+        #{smsid,jdbcType=BIGINT},
+      </if>
+      <if test="sendtype != null" >
+        #{sendtype,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetype != null" >
+        #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcontent != null" >
+        #{sendcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issuccess != null" >
+        #{issuccess,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

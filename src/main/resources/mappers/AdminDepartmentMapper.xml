@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.AdminDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.AdminDepartment" >
+    <constructor >
+      <arg column="DepartmentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DepartmentName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ParentDepartmentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Remarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.AdminDepartment" >
+    insert into admin_department (DepartmentID, DepartmentName, ParentDepartmentID, 
+      Remarks, Status, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete)
+    values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{parentdepartmentid,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.AdminDepartment" >
+    insert into admin_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentid != null" >
+        DepartmentID,
+      </if>
+      <if test="departmentname != null" >
+        DepartmentName,
+      </if>
+      <if test="parentdepartmentid != null" >
+        ParentDepartmentID,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentdepartmentid != null" >
+        #{parentdepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

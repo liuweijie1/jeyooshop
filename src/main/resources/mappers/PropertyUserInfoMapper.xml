@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.PropertyUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyUserInfo" >
+    <constructor >
+      <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ContactNameCN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContactNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Telphone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsShowTel" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="IsShowWhatsApp" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="IsShowWeChat" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="CompanyTel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CustomerTel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CompanyNameCN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CompanyNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CompanyAddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CompanyAddressEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CompanyLicenceNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AgentLicenceNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AgentIntroduce" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyUserInfo" >
+    insert into property_userinfo (PropertyID, UserID, ContactNameCN, 
+      ContactNameEN, Email, Telphone, 
+      IsShowTel, IsShowWhatsApp, IsShowWeChat, 
+      CompanyTel, CustomerTel, CompanyNameCN, 
+      CompanyNameEN, CompanyAddress, CompanyAddressEN, 
+      CompanyLicenceNumber, AgentLicenceNumber, 
+      AgentIntroduce, CreateUser, CreateTime, 
+      UpdateUser, UpdateTime, IsDelete, 
+      Sequence)
+    values (#{propertyid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{contactnamecn,jdbcType=VARCHAR}, 
+      #{contactnameen,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{isshowtel,jdbcType=BIT}, #{isshowwhatsapp,jdbcType=BIT}, #{isshowwechat,jdbcType=BIT}, 
+      #{companytel,jdbcType=VARCHAR}, #{customertel,jdbcType=VARCHAR}, #{companynamecn,jdbcType=VARCHAR}, 
+      #{companynameen,jdbcType=VARCHAR}, #{companyaddress,jdbcType=VARCHAR}, #{companyaddressen,jdbcType=VARCHAR}, 
+      #{companylicencenumber,jdbcType=VARCHAR}, #{agentlicencenumber,jdbcType=VARCHAR}, 
+      #{agentintroduce,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}, 
+      #{sequence,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyUserInfo" >
+    insert into property_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        PropertyID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="contactnamecn != null" >
+        ContactNameCN,
+      </if>
+      <if test="contactnameen != null" >
+        ContactNameEN,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="telphone != null" >
+        Telphone,
+      </if>
+      <if test="isshowtel != null" >
+        IsShowTel,
+      </if>
+      <if test="isshowwhatsapp != null" >
+        IsShowWhatsApp,
+      </if>
+      <if test="isshowwechat != null" >
+        IsShowWeChat,
+      </if>
+      <if test="companytel != null" >
+        CompanyTel,
+      </if>
+      <if test="customertel != null" >
+        CustomerTel,
+      </if>
+      <if test="companynamecn != null" >
+        CompanyNameCN,
+      </if>
+      <if test="companynameen != null" >
+        CompanyNameEN,
+      </if>
+      <if test="companyaddress != null" >
+        CompanyAddress,
+      </if>
+      <if test="companyaddressen != null" >
+        CompanyAddressEN,
+      </if>
+      <if test="companylicencenumber != null" >
+        CompanyLicenceNumber,
+      </if>
+      <if test="agentlicencenumber != null" >
+        AgentLicenceNumber,
+      </if>
+      <if test="agentintroduce != null" >
+        AgentIntroduce,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        #{propertyid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="contactnamecn != null" >
+        #{contactnamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="contactnameen != null" >
+        #{contactnameen,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="isshowtel != null" >
+        #{isshowtel,jdbcType=BIT},
+      </if>
+      <if test="isshowwhatsapp != null" >
+        #{isshowwhatsapp,jdbcType=BIT},
+      </if>
+      <if test="isshowwechat != null" >
+        #{isshowwechat,jdbcType=BIT},
+      </if>
+      <if test="companytel != null" >
+        #{companytel,jdbcType=VARCHAR},
+      </if>
+      <if test="customertel != null" >
+        #{customertel,jdbcType=VARCHAR},
+      </if>
+      <if test="companynamecn != null" >
+        #{companynamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="companynameen != null" >
+        #{companynameen,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        #{companyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddressen != null" >
+        #{companyaddressen,jdbcType=VARCHAR},
+      </if>
+      <if test="companylicencenumber != null" >
+        #{companylicencenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentlicencenumber != null" >
+        #{agentlicencenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentintroduce != null" >
+        #{agentintroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

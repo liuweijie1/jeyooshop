@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserUsageRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserUsageRecord" >
+    <constructor >
+      <arg column="UsageRecordID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UsageCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UsageItem" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertyCoin" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Ref" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserUsageRecord" >
+    insert into user_usagerecord (UsageRecordID, UserID, UsageCode, 
+      UsageItem, PropertyCoin, Ref, 
+      CreateTime, UpdateTime, IsDelete
+      )
+    values (#{usagerecordid,jdbcType=BIGINT}, #{userid,jdbcType=INTEGER}, #{usagecode,jdbcType=VARCHAR}, 
+      #{usageitem,jdbcType=VARCHAR}, #{propertycoin,jdbcType=INTEGER}, #{ref,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserUsageRecord" >
+    insert into user_usagerecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usagerecordid != null" >
+        UsageRecordID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="usagecode != null" >
+        UsageCode,
+      </if>
+      <if test="usageitem != null" >
+        UsageItem,
+      </if>
+      <if test="propertycoin != null" >
+        PropertyCoin,
+      </if>
+      <if test="ref != null" >
+        Ref,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usagerecordid != null" >
+        #{usagerecordid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="usagecode != null" >
+        #{usagecode,jdbcType=VARCHAR},
+      </if>
+      <if test="usageitem != null" >
+        #{usageitem,jdbcType=VARCHAR},
+      </if>
+      <if test="propertycoin != null" >
+        #{propertycoin,jdbcType=INTEGER},
+      </if>
+      <if test="ref != null" >
+        #{ref,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

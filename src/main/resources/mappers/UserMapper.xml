@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house730.admin.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.house730.admin.pojo.User">
+        <constructor>
+            <arg column="UserID" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="UserName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="UserCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="Password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="NickName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="Email" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="Telephone" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IsReceiveMessage" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="IsReceiveSMS" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="IsPropertyAgent" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="CompanyNameCN" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CompanyNameEN" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CompanyTelephone" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CompanyAddress" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CompanyAddressEN" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="Signature" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CompanyLicense" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="License" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IsImportEstate" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="PropertyNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="DealNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="BrowseNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="Status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="RemainderPropertyCoin" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="LastLoginTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="Gender" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="AgeType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="SalaryType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="LiveType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="FaceBookAccount" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="GoogleAccount" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="LanguageType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="CreateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="IsDelete" javaType="java.lang.Boolean" jdbcType="BIT"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="idMap" type="java.lang.String">
+        <result column="UserCode" javaType="java.lang.Integer"></result>
+    </resultMap>
+    <insert id="insert" parameterType="com.house730.admin.pojo.User">
+    insert into user (UserID, UserName, UserCode, 
+      Password, NickName, Email, 
+      Telephone, IsReceiveMessage, IsReceiveSMS, 
+      IsPropertyAgent, CompanyNameCN, CompanyNameEN, 
+      CompanyTelephone, CompanyAddress, CompanyAddressEN, 
+      Signature, CompanyLicense, License, 
+      IsImportEstate, PropertyNumber, DealNumber, 
+      BrowseNumber, Status, RemainderPropertyCoin, 
+      LastLoginTime, Gender, AgeType, 
+      SalaryType, LiveType, FaceBookAccount, 
+      GoogleAccount, LanguageType, CreateTime, 
+      UpdateTime, IsDelete)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{isreceivemessage,jdbcType=BIT}, #{isreceivesms,jdbcType=BIT}, 
+      #{ispropertyagent,jdbcType=BIT}, #{companynamecn,jdbcType=VARCHAR}, #{companynameen,jdbcType=VARCHAR}, 
+      #{companytelephone,jdbcType=VARCHAR}, #{companyaddress,jdbcType=VARCHAR}, #{companyaddressen,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{companylicense,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, 
+      #{isimportestate,jdbcType=BIT}, #{propertynumber,jdbcType=INTEGER}, #{dealnumber,jdbcType=INTEGER}, 
+      #{browsenumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{remainderpropertycoin,jdbcType=INTEGER}, 
+      #{lastlogintime,jdbcType=TIMESTAMP}, #{gender,jdbcType=INTEGER}, #{agetype,jdbcType=INTEGER}, 
+      #{salarytype,jdbcType=INTEGER}, #{livetype,jdbcType=INTEGER}, #{facebookaccount,jdbcType=VARCHAR}, 
+      #{googleaccount,jdbcType=VARCHAR}, #{languagetype,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.house730.admin.pojo.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                UserID,
+            </if>
+            <if test="username != null">
+                UserName,
+            </if>
+            <if test="usercode != null">
+                UserCode,
+            </if>
+            <if test="password != null">
+                Password,
+            </if>
+            <if test="nickname != null">
+                NickName,
+            </if>
+            <if test="email != null">
+                Email,
+            </if>
+            <if test="telephone != null">
+                Telephone,
+            </if>
+            <if test="isreceivemessage != null">
+                IsReceiveMessage,
+            </if>
+            <if test="isreceivesms != null">
+                IsReceiveSMS,
+            </if>
+            <if test="ispropertyagent != null">
+                IsPropertyAgent,
+            </if>
+            <if test="companynamecn != null">
+                CompanyNameCN,
+            </if>
+            <if test="companynameen != null">
+                CompanyNameEN,
+            </if>
+            <if test="companytelephone != null">
+                CompanyTelephone,
+            </if>
+            <if test="companyaddress != null">
+                CompanyAddress,
+            </if>
+            <if test="companyaddressen != null">
+                CompanyAddressEN,
+            </if>
+            <if test="signature != null">
+                Signature,
+            </if>
+            <if test="companylicense != null">
+                CompanyLicense,
+            </if>
+            <if test="license != null">
+                License,
+            </if>
+            <if test="isimportestate != null">
+                IsImportEstate,
+            </if>
+            <if test="propertynumber != null">
+                PropertyNumber,
+            </if>
+            <if test="dealnumber != null">
+                DealNumber,
+            </if>
+            <if test="browsenumber != null">
+                BrowseNumber,
+            </if>
+            <if test="status != null">
+                Status,
+            </if>
+            <if test="remainderpropertycoin != null">
+                RemainderPropertyCoin,
+            </if>
+            <if test="lastlogintime != null">
+                LastLoginTime,
+            </if>
+            <if test="gender != null">
+                Gender,
+            </if>
+            <if test="agetype != null">
+                AgeType,
+            </if>
+            <if test="salarytype != null">
+                SalaryType,
+            </if>
+            <if test="livetype != null">
+                LiveType,
+            </if>
+            <if test="facebookaccount != null">
+                FaceBookAccount,
+            </if>
+            <if test="googleaccount != null">
+                GoogleAccount,
+            </if>
+            <if test="languagetype != null">
+                LanguageType,
+            </if>
+            <if test="createtime != null">
+                CreateTime,
+            </if>
+            <if test="updatetime != null">
+                UpdateTime,
+            </if>
+            <if test="isdelete != null">
+                IsDelete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="usercode != null">
+                #{usercode,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="isreceivemessage != null">
+                #{isreceivemessage,jdbcType=BIT},
+            </if>
+            <if test="isreceivesms != null">
+                #{isreceivesms,jdbcType=BIT},
+            </if>
+            <if test="ispropertyagent != null">
+                #{ispropertyagent,jdbcType=BIT},
+            </if>
+            <if test="companynamecn != null">
+                #{companynamecn,jdbcType=VARCHAR},
+            </if>
+            <if test="companynameen != null">
+                #{companynameen,jdbcType=VARCHAR},
+            </if>
+            <if test="companytelephone != null">
+                #{companytelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyaddress != null">
+                #{companyaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companyaddressen != null">
+                #{companyaddressen,jdbcType=VARCHAR},
+            </if>
+            <if test="signature != null">
+                #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="companylicense != null">
+                #{companylicense,jdbcType=VARCHAR},
+            </if>
+            <if test="license != null">
+                #{license,jdbcType=VARCHAR},
+            </if>
+            <if test="isimportestate != null">
+                #{isimportestate,jdbcType=BIT},
+            </if>
+            <if test="propertynumber != null">
+                #{propertynumber,jdbcType=INTEGER},
+            </if>
+            <if test="dealnumber != null">
+                #{dealnumber,jdbcType=INTEGER},
+            </if>
+            <if test="browsenumber != null">
+                #{browsenumber,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="remainderpropertycoin != null">
+                #{remainderpropertycoin,jdbcType=INTEGER},
+            </if>
+            <if test="lastlogintime != null">
+                #{lastlogintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="agetype != null">
+                #{agetype,jdbcType=INTEGER},
+            </if>
+            <if test="salarytype != null">
+                #{salarytype,jdbcType=INTEGER},
+            </if>
+            <if test="livetype != null">
+                #{livetype,jdbcType=INTEGER},
+            </if>
+            <if test="facebookaccount != null">
+                #{facebookaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="googleaccount != null">
+                #{googleaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="languagetype != null">
+                #{languagetype,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isdelete != null">
+                #{isdelete,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="query" resultType="com.house730.admin.pojo.User"
+            parameterType="com.house730.admin.requestSearch.UserSearch">
+        select UserID,  UserCode ,CreateTime ,Email,Telephone,RegisterSource,IsPropertyAgent,CompanyNameCN,Source,Status,IdentityScore,ApprovalStatus
+        from user
+        <where>
+            IsDelete = 0
+            <if test="null!=usercode and usercode!=''">
+              and  UserCode = #{usercode}
+            </if>
+            <if test="null!=source and source!=''">
+                and Source = #{source}
+            </if>
+            <if test="ispropertyagent!=null and ispropertyagent!=''">
+                and IsPropertyAgent = #{ispropertyagent}
+            </if>
+            <if test="null!=status and status!=''">
+                and Status =#{status}
+            </if>
+            <if test="null!=approvalStatus and approvalStatus !=''">
+                and ApprovalStatus =#{approvalStatus}
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[ and createTime  >=  #{startTime}  ]]>
+            </if>
+            <if test="endTime !=null and endTime != ''">
+                <![CDATA[ and createTime <=  #{endTime}  ]]>
+            </if>
+        </where>
+    </select>
+    <select id="queryDetail" resultType="com.house730.admin.pojo.User">
+    select * from user
+    where UserID = #{userid} and IsDelete = 0
+  </select>
+    <select id="queryByStatus" resultType="com.house730.admin.pojo.UserOptionInfo">
+    select OperationItem ,Content from user_operationinfo where UserID=#{userid} and IsDelete =0 order by CreateTime DESC limit 1
+  </select>
+    <!--更新会员账户状态-->
+    <update id="updateStatus">
+   update user SET Status=#{status}
+ where UserID=#{id}
+ </update>
+
+    <!--更新用户操作表 插入用户账号最新状态 -->
+    <insert id="insertUserOptionInfo">
+        insert into user_operationinfo(UserID,OperationItem,Content,CreateUser,CreateTime)
+  	values
+  	(#{id},#{status},#{detail},#{empid},now())
+    </insert>
+    <select id="queryIdByuserCode" resultType="java.lang.Integer">
+        select UserID from user where UserCode=#{usercode} and IsDelete =0
+    </select>
+    <select id="queryReasonByUserid" resultType="java.lang.String">
+        select  Content from user_operationinfo where UserID =#{userid} and IsDelete = 0 order by CreateTime desc limit 1
+    </select>
+    <select id="queryByIdList" parameterType="java.util.List" resultType="com.house730.admin.pojo.User">
+        select UserCode,UserID from user where UserID IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and IsDelete=0
+    </select>
+    <select id="querydetailAll" resultType="java.util.Map">
+        select u.*,(select DictionaryName from sys_dictionary where DictionaryID = u.AgeType)as age ,
+        (select DictionaryName from sys_dictionary where DictionaryID = u.Gender)as gend,
+        (select DictionaryName from sys_dictionary where DictionaryID = u.SalaryType)as salary,
+        (select DictionaryName from sys_dictionary where DictionaryID = u.LiveType)as live
+        from user u where u.UserID= #{userid}
+        and  u.IsDelete=0
+    </select>
+    <!--下载Excel表格-->
+    <select id="downExcel" resultType="com.house730.admin.resultpojo.UserExcel"
+            parameterType="com.house730.admin.requestSearch.UserSearch">
+        select  UserCode ,Email,Telephone,UserName,Gender,AgeType,SalaryType,LiveType,IsReceiveMessage,IsPropertyAgent,CompanyNameCN,CompanyTelephone,CompanyAddress,CompanyLicense,License,Status,ApprovalStatus,IdentityScore
+        from user
+        <where>
+            IsDelete = 0
+            <if test="null!=userCode and userCode!=''">
+             and   UserCode = #{userCode}
+            </if>
+            <if test="null!=source and source!=''">
+                and Source = #{source}
+            </if>
+            <if test="ispropertyagent!=null">
+                and IsPropertyAgent = #{ispropertyagent}
+            </if>
+            <if test="null!=status and status!=''">
+                and Status =#{status}
+            </if>
+            <if test="null!=approvalStatus and approvalStatus !=''">
+                and ApprovalStatus =#{approvalStatus}
+            </if>
+            <if test="startTime !=null and startTime!=''  ">
+                <![CDATA[ and CreateTime  >=  #{startTime}  ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' ">
+                <![CDATA[ and CreateTime <=  #{endTime}  ]]>
+            </if>
+        </where>
+    </select>
+    <update id="checkapproval">
+        update user set ApprovalStatus=#{status} where UserID =#{userid}
+    </update>
+    <update id="changesore">
+        update user set IdentityScore=#{score} where UserID=#{useid}
+    </update>
+	
+	<update id="changePropertycoin" parameterType="com.house730.admin.pojo.User">
+        update user set RemainderPropertyCoin=#{remainderpropertycoin} where UserID=#{userid}
+    </update>
+	
+</mapper>

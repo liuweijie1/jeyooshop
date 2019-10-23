@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserFurnitureMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserFurniture" >
+    <constructor >
+      <arg column="FurnitureID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="FurnitureCategory" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="NameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsDonation" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="DonationDESC" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FurnitureItem" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Brand" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Bargaining" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TitleEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Introduce" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IntroduceEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Degree" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="HandoverMethod" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="HandoverTime" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OriginalBuyTime" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OriginaBuyPrice" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContactName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsWhatsApp" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="IsOnline" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="ExpireTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserFurniture" >
+    insert into user_furniture (FurnitureID, UserID, FurnitureCategory, 
+      Name, NameEN, IsDonation, 
+      DonationDESC, FurnitureItem, Brand, 
+      Price, Bargaining, Title, 
+      TitleEN, Introduce, IntroduceEN, 
+      Degree, GscopeCode, HandoverMethod, 
+      HandoverTime, OriginalBuyTime, OriginaBuyPrice, 
+      ContactName, Telephone, IsWhatsApp, 
+      IsOnline, ExpireTime, Status, 
+      CreateUser, CreateTime, UpdateUser, 
+      UpdateTime, IsDelete)
+    values (#{furnitureid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{furniturecategory,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{nameen,jdbcType=VARCHAR}, #{isdonation,jdbcType=BIT}, 
+      #{donationdesc,jdbcType=VARCHAR}, #{furnitureitem,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{bargaining,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{titleen,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{introduceen,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=INTEGER}, #{gscopecode,jdbcType=VARCHAR}, #{handovermethod,jdbcType=VARCHAR}, 
+      #{handovertime,jdbcType=VARCHAR}, #{originalbuytime,jdbcType=VARCHAR}, #{originabuyprice,jdbcType=VARCHAR}, 
+      #{contactname,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{iswhatsapp,jdbcType=BIT}, 
+      #{isonline,jdbcType=BIT}, #{expiretime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserFurniture" >
+    insert into user_furniture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="furnitureid != null" >
+        FurnitureID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="furniturecategory != null" >
+        FurnitureCategory,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="nameen != null" >
+        NameEN,
+      </if>
+      <if test="isdonation != null" >
+        IsDonation,
+      </if>
+      <if test="donationdesc != null" >
+        DonationDESC,
+      </if>
+      <if test="furnitureitem != null" >
+        FurnitureItem,
+      </if>
+      <if test="brand != null" >
+        Brand,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="bargaining != null" >
+        Bargaining,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="titleen != null" >
+        TitleEN,
+      </if>
+      <if test="introduce != null" >
+        Introduce,
+      </if>
+      <if test="introduceen != null" >
+        IntroduceEN,
+      </if>
+      <if test="degree != null" >
+        Degree,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="handovermethod != null" >
+        HandoverMethod,
+      </if>
+      <if test="handovertime != null" >
+        HandoverTime,
+      </if>
+      <if test="originalbuytime != null" >
+        OriginalBuyTime,
+      </if>
+      <if test="originabuyprice != null" >
+        OriginaBuyPrice,
+      </if>
+      <if test="contactname != null" >
+        ContactName,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="iswhatsapp != null" >
+        IsWhatsApp,
+      </if>
+      <if test="isonline != null" >
+        IsOnline,
+      </if>
+      <if test="expiretime != null" >
+        ExpireTime,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="furnitureid != null" >
+        #{furnitureid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="furniturecategory != null" >
+        #{furniturecategory,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameen != null" >
+        #{nameen,jdbcType=VARCHAR},
+      </if>
+      <if test="isdonation != null" >
+        #{isdonation,jdbcType=BIT},
+      </if>
+      <if test="donationdesc != null" >
+        #{donationdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="furnitureitem != null" >
+        #{furnitureitem,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bargaining != null" >
+        #{bargaining,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleen != null" >
+        #{titleen,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceen != null" >
+        #{introduceen,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="handovermethod != null" >
+        #{handovermethod,jdbcType=VARCHAR},
+      </if>
+      <if test="handovertime != null" >
+        #{handovertime,jdbcType=VARCHAR},
+      </if>
+      <if test="originalbuytime != null" >
+        #{originalbuytime,jdbcType=VARCHAR},
+      </if>
+      <if test="originabuyprice != null" >
+        #{originabuyprice,jdbcType=VARCHAR},
+      </if>
+      <if test="contactname != null" >
+        #{contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="iswhatsapp != null" >
+        #{iswhatsapp,jdbcType=BIT},
+      </if>
+      <if test="isonline != null" >
+        #{isonline,jdbcType=BIT},
+      </if>
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

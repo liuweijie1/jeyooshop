@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserDepartmentMapper">
+<select id="queryBranchName" resultType="java.util.Map">
+   select DepartmentID, DepartmentName from user_department
+   where
+    IsDelete=0
+    and CompanyID=#{companyid}
+</select>
+
+   <select id="branchlist" resultType="java.util.Map">
+      select d.DepartmentID, c.CompanyName as companyname,c.CompanyNameEN as companynameen,d.DepartmentName,d.DepartmentNameEN,d.Address,d.AddressEN,d.Telephone from user_department d
+      left join user_agentcompany c on d.CompanyID = c.CompanyID and  c.IsDelete=0 and d.IsDelete=0
+      <where>
+      <if test="companyid != null and companyid!=''">
+       and   c.CompanyID=#{companyid}
+      </if>
+    <if test="departmentid != null and departmentid !=''">
+       and d.Departmentid=#{departmentid}
+    </if>
+      </where>
+   </select>
+</mapper>

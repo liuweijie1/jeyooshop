@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.DealMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Deal" >
+    <constructor >
+      <arg column="DealCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DealID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="DealTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ParentEstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="BuildingID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="DealPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="BuildingArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SaleableArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="BuildingAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SaleableAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AddressEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContractMode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Floor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TotalFloor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Direction" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegisterTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="MarketLevel" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UnitNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegisterAddress1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegisterAddress1EN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegisterAddress2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RegisterAddress2EN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingUsage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingUsageDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingUsageDescEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UnitUsage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UnitUsageDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UnitUsageDescEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DealBuildingAge" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="EvaluateNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertyReferNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LastRegisterNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LastDealPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="LastDealTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="LastRegisterTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="LastBuildingAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="LastHoldDays" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Profit" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="ProfitPercent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="ProfitPercentYear" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.Deal" >
+    insert into deal (DealCode, DealID, DealTime, 
+      GscopeCode, EstateID, ParentEstateID, 
+      BuildingID, DealPrice, BuildingArea, 
+      SaleableArea, BuildingAvgPrice, SaleableAvgPrice, 
+      Address, AddressEN, ContractMode, 
+      Floor, TotalFloor, BuildingName, 
+      BuildingNameEN, Direction, RegisterTime, 
+      MarketLevel, UnitNo, RegisterAddress1, 
+      RegisterAddress1EN, RegisterAddress2, RegisterAddress2EN, 
+      BuildingUsage, BuildingUsageDesc, BuildingUsageDescEN, 
+      UnitUsage, UnitUsageDesc, UnitUsageDescEN, 
+      DealBuildingAge, EvaluateNo, PropertyReferNo, 
+      LastRegisterNo, LastDealPrice, LastDealTime, 
+      LastRegisterTime, LastBuildingAvgPrice, 
+      LastHoldDays, Profit, ProfitPercent, 
+      ProfitPercentYear, IsDelete)
+    values (#{dealcode,jdbcType=VARCHAR}, #{dealid,jdbcType=BIGINT}, #{dealtime,jdbcType=TIMESTAMP}, 
+      #{gscopecode,jdbcType=VARCHAR}, #{estateid,jdbcType=BIGINT}, #{parentestateid,jdbcType=BIGINT}, 
+      #{buildingid,jdbcType=BIGINT}, #{dealprice,jdbcType=DECIMAL}, #{buildingarea,jdbcType=DECIMAL}, 
+      #{saleablearea,jdbcType=DECIMAL}, #{buildingavgprice,jdbcType=DECIMAL}, #{saleableavgprice,jdbcType=DECIMAL}, 
+      #{address,jdbcType=VARCHAR}, #{addressen,jdbcType=VARCHAR}, #{contractmode,jdbcType=VARCHAR}, 
+      #{floor,jdbcType=VARCHAR}, #{totalfloor,jdbcType=VARCHAR}, #{buildingname,jdbcType=VARCHAR}, 
+      #{buildingnameen,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{marketlevel,jdbcType=INTEGER}, #{unitno,jdbcType=VARCHAR}, #{registeraddress1,jdbcType=VARCHAR}, 
+      #{registeraddress1en,jdbcType=VARCHAR}, #{registeraddress2,jdbcType=VARCHAR}, #{registeraddress2en,jdbcType=VARCHAR}, 
+      #{buildingusage,jdbcType=VARCHAR}, #{buildingusagedesc,jdbcType=VARCHAR}, #{buildingusagedescen,jdbcType=VARCHAR}, 
+      #{unitusage,jdbcType=VARCHAR}, #{unitusagedesc,jdbcType=VARCHAR}, #{unitusagedescen,jdbcType=VARCHAR}, 
+      #{dealbuildingage,jdbcType=INTEGER}, #{evaluateno,jdbcType=VARCHAR}, #{propertyreferno,jdbcType=VARCHAR}, 
+      #{lastregisterno,jdbcType=VARCHAR}, #{lastdealprice,jdbcType=DECIMAL}, #{lastdealtime,jdbcType=TIMESTAMP}, 
+      #{lastregistertime,jdbcType=TIMESTAMP}, #{lastbuildingavgprice,jdbcType=DECIMAL}, 
+      #{lastholddays,jdbcType=INTEGER}, #{profit,jdbcType=DECIMAL}, #{profitpercent,jdbcType=DECIMAL}, 
+      #{profitpercentyear,jdbcType=DECIMAL}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Deal" >
+    insert into deal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dealcode != null" >
+        DealCode,
+      </if>
+      <if test="dealid != null" >
+        DealID,
+      </if>
+      <if test="dealtime != null" >
+        DealTime,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="estateid != null" >
+        EstateID,
+      </if>
+      <if test="parentestateid != null" >
+        ParentEstateID,
+      </if>
+      <if test="buildingid != null" >
+        BuildingID,
+      </if>
+      <if test="dealprice != null" >
+        DealPrice,
+      </if>
+      <if test="buildingarea != null" >
+        BuildingArea,
+      </if>
+      <if test="saleablearea != null" >
+        SaleableArea,
+      </if>
+      <if test="buildingavgprice != null" >
+        BuildingAvgPrice,
+      </if>
+      <if test="saleableavgprice != null" >
+        SaleableAvgPrice,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="addressen != null" >
+        AddressEN,
+      </if>
+      <if test="contractmode != null" >
+        ContractMode,
+      </if>
+      <if test="floor != null" >
+        Floor,
+      </if>
+      <if test="totalfloor != null" >
+        TotalFloor,
+      </if>
+      <if test="buildingname != null" >
+        BuildingName,
+      </if>
+      <if test="buildingnameen != null" >
+        BuildingNameEN,
+      </if>
+      <if test="direction != null" >
+        Direction,
+      </if>
+      <if test="registertime != null" >
+        RegisterTime,
+      </if>
+      <if test="marketlevel != null" >
+        MarketLevel,
+      </if>
+      <if test="unitno != null" >
+        UnitNo,
+      </if>
+      <if test="registeraddress1 != null" >
+        RegisterAddress1,
+      </if>
+      <if test="registeraddress1en != null" >
+        RegisterAddress1EN,
+      </if>
+      <if test="registeraddress2 != null" >
+        RegisterAddress2,
+      </if>
+      <if test="registeraddress2en != null" >
+        RegisterAddress2EN,
+      </if>
+      <if test="buildingusage != null" >
+        BuildingUsage,
+      </if>
+      <if test="buildingusagedesc != null" >
+        BuildingUsageDesc,
+      </if>
+      <if test="buildingusagedescen != null" >
+        BuildingUsageDescEN,
+      </if>
+      <if test="unitusage != null" >
+        UnitUsage,
+      </if>
+      <if test="unitusagedesc != null" >
+        UnitUsageDesc,
+      </if>
+      <if test="unitusagedescen != null" >
+        UnitUsageDescEN,
+      </if>
+      <if test="dealbuildingage != null" >
+        DealBuildingAge,
+      </if>
+      <if test="evaluateno != null" >
+        EvaluateNo,
+      </if>
+      <if test="propertyreferno != null" >
+        PropertyReferNo,
+      </if>
+      <if test="lastregisterno != null" >
+        LastRegisterNo,
+      </if>
+      <if test="lastdealprice != null" >
+        LastDealPrice,
+      </if>
+      <if test="lastdealtime != null" >
+        LastDealTime,
+      </if>
+      <if test="lastregistertime != null" >
+        LastRegisterTime,
+      </if>
+      <if test="lastbuildingavgprice != null" >
+        LastBuildingAvgPrice,
+      </if>
+      <if test="lastholddays != null" >
+        LastHoldDays,
+      </if>
+      <if test="profit != null" >
+        Profit,
+      </if>
+      <if test="profitpercent != null" >
+        ProfitPercent,
+      </if>
+      <if test="profitpercentyear != null" >
+        ProfitPercentYear,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dealcode != null" >
+        #{dealcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealid != null" >
+        #{dealid,jdbcType=BIGINT},
+      </if>
+      <if test="dealtime != null" >
+        #{dealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="estateid != null" >
+        #{estateid,jdbcType=BIGINT},
+      </if>
+      <if test="parentestateid != null" >
+        #{parentestateid,jdbcType=BIGINT},
+      </if>
+      <if test="buildingid != null" >
+        #{buildingid,jdbcType=BIGINT},
+      </if>
+      <if test="dealprice != null" >
+        #{dealprice,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingarea != null" >
+        #{buildingarea,jdbcType=DECIMAL},
+      </if>
+      <if test="saleablearea != null" >
+        #{saleablearea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingavgprice != null" >
+        #{buildingavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleableavgprice != null" >
+        #{saleableavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressen != null" >
+        #{addressen,jdbcType=VARCHAR},
+      </if>
+      <if test="contractmode != null" >
+        #{contractmode,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalfloor != null" >
+        #{totalfloor,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null" >
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingnameen != null" >
+        #{buildingnameen,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null" >
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marketlevel != null" >
+        #{marketlevel,jdbcType=INTEGER},
+      </if>
+      <if test="unitno != null" >
+        #{unitno,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress1 != null" >
+        #{registeraddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress1en != null" >
+        #{registeraddress1en,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress2 != null" >
+        #{registeraddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress2en != null" >
+        #{registeraddress2en,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingusage != null" >
+        #{buildingusage,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingusagedesc != null" >
+        #{buildingusagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingusagedescen != null" >
+        #{buildingusagedescen,jdbcType=VARCHAR},
+      </if>
+      <if test="unitusage != null" >
+        #{unitusage,jdbcType=VARCHAR},
+      </if>
+      <if test="unitusagedesc != null" >
+        #{unitusagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitusagedescen != null" >
+        #{unitusagedescen,jdbcType=VARCHAR},
+      </if>
+      <if test="dealbuildingage != null" >
+        #{dealbuildingage,jdbcType=INTEGER},
+      </if>
+      <if test="evaluateno != null" >
+        #{evaluateno,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyreferno != null" >
+        #{propertyreferno,jdbcType=VARCHAR},
+      </if>
+      <if test="lastregisterno != null" >
+        #{lastregisterno,jdbcType=VARCHAR},
+      </if>
+      <if test="lastdealprice != null" >
+        #{lastdealprice,jdbcType=DECIMAL},
+      </if>
+      <if test="lastdealtime != null" >
+        #{lastdealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastregistertime != null" >
+        #{lastregistertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastbuildingavgprice != null" >
+        #{lastbuildingavgprice,jdbcType=DECIMAL},
+      </if>
+      <if test="lastholddays != null" >
+        #{lastholddays,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="profitpercent != null" >
+        #{profitpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="profitpercentyear != null" >
+        #{profitpercentyear,jdbcType=DECIMAL},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

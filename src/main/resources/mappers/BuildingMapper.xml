@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.BuildingMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Building" >
+    <constructor >
+      <arg column="BuildingID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="BuildingCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ParentEstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAlias" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAliasEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAddressEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OpeningDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Direction" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="PropertyUsage" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ArchitectureType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PropertyManagementFee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="UnitNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ElevatorNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ElevatorRoomNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RoomNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="StairType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FloorHeightType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="StartFloor" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TotalFloors" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingAge" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Street" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetNoEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Longitudes" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Latitudes" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.house730.admin.pojo.Building" >
+    <constructor >
+      <arg column="BuildingID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="BuildingCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ParentEstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAlias" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAliasEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BuildingAddressEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OpeningDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Direction" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="PropertyUsage" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ArchitectureType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PropertyManagementFee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="UnitNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ElevatorNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ElevatorRoomNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RoomNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="StairType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FloorHeightType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="StartFloor" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TotalFloors" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingAge" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Street" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StreetNoEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Longitudes" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Latitudes" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="Geo" jdbcType="BINARY" javaType="_byte[]" />
+    </constructor>
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    Geo
+  </sql>
+  <insert id="insert" parameterType="com.house730.admin.pojo.Building" >
+    insert into building (BuildingID, BuildingCode, EstateID, 
+      ParentEstateID, GscopeCode, BuildingName, 
+      BuildingNameEN, BuildingAlias, BuildingAliasEN, 
+      BuildingAddress, BuildingAddressEN, OpeningDate, 
+      Direction, BuildingArea, PropertyUsage, 
+      BuildingType, ArchitectureType, PropertyManagementFee, 
+      UnitNumber, BuildingNumber, ElevatorNumber, 
+      ElevatorRoomNumber, RoomNumber, StairType, 
+      FloorHeightType, StartFloor, TotalFloors, 
+      BuildingAge, Street, StreetEN, 
+      StreetNo, StreetNoEN, Longitudes, 
+      Latitudes, Sequence, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete, Geo)
+    values (#{buildingid,jdbcType=BIGINT}, #{buildingcode,jdbcType=VARCHAR}, #{estateid,jdbcType=BIGINT}, 
+      #{parentestateid,jdbcType=BIGINT}, #{gscopecode,jdbcType=VARCHAR}, #{buildingname,jdbcType=VARCHAR}, 
+      #{buildingnameen,jdbcType=VARCHAR}, #{buildingalias,jdbcType=VARCHAR}, #{buildingaliasen,jdbcType=VARCHAR}, 
+      #{buildingaddress,jdbcType=VARCHAR}, #{buildingaddressen,jdbcType=VARCHAR}, #{openingdate,jdbcType=TIMESTAMP}, 
+      #{direction,jdbcType=INTEGER}, #{buildingarea,jdbcType=DECIMAL}, #{propertyusage,jdbcType=INTEGER}, 
+      #{buildingtype,jdbcType=INTEGER}, #{architecturetype,jdbcType=INTEGER}, #{propertymanagementfee,jdbcType=DECIMAL}, 
+      #{unitnumber,jdbcType=INTEGER}, #{buildingnumber,jdbcType=INTEGER}, #{elevatornumber,jdbcType=INTEGER}, 
+      #{elevatorroomnumber,jdbcType=INTEGER}, #{roomnumber,jdbcType=INTEGER}, #{stairtype,jdbcType=INTEGER}, 
+      #{floorheighttype,jdbcType=INTEGER}, #{startfloor,jdbcType=INTEGER}, #{totalfloors,jdbcType=INTEGER}, 
+      #{buildingage,jdbcType=INTEGER}, #{street,jdbcType=VARCHAR}, #{streeten,jdbcType=VARCHAR}, 
+      #{streetno,jdbcType=VARCHAR}, #{streetnoen,jdbcType=VARCHAR}, #{longitudes,jdbcType=DOUBLE}, 
+      #{latitudes,jdbcType=DOUBLE}, #{sequence,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT}, #{geo,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Building" >
+    insert into building
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buildingid != null" >
+        BuildingID,
+      </if>
+      <if test="buildingcode != null" >
+        BuildingCode,
+      </if>
+      <if test="estateid != null" >
+        EstateID,
+      </if>
+      <if test="parentestateid != null" >
+        ParentEstateID,
+      </if>
+      <if test="gscopecode != null" >
+        GscopeCode,
+      </if>
+      <if test="buildingname != null" >
+        BuildingName,
+      </if>
+      <if test="buildingnameen != null" >
+        BuildingNameEN,
+      </if>
+      <if test="buildingalias != null" >
+        BuildingAlias,
+      </if>
+      <if test="buildingaliasen != null" >
+        BuildingAliasEN,
+      </if>
+      <if test="buildingaddress != null" >
+        BuildingAddress,
+      </if>
+      <if test="buildingaddressen != null" >
+        BuildingAddressEN,
+      </if>
+      <if test="openingdate != null" >
+        OpeningDate,
+      </if>
+      <if test="direction != null" >
+        Direction,
+      </if>
+      <if test="buildingarea != null" >
+        BuildingArea,
+      </if>
+      <if test="propertyusage != null" >
+        PropertyUsage,
+      </if>
+      <if test="buildingtype != null" >
+        BuildingType,
+      </if>
+      <if test="architecturetype != null" >
+        ArchitectureType,
+      </if>
+      <if test="propertymanagementfee != null" >
+        PropertyManagementFee,
+      </if>
+      <if test="unitnumber != null" >
+        UnitNumber,
+      </if>
+      <if test="buildingnumber != null" >
+        BuildingNumber,
+      </if>
+      <if test="elevatornumber != null" >
+        ElevatorNumber,
+      </if>
+      <if test="elevatorroomnumber != null" >
+        ElevatorRoomNumber,
+      </if>
+      <if test="roomnumber != null" >
+        RoomNumber,
+      </if>
+      <if test="stairtype != null" >
+        StairType,
+      </if>
+      <if test="floorheighttype != null" >
+        FloorHeightType,
+      </if>
+      <if test="startfloor != null" >
+        StartFloor,
+      </if>
+      <if test="totalfloors != null" >
+        TotalFloors,
+      </if>
+      <if test="buildingage != null" >
+        BuildingAge,
+      </if>
+      <if test="street != null" >
+        Street,
+      </if>
+      <if test="streeten != null" >
+        StreetEN,
+      </if>
+      <if test="streetno != null" >
+        StreetNo,
+      </if>
+      <if test="streetnoen != null" >
+        StreetNoEN,
+      </if>
+      <if test="longitudes != null" >
+        Longitudes,
+      </if>
+      <if test="latitudes != null" >
+        Latitudes,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="geo != null" >
+        Geo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buildingid != null" >
+        #{buildingid,jdbcType=BIGINT},
+      </if>
+      <if test="buildingcode != null" >
+        #{buildingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="estateid != null" >
+        #{estateid,jdbcType=BIGINT},
+      </if>
+      <if test="parentestateid != null" >
+        #{parentestateid,jdbcType=BIGINT},
+      </if>
+      <if test="gscopecode != null" >
+        #{gscopecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null" >
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingnameen != null" >
+        #{buildingnameen,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingalias != null" >
+        #{buildingalias,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingaliasen != null" >
+        #{buildingaliasen,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingaddress != null" >
+        #{buildingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingaddressen != null" >
+        #{buildingaddressen,jdbcType=VARCHAR},
+      </if>
+      <if test="openingdate != null" >
+        #{openingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="buildingarea != null" >
+        #{buildingarea,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyusage != null" >
+        #{propertyusage,jdbcType=INTEGER},
+      </if>
+      <if test="buildingtype != null" >
+        #{buildingtype,jdbcType=INTEGER},
+      </if>
+      <if test="architecturetype != null" >
+        #{architecturetype,jdbcType=INTEGER},
+      </if>
+      <if test="propertymanagementfee != null" >
+        #{propertymanagementfee,jdbcType=DECIMAL},
+      </if>
+      <if test="unitnumber != null" >
+        #{unitnumber,jdbcType=INTEGER},
+      </if>
+      <if test="buildingnumber != null" >
+        #{buildingnumber,jdbcType=INTEGER},
+      </if>
+      <if test="elevatornumber != null" >
+        #{elevatornumber,jdbcType=INTEGER},
+      </if>
+      <if test="elevatorroomnumber != null" >
+        #{elevatorroomnumber,jdbcType=INTEGER},
+      </if>
+      <if test="roomnumber != null" >
+        #{roomnumber,jdbcType=INTEGER},
+      </if>
+      <if test="stairtype != null" >
+        #{stairtype,jdbcType=INTEGER},
+      </if>
+      <if test="floorheighttype != null" >
+        #{floorheighttype,jdbcType=INTEGER},
+      </if>
+      <if test="startfloor != null" >
+        #{startfloor,jdbcType=INTEGER},
+      </if>
+      <if test="totalfloors != null" >
+        #{totalfloors,jdbcType=INTEGER},
+      </if>
+      <if test="buildingage != null" >
+        #{buildingage,jdbcType=INTEGER},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="streeten != null" >
+        #{streeten,jdbcType=VARCHAR},
+      </if>
+      <if test="streetno != null" >
+        #{streetno,jdbcType=VARCHAR},
+      </if>
+      <if test="streetnoen != null" >
+        #{streetnoen,jdbcType=VARCHAR},
+      </if>
+      <if test="longitudes != null" >
+        #{longitudes,jdbcType=DOUBLE},
+      </if>
+      <if test="latitudes != null" >
+        #{latitudes,jdbcType=DOUBLE},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="geo != null" >
+        #{geo,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

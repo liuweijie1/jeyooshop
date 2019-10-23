@@ -1,0 +1,37 @@
+server:
+  port: 8088
+spring:
+  datasource:
+     
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://52.148.92.137:3306/house730
+      
+      username: admin
+      password: admin123
+    
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy/MM/dd HH:mm:ss
+
+
+
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+    static-path-pattern: /**
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.house730.admin.pojo
+  mapper-locations: mappers/*.xml
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.house730.admin:  debug
+
+
+
+
+
+

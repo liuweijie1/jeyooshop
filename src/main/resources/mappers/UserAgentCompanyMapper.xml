@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserAgentCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserAgentCompany">
+        <constructor>
+            <arg column="CompanyID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="CompanyLicense" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CompanyName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CompanyNameEN" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Email" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Web" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Telephone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Introduce" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="Logo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="FacebookAccount" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean"/>
+        </constructor>
+    </resultMap>
+    <insert id="insert" parameterType="com.house730.admin.pojo.UserAgentCompany">
+    insert into User_AgentCompany (CompanyID, CompanyLicense, CompanyName, 
+      CompanyNameEN, Email, Web, 
+      Telephone, Address, Introduce, 
+      Logo, FacebookAccount, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete)
+    values (#{companyid,jdbcType=INTEGER}, #{companylicense,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{companynameen,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{web,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{logo,jdbcType=VARCHAR}, #{facebookaccount,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserAgentCompany">
+        insert into User_AgentCompany
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyid != null">
+                CompanyID,
+            </if>
+            <if test="companylicense != null">
+                CompanyLicense,
+            </if>
+            <if test="companyname != null">
+                CompanyName,
+            </if>
+            <if test="companynameen != null">
+                CompanyNameEN,
+            </if>
+            <if test="email != null">
+                Email,
+            </if>
+            <if test="web != null">
+                Web,
+            </if>
+            <if test="telephone != null">
+                Telephone,
+            </if>
+            <if test="address != null">
+                Address,
+            </if>
+            <if test="introduce != null">
+                Introduce,
+            </if>
+            <if test="logo != null">
+                Logo,
+            </if>
+            <if test="facebookaccount != null">
+                FacebookAccount,
+            </if>
+            <if test="createuser != null">
+                CreateUser,
+            </if>
+            <if test="createtime != null">
+                CreateTime,
+            </if>
+            <if test="updateuser != null">
+                UpdateUser,
+            </if>
+            <if test="updatetime != null">
+                UpdateTime,
+            </if>
+            <if test="isdelete != null">
+                IsDelete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyid != null">
+                #{companyid,jdbcType=INTEGER},
+            </if>
+            <if test="companylicense != null">
+                #{companylicense,jdbcType=VARCHAR},
+            </if>
+            <if test="companyname != null">
+                #{companyname,jdbcType=VARCHAR},
+            </if>
+            <if test="companynameen != null">
+                #{companynameen,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="web != null">
+                #{web,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="facebookaccount != null">
+                #{facebookaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateuser != null">
+                #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isdelete != null">
+                #{isdelete,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryCompanyName" resultType="java.lang.String">
+    select CompanyName from user_agentcompany where IsDelete =0
+  </select>
+
+    <select id="getCompanyPage" resultType="com.house730.admin.pojo.UserAgentCompany">
+        SELECT
+        c.CompanyID,
+        c.CompanyName,
+        c.CompanyNameEN,
+        ( SELECT count( 0 ) FROM user_department e WHERE c.CompanyID = e.CompanyID AND e.IsDelete = 0 ) AS maxdepartmentnumber,
+        c.Address,
+        c.AddressEN,
+        c.Telephone,
+        c.CompanyLicense,
+        c.IdentityScore,
+        c.CreateTime,
+        c.UpdateTime
+        FROM
+        user_agentcompany c
+        WHERE
+        c.IsDelete = 0
+            <if test="companyname != null and companyname !=''">
+                and CompanyName = #{companyname}
+            </if>
+            <if test="createstart !=null and createstart!='' ">
+                <![CDATA[ and CreateTime  >=  #{createstart}  ]]>
+            </if>
+            <if test="createend !=null and createend!='' ">
+                <![CDATA[ and CreateTime <=  #{createend}  ]]>
+            </if>
+            <if test="updatestart !=null and updatestart!='' ">
+                <![CDATA[ and UpdateTime  >=  #{updatestart}  ]]>
+            </if>
+            <if test="updateend !=null and updateend!='' ">
+                <![CDATA[ and UpdateTime <=  #{updateend}  ]]>
+            </if>
+    </select>
+    <select id="getDetail" resultType="com.house730.admin.pojo.UserAgentCompany">
+        select CompanyID,
+        CompanyName,CompanyNameEN,Address,AddressEN,Telephone,CompanyLicense,Logo,Introduce,IntroduceEN,
+        Web,IdentityScore,MaxDepartmentNumber from user_agentcompany
+        where IsDelete=0
+        <if test="companyid!=null and companyid!=''">
+            AND CompanyID=#{companyid}
+        </if>
+    </select>
+    <update id="updateCompany">
+        update user_agentcompany
+        <set>
+            CompanyName =#{companyname}
+            ,
+            CompanyNameEN =#{companynameen}
+            ,
+            Address =#{address}
+            ,
+            AddressEN =#{addressen}
+            ,
+            Telephone =#{telephone}
+            ,
+            CompanyLicense =#{companylicense}
+            ,
+            Logo =#{logo}
+            ,
+            Introduce =#{introduce}
+            ,
+            IntroduceEN =#{introduceen}
+            ,
+            Web =#{web}
+            ,
+            IdentityScore =#{identityscore}
+            ,
+            MaxDepartmentNumber =#{max}
+            ,
+            UpdateTime=now()
+        </set>
+        where CompanyID=#{companyid} and IsDelete =0
+    </update>
+    <update id="deleteCompany" >
+        update user_agentcompany set IsDelete=1 where CompanyID=#{companyid};
+    </update>
+</mapper>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.PropertyMapper">
+
+    <select id="findReleasePage"   resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+        select
+        u.UserID,
+        p.PropertyID,
+        p.EstateName,
+        p.RentalType,
+        p.PropertySource,
+        p.PropertyStatus,
+        p.IsHide,
+        p.ApprovalStatus,
+        p.PaymentStatus,
+        p.IsAdminOffLine,
+        p.CreateTime,
+        p.UpdateTime,
+        p.ApprovalTime,
+        p.PublicTime
+        from property p left JOIN property_userinfo u
+        on p.PropertyID = u.PropertyID and u.IsDelete = '0'
+        where p.IsDelete = '0'
+        <if test="paymentStatus != null and paymentStatus != ''">
+            AND p.PaymentStatus = #{paymentStatus}
+        </if>
+        <if test="approvalStatus != null and approvalStatus != ''">
+            AND p.ApprovalStatus = #{approvalStatus}
+        </if>
+        <if test="propertyId != null and propertyId != ''">
+            AND u.PropertyID = #{propertyId}
+        </if>
+        <if test="estateName != null and estateName != ''">
+            AND p.EstateName like concat('%',#{estateName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="propertySource != null and propertySource != ''">
+            AND p.PropertySource = #{propertySource}
+        </if>
+        <if test="propertyStatus != null and propertyStatus != ''">
+            AND p.PropertyStatus = #{propertyStatus}
+        </if>
+        <if test="isHide != null and isHide != ''">
+            AND p.IsHide = #{isHide}
+        </if>
+        <if test="upperOrLowers != null and upperOrLowers != ''">
+            AND p.PropertyStatus in <!-- (#{upperOrLowers}) -->
+            <foreach item="propertyStatus" index="index" collection="upperOrLowers" open="(" separator="," close=")">
+                #{propertyStatus}
+            </foreach>
+        </if>
+        <if test="beginTime != null and beginTime != ''">
+            <![CDATA[ and p.CreateTime >=  STR_TO_DATE(#{beginTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endTime != null and endTime != ''">
+            <![CDATA[ and p.CreateTime <=  STR_TO_DATE(#{endTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="beginUpdateTime != null and beginUpdateTime != ''">
+            <![CDATA[ and p.UpdateTime >=  STR_TO_DATE(#{beginUpdateTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endUpdateTime != null and endUpdateTime != ''">
+            <![CDATA[ and p.UpdateTime <=  STR_TO_DATE(#{endUpdateTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+
+        <if test="beginPublictime != null and beginPublictime != ''">
+            <![CDATA[ and p.PublicTime >=  STR_TO_DATE(#{beginPublictime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endPublictime != null and endPublictime != ''">
+            <![CDATA[ and p.PublicTime <=  STR_TO_DATE(#{endPublictime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+
+        <if test="beginApprovalTime != null and beginApprovalTime != ''">
+            <![CDATA[ and p.ApprovalTime >=  STR_TO_DATE(#{beginApprovalTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endApprovalTime != null and endApprovalTime != ''">
+            <![CDATA[ and p.ApprovalTime <=  STR_TO_DATE(#{endApprovalTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="isadminoffline != null and isadminoffline != ''">
+            AND p.IsAdminOffLine = #{isadminoffline}
+        </if>
+        <if test="rentaltype != null and rentaltype != ''">
+            AND p.RentalType = #{rentaltype}
+        </if>
+        
+        ORDER BY p.CreateTime desc
+        <!-- limit #{page},#{limit} -->
+    </select>
+
+    <select id="findReleaseDetailByPropertyId"   resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+        select
+        p.PropertyID,
+        p.EstateID,
+        p.EstateName,
+        p.RentalType,
+        p.PropertySource,
+        p.PropertyStatus,
+        p.IsHide,
+        p.RentPrice,
+        p.SaleableAvgPrice,
+        p.UnitFloor,
+        p.RoomNumber,
+        p.SaleableArea,
+        p.BuildingAge,
+        p.PropertyNo,
+        p.EstateAddress,
+        p.BrowseNumber,
+        p.CollectionNumber,
+        n.IntroduceCN,
+        n.IntroduceEN,
+        p.BuildingName,
+        p.PublicTime,
+        p.ApprovalStatus,
+        p.PaymentStatus,
+        g.RegionName,
+        p.TitleCN,
+        p.SaleForm,
+        p.beginrenttime,
+        p.IsLinkParking,
+        
+        p.ExpireTime,
+        p.CreateTime,
+        p.UpdateTime
+        from property p
+        left JOIN property_introduce n on p.PropertyID = n.PropertyID
+        left join geo_gscope g on g.GscopeCode= p.GscopeCode and g.IsDelete = '0'
+        where p.IsDelete = '0'
+        and p.PropertyID = #{propertyId}
+    </select>
+
+
+    <select id="getAuditPage" resultType="com.house730.admin.resultpojo.PropertyAuditResult">
+        select PropertyID ,EstateName,RentalType , PropertySource,IsVerifyLabel,PublicTime from property
+        where IsDelete=0 and (IsVerify=1 or IsVerifyImage=1 ) and PaymentStatus=1
+        <if test="propertyid!=null and propertyid!=''">
+            and PropertyID=#{propertyid}
+        </if>
+        <if test="propertysource!=null and propertysource!=''">
+            and PropertySource=#{propertysource}
+        </if>
+        <if test="isverifylabel!=null and isverifylabel!=''">
+            and IsVerifyLabel=#{isverifylabel}
+        </if>
+        <if test="startTime !=null and startTime !=''">
+            <![CDATA[ and PublicTime  >=  #{startTime}  ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[ and PublicTime <=  #{endTime}  ]]>
+        </if>
+    </select>
+    <select id="getDetailPage" resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+    SELECT
+    p.PropertyID,
+	p.EstateID,
+	p.EstateName,
+	p.RentalType,
+	p.TitleCN,
+	p.BeginRentTime,
+    p.SaleForm,
+    p.IsLinkParking,
+	p.PropertyStatus,
+	p.RentPrice,
+	p.SaleableAvgPrice,
+	p.BuildingName,
+	p.UnitFloor,
+	p.RoomNumber,
+	p.SaleableArea,
+	p.EstateAddress,
+	p.BrowseNumber,
+	p.CollectionNumber,
+	p.PublicTime,
+	p.UpdateTime,
+	p.ExpireTime,
+	p.AccountID,
+	p.UserID,
+	p.IsVerifyLabel,
+	pi.IntroduceCN,
+	p.ApprovalStatus,
+    g.RegionName
+FROM
+	property p left join
+	property_introduce pi on p.PropertyID = pi.PropertyID
+	left join geo_gscope g on g.GscopeCode= p.GscopeCode
+WHERE
+p.IsDelete = 0
+AND p.PropertyID = #{propertyid}
+AND (IsVerify=1 or IsVerifyImage=1)
+    </select>
+
+    <select id="getUserBypropertyid" resultType="com.house730.admin.resultpojo.Agent">
+        SELECT
+	p.ContactNameCN,
+	p.ContactNameEN,
+	p.Telphone,
+	p.CompanyNameCN,
+	p.IsShowTel,
+	u.ApprovalStatus,
+	u.ImagePath
+FROM
+	property_userinfo p
+	LEFT JOIN user u ON p.UserID = u.UserID AND u.IsDelete = 0
+WHERE
+	p.PropertyID = #{propertyid}
+	AND p.IsDelete = 0
+
+    </select>
+    <select id="getProImage" resultType="java.lang.String">
+        select ImagePath from property_image where IsVerifyImage =0 AND IsDelete =0 and PropertyID =#{propertyid}
+    </select>
+    <select id="getLabelImage" resultType="java.lang.String">
+        select ImagePath from property_image where IsVerifyImage=1 and IsDelete=0 and PropertyID=#{propertyid}
+    </select>
+    <update id="updateProperty" parameterType="com.house730.admin.resultpojo.PropertyReleaseResult" >
+        update property
+        <set>
+            <if test="isadminoffline != null" >
+                IsAdminOffLine = #{isadminoffline,jdbcType=BIT},
+            </if>
+            <if test="approvalstatus != null" >
+                ApprovalStatus = #{approvalstatus,jdbcType=INTEGER},
+            </if>
+            <if test="approvalTime != null" >
+                ApprovalTime = #{approvalTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        ,IsDelete=0
+        where PropertyID = #{propertyid,jdbcType=BIGINT}
+    </update>
+    <update id="checklabelStatus">
+        update property
+        <set>
+        <if test="isverify != null">
+            IsVerifyLabel = #{isverify}
+        </if>
+    </set>
+        where propertyid =#{propertyid}
+    </update>
+    <select id="category" resultType="java.lang.String">
+        SELECT
+	DictionaryName
+FROM
+	sys_dictionary
+WHERE
+	ParentDictionaryID = ( SELECT DictionaryID FROM sys_dictionary WHERE ItemName = "PropertyCategory" )
+	AND DictionaryValue = ( SELECT PropertyCategory FROM property WHERE propertyid = #{propertyid} )
+    </select>
+    <select id="subcategory" resultType="java.lang.String">
+        SELECT
+	DictionaryName
+FROM
+	sys_dictionary
+WHERE
+	DictionaryValue  in ( SELECT SubCategory FROM property_subcategory WHERE PropertyID = #{propertyid} )
+	AND ParentDictionaryID = (
+	SELECT
+		DictionaryID
+	FROM
+		sys_dictionary
+	WHERE
+		ParentDictionaryID = ( SELECT DictionaryID FROM sys_dictionary WHERE ItemName = "PropertyCategory" )
+		AND DictionaryValue = ( SELECT PropertyCategory FROM property WHERE propertyid = #{propertyid} )
+	)
+    </select>
+    <select id="similarProperty" resultType="com.house730.admin.pojo.PropertySimilar">
+        select * from property_similar where PropertyID = #{propertyid}
+    </select>
+    <select id="getselfPage" resultType="com.house730.admin.resultpojo.PropertyAuditResult">
+        select PropertyID ,EstateName,RentalType , PropertySource,ApprovalStatus,PublicTime from property
+        where IsDelete=0 and EstateID=0 and PaymentStatus=1
+        <if test="propertyid!=null and propertyid!=''">
+            and PropertyID=#{propertyid}
+        </if>
+        <if test="propertysource!=null and propertysource!=''">
+            and PropertySource=#{propertysource}
+        </if>
+        <if test="approvalstatus!=null and approvalstatus!=''">
+            and ApprovalStatus=#{approvalstatus}
+        </if>
+        <if test="startTime !=null and startTime !=''">
+            <![CDATA[ and PublicTime  >=  #{startTime}  ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[ and PublicTime <=  #{endTime}  ]]>
+        </if>
+    </select>
+    <select id="getSelfDetailPage"  resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+         SELECT
+    p.PropertyID,
+	p.EstateID,
+	p.EstateName,
+	p.RentalType,
+	p.TitleCN,
+	p.BeginRentTime,
+    p.SaleForm,
+    p.IsLinkParking,
+	p.PropertyStatus,
+	p.RentPrice,
+	p.SaleableAvgPrice,
+	p.BuildingName,
+	p.UnitFloor,
+	p.RoomNumber,
+	p.SaleableArea,
+	p.EstateAddress,
+	p.BrowseNumber,
+	p.CollectionNumber,
+	p.PublicTime,
+	p.UpdateTime,
+	p.ExpireTime,
+	p.AccountID,
+	p.UserID,
+	pi.IntroduceCN,
+	p.ApprovalStatus,
+    g.RegionName
+FROM
+	property p left join
+	property_introduce pi on p.PropertyID = pi.PropertyID
+	left join geo_gscope g on g.GscopeCode= p.GscopeCode
+WHERE
+p.IsDelete = 0
+AND p.PropertyID = #{propertyid}
+AND p.EstateID = 0
+    </select>
+    <update id="propertyStatus">
+        update property
+        <set>
+            <if test="approvalstatus != null">
+                ApprovalStatus = #{approvalstatus}
+            </if>
+        </set>
+        where propertyid =#{propertyid}
+    </update>
+</mapper>

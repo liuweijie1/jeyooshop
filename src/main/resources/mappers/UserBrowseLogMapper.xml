@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserBrowseLogMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserBrowseLog" >
+    <constructor >
+      <arg column="BrowseID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UserIP" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BrowseValue" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SourceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BrowseTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="BrowseURL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DeviceID" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserBrowseLog" >
+    insert into user_browselog (BrowseID, UserID, UserIP, 
+      BrowseValue, SourceType, BrowseTime, 
+      BrowseURL, DeviceID)
+    values (#{browseid,jdbcType=BIGINT}, #{userid,jdbcType=INTEGER}, #{userip,jdbcType=VARCHAR}, 
+      #{browsevalue,jdbcType=VARCHAR}, #{sourcetype,jdbcType=VARCHAR}, #{browsetime,jdbcType=TIMESTAMP}, 
+      #{browseurl,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserBrowseLog" >
+    insert into user_browselog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="browseid != null" >
+        BrowseID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="userip != null" >
+        UserIP,
+      </if>
+      <if test="browsevalue != null" >
+        BrowseValue,
+      </if>
+      <if test="sourcetype != null" >
+        SourceType,
+      </if>
+      <if test="browsetime != null" >
+        BrowseTime,
+      </if>
+      <if test="browseurl != null" >
+        BrowseURL,
+      </if>
+      <if test="deviceid != null" >
+        DeviceID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="browseid != null" >
+        #{browseid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="userip != null" >
+        #{userip,jdbcType=VARCHAR},
+      </if>
+      <if test="browsevalue != null" >
+        #{browsevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetype != null" >
+        #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="browsetime != null" >
+        #{browsetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="browseurl != null" >
+        #{browseurl,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

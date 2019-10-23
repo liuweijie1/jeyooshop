@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.SysDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.SysDictionary" >
+    <constructor >
+      <arg column="DictionaryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ParentDictionaryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DictionaryName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DictionaryNameEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DictionaryValue" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ItemName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsShow" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <resultMap id="dictionary" type="java.lang.String">
+    <result column="DictionaryName" javaType="java.lang.Integer"></result>
+  </resultMap>
+<select   id="queryselect"  resultType="java.lang.String">
+  select DictionaryName from sys_dictionary where DictionaryID =#{args} and isDelete =0
+</select>
+  <select id="queryList"  resultMap="dictionary" >
+      select DictionaryName  from sys_dictionary where DictionaryID IN (#{gender},#{agetype},#{salarytype},#{livetype}) order by field (DictionaryName,#{gender},#{agetype},#{salarytype},#{livetype}) and isDelete=0
+  </select>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.propertyIntroduceMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyIntroduce" >
+    <constructor >
+      <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="IntroduceCN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IntroduceEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyIntroduce" >
+    insert into property_introduce (PropertyID, IntroduceCN, IntroduceEN
+      )
+    values (#{propertyid,jdbcType=BIGINT}, #{introducecn,jdbcType=VARCHAR}, #{introduceen,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyIntroduce" >
+    insert into property_introduce
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        PropertyID,
+      </if>
+      <if test="introducecn != null" >
+        IntroduceCN,
+      </if>
+      <if test="introduceen != null" >
+        IntroduceEN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="propertyid != null" >
+        #{propertyid,jdbcType=BIGINT},
+      </if>
+      <if test="introducecn != null" >
+        #{introducecn,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceen != null" >
+        #{introduceen,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

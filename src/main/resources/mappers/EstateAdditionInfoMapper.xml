@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.EstateAdditionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.EstateAdditionInfo" >
+    <constructor >
+      <arg column="EstateID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="EstateIntroduce" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EstateIntroduceEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Facilities" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FacilitiesEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Service" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ServiceEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Charge" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ChargeEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Lable" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LableEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AroundTraffic" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AroundTrafficEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AroundFacilitie" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AroundFacilitieEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.EstateAdditionInfo" >
+    insert into estate_additioninfo (EstateID, EstateIntroduce, EstateIntroduceEN, 
+      Facilities, FacilitiesEN, Service, 
+      ServiceEN, Charge, ChargeEN, 
+      Lable, LableEN, AroundTraffic, 
+      AroundTrafficEN, AroundFacilitie, AroundFacilitieEN, 
+      CreateUser, CreateTime, UpdateUser, 
+      UpdateTime, IsDelete)
+    values (#{estateid,jdbcType=INTEGER}, #{estateintroduce,jdbcType=VARCHAR}, #{estateintroduceen,jdbcType=VARCHAR}, 
+      #{facilities,jdbcType=VARCHAR}, #{facilitiesen,jdbcType=VARCHAR}, #{service,jdbcType=VARCHAR}, 
+      #{serviceen,jdbcType=VARCHAR}, #{charge,jdbcType=VARCHAR}, #{chargeen,jdbcType=VARCHAR}, 
+      #{lable,jdbcType=VARCHAR}, #{lableen,jdbcType=VARCHAR}, #{aroundtraffic,jdbcType=VARCHAR}, 
+      #{aroundtrafficen,jdbcType=VARCHAR}, #{aroundfacilitie,jdbcType=VARCHAR}, #{aroundfacilitieen,jdbcType=VARCHAR}, 
+      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.EstateAdditionInfo" >
+    insert into estate_additioninfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="estateid != null" >
+        EstateID,
+      </if>
+      <if test="estateintroduce != null" >
+        EstateIntroduce,
+      </if>
+      <if test="estateintroduceen != null" >
+        EstateIntroduceEN,
+      </if>
+      <if test="facilities != null" >
+        Facilities,
+      </if>
+      <if test="facilitiesen != null" >
+        FacilitiesEN,
+      </if>
+      <if test="service != null" >
+        Service,
+      </if>
+      <if test="serviceen != null" >
+        ServiceEN,
+      </if>
+      <if test="charge != null" >
+        Charge,
+      </if>
+      <if test="chargeen != null" >
+        ChargeEN,
+      </if>
+      <if test="lable != null" >
+        Lable,
+      </if>
+      <if test="lableen != null" >
+        LableEN,
+      </if>
+      <if test="aroundtraffic != null" >
+        AroundTraffic,
+      </if>
+      <if test="aroundtrafficen != null" >
+        AroundTrafficEN,
+      </if>
+      <if test="aroundfacilitie != null" >
+        AroundFacilitie,
+      </if>
+      <if test="aroundfacilitieen != null" >
+        AroundFacilitieEN,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="estateid != null" >
+        #{estateid,jdbcType=INTEGER},
+      </if>
+      <if test="estateintroduce != null" >
+        #{estateintroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="estateintroduceen != null" >
+        #{estateintroduceen,jdbcType=VARCHAR},
+      </if>
+      <if test="facilities != null" >
+        #{facilities,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesen != null" >
+        #{facilitiesen,jdbcType=VARCHAR},
+      </if>
+      <if test="service != null" >
+        #{service,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceen != null" >
+        #{serviceen,jdbcType=VARCHAR},
+      </if>
+      <if test="charge != null" >
+        #{charge,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeen != null" >
+        #{chargeen,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null" >
+        #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="lableen != null" >
+        #{lableen,jdbcType=VARCHAR},
+      </if>
+      <if test="aroundtraffic != null" >
+        #{aroundtraffic,jdbcType=VARCHAR},
+      </if>
+      <if test="aroundtrafficen != null" >
+        #{aroundtrafficen,jdbcType=VARCHAR},
+      </if>
+      <if test="aroundfacilitie != null" >
+        #{aroundfacilitie,jdbcType=VARCHAR},
+      </if>
+      <if test="aroundfacilitieen != null" >
+        #{aroundfacilitieen,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

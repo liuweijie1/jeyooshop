@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.PropertyImageMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyImage" >
+    <constructor >
+      <arg column="ImageID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ImageType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ImagePath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ImageDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ImageDescEN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsDefault" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyImage" >
+    insert into property_image (ImageID, PropertyID, ImageType, 
+      ImagePath, ImageDesc, ImageDescEN, 
+      IsDefault, Sequence, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete)
+    values (#{imageid,jdbcType=BIGINT}, #{propertyid,jdbcType=BIGINT}, #{imagetype,jdbcType=INTEGER}, 
+      #{imagepath,jdbcType=VARCHAR}, #{imagedesc,jdbcType=VARCHAR}, #{imagedescen,jdbcType=VARCHAR}, 
+      #{isdefault,jdbcType=BIT}, #{sequence,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyImage" >
+    insert into property_image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imageid != null" >
+        ImageID,
+      </if>
+      <if test="propertyid != null" >
+        PropertyID,
+      </if>
+      <if test="imagetype != null" >
+        ImageType,
+      </if>
+      <if test="imagepath != null" >
+        ImagePath,
+      </if>
+      <if test="imagedesc != null" >
+        ImageDesc,
+      </if>
+      <if test="imagedescen != null" >
+        ImageDescEN,
+      </if>
+      <if test="isdefault != null" >
+        IsDefault,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imageid != null" >
+        #{imageid,jdbcType=BIGINT},
+      </if>
+      <if test="propertyid != null" >
+        #{propertyid,jdbcType=BIGINT},
+      </if>
+      <if test="imagetype != null" >
+        #{imagetype,jdbcType=INTEGER},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="imagedesc != null" >
+        #{imagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imagedescen != null" >
+        #{imagedescen,jdbcType=VARCHAR},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserLandSearchMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserLandSearch" >
+    <constructor >
+      <arg column="CaseID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="PropertyType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BuildingName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Floor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RoomNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="Price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="LandSearchItem" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IsLinkParking" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="IsLinkGarden" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="GardenArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="IsLinkRooftop" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="RooftopArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="OtherInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OwnerType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PaymentMethod" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Money" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserLandSearch" >
+    insert into user_landsearch (CaseID, EstateID, PropertyType, 
+      BuildingName, Floor, RoomNumber, 
+      PropertyID, Price, LandSearchItem, 
+      IsLinkParking, IsLinkGarden, GardenArea, 
+      IsLinkRooftop, RooftopArea, OtherInfo, 
+      Name, Telephone, Email, 
+      OwnerType, PaymentMethod, Money, 
+      Status, CreateUser, CreateTime, 
+      UpdateUser, UpdateTime, IsDelete
+      )
+    values (#{caseid,jdbcType=INTEGER}, #{estateid,jdbcType=BIGINT}, #{propertytype,jdbcType=INTEGER}, 
+      #{buildingname,jdbcType=VARCHAR}, #{floor,jdbcType=VARCHAR}, #{roomnumber,jdbcType=VARCHAR}, 
+      #{propertyid,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL}, #{landsearchitem,jdbcType=INTEGER}, 
+      #{islinkparking,jdbcType=BIT}, #{islinkgarden,jdbcType=BIT}, #{gardenarea,jdbcType=DECIMAL}, 
+      #{islinkrooftop,jdbcType=BIT}, #{rooftoparea,jdbcType=DECIMAL}, #{otherinfo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{ownertype,jdbcType=INTEGER}, #{paymentmethod,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
+      #{status,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserLandSearch" >
+    insert into user_landsearch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        CaseID,
+      </if>
+      <if test="estateid != null" >
+        EstateID,
+      </if>
+      <if test="propertytype != null" >
+        PropertyType,
+      </if>
+      <if test="buildingname != null" >
+        BuildingName,
+      </if>
+      <if test="floor != null" >
+        Floor,
+      </if>
+      <if test="roomnumber != null" >
+        RoomNumber,
+      </if>
+      <if test="propertyid != null" >
+        PropertyID,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="landsearchitem != null" >
+        LandSearchItem,
+      </if>
+      <if test="islinkparking != null" >
+        IsLinkParking,
+      </if>
+      <if test="islinkgarden != null" >
+        IsLinkGarden,
+      </if>
+      <if test="gardenarea != null" >
+        GardenArea,
+      </if>
+      <if test="islinkrooftop != null" >
+        IsLinkRooftop,
+      </if>
+      <if test="rooftoparea != null" >
+        RooftopArea,
+      </if>
+      <if test="otherinfo != null" >
+        OtherInfo,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="ownertype != null" >
+        OwnerType,
+      </if>
+      <if test="paymentmethod != null" >
+        PaymentMethod,
+      </if>
+      <if test="money != null" >
+        Money,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="estateid != null" >
+        #{estateid,jdbcType=BIGINT},
+      </if>
+      <if test="propertytype != null" >
+        #{propertytype,jdbcType=INTEGER},
+      </if>
+      <if test="buildingname != null" >
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="roomnumber != null" >
+        #{roomnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyid != null" >
+        #{propertyid,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="landsearchitem != null" >
+        #{landsearchitem,jdbcType=INTEGER},
+      </if>
+      <if test="islinkparking != null" >
+        #{islinkparking,jdbcType=BIT},
+      </if>
+      <if test="islinkgarden != null" >
+        #{islinkgarden,jdbcType=BIT},
+      </if>
+      <if test="gardenarea != null" >
+        #{gardenarea,jdbcType=DECIMAL},
+      </if>
+      <if test="islinkrooftop != null" >
+        #{islinkrooftop,jdbcType=BIT},
+      </if>
+      <if test="rooftoparea != null" >
+        #{rooftoparea,jdbcType=DECIMAL},
+      </if>
+      <if test="otherinfo != null" >
+        #{otherinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ownertype != null" >
+        #{ownertype,jdbcType=INTEGER},
+      </if>
+      <if test="paymentmethod != null" >
+        #{paymentmethod,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

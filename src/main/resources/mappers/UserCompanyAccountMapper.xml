@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserCompanyAccountMapper">
+    
+    <select id="agentlist" resultType="com.house730.admin.resultpojo.DepartmentEmplResult">
+SELECT
+    dd.RoleName as rolename,
+	( SELECT CompanyName FROM user_agentcompany ac WHERE ca.CompanyID = ac.CompanyID ) as companyname,
+	( SELECT CompanyNameEN FROM user_agentcompany ac WHERE ca.CompanyID = ac.CompanyID ) as companynameen,
+	( SELECT DepartmentName FROM user_department dm WHERE ca.DepartmentID = dm.DepartmentID ) as departmentname,
+	( SELECT DepartmentNameEN FROM user_department dm WHERE ca.DepartmentID = dm.DepartmentID ) as departmentname,
+	ca.NAME,
+	ca.NameEN,
+	ca.Telephone,
+	ca.Email,
+	ca.License
+FROM
+	user_companyaccount ca
+	left join (
+select r. RoleName, a.AccountID from user_role r right join (select AccountID, RoleID from user_accountrole where AccountID in(select AccountID from user_companyaccount where DepartmentID=1)) a on a.RoleID=r.RoleID) dd on ca.AccountID = dd.AccountID
+
+	where DepartmentID=1
+
+    </select>
+</mapper>

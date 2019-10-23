@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.EstateProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.EstateProjectInfo" >
+    <constructor >
+      <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="DecorationSituation" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ArchitecturalStyle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OpeningDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UnitAreaInterval" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FloorHeight" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FloorCondition" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FloorNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Area" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MinArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MaxArea" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="TotalPriceHK" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MinTotalPriceHK" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MaxTotalPriceHK" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="TotalPriceUS" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MinTotalPriceUS" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MaxTotalPriceUS" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="Web" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Fax" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DealNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PriceNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.house730.admin.pojo.EstateProjectInfo" >
+    insert into estate_projectinfo (EstateID, DecorationSituation, ArchitecturalStyle, 
+      OpeningDate, UnitAreaInterval, FloorHeight, 
+      FloorCondition, FloorNumber, Area, 
+      MinArea, MaxArea, TotalPriceHK, 
+      MinTotalPriceHK, MaxTotalPriceHK, TotalPriceUS, 
+      MinTotalPriceUS, MaxTotalPriceUS, Web, 
+      Telephone, Fax, DealNumber, 
+      PriceNumber)
+    values (#{estateid,jdbcType=BIGINT}, #{decorationsituation,jdbcType=VARCHAR}, #{architecturalstyle,jdbcType=VARCHAR}, 
+      #{openingdate,jdbcType=TIMESTAMP}, #{unitareainterval,jdbcType=VARCHAR}, #{floorheight,jdbcType=VARCHAR}, 
+      #{floorcondition,jdbcType=VARCHAR}, #{floornumber,jdbcType=INTEGER}, #{area,jdbcType=DECIMAL}, 
+      #{minarea,jdbcType=DECIMAL}, #{maxarea,jdbcType=DECIMAL}, #{totalpricehk,jdbcType=DECIMAL}, 
+      #{mintotalpricehk,jdbcType=DECIMAL}, #{maxtotalpricehk,jdbcType=DECIMAL}, #{totalpriceus,jdbcType=DECIMAL}, 
+      #{mintotalpriceus,jdbcType=DECIMAL}, #{maxtotalpriceus,jdbcType=DECIMAL}, #{web,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{dealnumber,jdbcType=INTEGER}, 
+      #{pricenumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.EstateProjectInfo" >
+    insert into estate_projectinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="estateid != null" >
+        EstateID,
+      </if>
+      <if test="decorationsituation != null" >
+        DecorationSituation,
+      </if>
+      <if test="architecturalstyle != null" >
+        ArchitecturalStyle,
+      </if>
+      <if test="openingdate != null" >
+        OpeningDate,
+      </if>
+      <if test="unitareainterval != null" >
+        UnitAreaInterval,
+      </if>
+      <if test="floorheight != null" >
+        FloorHeight,
+      </if>
+      <if test="floorcondition != null" >
+        FloorCondition,
+      </if>
+      <if test="floornumber != null" >
+        FloorNumber,
+      </if>
+      <if test="area != null" >
+        Area,
+      </if>
+      <if test="minarea != null" >
+        MinArea,
+      </if>
+      <if test="maxarea != null" >
+        MaxArea,
+      </if>
+      <if test="totalpricehk != null" >
+        TotalPriceHK,
+      </if>
+      <if test="mintotalpricehk != null" >
+        MinTotalPriceHK,
+      </if>
+      <if test="maxtotalpricehk != null" >
+        MaxTotalPriceHK,
+      </if>
+      <if test="totalpriceus != null" >
+        TotalPriceUS,
+      </if>
+      <if test="mintotalpriceus != null" >
+        MinTotalPriceUS,
+      </if>
+      <if test="maxtotalpriceus != null" >
+        MaxTotalPriceUS,
+      </if>
+      <if test="web != null" >
+        Web,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="fax != null" >
+        Fax,
+      </if>
+      <if test="dealnumber != null" >
+        DealNumber,
+      </if>
+      <if test="pricenumber != null" >
+        PriceNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="estateid != null" >
+        #{estateid,jdbcType=BIGINT},
+      </if>
+      <if test="decorationsituation != null" >
+        #{decorationsituation,jdbcType=VARCHAR},
+      </if>
+      <if test="architecturalstyle != null" >
+        #{architecturalstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="openingdate != null" >
+        #{openingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitareainterval != null" >
+        #{unitareainterval,jdbcType=VARCHAR},
+      </if>
+      <if test="floorheight != null" >
+        #{floorheight,jdbcType=VARCHAR},
+      </if>
+      <if test="floorcondition != null" >
+        #{floorcondition,jdbcType=VARCHAR},
+      </if>
+      <if test="floornumber != null" >
+        #{floornumber,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=DECIMAL},
+      </if>
+      <if test="minarea != null" >
+        #{minarea,jdbcType=DECIMAL},
+      </if>
+      <if test="maxarea != null" >
+        #{maxarea,jdbcType=DECIMAL},
+      </if>
+      <if test="totalpricehk != null" >
+        #{totalpricehk,jdbcType=DECIMAL},
+      </if>
+      <if test="mintotalpricehk != null" >
+        #{mintotalpricehk,jdbcType=DECIMAL},
+      </if>
+      <if test="maxtotalpricehk != null" >
+        #{maxtotalpricehk,jdbcType=DECIMAL},
+      </if>
+      <if test="totalpriceus != null" >
+        #{totalpriceus,jdbcType=DECIMAL},
+      </if>
+      <if test="mintotalpriceus != null" >
+        #{mintotalpriceus,jdbcType=DECIMAL},
+      </if>
+      <if test="maxtotalpriceus != null" >
+        #{maxtotalpriceus,jdbcType=DECIMAL},
+      </if>
+      <if test="web != null" >
+        #{web,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="dealnumber != null" >
+        #{dealnumber,jdbcType=INTEGER},
+      </if>
+      <if test="pricenumber != null" >
+        #{pricenumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

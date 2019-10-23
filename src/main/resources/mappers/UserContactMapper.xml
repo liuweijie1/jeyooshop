@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.UserContactMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserContact" >
+    <constructor >
+      <arg column="ContactID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ContactPerson" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="HelpTopic" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  
+  
+   <select id="queryList" resultType="com.house730.admin.resultpojo.UserContactResult">
+			SELECT
+					a.ContactID AS contactid,
+					a.ContactPerson AS contactperson,
+					a.Email AS email,
+					a.Phone AS phone,
+					a.Title AS title,
+					a.Content AS content,
+					a.CreateTime AS createtime,
+					c.dictionaryname
+				FROM
+					user_contact a
+				LEFT JOIN (
+					SELECT
+						b.dictionaryid,
+						b.dictionaryvalue,
+						b.dictionaryname
+					FROM
+						sys_dictionary a
+					INNER JOIN sys_dictionary b ON a.dictionaryid = b.parentdictionaryid
+					WHERE
+						a.itemname = 'HelpTopic'
+				) AS c ON a.HelpTopic = c.dictionaryvalue  
+			<where>
+			   a.isdelete=0
+			   
+		      <if test="helpTopic !=null and helpTopic !=''">
+		        and a.HelpTopic = #{helpTopic}
+		      </if>
+		      <if test="contactID !=null and contactID !=''">
+		       and  a.ContactID = #{contactID}
+		      </if>
+		     
+		      <if test="startTime !=null and startTime !=''">
+		        <![CDATA[ and a.createTime  >= str_to_date(#{startTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+		      </if>
+		      <if test="endTime !=null and endTime !=''"  >
+		        <![CDATA[ and a.createTime <= str_to_date(#{endTime} '23:59:59', '%Y-%m-%d %H:%i:%s')   ]]>
+		      </if>
+		    </where>
+		    
+   </select>
+   
+   <select id="getTachmentById" resultType="com.house730.admin.pojo.UserContactattachment">
+       select AttachmentPath from user_contactattachment where ContactID = #{contactID}   and isdelete=0
+   </select>
+   
+   
+  <insert id="insert" parameterType="com.house730.admin.pojo.UserContact" >
+    insert into user_contact (ContactID, ContactPerson, Email, 
+      Phone, HelpTopic, Title, 
+      Content, Status, CreateUser, 
+      CreateTime, UpdateUser, UpdateTime, 
+      IsDelete)
+    values (#{contactid,jdbcType=INTEGER}, #{contactperson,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{helptopic,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserContact" >
+    insert into user_contact
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contactid != null" >
+        ContactID,
+      </if>
+      <if test="contactperson != null" >
+        ContactPerson,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="helptopic != null" >
+        HelpTopic,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contactid != null" >
+        #{contactid,jdbcType=INTEGER},
+      </if>
+      <if test="contactperson != null" >
+        #{contactperson,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="helptopic != null" >
+        #{helptopic,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

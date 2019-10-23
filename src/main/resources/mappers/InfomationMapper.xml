@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house730.admin.mapper.InfomationMapper" >
+  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Infomation" >
+    <constructor >
+      <arg column="InformationID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="CategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SubCategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ImagePath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Language" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Brief" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PublishTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Source" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsOffline" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.house730.admin.pojo.Infomation" >
+    <constructor >
+      <arg column="InformationID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="CategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SubCategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ImagePath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Language" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Brief" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PublishTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Source" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IsOffline" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="CreateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UpdateUser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="Content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    Content
+  </sql>
+  
+  
+  
+  
+   <select id="queryCatagoryList" resultType="com.house730.admin.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, isShow,Sequence as seqence,CreateTime,UpdateTime from information_category 
+         where  isdelete=0 
+         <if test="parentcategoryid!=null and parentcategoryid !=''">
+		      and  ParentCategoryID = #{parentcategoryid,jdbcType=INTEGER}
+		 </if>
+		  <if test="categoryname == 'true'">
+		      and  ParentCategoryID =0
+		 </if>
+		  <if test="subcategoryname == 'true'">
+		      and  ParentCategoryID != 0
+		 </if>
+		  <if test="sequence!=null and sequence !=''">
+		      and  Sequence = #{sequence,jdbcType=INTEGER}
+		 </if>
+		  <if test="catagoryid!=null and catagoryid !=''">
+		      and  CatagoryID != #{catagoryid,jdbcType=INTEGER}
+		 </if>
+		 
+		 order by Sequence asc
+   </select>
+    <select id="findSubCategoryByParentID" resultType="com.house730.admin.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,CreateTime,UpdateTime from information_category 
+         where ParentCategoryID=#{catagoryID} and isdelete=0 
+   </select>
+   
+   
+   
+   <update id="delCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where CatagoryID=#{catagoryID}
+   </update>
+   
+   <update id="delSubCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where ParentCategoryID=#{catagoryID}
+   </update>
+   
+   
+     <insert id="addCategory" parameterType="com.house730.admin.pojo.InformationCategory" >
+    insert into information_category (CatagoryID, CategoryName, CategoryNameEN, 
+      ParentCategoryID, IsShow, Sequence, 
+      CreateUser, CreateTime, UpdateUser, 
+      UpdateTime, IsDelete)
+    values (#{catagoryid,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR}, #{categorynameen,jdbcType=VARCHAR}, 
+      #{parentcategoryid,jdbcType=INTEGER},  <if test="isshow == true" >1,</if>  <if test="isshow == false" >0,</if> #{seqence,jdbcType=INTEGER}, 
+      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, 0)
+  </insert>
+  
+   <select id="getCategoryById" resultType="com.house730.admin.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,isShow from information_category 
+         where CatagoryID=#{catagoryID} and isdelete=0
+   </select>
+   
+    <update id="editCategory"  parameterType="com.house730.admin.pojo.InformationCategory">
+        update information_category  set 
+        CategoryName=#{categoryname,jdbcType=VARCHAR},CategoryNameEN=#{categorynameen,jdbcType=VARCHAR}, 
+        IsShow=<if test="isshow == true" >1,</if>  <if test="isshow == false" >0, </if>UpdateTime=#{updatetime,jdbcType=TIMESTAMP},
+        UpdateUser= #{updateuser,jdbcType=VARCHAR},Sequence=#{seqence,jdbcType=INTEGER}
+        where CatagoryID=#{catagoryid}
+   </update>
+   
+   
+   
+   
+  <!--  *******************************************小分類開始 **************************************8  -->
+  <select id="querySubCatagoryList" resultType="com.house730.admin.resultpojo.InformationCategoryResult">
+       SELECT a.CatagoryID,a.CategoryName AS subCategoryName,a.CategoryNameEN AS subCategoryNameEN,b.CategoryName ,b.CategoryNameEN ,
+       a.Sequence AS seqence,a.CreateTime,a.UpdateTime,a.isShow
+       FROM information_category a
+       LEFT JOIN information_category b ON a.ParentCategoryID = b.CatagoryID
+       WHERE a.ParentCategoryID != 0 AND a.isdelete = 0
+        ORDER BY
+	     a.Sequence ASC
+   </select>
+  
+  
+  <!--  *******************************************新聞资讯開始 **************************************8  -->
+  
+   <select id="queryInfomationList" resultType="com.house730.admin.resultpojo.InfomationResult">
+       SELECT c.InformationID,c.CategoryID,c.SubCategoryID,c.ImagePath,c.Title,c.TitleEN,c.Content,c.ContentEN,c.IsPush,c.PushTime,c.PushPlatForm,c.PublishTime,c.UpdateTime,d.* FROM information c LEFT JOIN
+         (SELECT a.CatagoryID as d_CatagoryID , a.CategoryName AS subCategoryName,a.CategoryNameEN AS subCategoryNameEN,b.CategoryName ,b.CategoryNameEN 
+           FROM information_category a
+            INNER JOIN information_category b ON a.ParentCategoryID = b.CatagoryID <!-- WHERE a.ParentCategoryID != 0 AND a.isdelete = 0 -->) d
+       
+          on c.SubCategoryID=d.d_CatagoryID 
+        WHERE c.IsDelete=0
+       
+        
+         <if test="informationId!=null and informationId !=''">
+		      and  c.InformationID = #{informationId,jdbcType=VARCHAR}
+		 </if>
+		  <if test="title!=null and title !=''">
+		   
+		     and  c.Title  like CONCAT('%',#{title,jdbcType=VARCHAR},'%')  
+
+		 </if>
+		 <if test="categoryId!=null and categoryId !=''">
+		      and  c.CategoryID = #{categoryId,jdbcType=INTEGER}
+		 </if>
+		 <if test="subcategoryId!=null and subcategoryId !=''">
+		      and  c.SubCategoryID = #{subcategoryId,jdbcType=VARCHAR}
+		 </if>
+		 <if test="beginupdateTime != null and beginupdateTime != ''">
+            <![CDATA[ and c.UpdateTime >=  STR_TO_DATE(#{beginupdateTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endupdateTime != null and endupdateTime != ''">
+            <![CDATA[ and c.UpdateTime <=  STR_TO_DATE(#{endupdateTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        
+         <if test="beginpublishTime != null and beginpublishTime != ''">
+            <![CDATA[ and c.PublishTime >=  STR_TO_DATE(#{beginpublishTime} '00:00:00', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+        <if test="endpublishTime != null and endpublishTime != ''">
+            <![CDATA[ and c.PublishTime <=  STR_TO_DATE(#{endpublishTime} '23:59:59', '%Y-%m-%d %H:%i:%s') ]]>
+        </if>
+		 
+		 <!-- order by Sequence asc -->
+   </select>
+   
+   <update id="delInfomation"  parameterType="java.lang.String">
+        update information  set isdelete=1 where InformationID=#{informationId}
+   </update>
+   
+  <insert id="addInfomation" parameterType="com.house730.admin.pojo.Infomation" >
+  
+    insert into information (InformationID, CategoryID, SubCategoryID, 
+      ImagePath, titleen, title, PushPlatForm,PushTime, CreateUser, CreateTime, PublishTime,
+      IsDelete, Content,ContentEN,IsPush)
+    values (#{informationid,jdbcType=BIGINT}, #{categoryid,jdbcType=INTEGER}, #{subcategoryid,jdbcType=INTEGER}, 
+      #{imagepath,jdbcType=VARCHAR}, #{titleen,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{pushplatform,jdbcType=VARCHAR},  
+      #{pushtime,jdbcType=TIMESTAMP},#{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{publishtime,jdbcType=TIMESTAMP}, 
+      0, #{content,jdbcType=LONGVARCHAR}, #{contenten,jdbcType=LONGVARCHAR},<if test="ispush == true" >1</if><if test="ispush == false" >0</if>)
+  </insert>
+  
+  
+  
+ <update id="updataInfomation" parameterType="com.house730.admin.pojo.Infomation" >
+   update information  set CategoryID=#{categoryid,jdbcType=INTEGER}, SubCategoryID=#{subcategoryid,jdbcType=INTEGER}, 
+    ImagePath= #{imagepath,jdbcType=VARCHAR},titleen= #{titleen,jdbcType=VARCHAR}, title=#{title,jdbcType=VARCHAR}, 
+    PushPlatForm=#{pushplatform,jdbcType=VARCHAR},PushTime= #{pushtime,jdbcType=TIMESTAMP}, UpdateUser=#{updateuser,jdbcType=VARCHAR},
+    UpdateTime=#{updatetime,jdbcType=TIMESTAMP}, Content=#{content,jdbcType=LONGVARCHAR},
+    ContentEN= #{contenten,jdbcType=LONGVARCHAR},IsPush= <if test="ispush == true" >1</if><if test="ispush == false" >0</if>
+    where InformationID=#{informationid,jdbcType=BIGINT}
+   
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Infomation" >
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="informationid != null" >
+        InformationID,
+      </if>
+      <if test="categoryid != null" >
+        CategoryID,
+      </if>
+      <if test="subcategoryid != null" >
+        SubCategoryID,
+      </if>
+      <if test="imagepath != null" >
+        ImagePath,
+      </if>
+      <if test="language != null" >
+        Language,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="brief != null" >
+        Brief,
+      </if>
+      <if test="publishtime != null" >
+        PublishTime,
+      </if>
+      <if test="source != null" >
+        Source,
+      </if>
+      <if test="isoffline != null" >
+        IsOffline,
+      </if>
+      <if test="createuser != null" >
+        CreateUser,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updateuser != null" >
+        UpdateUser,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="informationid != null" >
+        #{informationid,jdbcType=BIGINT},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="subcategoryid != null" >
+        #{subcategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="isoffline != null" >
+        #{isoffline,jdbcType=BIT},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
