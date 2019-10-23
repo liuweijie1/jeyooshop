@@ -11,6 +11,8 @@ public class DefaultView extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry reg) {
         reg.addViewController("/").setViewName("login");//默认访问页面
         reg.setOrder(Ordered.HIGHEST_PRECEDENCE);//最先执行过滤
+        
+        
         super.addViewControllers(reg);
         
     }
