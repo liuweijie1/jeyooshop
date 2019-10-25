@@ -1,9 +1,15 @@
 package com.house730.admin.controller;
 
+import com.house730.admin.config.JwtInitProperties;
 import com.house730.admin.pojo.AdminEmployee;
 import com.house730.admin.pojo.User;
 import com.house730.admin.service.impl.AuthService;
 import com.house730.admin.utils.CookieUtils;
+import com.house730.admin.utils.JwtUtils;
+import com.house730.admin.utils.MD5;
+import com.house730.admin.vo.HouseEnum;
+import com.house730.admin.vo.UserInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,33 +31,39 @@ import java.util.Random;
 public class AuthController {
     @Autowired
     private AuthService authService;
-
+    @Autowired
+    private JwtInitProperties properties;
     /**
      * 登录
      *
      * @return
+     * @throws Exception 
      */
     @PostMapping("login")
     @ResponseBody
-    public ResponseEntity<String> codecheck(HttpServletResponse response, HttpServletRequest request)throws ServletException, IOException {
-        //设置响应乱码
+    //public ResponseEntity<String> codecheck(HttpServletResponse response, HttpServletRequest request)throws ServletException, IOException {
+    	public String codecheck(HttpServletResponse response, HttpServletRequest request)throws Exception {
+    	//设置响应乱码
         response.setContentType("text/html;charset=UTF-8");
         //对验证码进行校验
         //获取用户名、密码、验证码
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String code = request.getParameter("code");
+        String md5Password = MD5.md5(password, HouseEnum.SALT.getName());
+       // String code = request.getParameter("code");
+        String code = request.getParameter(HouseEnum.VERIFYCODE.getName());
         //获取CodeServlet生成的验证码
         String checkCode = (String)request.getSession().getAttribute("code");
 
         //对两个验证码进行判断n
         if ("" == code){
-            return ResponseEntity.ok("請輸入驗證碼");
+           // return ResponseEntity.ok("請輸入驗證碼");
+        	return "驗證碼不正確";
         }else {
             //equalsIgnoreCase 忽略验证码大小写
             if (code.equalsIgnoreCase(checkCode)){
                 //      登录
-                AdminEmployee adminEmployee = authService.login(username, password);
+                AdminEmployee adminEmployee = authService.login(username, md5Password);
                 if (null != adminEmployee) {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", adminEmployee);
@@ -61,15 +73,63 @@ public class AuthController {
                     cookie.setMaxAge(60 * 30);
                     //cookie响应回浏览器
                     response.addCookie(cookie);
-                    return ResponseEntity.ok("200");
+                    //return ResponseEntity.ok("200");
+                    return HouseEnum.SUCCESS.getValue();
                 }
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                return HouseEnum.SUCCESS.getValue();
             }else {
-                return ResponseEntity.ok("驗證碼不正確");
+                //return ResponseEntity.ok("驗證碼不正確");
+            	return "驗證碼不正確";
             }
         }
     }
+    
+   /* public String codecheck(HttpServletResponse response, HttpServletRequest request) throws Exception {
+        //设置响应乱码
+        response.setContentType("text/html;charset=UTF-8");
+        //对验证码进行校验
+        //获取用户名、密码、验证码
+        String username = request.getParameter(HouseEnum.USERNAME.getName());
+        String password = request.getParameter(HouseEnum.PASSWORD.getName());
+        String md5Password = MD5.md5(password, HouseEnum.SALT.getName());
+        String code = request.getParameter(HouseEnum.VERIFYCODE.getName());
+        Cookie[] cookies = request.getCookies();
+        String verifycode = "";
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(HouseEnum.VERIFYCODE.getName())) {
+                verifycode = cookie.getValue();
+            }
+        }
+            //对两个验证码进行判断n
+            if ("".equals(code)) {
+                return "請輸入驗證碼";
+            }
+            //equalsIgnoreCase 忽略验证码大小写
+            if (MD5.verify(code.toLowerCase(), HouseEnum.SALT.getName(), verifycode)) {
+                //登录
+                AdminEmployee adminEmployee = authService.login(username, md5Password);
+                if (null != adminEmployee) {
+                    // 生成userInfo
+                    UserInfo userInfo = new UserInfo(adminEmployee.getEmployeeid(), adminEmployee.getEmployeecode(),adminEmployee.getEmployeeno());
+                    // 生成token
+                    String token = JwtUtils.generateToken(userInfo, properties.getPrivateKey(), properties.getExpire());
+                    //sysLoginlogMapper.insertLogin(adminEmployee.getEmployeecode(),getIPAddress(request),new Date());
+                    Cookie cookie = new Cookie(properties.getCookieName(), token);
+                    cookie.setMaxAge(properties.getCookieMaxAge());
+                    cookie.setHttpOnly(true);
+                    cookie.setSecure(false);
+                    response.addCookie(cookie);
+                    return HouseEnum.SUCCESS.getValue();
+                }
+                return HouseEnum.ERROR.getValue();
+            }
+                return "驗證碼不正確";
 
+
+    }
+
+*/
     /**
      * 注销
      *

@@ -12,7 +12,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>House730</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>會員管理/會員列表</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
         .layui-body {
@@ -39,9 +44,26 @@
         .layui-label-ck {
             width: 0 !important;
         }
-
+        .score{
+            width: 480px;
+            height: 330px;
+        }
         .layui-inline-width {
             width: 120px !important;
+        }
+        .layui-label1-width1{
+
+            width:70px !important;
+        }
+        .layui-form-label1{
+
+            float: left;
+            display: block;
+            padding: 9px 2px;
+            width: 120px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: left;
         }
     </style>
     <script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script>
@@ -53,23 +75,15 @@
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>會員管理</legend>
+                <legend>會員管理/會員列表</legend>
             </fieldset>
 
-            <div class="layui-row">
-
-                <div class="layui-col-xs6 layui-col-md12">
-                    <div class="grid-demo grid-demo-bg2"
-                         style="background-color:#52cdec;line-height:50px;padding:0 30px;font-size:18px;">會員列表
-                    </div>
-                </div>
-            </div>
 
             <div class=" layui-row layui-col-space15">
-                <div class="layui-col-md12">
+
                     <div class="layui-card">
                         <!-- <div class="layui-card-header">卡片面板</div> -->
-                        <div class="layui-card-body">
+
                             <form class="layui-form" id="myform" action="">
 
                                 <div class="layui-form-item">
@@ -89,7 +103,7 @@
 
                                                 <option value="app">app</option>
                                                 <option value="wap">wap</option>
-                                                <option value="pc">官網</option>
+                                                <option value="pc">web</option>
 
                                             </select>
                                         </div>
@@ -105,7 +119,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="layui-inline">
+                                    <div class="layui-inline" style="display: none">
                                         <!-- <label class="layui-form-label">分组选择框</label> -->
                                         <div class="layui-input-inline">
                                             <select name="registry" id="registry">
@@ -126,88 +140,112 @@
                                         </div>
                                     </div>
 
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="startTime" id="date" placeholder="註冊-起始時間"
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
+                                        <label class="layui-form-label"
+                                               style="width:10px;padding:10px 0 10px 0;text-align: left;">-</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="endTime" id="date1" placeholder="註冊-結束時間"
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
 
-
-
+                                            <%--<button type="reset" id="daochu" class="layui-btn layui-btn-primary " style="display: none;" >導出</button>--%>
+                                            <%--<iframe id="ifile" style="display:none"></iframe>--%>
+                                    </div>
                                     <div class="layui-inline">
                                         <!-- <label class="layui-form-label">分组选择框</label> -->
                                         <div class="layui-input-inline">
                                             <select name="status" id="status">
                                                 <option value="">請選擇賬號狀態</option>
                                                 <option value="Normal">正常</option>
-                                                <option value="Disable">已封</option>
+                                                <option value="Disable">停用</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
-                                        <label class="layui-form-label">註冊時間</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="startTime" id="date" placeholder="開始時間"
+                                            <input type="tel" id="email" name="email" placeholder="請輸入賬戶郵箱"
                                                    autocomplete="off" class="layui-input">
                                         </div>
-                                        <label class="layui-form-label"
-                                               style="width:10px;padding:10px 0 10px 0;text-align: left;">-</label>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <!-- <label class="layui-form-label">分组选择框</label> -->
                                         <div class="layui-input-inline">
-                                            <input type="text" name="endTime" id="date1" placeholder="結束時間"
-                                                   autocomplete="off" class="layui-input">
+                                    <input type="button" value="查找" class="layui-btn" id="searchBtn"></input>
                                         </div>
-                                            <input type="button" value="查找" class="layui-btn" id="searchBtn"></input>
-                                            <%--<button type="reset" id="daochu" class="layui-btn layui-btn-primary " style="display: none;" >導出</button>--%>
-                                            <%--<iframe id="ifile" style="display:none"></iframe>--%>
                                     </div>
                                 </div>
                             </form>
-         <%--                   <div class="layui-inline " align="right">
-                                <div class="layui-input-block">
-                                    <button class="layui-btn" id="searchBtn">查找</button>
-                                    <button type="reset" id="daochu" class="layui-btn layui-btn-primary " style="display: none;" >導出</button>
-                                    <iframe id="ifile" style="display:none"></iframe>
-                                </div>
-                                </div>--%>
+                                <table class="layui-table" id="demo"  lay-size="lg" lay-filter="test">
+                                    <script type="text/html" id="barDemo">
+                                        <a class="layui-btn layui-btn-xs" style="width:50px;"  lay-event="edit">管理</a>
+                                        <a class="layui-btn layui-btn-xs" style="width:50px;"   lay-event="recharge">儲值</a>
+                                    </script>
+                                    <script type="text/html" id="barstatus">
 
-
-                                <%-- <div class="layui-form-item">
-                                     <div class="layui-input-block">
-                                         <button class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
-                                         <button type="reset" class="layui-btn layui-btn-primary">導出</button>
-                                     </div>
-                                 </div>--%>
-
-
-                            </div>
+                                    </script>
+                                </table>
                         </div>
-                    </div>
-
-
                 </div>
-
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <table class="layui-table" id="demo"  lay-size="lg" lay-filter="test">
-                        <script type="text/html" id="barDemo">
-                            <a class="layui-btn layui-btn-xs" lay-event="edit">管理</a>
-                        </script>
-                        <script type="text/html" id="barstatus">
-                            <a class="layui-btn layui-btn-xs"  lay-event="del">查看</a>
-                        </script>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
+<div id="money" class="score">
+    <div style="height: 75px;line-height: 75px;text-align: center;font-size: 20px;">金幣儲值</div>
+    <div align="center" >
+    <div style="padding:0 15px;">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label1" >儲值賬號：</label>
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label" style="text-align: left;" id="emaillabel"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label1" >事項：</label>
+                    <div class="layui-input-inline ">
+                        <select name="moneytype" id="moneytype">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label1" >儲值金幣數量：</label>
+                    <div class="layui-input-inline">
+                        <input id="propertycoinnumber" placeholder="請輸入金幣數量"   autocomplete="off"  class="layui-input"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');if(this.value.substring(0,1)=='0'){this.value=0}}).call(this)" onblur="this.v();">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+<div id="btnsuccess" >
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input type="button" class="layui-btn"  id="emailddlabel" value="查看储值记录"></input>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="button" class="layui-btn"  id="emaifffllabel" value="继续储值"></input>
+                </div>
+
+            </div>
+        </div>
+
+</div>
 <jsp:include page="../include/footer.jsp"/>
 </body>
-<%--<%
-    Object admin = request.getSession().getAttribute("admin");
-    if(admin==null){%>
-<script type="text/javascript">
-    window.location.href="login.jsp";
-</script>
-<% }
-%>--%>
-<script src="/static-res/js/userManage/getPage.js"></script>
+<script src="/static-res/js/userManage/userManage.js?v=<%=System.currentTimeMillis() %>"></script>
 <script type="text/javascript"></script>
 
 </body>

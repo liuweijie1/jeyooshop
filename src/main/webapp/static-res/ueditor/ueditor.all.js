@@ -24528,6 +24528,9 @@ UE.plugin.register('simpleupload', function (){
                             loader.setAttribute('_src', link);
                             loader.setAttribute('title', json.title || '');
                             loader.setAttribute('alt', json.original || '');
+                            //loader.setAttribute('width', 675);//liuwejie 修改
+                            //loader.setAttribute('height', 600);//liuwejie 修改
+                            loader.setAttribute('style','max-width:100%');
                             loader.removeAttribute('id');
                             domUtils.removeClasses(loader, 'loadingclass');
                         } else {

@@ -13,6 +13,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
     <title>House730</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
@@ -45,7 +50,6 @@
             width: 120px !important;
         }
     </style>
-    <script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script>
 </head>
 <jsp:include page="include/header.jsp"/>
 <body class="layui-layout-body">
@@ -63,8 +67,7 @@
 </div>
 <jsp:include page="include/footer.jsp"/>
 </body>
-<script src="/static-res/js/userManage/getPage.js"></script>
 <script type="text/javascript"></script>
-
+<script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script>
 </body>
 </html>

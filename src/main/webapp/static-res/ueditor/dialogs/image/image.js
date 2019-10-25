@@ -377,9 +377,13 @@
                 fileVal: editor.getOpt('imageFieldName'),
                 duplicate: true,
                 fileSingleSizeLimit: imageMaxSize,    // 默认 2 M
+               
                 compress: editor.getOpt('imageCompressEnable') ? {
-                    width: imageCompressBorder,
-                    height: imageCompressBorder,
+                	
+                  // width: imageCompressBorder,
+                   //height: imageCompressBorder,
+                	width: '1' == editor.getOpt('imageCompressSide') ? imageCompressBorder : 99999,
+                	height: '2' == editor.getOpt('imageCompressSide') ? imageCompressBorder : 99999,
                     // 图片质量，只有type为`image/jpeg`的时候才有效。
                     quality: 90,
                     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -528,6 +532,8 @@
                 });
 
                 $li.insertBefore($filePickerBlock);
+               
+                
             }
 
             // 负责view的销毁
@@ -736,6 +742,7 @@
             uploader.on('error', function (code, file) {
                 if (code == 'Q_TYPE_DENIED' || code == 'F_EXCEED_SIZE') {
                     addFile(file);
+                    
                 }
             });
             uploader.on('uploadComplete', function (file, ret) {

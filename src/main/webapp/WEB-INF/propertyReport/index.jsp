@@ -12,7 +12,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>House730</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>房源檢舉管理/房源檢舉列表</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
         .layui-body{
@@ -35,7 +40,7 @@
             width:120px !important;
         }
         .layui-input-inline{
-            width:120px !important;
+            width:170px !important;
 
         }
         .innerDemo{
@@ -51,15 +56,10 @@
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>房源檢舉管理</legend>
+                <legend>房源檢舉管理/房源檢舉列表</legend>
             </fieldset>
 
-            <div class="layui-row">
-
-                <div class="layui-col-xs6 layui-col-md12">
-                    <div class="grid-demo grid-demo-bg2" style="background-color:#52cdec;line-height:50px;padding:0 30px;font-size:18px;">房源檢舉列表</div>
-                </div>
-            </div>
+           
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -71,31 +71,21 @@
 
                                 <div class="layui-form-item">
                                     <div class="layui-inline">
-                                        <label class="layui-form-label layui-label-width" >請輸入房源編號:</label>
+                                      <!--   <label class="layui-form-label layui-label-width" >請輸入房源編號:</label> -->
                                         <div class="layui-input-inline">
-                                            <input type="tel" name="propertyID" id="propertyID" placeholder="房源編號"  autocomplete="off" class="layui-input">
+                                            <input type="tel" name="propertyID" id="propertyID" placeholder="請輸入樓盤編號"  autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
 
+                                 
                                     <div class="layui-inline">
-                                        <!-- <label class="layui-form-label">分组选择框</label> -->
+                                        <!-- <label class="layui-form-label layui-label1-width" >檢舉時間</label> -->
                                         <div class="layui-input-inline">
-                                            <select name="source" id="source">
-                                                <option value="">請選擇檢舉渠道</option>
-                                                <option value="app">app</option>
-                                                <option value="wap">wap</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="layui-inline">
-                                        <label class="layui-form-label layui-label1-width" >檢舉時間</label>
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="startTime" id="startTime" lay-verify="date" placeholder="開始時間" autocomplete="off" class="layui-input">
+                                            <input type="text" name="startTime" id="startTime" lay-verify="date" placeholder="檢舉-起始時間" autocomplete="off" class="layui-input">
                                         </div>
                                         <label class="layui-form-label" style="width:10px;padding:10px 0 10px 0;text-align: left;">-</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="endTime" id="endTime" lay-verify="date" placeholder="截止時間" autocomplete="off" class="layui-input">
+                                            <input type="text" name="endTime" id="endTime" lay-verify="date" placeholder="檢舉-結束時間" autocomplete="off" class="layui-input">
                                         </div>
                                         <input type="button" value="查找" class="layui-btn" id="searchBtn"></input>
                                     </div>
@@ -139,6 +129,6 @@
 <jsp:include page="../include/footer.jsp"/>
 </body>
 <!-- <script src="/static/layui.js"></script> -->
-<script src="/static-res/js/propertyReport/getPage.js"></script>
+<script src="/static-res/js/propertyReport/getPage.js?v=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>

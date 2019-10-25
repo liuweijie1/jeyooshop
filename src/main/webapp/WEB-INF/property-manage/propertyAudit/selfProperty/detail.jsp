@@ -104,7 +104,7 @@
                                     <div class="layui-input-inline">
                                         <!-- <label class="layui-form-label layui-label-width" >會員編號:</label> -->
                                         <%-- <input type="tel" name="userid"  autocomplete="off" class="layui-input checkOrder" value="${userOrder.userid }" > --%>
-                                        <label class="layui-form-label layui-label-width">${releaseResult.estateid }</label>
+                                        <label class="layui-form-label layui-label-width">${releaseResult.propertyid }</label>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,12 @@
                                     <label class="layui-form-label layui-label-width1">樓盤狀態：</label>
                                     <div class="layui-input-inline">
                                         <%-- <input type="tel" name="orderid"  autocomplete="off" class="layui-input checkOrder" value="${userOrder.orderid }"> --%>
-                                        <label class="layui-form-label layui-label-width">${releaseResult.propertystatus }</label>
+                                            <c:if test="${releaseResult.propertystatus==0}">
+                                                <label class="layui-form-label layui-label-width">封盤</label></c:if>
+                                            <c:if test="${releaseResult.propertystatus==1}">
+                                                <label class="layui-form-label layui-label-width">待租/售</label></c:if>
+                                            <c:if test="${releaseResult.propertystatus==3}">
+                                                <label class="layui-form-label layui-label-width">已租/售</label></c:if>
                                     </div>
                                 </div>
                             </div>
@@ -465,7 +470,7 @@
 </div>
 <jsp:include page="../../../include/footer.jsp"/>
 </body>
-<script src="/static-res/js/propertyManager/propertyAudit/selfProperty/getPage.js"></script>
+<script src="/static-res/js/propertyManager/propertyAudit/selfProperty/selfproperty.js"></script>
 <script src="/static-res/viewer/js/viewer-jquery.min.js"></script>
 <script type="text/javascript"></script>
 </body>

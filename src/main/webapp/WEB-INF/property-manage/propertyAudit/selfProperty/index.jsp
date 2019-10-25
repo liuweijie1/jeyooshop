@@ -53,7 +53,7 @@
                                 <div class="layui-form-item">
                                     <div class="layui-inline">
                                         <div class="layui-input-inline">
-                                            <input id="propertyid" placeholder="請輸入房源ID"  type="tel"  autocomplete="off" class="layui-input" value="">
+                                            <input id="propertyid" placeholder="請輸入房源編號"  type="tel"  autocomplete="off" class="layui-input" value="">
                                         </div>
                                     </div>
 
@@ -64,6 +64,7 @@
                                                 <option value="">請選擇盤源類型</option>
                                                 <option value="1">業主盤</option>
                                                 <option value="2">代理盤</option>
+                                                <option value="accountid">PMS</option>
                                             </select>
                                         </div>
                                     </div>
@@ -114,7 +115,7 @@
 </div>
 <jsp:include page="../../../include/footer.jsp"/>
 </body>
-<script src="/static-res/js/propertyManager/propertyAudit/selfProperty/getPage.js"></script>
+<script src="/static-res/js/propertyManager/propertyAudit/selfProperty/selfproperty.js"></script>
 <script type="text/javascript"></script>
 </body>
 </html>

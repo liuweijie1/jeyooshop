@@ -1,5 +1,7 @@
 package com.house730.admin.service;
 
+import java.util.Map;
+
 public interface AdminLogService {
     /**
      * 记录日志表方法
@@ -8,4 +10,10 @@ public interface AdminLogService {
      * @param content 操作内容描述
      */
     void insertLog(String model, String type, String content);
+
+    String empCode();
+
+    String getEmpno();
+
+    Map<String,Object> unauthorized(String model, String type, String content);
 }

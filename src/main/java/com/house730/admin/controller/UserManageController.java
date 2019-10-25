@@ -1,24 +1,15 @@
 package com.house730.admin.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.house730.admin.Exception.ExceptionEnum;
-import com.house730.admin.Exception.HouseException;
-import com.house730.admin.pojo.AdminEmployee;
-import com.house730.admin.pojo.User;
-import com.house730.admin.requestSearch.UserSearch;
 import com.house730.admin.service.UserService;
 import com.house730.admin.utils.PageUtils;
 import com.house730.admin.vo.HouseEnum;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -29,25 +20,27 @@ public class UserManageController {
 
     /**
      * 查询会员列表
+     *
      * @return 返回会员列表视图
      */
-    @RequestMapping("query")
+    @GetMapping("index")
     public String index() {
-        return "/userManage/index";
+        return "userManage/index";
     }
 
     /**
      * 查詢會員詳情頁面
-     * @param model 返回给页面的model
-     * @param userid  根据userid 查询
+     *
+     * @param model  返回给页面的model
+     * @param userid 根据userid 查询
      * @return 返回视图名称
      */
-    @RequestMapping("query/detailindex")
+    @GetMapping("query/detailindex")
     public String detailIndex(Model model, @RequestParam(value = "userid") String userid) {
         Integer integer = Integer.parseInt(userid);
         Map<String, Object> map = userService.queryDetail(integer);
         model.addAttribute("user", map);
-        return "/userManage/detail";
+        return "userManage/detail";
     }
 
     /**
@@ -55,27 +48,29 @@ public class UserManageController {
      * 会员编号
      * 注册渠道
      * 会员类型
-     *  账号状态
+     * 账号状态
      * 会员资料审核状态
-     *开始时间
+     * 开始时间
      * 结束时间
-     *当前页
+     * 当前页
      * 每页显示条数
+     *
      * @return
      */
     @ResponseBody
     @GetMapping("query/data")
     public Map<String, Object> queryUser(@RequestParam Map<String, Object> paramMap) {
         PageInfo pageInfo = userService.query(paramMap);
-        Map map = PageUtils.getMap(pageInfo);
-        return map;
+
+        return PageUtils.getMap(pageInfo);
     }
 
 
     /**
      * 查封解封账号
-     * @param id 会员id
-     * @param status 当前状态
+     *
+     * @param id      会员id
+     * @param status  当前状态
      * @param content 操作的内容
      * @param request 请求
      * @return 响应码
@@ -85,21 +80,17 @@ public class UserManageController {
     public Map<String, Object> updateStatus(@RequestParam("userid") Integer id, @RequestParam("status") String status, @RequestParam(value = "content", required = false) String content, HttpServletRequest request) {
         String detail;
         if ("Normal".equals(status)) {
-            status = HouseEnum.Disable.getStatus();
-            detail = HouseEnum.Disable.getDetail();
+            status = HouseEnum.DISABLE.getName();
+            detail = HouseEnum.DISABLE.getValue();
         } else {
-            status = HouseEnum.Normal.getStatus();
-            detail = HouseEnum.Normal.getDetail();
+            status = HouseEnum.NORMAL.getName();
+            detail = HouseEnum.NORMAL.getValue();
         }
 
-        AdminEmployee admin = (AdminEmployee) request.getSession().getAttribute("admin");
-        String employeeid = admin.getEmployeeid().toString();
-        String statusCode = userService.updateStatus(id, status, employeeid, detail);
-        Map<String, Object> map = new HashMap<>();
 
-        map.put("statusCode", statusCode);
-        return map;
+        return userService.updateStatus(id, status, detail);
     }
+
 
     //查询用户查封解封理由
     @GetMapping("/query/reason")
@@ -108,66 +99,31 @@ public class UserManageController {
         String reason = userService.queryReason(usercode);
         Map<String, String> map = new HashMap<>();
         map.put("data", reason);
-        System.out.println(map);
         return map;
     }
 
     //审核会员信息通过&不通过
     @ResponseBody
     @GetMapping("/query/check/approval")
-    public String checkApproval(@RequestParam("userid") Integer userid, @RequestParam("approvalstatus") String status) {
+    public Map<String, Object> checkApproval(@RequestParam("userid") Integer userid, @RequestParam("approvalstatus") String status) {
 
-        String resCode = userService.checkApproval(userid, status);
 
-        return resCode;
+        return userService.checkApproval(userid, status);
     }
 
     //权重分值管理
     @ResponseBody
     @GetMapping("/change/identityscore")
-    public String changeScore(@RequestParam("userid") Integer userid, @RequestParam("score") String score) {
+    public Map<String, Object> changeScore(@RequestParam("userid") Integer userid, @RequestParam("score") String score) {
         Integer parseInt = Integer.parseInt(score);
-        String resCode = userService.changeScore(userid, parseInt);
-        return resCode;
+
+        return userService.changeScore(userid, parseInt);
     }
 
-    //下载Excel表格
+    @PostMapping("/propertycoin/recharge")
     @ResponseBody
-    @GetMapping("/down/excel")
-    public String downExcel(HttpServletResponse response, @RequestParam(value = "usercode", required = false) String userCode,
-                            @RequestParam(value = "source", required = false) String source,
-                            @RequestParam(value = "ispropertyagent", required = false) Boolean ispropertyagent,
-                            @RequestParam(value = "status", required = false) String status,
-                            @RequestParam(value = "approvalStatus", required = false) String approvalStatus,
-                            @RequestParam(value = "startTime", required = false) String startTime,
-                            @RequestParam(value = "endTime", required = false) String endTime){
+    public Map<String, Object> recharge(@RequestParam Map<String, Object> paramMap) {
 
-        UserSearch search = new UserSearch();
-        formatTime(startTime, endTime, search);
-        search.setApprovalStatus(approvalStatus);
-        search.setSource(source);
-        search.setUserCode(userCode);
-        search.setIspropertyagent(ispropertyagent);
-        search.setStatus(status);
-        userService.downExcel(search, response);
-
-        return "success";
+      return  userService.recharge(paramMap);
     }
-    private void formatTime(String startTime, String endTime, UserSearch search) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
-        try {
-            if (null != startTime && startTime != "") {
-                Date start = sdf.parse(startTime);
-                search.setStartTime(start);
-            }
-            if (null != endTime && endTime != "") {
-                Date end = sdf.parse(endTime);
-                search.setEndTime(end);
-            }
-        } catch (ParseException e) {
-            throw new HouseException(ExceptionEnum.DATA_PARSE_FAIL, e);
-        }
-    }
-
-
 }

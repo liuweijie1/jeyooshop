@@ -20,9 +20,9 @@ public interface UserMapper {
 
     UserOptionInfo queryByStatus(Integer userid);
 
-    Integer updateStatus(@Param("id")Integer id,@Param("status")String status);
+    Integer updateStatus(@Param("id")Integer id,@Param("status")String status,@Param("empCode") String empCode);
 
-    Integer insertUserOptionInfo(@Param("id")Integer id, @Param("status") String status,@Param("empid") String empid,@Param("detail")String detail);
+    Integer insertUserOptionInfo(@Param("id")Integer id, @Param("status") String status,@Param("empcode") String empcode,@Param("detail")String detail);
 
     Integer queryIdByuserCode(@Param("usercode")String usercode);
     //根据会员id查询查封解封理由
@@ -30,7 +30,7 @@ public interface UserMapper {
 
     Integer checkapproval(@Param("userid") Integer userid, @Param("status") String status);
 
-    Integer changesore(@Param("useid") Integer userid, @Param("score") Integer score);
+    Integer changesore(@Param("useid") Integer userid, @Param("score") Integer score,@Param("empCode") String empcode);
 
     //根据userid集合查询usercode集合
     List<User> queryByIdList(List<Integer> idList);

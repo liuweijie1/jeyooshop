@@ -12,7 +12,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>House730</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+    <title>資訊管理/資訊一級分類列表</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
         .layui-body{
@@ -36,7 +41,7 @@
             width:120px !important;
         }
         .layui-input-inline{
-            width:120px !important;
+            width:170px !important;
 
         }
         .innerDemo{
@@ -63,6 +68,8 @@
          #editscore .red{
             color:red;
         }
+        
+   
     </style>
      <script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script>
 </head>
@@ -73,15 +80,10 @@
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>資訊管理</legend>
+                <legend>資訊管理/資訊一級分類列表</legend>
             </fieldset>
 
-            <div class="layui-row">
-
-                <div class="layui-col-xs6 layui-col-md12">
-                    <div class="grid-demo grid-demo-bg2" style="background-color:#52cdec;line-height:50px;padding:0 30px;font-size:18px;">資訊一級分類列表</div>
-                </div>
-            </div>
+           
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -90,9 +92,19 @@
                         
                         
                             <form class="layui-form" action="" id="formDemo">
-                                
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+										     <!--  <label class="layui-form-label layui-label-width" >請輸入資訊標題:</label> -->
+										      <div class="layui-input-inline">
+										        <input id="category" type="tel" name="title"  placeholder="請輸入一級分类"autocomplete="off" class="layui-input" value="">
+										      </div>
+										      
+										      <input type="button" value="查找" class="layui-btn" id="searchBtn"></input>
+											  <input type="button" value="添加" class="layui-btn"  onclick="add()"></input>
+										    </div>
+										    </div>
                             </form>
-                            <div class="layui-inline innerDemo">
+                       <!--      <div class="layui-inline innerDemo">
                                         <div class="layui-input-inline ">
                                             <button class="layui-btn innerDemo" lay-submit="" lay-filter="demo" onclick="add()">添加</button>
                                           </div>
@@ -101,7 +113,7 @@
                                         <div class="layui-input-inline">
                                             <button class="layui-btn innerDemo" style="display: none;" lay-submit="" lay-filter="demo1">導出</button>
                                             </div>
-                                    </div>
+                                    </div> -->
                             
                                     
                         </div>
@@ -136,19 +148,20 @@
        <form class="layui-form" action="" id="addformDemo"> 
 <div class="" id="score">
    		<div style="padding:0 15px;">
-       	<fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
-		  <legend>添加咨詢一級分類</legend>
-		</fieldset>
-		
+   		
+		  <div  style="  margin: 20px 165px 20px;font-size: 20px; font-weight: 300;">添加資訊一級分類</div>
+	
 		<div class="layui-form-item">
 		    <div class="layui-inline">
 		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>一級分類 :</label>
 		      <div class="layui-input-inline" >
-		         <input type="tel" name="categoryName" id="categoryName" placeholder="請輸入簡體中文分類"  autocomplete="off" class="layui-input checkOrder1" value="" maxlength="10">   
+		         <input type="tel" name="ftzh" id="categoryName"  placeholder="請輸入繁體中文分類"  autocomplete="off"
+		          onkeyup="ftChange(this)"
+		          class="layui-input checkOrder1" value="" maxlength="10">   
 		      </div>
 		      
 		      <div class="layui-input-inline" >
-		      <label class="layui-form-label layui-label-width " style=" color: #999!important;">中文不超過10個字</label> 
+		      <label class="layui-form-label layui-label-width " style="text-align: left; color: #999!important;">中文不超過10個字</label> 
 		      </div>
 		      
 		    </div>
@@ -157,12 +170,14 @@
 		    <div class="layui-inline">
 		      <label class="layui-form-label layui-label-width" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		      <div class="layui-input-inline" >
-		         <input type="tel" name="categoryNameEN"  id="categoryNameEN" placeholder="請輸入英文分類" autocomplete="off" class="layui-input checkOrder1" value="" 
+		         <input type="tel" name="categoryNameEN"  id="categoryNameEN" placeholder="請輸入英文分類" autocomplete="off" 
+		          onkeyup="value=value.replace(/[^a-zA-Z\s]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^a-zA-Z]/g,''))"
+		         class="layui-input checkOrder1" value="" 
 		         maxlength="30">   
 		      </div>
 		      
 		      <div class="layui-input-inline" >
-		      <label class="layui-form-label layui-label-width " style=" color: #999!important;">英文不超過30個字母</label> 
+		      <label class="layui-form-label layui-label-width " style="text-align: left; color: #999!important;">英文不超過30個字母</label> 
 		      </div>
 		      
 		    </div>
@@ -173,19 +188,20 @@
 		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>分類排序 :</label>
 		      <div class="layui-input-inline">
 		      	<%-- <label class="layui-form-label layui-label-width" >${userOrder.orderid }</label> --%>
-		      <input type="tel" name="sequence" id="sequence" placeholder="請輸入英文分類" autocomplete="off" class="layui-input checkOrder1" value=""  maxlength="10"
+		      <input type="tel" name="sequence" id="sequence" placeholder="請輸入數字" autocomplete="off" class="layui-input checkOrder1" value=""  maxlength="10"
 		       onkeyup="if(value.length==1){value=value.replace(/[^(\-?)\d+]/ig,'')}else{value=value.substring(0,1)+value.substring(1,value.length).replace(/[^\d+]/ig,'');}" > 
 		      </div>
 		    </div>
 		 </div>
 		 <div class="layui-form-item">
-		    <div class="layui-inline">
-		      <label class="layui-form-label layui-label-width" >是否在外網顯示:</label>
-		      <div class="layui-input-inline">
-		      	<!--  <input type="radio" name="isShow" id="isShow" value="0" title="不顯示" > -->
-		      	  <input type="checkbox" id="isShow" name="isShow" lay-skin="primary" title="不顯示" value="0" lay-filter="test">
+		    
+		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>是否在外網顯示:</label>
+		      <div class="layui-input-block">
+		          <input type="radio" name="isShow" id="isShow" value="0" title="不顯示" >
+		          <input type="radio" name="isShow" id="isShow" value="1" title="顯示" > 
 		      </div>
-		    </div>
+		       
+		    
 		 </div>
 		
    	</div>
@@ -194,21 +210,22 @@
    </form>
    <form class="layui-form" action="" id="ediformDemo">
    
-   <div class="" id="editscore">
+   <div class="" id="editscore" style="display: none;">
    		<div style="padding:0 15px;">
-       	<fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
-		  <legend>添加咨詢一級分類</legend>
-		</fieldset>
+       <div  style="  margin: 20px 165px 20px;font-size: 20px; font-weight: 300;">編輯資訊一級分類</div>
 		
 		<div class="layui-form-item">
 		    <div class="layui-inline">
 		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>一級分類 :</label>
 		      <div class="layui-input-inline" >
-		         <input type="tel" name="categoryName" id="edcategoryName" placeholder="請輸入簡體中文分類"  autocomplete="off" class="layui-input checkOrder1" value=""  maxlength="10">   
+		         <input type="tel" name="ftzh" id="edcategoryName" placeholder="請輸入繁體中文分類"  autocomplete="off" 
+		          onkeyup="ftChange(this)"
+
+		         class="layui-input checkOrder1" value=""  maxlength="10">   
 		      </div>
 		      
 		      <div class="layui-input-inline" >
-		      <label class="layui-form-label layui-label-width " style=" color: #999!important;">中文不超過10個字</label> 
+		      <label class="layui-form-label layui-label-width " style="text-align: left; color: #999!important;">中文不超過10個字</label> 
 		      </div>
 		      
 		    </div>
@@ -217,12 +234,14 @@
 		    <div class="layui-inline">
 		      <label class="layui-form-label layui-label-width" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		      <div class="layui-input-inline" >
-		         <input type="tel" name="categoryNameEN"  id="edcategoryNameEN" placeholder="請輸入英文分類" autocomplete="off" class="layui-input checkOrder1" value="" 
+		         <input type="tel" name="categoryNameEN"  id="edcategoryNameEN" placeholder="請輸入英文分類" autocomplete="off" 
+		         onkeyup="value=value.replace(/[^a-zA-Z\s]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^a-zA-Z]/g,''))"
+		         class="layui-input checkOrder1" value="" 
 		         maxlength="30">   
 		      </div>
 		      
 		      <div class="layui-input-inline" >
-		      <label class="layui-form-label layui-label-width " style=" color: #999!important;">英文不超過30個字母</label> 
+		      <label class="layui-form-label layui-label-width " style=" text-align: left; color: #999!important;">英文不超過30個字母</label> 
 		      </div>
 		      
 		    </div>
@@ -233,19 +252,19 @@
 		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>分類排序 :</label>
 		      <div class="layui-input-inline">
 		      	<%-- <label class="layui-form-label layui-label-width" >${userOrder.orderid }</label> --%>
-		      <input type="tel" name="sequence" id="edsequence" placeholder="請輸入英文分類" autocomplete="off" class="layui-input checkOrder1" value=""  maxlength="10"
+		      <input type="tel" name="sequence" id="edsequence" placeholder="請輸入數字" autocomplete="off" class="layui-input checkOrder1" value=""  maxlength="10"
 		       onkeyup="if(value.length==1){value=value.replace(/[^(\-?)\d+]/ig,'')}else{value=value.substring(0,1)+value.substring(1,value.length).replace(/[^\d+]/ig,'');}" > 
 		      </div>
 		    </div>
 		 </div>
 		 <div class="layui-form-item">
-		    <div class="layui-inline">
-		      <label class="layui-form-label layui-label-width" >是否在外網顯示:</label>
-		      <div class="layui-input-inline">
-		      <!-- 	 <input type="radio" name="isShow" id="edisShow" value="0" title="不顯示" > -->
-		      	 <input type="checkbox" id="edisShow" name="edisShow" lay-skin="primary" title="不顯示" value="0" lay-filter="test">
-
-		      </div>
+		  
+		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>是否在外網顯示:</label>
+		      <div class="layui-input-block">
+		         <input type="radio" name="edisShow" id="edisShow" value="0" title="不顯示" > 
+		         <input type="radio" name="edisShow" id="edisShow" value="1" title="顯示" > 
+		        
+		     
 		    </div>
 		 </div>
 		
@@ -253,7 +272,8 @@
    
    </div>
 </form>
-<script src="/static-res/js/infomationManage/category.js"></script>
+<script src="/static-res/js/infomationManage/category.js?v=<%=System.currentTimeMillis() %>"></script>
+<script src="/static-res/js/infomationManage/ftchange.js?v=<%=System.currentTimeMillis() %>"></script>
 </html>
 
 

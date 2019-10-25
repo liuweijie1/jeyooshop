@@ -5,13 +5,15 @@
 /*window.onload=function(){
 	getPage();
 }*/
+$(function () {
+    $("#lay-coinset").addClass("layui-this");
+})
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
-	
         var form = layui.form
         ,layer = layui.layer
         ,laydate = layui.laydate;
        // form.render();//初始化下拉框
-        
+
       //日期  注意：定义页面日期控件id不要重复!!!
         laydate.render({
           elem: '#beginTime'
@@ -25,7 +27,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         laydate.render({
           elem: '#endEvidenceTime'
         });
-        
+
         var laypage = layui.laypage //分页
         ,layer = layui.layer //弹层
         ,table = layui.table //表格
@@ -33,15 +35,15 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,upload = layui.upload //上传
         ,element = layui.element //元素操作
         ,slider = layui.slider //滑块
-        
+
         var dtt={};// 搜索条件
-        
+
         res(dtt);// 页面加载的时候渲染
-        
+
         $("#searchBtn").click(function(){
         	var isshow = $("#isshow").val();
         	var type = $("#type").val();
-        	
+
         	dtt = {
     			isshow:isshow,
     			type:type
@@ -53,7 +55,6 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	//执行一个 table 实例
         	table.render({
   	          elem: '#demo'
-  	          ,height: 500
   	          ,url: '/coinset/getPage' //数据接口
   	          ,title: '用户表'
   	          ,page: false //开启分页
@@ -63,10 +64,10 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	          ,method:'POST'
   	          ,cols: [[ //表头
   	            //{type: 'checkbox', fixed: 'left'}
-  		            {field: 'money', title: '港幣(HK$)',align:'center', width:200}
-  		           	
-  		            ,{field: 'propertycoin', title: '對應屋幣值',align:'center', width: 300, sort: false, totalRow: true}
-  		            ,{fixed: 'right',title: '操作', width: 300, align:'center', templet: '#switchTpl'}
+  		            {field: 'money', title: '港幣(HK$)',align:'center', width: '30%'}
+
+  		            ,{field: 'propertycoin', title: '對應金幣值',align:'center', width: '40%', sort: false, totalRow: true}
+  		            ,{fixed: 'right',title: '操作', width: '30%', align:'center', templet: '#switchTpl'}
               ]]
   			,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
   				layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -75,49 +76,47 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   				,first: '首页' //不显示首页
   				,last: '尾页' //不显示尾页
   				,elem:'bottomPage'
-  			} 
+  			}
   	    	,parseData: function(res, curr, count){
-  	    	} 
+  	    	}
   	    	,response: {
   	    	    statusName: 'code' //规定数据状态的字段名称，默认：code
   	    	    ,statusCode: 0 //规定成功的状态码，默认：0
   	    	    ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
   	    	    ,countName: 'count' //规定数据总数的字段名称，默认：count
   	    	    ,dataName: 'data' //规定数据列表的字段名称，默认：data
-      	  	} 
+      	  	}
   	    	,done: function(res, curr, count){
   	    	}
 
           });
-          
+
         }
-        
+
         $("#addCoinset").click(function(){
         	form.render(addCoinset());
         })
-        
-      //监听性别操作
+
+      //监听上下架操作
         form.on('switch(upDown)', function(obj){
-        	layer.confirm('你確定要下架嗎？',{
+        	var x=obj.elem.checked;
+        	var content = x == true ?"是否確認上架？":"是否確認下架？";
+        	layer.confirm(content,{
         		btn: ['确定','取消'],
         		icon: 3,
         		title:'提示',
         		yes:function(index){
-        			if(!obj.elem.checked){
-        				//obj.othis.removeClass("layui-form-onswitch");
-        				obj.elem.disabled = "disabled";
-                  		obj.othis.addClass("layui-disabled");
-                  		obj.othis.addClass("layui-checkbox-disbaled");
-        			}
+        			obj.elem.checked=x;
+        			form.render();
             		layer.close(index);
             		var setid = obj.elem.getAttribute("tag");
             		$.ajax({
             			type : "POST",
             			contentType : "application/json;charset=utf-8",
             			dataType : "json",
-            			url : "/coinset/upOrDownCoinset?setid="+setid,
+            			url : "/coinset/upOrDownCoinset?setid="+setid+"&isShow="+x,
             			error:function(request){
-            				
+
             			},
             			success:function(data){
             				if(data != null ){
@@ -127,12 +126,13 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             		})
         		},
         		btn2:function(){
-        			if(!obj.elem.checked){
-        				obj.elem.checked = 'checked';
-        				obj.othis.addClass("layui-form-onswitch");
-        			}
+        			obj.elem.checked=!x;
+        			form.render();
         		}
         	});
+        });
+        $("#addBtn").click(function(){
+        	addBtn();
         });
 });
 // 查看  弹窗
@@ -148,10 +148,10 @@ function checkOrder(){
 		,maxmin:true
 		,yes: function(index, layero){
 			layer.close(index);
-        	
+
         },
         btn2:function(index, layero){
-        	
+
         }
       });
 }
@@ -163,21 +163,20 @@ function checkOrderDetail(url){
 		dataType : "text",
 		url : "/trade/storeValue",
 		error:function(request){
-			alert(2);
 		},
 		success:function(data){
-			alert(1);
 			//location.href="/trade/tradeDetail";
 		}
 	})
 }
 var temp = 1;
+var flag =true;
 function addBtn(){
 		var index = layer.open({
 	        type:1
 	        //skin: 'layui-layer-rim', //加上边框
 	        ,area: ['1100px', '600px'] //宽高
-			,title:"添加屋币/港币关系"
+			,title:" "
 	        ,content: $("#storeValuePage")
 	        ,btn: ['保存', '关闭']
 			,method:'GET'
@@ -200,7 +199,7 @@ function addBtn(){
 					}
 					if(propertycoin == null || propertycoin == "" || propertycoin == ''){
 						$input.eq(1).css("border-color","red");
-						layer.msg("對應屋幣值！");
+						layer.msg("對應金幣值！");
 						return;
 					}else{
 						$input.eq(1).css("border-color","#D2D2D2");
@@ -210,7 +209,10 @@ function addBtn(){
 					coinset["type"] = trs.eq(i).find("input[type='radio']:checked").val();
 					coinsets.push(coinset);
 				}
-				console.log(JSON.stringify(coinsets));
+                if(!flag){
+                    return false;
+                }
+                flag=false;
 				$.ajax({
 					headers:{
 						'Accept':'application/json',
@@ -222,27 +224,27 @@ function addBtn(){
 					dataType : "json",
 					data:JSON.stringify(coinsets),
 					error:function(request){
+                        flag = true;
 						layer.msg("服務器異常.......");
 					},
 					success:function(data){
+                        flag = true;
 						if(data != null ){
-							if(true == data.success){
-								layer.msg("儲值成功",{time:3000});
-							}
+							layer.msg(data.message,{time:3000});
 						}
 						layer.close(index);
 						setTimeout(function(){
 							location.reload();
 						}, 3000);
-						
+
 						//location.href="/trade/tradeDetail";
 					}
 				})
 				//layer.close(index);
-	        	
+
 	        },
 	        btn2:function(index, layero){
-	        	
+
 	        }
 	      });
 		$("#closePage").click(function(){
@@ -250,25 +252,26 @@ function addBtn(){
 			layer.close(index);
 		})
 	//})
+
 }
 function getFormData($form) {
 	var unindexed_array = $form.serializeArray();
 	var indexed_array = {};
 	$.map(unindexed_array, function (n, i) {
-		indexed_array[n['name']] = n['value']; 
-	}); 
-	return indexed_array; 
+		indexed_array[n['name']] = n['value'];
+	});
+	return indexed_array;
 }
 function addCoinset(){
-    var tr = 
+    var tr =
     	'<tr class="coinsetTr">'
 		+'<td>港幣(HK$) :</td>'
-		+'<td><input type="tel" name="money'+temp+'"  autocomplete="off" class="layui-input" value="" ></td>'
-		+'<td>對應屋幣值 :</td>'
-		+'<td><input type="tel" name="propertycoin'+temp+'"  autocomplete="off" class="layui-input" value="" ></td>'
+		+'<td><input type="tel" name="money'+temp+'"  autocomplete="off" class="layui-input" value="" onkeypress="return(/[\\d]/.test(String.fromCharCode(event.keyCode) ) )" ></td>'
+		+'<td>對應金幣值 :</td>'
+		+'<td><input type="tel" name="propertycoin'+temp+'"  autocomplete="off" class="layui-input" value="" onkeypress="return(/[\\d]/.test(String.fromCharCode(event.keyCode) ) )"></td>'
 		+'<td><div class="layui-input-block" style="margin-left: 0px;">'
 		      	+'<input type="radio" name="type'+temp+'" value="2" title="普通會員" checked="checked">'
-		      	+'<input type="radio" name="type'+temp+'" value="1" title="代理公司">'
+		      	+' <input type="radio" name="type'+temp+'" value="1" title="PMS">'
 		     +'</div>'
 	    +'</td>'
 	    +'<td>'

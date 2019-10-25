@@ -8,9 +8,15 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>House730</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+<title>聯絡我們管理/資料詳情</title>
  <link rel="stylesheet" href="/static-res/viewer/css/viewer.min.css">  
  <link rel="stylesheet" href="/static/css/layui.css">
+ <script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script> 
 <style type="text/css">
 
 .layui-body {
@@ -23,6 +29,12 @@
 
 .layui-label-width {
 	width: 200px !important;
+	text-align: left !important;
+	margin-left: 50px;
+}
+
+.layui-label-widthlb {
+	width: 400px !important;
 	text-align: left !important;
 	margin-left: 50px;
 }
@@ -113,16 +125,9 @@ ul.imglist li img {
 			<div style="padding: 15px;">
 				<fieldset class="layui-elem-field layui-field-title"
 					style="margin-top: 20px;">
-					<legend>聯絡我們管理</legend>
+					<legend>聯絡我們管理/資料詳情</legend>
 				</fieldset>
 
-				<div class="layui-row">
-
-					<div class="layui-col-xs6 layui-col-md12">
-						<div class="grid-demo grid-demo-bg2"
-							style="background-color: #52cdec; line-height: 50px; padding: 0 30px; font-size: 18px; color: white;">資料詳情</div>
-					</div>
-				</div>
 				<div class="layui-row layui-col-space15">
 					<div class="layui-col-md12">
 						<div class="layui-card">
@@ -164,7 +169,7 @@ ul.imglist li img {
 										<div class="layui-inline">
 											<label class="layui-form-label layui-label-width">選項:</label>
 											<div class="layui-input-inline">
-											<label class="layui-form-label layui-label-width" >${empty UserContact.dictionaryname?'/':UserContact.dictionaryname}</label> 
+											<label class="layui-form-label layui-label-widthlb" >${empty UserContact.dictionaryname?'/':UserContact.dictionaryname}</label> 
 												<%-- <input type="tel" name="phone" autocomplete="off"
 													class="layui-input" value="${UserContact.dictionaryname}"> --%>
 											</div>
@@ -202,8 +207,8 @@ ul.imglist li img {
 												<c:if test="${filesMap.images != null}">
 												    <c:forEach var="it" items="${filesMap.images}" varStatus="stauts" >
 													<li><a href="javascript:showTS()" > <img 
-													        data-original="${it.filePath}"
-															src="${it.filePath}" alt="${it.fileName}" title="${it.fileName}" />
+													        data-original="${it.filePath}?x-oss-process=style/master"
+															src="${it.filePath}?x-oss-process=style/master" alt="${it.fileName}" title="${it.fileName}" />
 															
 															<span class="imgname">${it.fileName}</span>
 													</a></li>
@@ -258,9 +263,9 @@ ul.imglist li img {
 
 </body>
 
-<script type="text/javascript" src="/static-res/js/jquery/jquery-3.4.0.min.js"></script> 
+
 <script src="/static-res/viewer/js/viewer-jquery.min.js"></script> 
-<script src="/static-res/js/userContact/getPage.js"></script> 
+<script src="/static-res/js/userContact/getPage.js?v=<%=System.currentTimeMillis() %>"></script>
 <script>
 	
 	
@@ -269,12 +274,12 @@ $(function() {
  		url: 'data-original',
  	});
  	
- 	function showTS(){
- 		 layer.msg('按“Esc”鍵退出預覽');
- 		}
+ 	/* showTS(); */
  	
  });
-
+function showTS(){
+	 layer.msg('按“Esc”鍵退出預覽');
+	}
 
 </script>
 </html>

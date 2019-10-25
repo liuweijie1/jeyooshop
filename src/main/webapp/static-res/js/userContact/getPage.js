@@ -4,6 +4,22 @@
 
  * @returns
  */
+$(function () {
+    $("#lay-usercontactmanage").addClass("layui-this");
+})
+var startTime='';
+var endTime ='';
+  function checkdate(obj){
+    	 if(obj==''){
+    		 endTime.config.min = startTime.config.min 
+    	 }
+     }
+
+function checkdateend(obj){
+	 if(obj==''){
+		 startTime.config.max = endTime.config.max
+	 }
+}
 
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
 	
@@ -12,14 +28,47 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,laydate = layui.laydate;
         form.render();//初始化下拉框
         
-      //日期  注意：定义页面日期控件id不要重复!!!
-        laydate.render({
-          elem: '#startTime'
+        
+        
+        var startTimestr='';
+
+        //日期  注意：定义页面日期控件id不要重复!!!
+      startTime=  laydate.render({
+            elem: '#startTime',
+          btns:['clear','confirm'],
+          max: new Date().toLocaleDateString(),
+          done: function(value, date, endDate) {
+        	
+                if(value!=''){
+                	endTime.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置结束日期最小值
+                } else{
+                	endTime.config.min = startTime.config.min
+                }
+
+          }
         });
-        laydate.render({
-          elem: '#endTime'
+   
+       endTime =  laydate.render({
+            elem: '#endTime',
+            max: new Date().toLocaleDateString(),
+            done: function(value, date, endDate) {
+                if(value!=''){
+                	startTime.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置开始日期最大值
+                }else{
+                	startTime.config.max = endTime.config.max
+                }
+
+            }
         });
-      
+
         
         var laypage = layui.laypage //分页
         ,layer = layui.layer //弹层
@@ -100,9 +149,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                            
                             if(data.createtime==''||data.createtime==null){
                             	data.createtime='/';
-                            }else{
-                                data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss');
-                            }
+                            }/*else{
+                                data.createtime = layui.util.toDateString(data.createtime, 'yyyy/MM/dd HH:mm:ss');
+                            }*/
                         }
                     }
                 }

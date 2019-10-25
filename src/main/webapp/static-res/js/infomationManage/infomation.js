@@ -7,6 +7,7 @@
 
  $(function() {	
 	 $("#information").addClass("layui-nav-itemed");
+     $("#lay-information").addClass("layui-this");
 		$.ajax({
 			url : "/infomationmanage/findCategoryxl",
 			async: false,
@@ -18,7 +19,7 @@
 			success : function(res) {
 				var options = '<option value="">請選擇咨詢一級分類</option>';
 				$.each(res.categorynameList, function(index, val) {
-					console.log('index=' + index);
+					
 					options += "<option value='" + val.catagoryid + "'>"
 							+ val.categoryname + " / " + val.categorynameen
 							+ "</option>";
@@ -43,7 +44,7 @@
 			success : function(res) {
 				var options = '<option value="">請選擇咨詢二級分類</option>';
 				$.each(res.subcategorynameList, function(index, val) {
-					console.log('index=' + index);
+				
 					options += "<option value='" + val.catagoryid + "'>"
 							+ val.categoryname + " / " + val.categorynameen
 							+ "</option>";
@@ -71,22 +72,80 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,layer = layui.layer
         ,laydate = layui.laydate;
         form.render();//初始化下拉框
+   
         
-      //日期  注意：定义页面日期控件id不要重复!!!
-        laydate.render({
-          elem: '#beginpublishTime'
+        var beginpublishTime=  laydate.render({
+            elem: '#beginpublishTime',
+          btns:['clear','confirm'],
+          max: new Date().toLocaleDateString(),
+          done: function(value, date, endDate) {
+                if(value!=''){
+                	endpublishTime.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置结束日期最小值
+                } else{
+                	endpublishTime.config.min = beginpublishTime.config.min
+                }
+
+          }
         });
-        laydate.render({
-          elem: '#endpublishTime'
+       var endpublishTime =  laydate.render({
+            elem: '#endpublishTime',
+            max: new Date().toLocaleDateString(),
+            done: function(value, date, endDate) {
+                if(value!=''){
+                	beginpublishTime.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置开始日期最大值
+                }else{
+                	beginpublishTime.config.max = endpublishTime.config.max
+                }
+
+            }
         });
-        laydate.render({
-            elem: '#beginupdateTime'
-          });
-          laydate.render({
-            elem: '#endupdateTime'
-          });
-      
         
+        
+        
+
+       //日期  注意：定义页面日期控件id不要重复!!!
+     var beginupdateTime=  laydate.render({
+           elem: '#beginupdateTime',
+         btns:['clear','confirm'],
+         max: new Date().toLocaleDateString(),
+         done: function(value, date, endDate) {
+               if(value!=''){
+            	   endupdateTime.config.min = {
+                       year: date.year,
+                       month: date.month - 1,
+                       date: date.date
+                   }; //重置结束日期最小值
+               } else{
+            	   endupdateTime.config.min = beginupdateTime.config.min
+               }
+
+         }
+       });
+      var endupdateTime =  laydate.render({
+           elem: '#endupdateTime',
+           max: new Date().toLocaleDateString(),
+           done: function(value, date, endDate) {
+               if(value!=''){
+            	   beginupdateTime.config.max = {
+                       year: date.year,
+                       month: date.month - 1,
+                       date: date.date
+                   }; //重置开始日期最大值
+               }else{
+            	   beginupdateTime.config.max = endupdateTime.config.max
+               }
+
+           }
+       });
+
         var laypage = layui.laypage //分页
         ,layer = layui.layer //弹层
         ,table = layui.table //表格
@@ -115,7 +174,8 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	var endupdateTime = $("#endupdateTime").val();
         	var categoryId = $('#categoryname option:selected').val();
         	var subcategoryId = $('#subcategoryname option:selected').val();
-        	var title =$("#title").val();
+        	var title =$("#title").val().trim();
+        	title = title.replace(/%/g,'/%').replace(/_/g,'/_');
         	dtt = {title:title,categoryId:categoryId,subcategoryId:subcategoryId,
         			beginupdateTime:beginupdateTime,endupdateTime:endupdateTime,
         			beginpublishTime:beginpublishTime,endpublishTime:endpublishTime
@@ -128,8 +188,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	//执行一个 table 实例
         	table.render({
   	          elem: '#usercontact'
-  	          ,id:"informationid" 
-  	          ,height: 475
+  	          ,id:"informationid"
   	          ,url: '/infomationmanage/getInfomationPage' //数据接口
   	          ,title: '資訊管理'
   	          ,page: false //开启分页
@@ -173,26 +232,77 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	    			
   	    			
   	    			var title='/';
-  	    			if(data.title==null||data.title==''){
+  	    			if(data.title==null||data.title==''||data.title==""){
   	    				title='/'
   	    			}else{
   	    				title=data.title
   	    			}
   	    			
   	    			var titleen='/';
-  	    			if(data.titleen==null||data.titleen==''){
+  	    			if(data.titleen==null||data.titleen==''||data.titleen==""){
   	    				titleen='/'
   	    			}else{
   	    				titleen=data.titleen
   	    			}
   	    			data.title = title+'<br>'+titleen ;
-  	    			data.categoryname = data.categoryname+'<br>'+data.categorynameen ;
-  	    			data.subcategoryname = data.subcategoryname+'<br>'+data.subcategorynameen ;
-  	    			data.publishtime = layui.util.toDateString(data.publishtime, 'yyyy-MM-dd HH:mm:ss');
+  	    			
+  	    			
+  	    			//data.categoryname = data.categoryname+'<br>'+data.categorynameen ;
+  	    			//data.subcategoryname = data.subcategoryname+'<br>'+data.subcategorynameen ;
+  	    			
+  	    			
+  	    			
+
+  	    			var categoryname='/';
+  	    			if(data.categoryname==null||data.categoryname==''||data.categoryname==""){
+  	    				categoryname='/'
+  	    			}else{
+  	    				categoryname=data.categoryname
+  	    			}
+  	    			
+  	    			var categorynameen='/';
+  	    			if(data.categorynameen==null||data.categorynameen==''||data.categorynameen==""){
+  	    				categorynameen='/'
+  	    			}else{
+  	    				categorynameen=data.categorynameen
+  	    			}
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			data.categoryname = categoryname+'<br>'+categorynameen ;
+  	    			
+  	    			var subcategoryname='/';
+  	    			if(data.subcategoryname==null||data.subcategoryname==''||data.subcategoryname==""){
+  	    				subcategoryname='/'
+  	    			}else{
+  	    				subcategoryname=data.subcategoryname
+  	    			}
+  	    			
+  	    			var subcategorynameen='/';
+  	    			if(data.subcategorynameen==null||data.subcategorynameen==''||data.subcategorynameen==""){
+  	    				subcategorynameen='/'
+  	    			}else{
+  	    				subcategorynameen=data.subcategorynameen
+  	    			}
+  	    			data.subcategoryname = subcategoryname+'<br>'+subcategorynameen ;
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			
+  	    			data.publishtime = layui.util.toDateString(data.publishtime, 'yyyy/MM/dd HH:mm:ss');
   	    			 if(data.updatetime==''||data.updatetime==null){
                       	data.updatetime='/';
                       }else{
-                          data.updatetime = layui.util.toDateString(data.updatetime, 'yyyy-MM-dd HH:mm:ss');
+                          data.updatetime = layui.util.toDateString(data.updatetime, 'yyyy/MM/dd HH:mm:ss');
                       }
   				}}
   	    	} 
@@ -278,7 +388,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
               newWeb.location='/usercontactmanage/toDetail?contactID='+contactID
             
           } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('是否確認刪除？', {icon:3,title:'提示'}, function(index){
               deleteObj(informationid,index,obj)
              
               //向服务端发送删除指令
@@ -346,7 +456,7 @@ function deleteObj(informationid,index,obj){
 	        	if(res.success==true){
 	        		obj.del(); //删除对应行（tr）的DOM结构
 		            layer.close(index);
-		            layer.msg('刪除成功');
+		            layer.msg('刪除成功',{time:2000});
 	        	}else{
 	        		layer.close(index);
 		            layer.msg('刪除失败');
@@ -407,7 +517,7 @@ function add(){
         	if(verify(parentcategoryid,categoryname,categorynameen,sequence)){
         	
             $.ajax({
-                type : "GET",
+                type : "POST",
                 contentType : "application/x-www-form-urlencoded;charset=utf-8",
                 //contentType : "application/json;charset=utf-8",
                 url : "/infomationmanage/addCategory",
@@ -446,7 +556,7 @@ function add(){
         success:function (res) {
         	var options = '<option value="">請選擇咨詢一級分類</option>';
         	$.each(res, function(index,val) {
-        		console.log('index='+index);
+        		
         		options+="<option value='"+ val.catagoryid+"'>" +val.categoryname+" / "+ val.categorynameen+"</option>";
         		$("#catselect").html(options);
         		

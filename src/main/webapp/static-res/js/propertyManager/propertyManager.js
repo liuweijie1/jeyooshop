@@ -1,4 +1,5 @@
 /**
+ * 放盤列表
  * wbqiutj
  * @returns
  */
@@ -6,7 +7,14 @@
 	getPage();
 }*/
 $(function () {
+    var domain = document.URL;
     $("#fangpan").addClass("layui-nav-itemed");
+    if(domain.indexOf("releaseApply")>= 0||domain.indexOf("release")>= 0){
+        $("#lay-release").addClass("layui-this");
+	} else if(domain.indexOf("process")>= 0){
+        $("#lay-propertylist").addClass("layui-this");
+	}
+    $(".classwidth1").height($(".classwidth").height())
 })
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
 	
@@ -14,19 +22,124 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,layer = layui.layer
         ,laydate = layui.laydate;
         form.render();//初始化下拉框
+        var start = laydate.render({
+            elem: '#beginTime',
+            btns:['clear','confirm'],
+            isInitValue: false,
+            max: new Date().toLocaleDateString(),
+            done: function (value, date) {
+                if(value !==''){
+                    end.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    end.config.min = start.config.min
+                }
+            }
+        });
+
+        var end = laydate.render({
+            elem: '#endTime',
+            isInitValue: false,
+            max: new Date().toLocaleDateString(),
+            done: function (value, date) {
+                if(value != ''){
+                    start.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    start.config.max = end.config.max
+                }
+            }
+        });
+        var ustart = laydate.render({
+            elem: '#beginUpdateTime',
+            btns:['clear','confirm'],
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                    uend.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    uend.config.min = ustart.config.min
+                }
+            }
+        });
+        var uend = laydate.render({
+            elem: '#endUpdateTime',
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                    ustart.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    ustart.config.max = uend.config.max
+                }
+            }
+        });
         
-      //日期  注意：定义页面日期控件id不要重复!!!
-        laydate.render({
-          elem: '#beginTime'
+        /*var scoreStart = laydate.render({
+            elem: '#scoreBeginTime',
+            btns:['clear','confirm'],
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                	scoreEnd.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                	scoreEnd.config.min = scoreStart.config.min
+                }
+            }
         });
-        laydate.render({
-          elem: '#endTime'
+        var scoreEnd = laydate.render({
+            elem: '#scoreEndTime',
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                    ustart.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                	scoreStart.config.max = scoreEnd.config.max
+                }
+            }
+        });*/
+        
+        var scoreStart = laydate.render({
+            elem: '#scoreBeginTime',
+        	 done: function (value, dates) {                     
+        		 scoreEnd.config.min ={  
+                          year:dates.year,   
+                          month:dates.month-1, //关键  
+                          date: dates.date,  
+                 };      
+             }  
+    
         });
-        laydate.render({
-            elem: '#beginUpdateTime'
-        });
-        laydate.render({
-          elem: '#endUpdateTime'
+        var scoreEnd= laydate.render({
+	          elem: '#scoreEndTime',
+	    	  done: function (value, dates) {  
+	    		  scoreStart.config.max={  
+	                  year:dates.year,   
+	                  month:dates.month-1,//关键   
+	                  date: dates.date, 
+	              }  
+	         }  
         });
         
         var laypage = layui.laypage //分页
@@ -50,7 +163,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         
         $("#searchBtn").click(function(){
     		//closePage();
-        	var propertyId = $("#propertyId").val();
+        	var propertyId = $("#propertyId").val().trim();
         	var estateName = $("#estateName").val();
         	var propertySource = $("#propertySource").val();
         	var propertyStatus = $("#propertyStatus").val();
@@ -62,6 +175,11 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	var beginUpdateTime = $("#beginUpdateTime").val();
         	var endUpdateTime = $("#endUpdateTime").val();
         	var rentaltype = $("#rentaltype").val();
+        	//是否是自建盤
+        	var estateid = false;
+        	if($("#estateid").is(':checked')){
+        		estateid = true;
+        	}
         	
         	dtt = {
         		propertyId:propertyId,
@@ -72,6 +190,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     			isUploadEvidence:isUploadEvidence,
     			isadminoffline:isadminoffline,
     			rentaltype:rentaltype,
+    			estateid:estateid,
     			beginTime:beginTime,
     			endTime:endTime,
     			beginUpdateTime:beginUpdateTime,
@@ -96,16 +215,17 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	          ,cols: [[ //表头
   	            //{type: 'checkbox', fixed: 'left'}
   		            /*{field: 'userid', title: '會員編號', width:100}*/
-  		            {field: 'propertyid', title: '房源編號', width: '10%',align:'center', sort: false, totalRow: true}
-  		           	,{field: 'estatename', title: '屋苑名', width: '10%',align:'center', sort: false, totalRow: true}
+  		            {field: 'propertyid', title: '樓盤編號', width: '10%',align:'center', sort: false, totalRow: true}
+  		           /*	,{field: 'estatename', title: '屋苑名', width: '10%',align:'center', sort: false, totalRow: true}*/
   		            ,{field: 'rentaltype', title: '租售', width:'10%',align:'center', sort: false}
-  		            ,{field: 'propertysource', title: '盤源', width: '10%',align:'center', sort: false, totalRow: true}
-  		            ,{field: 'propertystatus', title: '樓盤狀態', width:'10%',align:'center'}
-  		            ,{field: 'isHide', title: '樓盤顯示狀態', width: '10%',align:'center'}
+  		            ,{field: 'propertysource', title: '盤源', width: '15%',align:'center', sort: false, totalRow: true}
+  		            ,{field: 'propertystatus', title: '樓盤狀態', width:'15%',align:'center'}
+  		            /*,{field: 'isHide', title: '樓盤顯示狀態', width: '10%',align:'center'}*/
+  		            ,{field: 'estateid', title: '是否是自建', width:'10%',align:'center'}
   		            ,{field: 'isadminoffline', title: '上下架狀態', width: '10%',align:'center',templet: '#switchTpl'}
-  		            ,{field: 'createtime', title: '上架日期', width: '10%',align:'center', sort: false, totalRow: true}
-  		            ,{field: 'updatetime', title: '更新日期', width: '10%',align:'center', sort: false, totalRow: true}
-  		            ,{fixed: 'right',title: '操作', width: '10%', align:'center', toolbar: '#barDemo'}
+  		            ,{field: 'publictime', title: '放盤日期', width: '15%',align:'center', sort: false, totalRow: true}
+  		           /* ,{field: 'updatetime', title: '更新日期', width: '10%',align:'center', sort: false, totalRow: true}*/
+  		            ,{fixed: 'right',title: '操作', width: '15%', align:'center', toolbar: '#barDemo'}
               ]]
   			,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
   				layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -119,20 +239,23 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	    		if(res !=null && res.data !=null){
   	    			for (var i = 0; i < res.data.length; i++) {
   	  	    			var data = res.data[i];
-  	  	    			data.upOrDown = data.propertystatus;
-  	  	    			if(data.isHide){// 0：顯示，1：隱藏
+  	  	    			data.upOrDown = data.propertystatus;//頁面調用
+  	  	    			/*if(data.isHide){// 0：顯示，1：隱藏
   	  	    				data.isHide = "隱藏";
   	  	    			}else{
-  	  	    				data.isHide = "顯示";
-  	  	    			}
+  	  	    				if(data.isHide != null){
+  	  	    					data.isHide = "顯示";
+  	  	    				}
+  	  	    			}*/
   	  	    			//var c = data.createtime;//储值时间
   	  	    			data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss');
   	  	    			data.updatetime = layui.util.toDateString(data.updatetime, 'yyyy-MM-dd HH:mm:ss');
   	  	    			
-  	  	    			data.propertysource = data.propertysource=="1"?"業主盤":(data.propertysource == "2"?"代理盤":data.propertysource);
-						data.rentaltype = data.rentaltype=="1"?"放售":(data.rentaltype == "2"?"放租":data.rentaltype);
+  	  	    			data.propertysource =(data.accountid > 0?"PMS":data.propertysource=="1"?"業主盤":(data.propertysource == "2"?"代理盤":data.propertysource)) ;
+						data.rentaltype = data.rentaltype=="1"?"放售":(data.rentaltype == "2"?"放租":"/");
   	  	    			data.propertystatus = data.propertystatus=="0"?"封盤":(data.propertystatus=="1"?"待售/租":(data.propertystatus == "3"?"已售/租":data.propertystatus));
-  	  				}
+  	  	    			data.estateid = data.estateid == "0"?"是":"否";
+  	    			}
   	    		}
   	    	} 
   	    	,response: {
@@ -190,16 +313,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             var resource = $("#resource").val();
             var newWeb=window.open('_blank');
             newWeb.location='/property/propertyDetail?propertyid='+propertyid+"&resource="+resource;
-            layer.msg('預覽操作');
-            
-          } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
-              obj.del(); //删除对应行（tr）的DOM结构
-              layer.close(index);
-              //向服务端发送删除指令
-            });
-          } else if(layEvent === 'edit'){
-            layer.msg('编辑操作');
+            //layer.msg('預覽操作');
           }
         });
         
@@ -213,22 +327,15 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         });
         
         
-      //监听性别操作
+      //监听上下架操作
         form.on('switch(upDown)', function(obj){
         	var x=obj.elem.checked;
-        	var content = x == true ?"你確定要上架嗎？":"你確定要下架嗎？";
+        	var content = x == true ?"是否確認上架？":"是否確認下架？";
         	layer.confirm(content,{
         		btn: ['确定','取消'],
         		icon: 3,
         		title:'提示',
         		yes:function(index){
-        			/*上架功能隱藏
-        			 * if(!obj.elem.checked){
-        				//obj.othis.removeClass("layui-form-onswitch");
-        				obj.elem.disabled = "disabled";
-                  		obj.othis.addClass("layui-disabled");
-                  		obj.othis.addClass("layui-checkbox-disbaled");
-        			}*/
         			obj.elem.checked=x;
         			form.render();
             		layer.close(index);
@@ -377,5 +484,142 @@ function imgCarousel(){
         ,width: '100%' //设置容器宽度
         ,arrow: 'always' //始终显示箭头
         //,anim: 'updown' //切换动画方式
+      });
+}
+//審核
+function applyBtn(){
+	var propertyid = $("#propertyId").val();
+	var url = "/property/releaseApply?propertyid="+propertyid;
+	var index = layer.confirm('是否通過審核？',{
+		btn: ['通過','不通過'],
+		icon: 3,
+		title:'放盤審核',
+		yes:function(index){
+			url = url+"&apply=true";
+			ajaxResponse(url);
+		},
+		btn2:function(){
+			url = url+"&apply=false";
+			ajaxResponse(url);
+		}
+	});
+}
+function ajaxResponse(url){
+	$.ajax({
+		type : "POST",
+		contentType : "application/json;charset=utf-8",
+		dataType : "json",
+		url : url,
+		error:function(request){
+		},
+		success:function(data){
+			if(data != null ){
+				window.opener.location.href=window.opener.location.href;
+				layer.msg(data.message,{time:3000});
+				setTimeout(function(){
+					location.reload();
+				}, 1000);
+			}
+		}
+	})
+}
+//關閉當前頁面
+function closePage(){
+	window.close();
+}
+var flag = true;
+function scoreBtn(){
+	layer.open({
+        type:1
+        //skin: 'layui-layer-rim', //加上边框
+        ,area: ['600', '460'] //宽高
+		,title:" "
+        ,content: $("#scoreDiv")
+        ,btn: ['確定', '取消']
+		,method:'GET'
+		,btnAlign: 'c'
+		,maxmin:true
+		,yes: function(index, layero){
+			var score = $("#score").val();
+			var begintime = $("#scoreBeginTime").val();
+			var expiretime = $("#scoreEndTime").val();
+			if(score == "" || score == '' || score == null){
+				$("#score").css("border-color","red");
+				layer.msg("權重分值不能為空！");
+				return;
+			}else{
+				$("#score").css("border-color","#D2D2D2");
+				var str = score.substring(0,1);
+				if(str == "0"){
+					layer.msg("請輸入有效整數！");
+					return;
+				}else if(str == "-"){
+					str = score.substring(1,2);
+					if(str == "0"){
+						layer.msg("請輸入有效整數！");
+						return;
+					}
+				}
+				if(score.indexOf("-") >=0){
+					var str2 = score.split("-");
+					if(str2[0] != "" || str2.length > 2 || str2[1] == ""){
+						layer.msg("請輸入有效整數！");
+						return;
+					}
+				}
+				
+			}
+			if(begintime == "" || begintime == '' || begintime == null){
+				$("#scoreBeginTime").css("border-color","red");
+				layer.msg("推薦日期起始日期不能為空！");
+				return;
+			}else{
+				$("#scoreBeginTime").css("border-color","#D2D2D2");
+			}
+			if(expiretime == "" || expiretime == '' || expiretime == null){
+				$("#scoreEndTime").css("border-color","red");
+				layer.msg("推薦日期結束日期不能為空！");
+				return;
+			}else{
+				$("#scoreEndTime").css("border-color","#D2D2D2");
+			}
+			var dt = {
+					propertyid:$("#propertyId").val(),
+					score:score,
+					begintime:begintime,
+					expiretime:expiretime
+			}
+            if(!flag){
+                return false;
+            }
+            flag=false;
+			$.ajax({
+				type : "POST",
+				contentType : "application/x-www-form-urlencoded;charset=utf-8",
+				url : "/property/score",
+				dataType : "json",
+				data:dt,
+				error:function(request){
+                    flag = true;
+					layer.msg("服務器異常。。。。");
+				},
+				success:function(data){
+                    flag = true;
+					if(data != null ){
+						layer.msg(data.message,{time:1000});
+					}
+					layer.close(index);
+					setTimeout(function(){
+						location.reload();
+					}, 1000);
+					
+					//location.href="/trade/tradeDetail";
+				}
+			})
+        	
+        },
+        btn2:function(index, layero){
+        	
+        }
       });
 }

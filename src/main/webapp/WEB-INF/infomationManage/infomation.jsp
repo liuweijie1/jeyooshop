@@ -12,7 +12,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>House730</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+    <title>資訊管理/新聞資訊列表</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
         .layui-body{
@@ -26,7 +31,7 @@
     	}
     	.layui-label1-width{
     		
-    		width:100px !important;
+    		width:60px !important;
     	}
     	.layui-label1-width1{
     		
@@ -58,15 +63,10 @@
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>資訊管理</legend>
+                <legend>資訊管理/新聞資訊列表</legend>
             </fieldset>
 
-            <div class="layui-row">
-
-                <div class="layui-col-xs6 layui-col-md12">
-                    <div class="grid-demo grid-demo-bg2" style="background-color:#52cdec;line-height:50px;padding:0 30px;font-size:18px;">新聞資訊列表</div>
-                </div>
-            </div>
+           
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -88,10 +88,7 @@
 										      <!-- <label class="layui-form-label">分组选择框</label> -->
 										      <div class="layui-input-inline">
 										        <select name="categoryname" lay-filter="test" id="categoryname">
-										          <!-- <option value="">請選擇付款狀態</option>
-										          
-										            <option value="1">已付款</option>
-										            <option value="0">未付款</option> -->
+										        
 										          
 										        </select>
 										      </div>
@@ -100,26 +97,25 @@
 										      <!-- <label class="layui-form-label">分组选择框</label> -->
 										      <div class="layui-input-inline">
 										        <select name="subcategoryname" id="subcategoryname">
-										         <!--  <option value="">請選擇付款方式</option>
-										          <option value="0">信用卡付款</option>
-										          <option value="1">銀行轉賬</option> -->
-										          
+										       
 										        </select>
 										      </div>
 										    </div>
 										    <div class="layui-inline">
-										      <label class="layui-form-label layui-label1-width" >發佈時間:</label>
+										    <!--   <label class="layui-form-label layui-label1-width" >發佈時間:</label> -->
 										      <div class="layui-input-inline layui-inline-width">
-										        <input type="text" name="beginTime" id="beginpublishTime"  placeholder="起始日期" autocomplete="off" class="layui-input">
+										        <input type="text" name="beginTime" id="beginpublishTime"  placeholder="發佈-起始時間" autocomplete="off" class="layui-input">
 										      </div>
 										      <label class="layui-form-label" style="width:10px;padding:10px 0 10px 0;text-align: left;">-</label>
 										      <div class="layui-input-inline layui-inline-width">
-										        <input type="text" name="endTime" id="endpublishTime"  placeholder="結束日期" autocomplete="off" class="layui-input">
+										        <input type="text" name="endTime" id="endpublishTime"  placeholder="發佈-結束時間" autocomplete="off" class="layui-input">
 										      </div>
+										      
+										      
 										    </div>
 										    
-										 </div>
-									     <div class="layui-form-item" pane="">
+										 
+									     
 										    <!-- <label class="layui-form-label layui-label-ck" ></label>
 										    <div class="layui-input-inline">
 										      <input type="checkbox" id="propertycoin" name="propertycoin" lay-skin="primary" title="有可儲值屋幣量"  lay-filter="test">
@@ -128,13 +124,13 @@
 										   
 										    
 										    <div class="layui-inline">
-										      <label class="layui-form-label1 layui-label1-width1" >修改時間:</label>
+										     <!--  <label class="layui-form-label1 layui-label1-width1" >修改時間:</label> -->
 										      <div class="layui-input-inline layui-inline-width" >
-										        <input type="text" name="beginEvidenceTime" id="beginupdateTime"  placeholder="起始日期" autocomplete="off" class="layui-input"/>
+										        <input type="text" name="beginEvidenceTime" id="beginupdateTime"  placeholder="修改-起始時間" autocomplete="off" class="layui-input"/>
 										      </div>
 										      <label class="layui-form-label" style="width:10px;padding:10px 0 10px 0;text-align: left;">-</label>
 										      <div class="layui-input-inline layui-inline-width" >
-										        <input type="text" name="endEvidenceTime" id="endupdateTime"  placeholder="結束日期" autocomplete="off" class="layui-input"/>
+										        <input type="text" name="endEvidenceTime" id="endupdateTime"  placeholder="修改-結束時間" autocomplete="off" class="layui-input"/>
 										      </div>
 												<input type="button" value="查找" class="layui-btn" id="searchBtn"></input>
 												<input type="button" value="添加資訊" class="layui-btn" id="addBtn"></input>
@@ -271,6 +267,7 @@
        	<fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
 		  <legend>添加咨詢一級分類</legend>
 		</fieldset>
+		
 		<div class="layui-form-item">
 		    <div class="layui-inline">
 		      <label class="layui-form-label layui-label-width" ><span class="red">*</span>一級分類 :</label>
@@ -337,6 +334,6 @@
    
    </div>
 
-<script src="/static-res/js/infomationManage/infomation.js"></script>
+<script src="/static-res/js/infomationManage/infomation.js?v=<%=System.currentTimeMillis() %>"></script>
 
 </html>

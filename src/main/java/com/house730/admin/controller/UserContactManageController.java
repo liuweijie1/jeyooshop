@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @Controller
-@RequestMapping("usercontactmanage")
+@RequestMapping("page/allcategory")
 public class UserContactManageController {
   
     @Autowired
@@ -37,7 +37,7 @@ public class UserContactManageController {
    
     @GetMapping("/process")
 	public String toProcess(Model model) {
-		return "userContact/index";
+		return "/allcategory/allcategory";
 	}
     
     

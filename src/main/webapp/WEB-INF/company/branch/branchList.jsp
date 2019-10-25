@@ -6,7 +6,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>House730</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>代理公司管理/查看分行</title>
     <link rel="stylesheet" href="/static/css/layui.css">
     <style type="text/css">
         .layui-body{
@@ -39,11 +44,8 @@
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>代理公司管理</legend>
+                <legend>代理公司管理/查看分行</legend>
             </fieldset>
-            <div class="layui-col-xs6 layui-col-md12">
-                <div class="grid-demo grid-demo-bg2" style="background-color:#52cdec;line-height:50px;padding:0 30px;font-size:18px;color:white;">查看分行</div>
-            </div>
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -86,6 +88,6 @@
 </div>
 <jsp:include page="../../include/footer.jsp"/>
 </body>
-<script src="/static-res/js/company/branch/branch.js"></script>
+<script src="/static-res/js/company/branch/branch.js?v=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>

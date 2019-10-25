@@ -5,6 +5,9 @@
 /*window.onload=function(){
 	getPage();
 }*/
+$(function () {
+    $("#lay-trade").addClass("layui-this");
+})
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
 	
         var form = layui.form
@@ -12,19 +15,75 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,laydate = layui.laydate;
         form.render();//初始化下拉框
         
-      //日期  注意：定义页面日期控件id不要重复!!!
-        laydate.render({
-          elem: '#beginTime'
+        var start = laydate.render({
+            elem: '#beginTime',
+            btns:['clear','confirm'],
+            isInitValue: false,
+            max: new Date().toLocaleDateString(),
+            done: function (value, date) {
+                if(value !==''){
+                    end.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    end.config.min = start.config.min
+                }
+            }
         });
-        laydate.render({
-          elem: '#endTime'
+
+        var end = laydate.render({
+            elem: '#endTime',
+            isInitValue: false,
+            max: new Date().toLocaleDateString(),
+            done: function (value, date) {
+                if(value != ''){
+                    start.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    start.config.max = end.config.max
+                }
+
+
+
+            }
         });
-        laydate.render({
-            elem: '#beginEvidenceTime'
+        var ustart = laydate.render({
+            elem: '#beginEvidenceTime',
+            btns:['clear','confirm'],
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                    uend.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    uend.config.min = ustart.config.min
+                }
+            }
         });
-        laydate.render({
-          elem: '#endEvidenceTime'
+        var uend = laydate.render({
+            elem: '#endEvidenceTime',
+            max: new Date().toLocaleDateString(),
+            done: function (value, date, endDate) {
+                if(value !==''){
+                    ustart.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }
+                }else {
+                    ustart.config.max = uend.config.max
+                }
+            }
         });
+        
         
         var laypage = layui.laypage //分页
         ,layer = layui.layer //弹层
@@ -63,6 +122,10 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	var beginEvidenceTime = $("#beginEvidenceTime").val();
         	var endEvidenceTime = $("#endEvidenceTime").val();
         	
+        	var accountid = $("#accountid").val();
+        	var sourcetype = $("#sourcetype").val();
+        	var sourceid = $("#sourceid").val();
+        	
         	dtt = {
         		orderIdOrUserId:orderIdOrUserId,
         		orderstatus:orderstatus,
@@ -72,7 +135,10 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         		beginTime:beginTime,
         		endTime:endTime,
         		beginEvidenceTime:beginEvidenceTime,
-        		endEvidenceTime:endEvidenceTime
+        		endEvidenceTime:endEvidenceTime,
+        		accountid:accountid,
+        		sourcetype:sourcetype,
+        		sourceid:sourceid
         	};
     		res(dtt);
     	})
@@ -92,17 +158,17 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	          ,cols: [[ //表头
   	            //{type: 'checkbox', fixed: 'left'}
   		            {field: 'usercode', title: '會員編號',align: 'center', width:'7%'}
-  		           	,{field: 'orderid', title: '訂單編號',align: 'center', width: '8%', sort: false, totalRow: true}
-  		            ,{field: 'item', title: '交易事項',align: 'center', width:'8%', sort: false}
+  		           	,{field: 'orderid', title: '訂單編號',align: 'center', width: '7%', sort: false, totalRow: true}
+  		            ,{field: 'item', title: '交易事項',align: 'center', width:'15%', sort: false}
+  		            ,{field: 'sourceid', title: '樓盤編號',align: 'center', width:'7%', sort: false}
   		            ,{field: 'accountid', title: '付款來源',align: 'center', width:'7%', sort: false}
   		            ,{field: 'orderstatus', title: '付款狀態',align: 'center', width: '7%', sort: false, totalRow: true}
   		            ,{field: 'paymenttype', title: '付款方式',align: 'center', width:'7%'}
-  		            ,{field: 'money', title: '交易金額', align: 'center',width: '7%'}
+  		            ,{field: 'money', title: '交易金額', align: 'center',width: '8%'}
   		            ,{field: 'isUploadEvidence', title: '是否上傳憑證',align: 'center', width: '8%', sort: false, totalRow: true}
   		            ,{field: 'evidenceTime', title: '上傳憑證時間',align: 'center', width: '12%', sort: false, totalRow: true}
-  		            ,{field: 'propertycoin', title: '儲值數量',align: 'center', width: '7%', sort: false, totalRow: true}
-  		            ,{field: 'createtime', title: '儲值時間',align: 'center', width: '12%', sort: false, totalRow: true}
-  		            ,{fixed: 'right',title: '操作',align: 'center', width: '10%', align:'center', toolbar: '#barDemo'}
+  		            ,{field: 'createtime', title: '交易時間',align: 'center', width: '12%', sort: false, totalRow: true}
+  		            ,{fixed: 'right',title: '操作',align: 'center', width: '10%', toolbar: '#barDemo'}
               ]]
   			,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
   				layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -116,14 +182,33 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	    		if(res !=null && res.data !=null){
   	    			for (var i = 0; i < res.data.length; i++) {
   	  	    			var data = res.data[i];
-  	  	    			data.isUploadEvidence = data.isUploadEvidence==true?"已上传":"未上传";
-  	  	    			data.orderstatus = data.orderstatus=="1"?"已付款":"未付款";
-  	  	    			//var c = data.createtime;//储值时间
-  	  	    			data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss');
-  	  	    			data.evidenceTime = layui.util.toDateString(data.evidenceTime, 'yyyy-MM-dd HH:mm:ss');
-  	  	    			
-  	  	    			data.paymenttype = data.paymenttype=="1"?"銀行轉賬":(data.paymenttype == "0"?"信用卡":"");
-  	  	    			data.accountid = data.accountid=="0"?"普通會員":"代理公司";
+  	  	    			data.isUploadEvidence = (data.orderstatus=="1" && (data.paymenttype=="1" || data.paymenttype=="0"))?"/":(data.isUploadEvidence==true?"已上傳":"未上傳");
+  	  	    			data.paymenttype = data.orderstatus=="1"?(data.paymenttype=="0"?"金幣支付":(data.paymenttype=="1"?"PayPal":(data.paymenttype=="2"?"銀行轉賬":"/"))):"/";
+  	  	    			data.orderstatus = data.orderstatus=="0"?"未付款":(data.orderstatus=="1"?"已付款":"已關閉");
+  	  	    			//data.createtime = data.createtime != null?data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss'):"/";
+  	  	    			data.createtime = data.createtime != null?data.createtime:"/";
+  	  	    			if(null != data.evidenceTime){
+  	  	    				if(null != data.userOrderEvidence){
+  	  	    					//var evidenceTime = data.userOrderEvidence.createtime;
+  	  	    					//data.evidenceTime = layui.util.toDateString(evidenceTime, 'yyyy-MM-dd HH:mm:ss');
+  	  	    				}else{
+  	  	    					data.evidenceTime = "/";
+  	  	    				}
+  	  	    			}else{
+  	  	    				data.evidenceTime = "/";
+  	  	    			}
+                        if(data.accountid>0){
+                            data.usercode = data.accountcode;
+                        }
+  	  	    			//data.paymenttype = data.paymenttype=="0"?"屋幣":(data.paymenttype=="1"?"");
+  	  	    			data.accountid = data.accountid=="0"?"普通會員":"PMS";
+
+						if(data.paymenttype=="金幣支付"){
+                            data.money = "金幣"+data.propertycoin;
+						}else{
+  	  	    				data.money="HKD"+data.money
+						}
+						data.sourceid = data.sourcetype=="Property"?data.sourceid:"/";
   	  				}
   	    		}
   	    	} 
@@ -179,7 +264,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
           var data = obj.data //获得当前行数据
           ,layEvent = obj.event; //获得 lay-event 对应的值
           if(layEvent === 'detail'){
-            layer.msg('查看操作');
+            //layer.msg('查看操作');
             var orderid = data.orderid;
             var newWeb=window.open('_blank');
             newWeb.location='/trade/tradeDetail?orderid='+orderid;
@@ -243,19 +328,25 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
       //多图片上传
        upload.render({
           elem: '#uploadEvidence'
-          ,url: '/file/uploads'
+          ,url: '/file/uploadFiles'
           ,multiple: true
           //,auto: false
           //,bindAction: '#uploadEvidences'
           ,before: function(obj){
             //预读本地文件示例，不支持ie8
             obj.preview(function(index, file, result){
-              $('#uploadEvidenceList').append('<img style="width:200px;height:100px;padding:5px 10px;" src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+              //$('#uploadEvidenceList').append('<img style="width:200px;height:100px;padding:5px 10px;" src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
             });
           }
           ,done: function(res){
             //上传完毕
-        	  if(res.code==0){
+        	  if(res != null){
+        		  if(res.code==0){
+        			 var url = res.result[0].url;
+        			 var temp = url+"?x-oss-process=style/master";
+        			 $('#uploadEvidenceList').append('<img style="width:200px;height:100px;padding:5px 10px;" src="'+ temp +'"  class="layui-upload-img">')
+        			 $('#displayImage').append('<input style="display: none;" name="evidencepath" value='+url+'>');
+        		  }
         		  layer.msg("上傳成功");
         	  }
           }
@@ -314,59 +405,52 @@ function nonEditable(){
 		$(this).attr("readonly",true);
 	})
 }
-
-function storeValueBtn(){
-	//$("#storeValueBtn").click(function(){
-		var index = layer.open({
-	        type:1
-	        //skin: 'layui-layer-rim', //加上边框
-	        ,area: ['900', '600'] //宽高
-			,title:"儲值"
-	        ,content: $("#storeValuePage")
-	        ,btn: ['儲值', '关闭']
-			,method:'GET'
-			,btnAlign: 'c'
-			,maxmin:true
-			,yes: function(index, layero){
-				var dt = {
-						orderid:$("input[name='orderid']").val()
-				}
-				$.ajax({
-					type : "POST",
-					contentType : "application/x-www-form-urlencoded;charset=utf-8",
-					url : "/trade/storeValue",
-					data:dt,
-					error:function(request){
-						layer.msg("服務器異常.......");
-					},
-					success:function(data){
-						if(data != null ){
-							layer.msg(data.message,{time:1000});
-							
-							layer.close(index);
-							setTimeout(function(){
-								location.reload();
-							}, 1000);
-							if(data.success){
-								//window.opener.location.reload();
-								//刷新打開當前頁面的窗口
-								window.opener.location.href=window.opener.location.href;
-							}
+var  flag = true;
+function storeValueBtn(obj){
+	var content = obj == "Property"?"是否确认交易?":(obj == "PropertyCoin"?"是否确认储值?":"");
+	layer.confirm(content,{
+		btn: ['确定','取消'],
+		btnAlign: 'c',
+		icon: 3,
+		title:'提示',
+		yes:function(index){
+            if(!flag){
+                return false;
+            }
+            flag=false;
+			var dt = {
+					orderid:$("input[name='orderid']").val()
+			}
+			$.ajax({
+				type : "POST",
+				contentType : "application/x-www-form-urlencoded;charset=utf-8",
+				url : "/trade/storeValue",
+				data:dt,
+				error:function(request){
+                    flag = true;
+					layer.msg("服務器異常.......");
+				},
+				success:function(data){
+                    flag = true;
+					if(data != null ){
+						layer.msg(data.message,{time:1000});
+						//layer.close(index);
+						setTimeout(function(){
+							location.reload();
+						}, 1000);
+						if(data.success){
+							//window.opener.location.reload();
+							//刷新打開當前頁面的窗口
+							window.opener.location.href=window.opener.location.href;
 						}
-						
 					}
-				})
-	        	
-	        },
-	        btn2:function(index, layero){
-	        	
-	        }
-	      });
-		$("#closePage").click(function(){
-			//closePage();
-			layer.close(index);
-		})
-	//})
+				}
+			})
+		},
+		btn2:function(){
+			
+		}
+	});
 }
 function getFormData($form) {
 	var unindexed_array = $form.serializeArray();
@@ -380,35 +464,37 @@ function uploadFileBtn(){
 	var index = layer.open({
         type:1
         //skin: 'layui-layer-rim', //加上边框
-        ,area: ['1000', '800'] //宽高
-		,title:"上傳憑證"
+        ,area: ['1000', '700'] //宽高
+		,title:" "
         ,content: $("#uploadFileDetail")
-        ,btn: ['上傳', '关闭']
+        ,btn: ['保存', '关闭']
 		,method:'GET'
 		,btnAlign: 'c'
 		,maxmin:true
 		,yes: function(index, layero){
-			var dt = {
-					orderid:$("input[name='orderid']").val()
+			var displayImage = $.trim($("#displayImage").html());
+			if(displayImage == "" || displayImage == '' || displayImage == null){
+				layer.msg("請上傳圖片");
+				return;
 			}
+			var dt = $("#fileUpload").serialize();
 			$.ajax({
 				type : "POST",
 				contentType : "application/x-www-form-urlencoded;charset=utf-8",
-				url : "",
+				url : "/trade/saveOrderEvidence",
 				data:dt,
 				error:function(request){
 					layer.msg("服務器異常.......");
 				},
 				success:function(data){
 					if(data != null ){
-						if(true == data.success){
-							layer.msg("儲值成功",{time:3000});
-						}
+						//window.opener.location.href=window.opener.location.href;
+						layer.msg(data.message,{time:3000});
 					}
 					layer.close(index);
 					setTimeout(function(){
 						location.reload();
-					}, 3000);
+					}, 1000);
 					
 					//location.href="/trade/tradeDetail";
 				}
@@ -420,4 +506,7 @@ function uploadFileBtn(){
         	
         }
       });
+}
+function closePage(){
+	window.close();
 }

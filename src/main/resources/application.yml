@@ -4,10 +4,9 @@ spring:
   datasource:
      
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://52.148.92.137:3306/house730
-      
-      username: admin
-      password: admin123
+      url: jdbc:mysql://127.0.0.1:3306/jeyooshop?serverTimezone=GMT%2B8
+      username: root
+      password: 123
     
   jackson:
     time-zone: GMT+8
@@ -17,7 +16,8 @@ spring:
 
   mvc:
     view:
-      prefix: /WEB-INF/
+      #prefix: /WEB-INF/
+      prefix: /page/
       suffix: .jsp
     static-path-pattern: /**
 mybatis:

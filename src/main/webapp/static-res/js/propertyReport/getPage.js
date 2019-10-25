@@ -5,6 +5,9 @@
 /*window.onload=function(){
 	getPage();
 }*/
+$(function () {
+    $("#lay-report").addClass("layui-this");
+})
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
 	
         var form = layui.form
@@ -12,15 +15,43 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         ,laydate = layui.laydate;
         form.render();//初始化下拉框
         
-      //日期  注意：定义页面日期控件id不要重复!!!
-        laydate.render({
-          elem: '#startTime'
+
+        //日期  注意：定义页面日期控件id不要重复!!!
+      var startTime=  laydate.render({
+            elem: '#startTime',
+          btns:['clear','confirm'],
+          max: new Date().toLocaleDateString(),
+          done: function(value, date, endDate) {
+                if(value!=''){
+                	endTime.config.min = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置结束日期最小值
+                } else{
+                	endTime.config.min = startTime.config.min
+                }
+
+          }
         });
-        laydate.render({
-          elem: '#endTime'
+       var endTime =  laydate.render({
+            elem: '#endTime',
+            max: new Date().toLocaleDateString(),
+            done: function(value, date, endDate) {
+                if(value!=''){
+                	startTime.config.max = {
+                        year: date.year,
+                        month: date.month - 1,
+                        date: date.date
+                    }; //重置开始日期最大值
+                }else{
+                	startTime.config.max = endTime.config.max
+                }
+
+            }
         });
-      
-        
+
+     
         var laypage = layui.laypage //分页
         ,layer = layui.layer //弹层
         ,table = layui.table //表格
@@ -42,7 +73,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         
         $("#searchBtn").click(function(){
     		//closePage();
-        	var propertyID = $("#propertyID").val();
+        	var propertyID = $("#propertyID").val().trim();
         	var startTime = $("#startTime").val();
         	var endTime = $("#endTime").val();
         	var source = $('#source option:selected').val();
@@ -66,8 +97,10 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 	            //{type: 'checkbox', fixed: 'left'}
 		            //{field: 'reportid', title: '序號', width:'60', sort: false}
 		            {field: 'propertyid', title: '樓盤編號',align:'center', width:'10%',templet: function(d){ return d.propertyid==''||d.propertyid==null?'/':d.propertyid}}
-		           	,{field: 'source', title: '檢舉渠道', width: '10%',align:'center', sort: false, totalRow: true,templet: function(d){ return d.source==''||d.source==null?'/':d.source}}
-		            ,{field: 'content', title: '檢舉內容', width:'60%',align:'center', sort: false,templet: function(d){ return d.content==''||d.content==null?'/':d.content}}
+		            ,{field: 'name', title: '聯絡人', width:'10%',align:'center', sort: false,templet: function(d){ return d.name==''||d.name==null?'/':d.name}}
+		            ,{field: 'telephone', title: '联络人電話', width:'15%',align:'center', sort: false,templet: function(d){ return d.telephone==''||d.telephone==null?'/':d.telephone}}
+		            ,{field: 'email', title: '聯絡人電郵', width:'20%',align:'center', sort: false,templet: function(d){ return d.email==''||d.email==null?'/':d.email}}
+		            ,{field: 'content', title: '檢舉內容', width:'25%',align:'center', sort: false,templet: function(d){ return d.content==''||d.content==null?'/':d.content}}
 		            ,{field: 'createtime', title: '檢舉時間', width: '20%',align:'center', sort: false, totalRow: true}
 		           
 		            //,{fixed: 'right',title: '操作', width: 165, align:'center', toolbar: '#barDemo'}
@@ -86,9 +119,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                             var data = res.data[i];
                             if(data.createtime==''||data.createtime==null){
                             	data.createtime='/';
-                            }else{
-                                data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss');
-                            }
+                            }/*else{
+                                data.createtime = layui.util.toDateString(data.createtime, 'yyyy/MM/dd HH:mm:ss');
+                            }*/
                         }
                     }
                 }

@@ -1,3 +1,7 @@
+$(function () {
+    $("#companya").addClass("layui-nav-itemed");
+    $("#lay-company").addClass("layui-this");
+})
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
 
     var form = layui.form
@@ -82,8 +86,11 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                 if (res != null && res.data != null) {
                     for (var i = 0; i < res.data.length; i++) {
                         var data = res.data[i];
-                        if (data.addressen === null) {
-                            data.addressen = "";
+                        if (data.AddressEN === null||!data.hasOwnProperty('AddressEN')) {
+                            data['AddressEN'] = '/';
+                        }
+                        if (data.Address === null||!data.hasOwnProperty('Address')) {
+                            data['Address'] = '/';
                         }
 
                     }
@@ -103,5 +110,20 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         });
 
     }
+//监听行工具事件
+    table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        var data = obj.data //获得当前行数据
+            , layEvent = obj.event; //获得 lay-event 对应的值
+        if (layEvent === 'detail') {
+            layer.msg('預覽操作');
 
+        } else if (layEvent === 'query') {
+            var DepartmentID = data.DepartmentID;
+            var newWeb = window.open('_blank');
+            newWeb.location = '/branch/queryagent?departmentid=' + DepartmentID;
+        } else if (layEvent === 'edit') {
+        }
+    });
 });
+
+

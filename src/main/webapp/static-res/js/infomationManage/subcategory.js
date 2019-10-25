@@ -7,6 +7,7 @@
 var form='';
 $(function () {
     $("#information").addClass("layui-nav-itemed");
+    $("#lay-subcategory").addClass("layui-this");
 })
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
 	
@@ -46,10 +47,10 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         $("#searchBtn").click(function(){
     		//closePage();
         	
-        	var startTime = $("#startTime").val();
-        	var endTime = $("#endTime").val();
-        	var helpTopic = $('#helptopic option:selected').val();
-        	dtt = {startTime:startTime,endTime:endTime,helpTopic:helpTopic};
+        	var sercategory = $("#category").val().trim();
+        	var subcategoryname='true';
+        	sercategory = sercategory.replace(/%/g,'/%').replace(/_/g,'/_');
+        	dtt = {sercategory:sercategory};
     		res(dtt);
     	})
     	// table渲染
@@ -58,7 +59,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         	table.render({
   	          elem: '#usercontact'
   	          ,id:"catagoryid" 
-  	          ,height: 475
+  	       
   	          ,url: '/infomationmanage/getSubCategoryPage' //数据接口
   	          ,title: '資訊管理'
   	          ,page: false //开启分页
@@ -74,7 +75,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 		           	,{field: 'categorynameen', title: 'en',align:'center', width: '10%', sort: false, totalRow: true,hide:true,templet: function(d){ return d.contactperson==''?'/':d.contactperson}}
 		            ,{field: 'subcategoryname', title: '資訊二級分類',align:'center', width:'20%'}
 		           	,{field: 'subcategorynameen', title: 'suben',align:'center', width: '10%', sort: false, totalRow: true,hide:true,templet: function(d){ return d.contactperson==''?'/':d.contactperson}}
-		           	,{field: 'seqence', title: '分類排序', align:'center',width: '10%', sort: true, totalRow: true}
+		           	,{field: 'seqence', title: '分類排序', align:'center',width: '10%', sort: false, totalRow: true}
 		        	,{field: 'isshow', title: '是否顯示',align:'center', width: '10%', sort: false, totalRow: true}
 		           	,{field: 'createtime', title: '創建時間',align:'center', width: '15%', sort: false, totalRow: true}
 		           	,{field: 'updatetime', title: '修改時間',align:'center', width: '15%', sort: false, totalRow: true}
@@ -96,19 +97,52 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
   	    			var data = res.data[i];
   	    			if(data.isshow ==1){
   	    				data.isshow = "是";
-  	    			}else {
+  	    			}else if(data.isshow ==0) {
   	    				data.isshow = "否";
   	    			}
   	    			if(data.updatetime==''||data.updatetime==null){
                      	data.updatetime='/';
-                     }else{
-                         data.updatetime = layui.util.toDateString(data.updatetime, 'yyyy-MM-dd HH:mm:ss');
-                     }
+                     }/*else{
+                         data.updatetime = layui.util.toDateString(data.updatetime, 'yyyy/MM/dd HH:mm:ss');
+                     }*/
+  	    			
+  	    			
+  	    			
+  	    			var categoryname='/';
+  	    			if(data.categoryname==null||data.categoryname==''||data.categoryname==""){
+  	    				categoryname='/'
+  	    			}else{
+  	    				categoryname=data.categoryname
+  	    			}
+  	    			
+  	    			var categorynameen='/';
+  	    			if(data.categorynameen==null||data.categorynameen==''||data.categorynameen==""){
+  	    				categorynameen='/'
+  	    			}else{
+  	    				categorynameen=data.categorynameen
+  	    			}
+  	    			
+  	    			
+  	    			
   	    			data.categorynamestr = data.categoryname+' / '+data.categorynameen ;
-  	    			data.categoryname = data.categoryname+'<br>'+data.categorynameen ;
-  	    			data.subcategoryname = data.subcategoryname+'<br>'+data.subcategorynameen ;
+  	    			data.categoryname = categoryname+'<br>'+categorynameen ;
+  	    			
+  	    			var subcategoryname='/';
+  	    			if(data.subcategoryname==null||data.subcategoryname==''||data.subcategoryname==""){
+  	    				subcategoryname='/'
+  	    			}else{
+  	    				subcategoryname=data.subcategoryname
+  	    			}
+  	    			
+  	    			var subcategorynameen='/';
+  	    			if(data.subcategorynameen==null||data.subcategorynameen==''||data.subcategorynameen==""){
+  	    				subcategorynameen='/'
+  	    			}else{
+  	    				subcategorynameen=data.subcategorynameen
+  	    			}
+  	    			data.subcategoryname = subcategoryname+'<br>'+subcategorynameen ;
   	    		
-  	    			data.createtime = layui.util.toDateString(data.createtime, 'yyyy-MM-dd HH:mm:ss');
+  	    			/*data.createtime = layui.util.toDateString(data.createtime, 'yyyy/MM/dd HH:mm:ss');*/
   				}
   	    	}
   	    	} 
@@ -166,7 +200,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
               newWeb.location='/usercontactmanage/toDetail?contactID='+contactID
             
           } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('是否刪除該分類及以下資訊？', {icon:3,title:'提示'}, function(index){
               deleteObj(catagoryid,index,obj)
              
               //向服务端发送删除指令
@@ -244,7 +278,7 @@ function deleteObj(catagoryid,index,obj){
 
 	    }
 //參數驗證
-function verify(parentcategoryid, categoryname, categorynameen, sequence) {
+function verify(parentcategoryid, categoryname, sequence,isshow) {
 
 	if (parentcategoryid == null || parentcategoryid == ''
 			|| parentcategoryid == undefined) {
@@ -258,39 +292,51 @@ function verify(parentcategoryid, categoryname, categorynameen, sequence) {
 		layer.msg('中文二級分類不可為空');
 		return false;
 	}
-	if (categorynameen == null || categorynameen == ''
+	/*if (categorynameen == null || categorynameen == ''
 			|| categorynameen == undefined) {
 
 		layer.msg('英文二級分類不可為空');
 		return false;
-	}
+	}*/
 	if (sequence == null || sequence == '' || sequence == undefined) {
 
 		layer.msg('分類排序不可為空');
 		return false;
 	}
+	if (isshow == null || isshow == '' || isshow == undefined) {
 
+		layer.msg('請選擇是否在外網顯示');
+		return false;
+	}
 	return true;
 }
+
+var flag =true;
 // 查看
 function add(){
 	
     var index = layer.open({
         type:1
         //skin: 'layui-layer-rim', //加上边框
-        ,area: ['600px', '500px'] //宽高
-        ,title:"資訊管理"
+        ,area: ['620px', '520px'] //宽高
+        ,title:" "
         ,content: $("#score")
-        ,btn: ['確定', '取消']
+        ,btn: ['保存', '取消']
         ,method:'GET'
         ,btnAlign: 'c'
         ,maxmin:true
         ,yes: function(index, layero){
+        	if(!flag){
+        		layer.msg('請勿重複提交');
+        		return false;
+        	}
         	var parentcategoryid = $("#catselect").val()
-        	var categoryname = $("#categoryName").val()
-        	var categorynameen = $("#categoryNameEN").val()
-        	var sequence = $("#sequence").val()
-        	if(verify(parentcategoryid,categoryname,categorynameen,sequence)){
+        	var categoryname = $("#categoryName").val().trim()
+        	var categorynameen = $("#categoryNameEN").val().trim()
+        	var sequence = $("#sequence").val().trim()
+        	var  isshow=$('input[name=isShow]:checked').val()
+        	if(verify(parentcategoryid,categoryname,sequence,isshow)){
+        		flag=false;
         		$.ajax({
         	        type : "GET",
         	        contentType : "application/x-www-form-urlencoded;charset=utf-8",
@@ -302,12 +348,12 @@ function add(){
         	            
         	        },
         	        error:function(request){
-        	            alert(2);
+        	        	layer.msg('保存失敗');
         	        },
         	        success:function(data){
-        	        	if(data.result==false){
+        	        	if(data.success==false){
         	        	layer.msg('分類排序['+sequence+']已存在，請重新輸入');
-        	        	
+        	        	flag=true;
         	        	return false;
         	        	}else{
         	        		   $.ajax({
@@ -323,11 +369,18 @@ function add(){
         	                           isshow:$('input[name=isShow]:checked').val()
         	                       },
         	                       error:function(request){
-        	                           alert(2);
+        	                    	    flag=true;
+        	                    		layer.msg('保存失敗');
         	                       },
         	                       success:function(res){
-        	                           layer.close(index);
-        	                           location.reload();
+        	                    	   flag=true;
+        	                    	   if(res.success==true){
+        	                    		   layer.close(index);
+            	                           location.reload();
+        	                    	   }else{
+        	                    		   layer.msg('保存失敗');
+        	                    	   }
+        	                           
         	                           
         	                       }
         	                   })
@@ -355,7 +408,7 @@ function add(){
         success:function (res) {
         	var options = '<option value="">請選擇咨詢一級分類</option>';
         	$.each(res.categorynameList, function(index,val) {
-        		console.log('index='+index);
+        	
         		options+="<option value='"+ val.catagoryid+"'>" +val.categoryname+" / "+ val.categorynameen+"</option>";
         		
         		
@@ -381,19 +434,24 @@ function  edit(catagoryid,categorynamestr){
     var index = layer.open({
         type:1
         //skin: 'layui-layer-rim', //加上边框
-        ,area: ['600px', '500px'] //宽高
-        ,title:"資訊管理"
+        ,area: ['620px', '520px'] //宽高
+        ,title:" "
         ,content: $("#editscore")
-        ,btn: ['確定', '取消']
+        ,btn: ['保存', '取消']
         ,method:'GET'
         ,btnAlign: 'c'
         ,maxmin:true
         ,yes: function(index, layero){
-        	var categoryname=$("#edcategoryName").val()
-            var categorynameen=$("#edcategoryNameEN").val()
-            var sequence=$("#edsequence").val()
-        	if(verify('1',categoryname,categorynameen,sequence)){
-        		
+        	if(!flag){
+        		layer.msg('請勿重複提交');
+        		return false;
+        	}
+        	var categoryname=$("#edcategoryName").val().trim()
+            var categorynameen=$("#edcategoryNameEN").val().trim()
+            var sequence=$("#edsequence").val().trim()
+              var  isshow=$('input[name=edisShow]:checked').val()
+        	if(verify('1',categoryname,sequence,isshow)){
+        		flag=false;
         		$.ajax({
         	        type : "GET",
         	        contentType : "application/x-www-form-urlencoded;charset=utf-8",
@@ -405,12 +463,12 @@ function  edit(catagoryid,categorynamestr){
         	            catagoryid:catagoryid
         	        },
         	        error:function(request){
-        	            alert(2);
+        	        	layer.msg('保存失敗');
         	        },
         	        success:function(data){
-        	        	if(data.result==false){
+        	        	if(data.success==false){
         	        	layer.msg('分類排序['+sequence+']已存在，請重新輸入');
-        	        	
+        	        	flag=true;
         	        	return false;
         	        	}else{
         	        		 $.ajax({
@@ -427,11 +485,19 @@ function  edit(catagoryid,categorynamestr){
         	 	                    isshow: $('input[name=edisShow]:checked').val()
         	 	                },
         	 	                error:function(request){
-        	 	                    alert(2);
+        	 	                	flag=true;
+        	 	                	layer.msg('保存失敗');
         	 	                },
         	 	                success:function(res){
-        	 	                    layer.close(index);
-        	 	                    location.reload();
+        	 	                	flag=true;
+        	 	                	if(res.success==true){
+        	 	                		layer.msg('保存成功');
+        	 	                		layer.close(index);
+            	 	                    location.reload();
+        	 	                	}else{
+        	 	                		layer.msg('保存失敗');
+        	 	                	}
+        	 	                    
         	 	                    
         	 	                }
         	 	            })
@@ -458,9 +524,14 @@ function  edit(catagoryid,categorynamestr){
             $("#edsequence").val(res.informationCategory.seqence);
             $("#yiji").text(categorynamestr);
             if(res.informationCategory.isshow==false){
-            	 $("#edisShow").attr("checked",true); 
-                 form.render();
+            	/*alert(1);*/
+            	$("input[name='edisShow'][value=0]").attr("checked",true); 
+            	
+            }else{
+            	$("input[name='edisShow'][value=1]").attr("checked",true); 
             }
+            
+            form.render();
             
          
         }
