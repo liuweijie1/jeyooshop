@@ -37,9 +37,10 @@ public class UserContactManageController {
    
     @GetMapping("/process")
 	public String toProcess(Model model) {
-		return "/allcategory/allcategory";
+		return "/allcategory/allcategory2";
 	}
     
+ 
     
     /**
 

@@ -1,0 +1,112 @@
+/*Copyright:鎴愰兘闆剁偣淇℃伅鎶�鏈湁闄愬叕鍙� QQ:863230477*/
+/*鎵嬫満wap绔欏崟搴梒ss*/
+.shop_close{position:fixed;z-index:999;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,0.8);padding-top:100px;line-height:60px;}
+.food_list_body{padding-top:0px;background-color:#f0f0f0}
+/*.shop_name{background:#fff;}*/
+/*#restype_ul li.hover{background-color:#f60;color:#fff;font-weight:normal}*/
+/*#restype_ul li{background-color:#e6e6e6;color:#787878;}*/
+ 
+  .paddinggd{
+  padding: 0px 0px 0px 0px;
+  }  
+.img_list_price{position:absolute;right:10px;z-index:9}
+.shop_hd_marq{width:88%;margin:0 4%;line-height:30px;color:#555555}
+.shop_hd_marq br{display:none}
+.hd_close{position:absolute;right:0;top:0;width:30px;height:30px;line-height:30px}
+.rebate_shade{position:absolute;z-index:99;top:0;bottom:0;left:0;right:0;padding:20px 10px 30px;color:#009635;text-align:center;background:rgba(255,255,255,0.9);}
+#food_search{width:45px;height:45px;background:url(../image/searchBlack@2x.png) center center no-repeat;background-size:70%}
+#food_user{width:45px;height:45px;background:url(../image/person@2x.png) center center no-repeat;background-size:70%}
+
+.food_img_see{margin:15px 0;text-align:center}
+.food_img_see img{box-shadow:2px 3px 1px #bbb}
+#ckepop{margin:10px auto 0;overflow:hidden;text-align:center;border-top:1px solid #dfdfdf;padding-top:5px}
+
+
+.share_sdk_button{display:inline-block;margin:0 5%;padding-left:25px;cursor:pointer;background:url(../../img/page/wap/res_icon.png) no-repeat;background-size:25px}
+.sina_sdk_button{background-position:3px -104px}
+.qq_sdk_button{background-position:3px -79px}
+
+
+.foodlist_label{padding-left:9px;height:25px;line-height:25px;background:#ffffff;font-size:14px;font-weight:normal;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.img_list_box{position:relative;margin-right:7px;float:left}
+.food_img_name{height:19px;margin-bottom:5px;overflow:hidden;font-size:13px}
+.img_list_img{border:1px solid #f4f4f4;border-radius:7px;cursor:pointer}
+#foot_search_box{position:absolute;top:0;bottom:0;left:0;right:0;z-index:101;background:rgba(0,0,0,0.5)}
+#foot_search_input,.foot_search_input{padding:8px 10px;border-radius:3px;border:1px solid #ccc;vertical-align:middle}
+.car_copies{line-height:12px;margin-top:17px;color:#a4a4a4;font-size:14px;border-left:2px solid #a4a4a4;padding-left:6px}
+
+.weight_span{display:inline-block;vertical-align:middle;max-width:60%;}
+
+/**鐗逛环鍟嗗搧***/
+.rush_tit{position:relative;padding:3px 9px;border-bottom:1px solid #ccc;}
+.rush_tit:before{content:'';display:inline-block;width:25px;height:25px;vertical-align:middle;background:url(../../img/page/wap/icon_time.png) no-repeat center 4px;background-size:60%;}
+.arrow_icon{width:15px;height:30px;-webkit-transition:all 300ms;transition:all 300ms;background:url(../../img/admin/arr.png) center center no-repeat;background-size:auto 50%;}
+.rush_tit.hover .arrow_icon{ -webkit-transform:rotate(180deg);transform:rotate(180deg);width:15px;height:30px;}
+/*#food_img_list .rush_list{float:left;width:46%;margin:10px 2% 0;padding:5px 1%;box-sizing:border-box;border:1px solid #CCCCCC;line-height:24px;background:#fff;position:relative;overflow:hidden}*/
+.rush_list p{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.rush_list p.dish_time{height:24px}
+.img_box{width:100%;height:0;padding:40% 0;margin-bottom:4px;position:relative}
+.img_box img{position:absolute;top:0;left:0;width:100%;height:100%}
+.time_display{font-family:Tahoma,Geneva,sans-serif;color:#f60}
+.time_display:before{content:'';display:inline-block;width:12px;height:12px;vertical-align:text-bottom;background:url(../../img/page/wap/icon_time.png) no-repeat 0/contain;}
+.rush_btn{margin:8px 0 4px;width:50%;height:25px;border-radius:3px;border:none}
+.rush_btn:active{position:relative;top:1px}
+.promptly{background:#ff4c14}
+.soon{background:#ff8900;border-color:#ff8900}
+.end{background:#c8c8c8;border-color:#c8c8c8}
+.no_rush_info{padding:100px 0;text-align:center}
+.special_food_info{display:inline-block;margin-top:3px;margin-left:86px;}
+#sort_rush::before{content:"";display:inline-block;width: 20px;height:20px;background:url("../../img/page/wap/wap_menu_icon.png") no-repeat 0 0/25px;vertical-align:middle;}
+.no_start{display:inline-block;height:24px;line-height:24px;border-radius:2px;font-weight:bold;cursor:pointer;font-size:16px;vertical-align:middle;padding:1px 9px;color:#fff;background:#ccc;border:none;}
+
+/*璐墿杞�*/
+.food_car_more{
+    width: 53px;
+    height: 53px;
+    display: inline-block;
+    border: 4px solid #f9f9f9;
+    border-radius: 50%;
+    background: #FF6D5A url("../image/shoppingCart@2x.png") no-repeat 0 22px/25px;
+    background-position-x: 11px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+#all_count{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #f60;
+}
+.car_btn_bg{
+    font-size: 18px;
+}
+#car_item {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    max-height: 80%;
+    overflow: auto;
+    background: rgba(0,0,0,0.8);
+}
+.img_plus,.attr_plus,.car_attr_plus {
+    padding: 1px 8px;
+}
+.img_cut,.attr_cut,.car_attr_cut {
+    padding: 0 9px;
+}
+.order_count_imglist{
+    padding: 0 5px;
+    line-height: 26px;
+}
+@media screen and (max-width: 321px) {
+    .img_cut,.attr_cut,.cut {padding: 0 7px;}
+    .img_plus,.attr_plus,.plus {padding: 1px 5px;}
+}

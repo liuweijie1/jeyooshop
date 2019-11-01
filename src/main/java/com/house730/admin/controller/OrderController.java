@@ -29,8 +29,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @Controller
-@RequestMapping("propertyreportmanage/")
-public class PropertyReportManageController {
+@RequestMapping("page/order")
+public class OrderController {
   
     @Autowired
     private PropertyReportManageService propertyReportService;
@@ -38,9 +38,9 @@ public class PropertyReportManageController {
     
    
     @GetMapping("/process")
-	public String toProcess(Model model) {
-		return "propertyReport/index";
-	}
+   	public String placeOrder(Model model) {
+   		return "/order/order";
+   	}
     
     
     /**
