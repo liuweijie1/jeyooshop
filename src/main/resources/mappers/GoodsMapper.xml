@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jeyoo.mapper.GoodsMapper" >
+  
+   <select id="getFood" resultType="com.jeyoo.pojo.Goods">
+        select * from goods
+         where  isdelete=0 
+         <if test="goodid!=null and goodid !=''">
+		      and  goodid = #{goodid,jdbcType=BIGINT}
+		 </if>
+		  <!-- <if test="categoryname == 'true'">
+		      and  ParentCategoryID =0
+		 </if>
+		  <if test="subcategoryname == 'true'">
+		      and  ParentCategoryID != 0
+		 </if>
+		  <if test="sequence!=null and sequence !=''">
+		      and  Sequence = #{sequence,jdbcType=INTEGER}
+		 </if>
+		  <if test="catagoryid!=null and catagoryid !=''">
+		      and  CatagoryID != #{catagoryid,jdbcType=INTEGER}
+		 </if>
+		 
+		 order by Sequence asc -->
+   </select>
+   
+   <!--  <select id="findSubCategoryByParentID" resultType="com.jeyoo.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,CreateTime,UpdateTime from information_category 
+         where ParentCategoryID=#{catagoryID} and isdelete=0 
+   </select>
+   
+   
+   
+   <update id="delCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where CatagoryID=#{catagoryID}
+   </update>
+   
+   <update id="delSubCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where ParentCategoryID=#{catagoryID}
+   </update> -->
+   
+   
+     <insert id="insert" parameterType="com.jeyoo.pojo.Goods" >
+    insert into information_category (CatagoryID, CategoryName, CategoryNameEN, 
+      ParentCategoryID, IsShow, Sequence, 
+      CreateUser, CreateTime, UpdateUser, 
+      UpdateTime, IsDelete)
+    values (#{catagoryid,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR}, #{categorynameen,jdbcType=VARCHAR}, 
+      #{parentcategoryid,jdbcType=INTEGER},  <if test="isshow == true" >1,</if>  <if test="isshow == false" >0,</if> #{seqence,jdbcType=INTEGER}, 
+      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, 0)
+  </insert>
+ <!--  
+   <select id="getCategoryById" resultType="com.jeyoo.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,isShow from information_category 
+         where CatagoryID=#{catagoryID} and isdelete=0
+   </select>
+   
+    <update id="editCategory"  parameterType="com.jeyoo.pojo.InformationCategory">
+        update information_category  set 
+        CategoryName=#{categoryname,jdbcType=VARCHAR},CategoryNameEN=#{categorynameen,jdbcType=VARCHAR}, 
+        IsShow=<if test="isshow == true" >1,</if>  <if test="isshow == false" >0, </if>UpdateTime=#{updatetime,jdbcType=TIMESTAMP},
+        UpdateUser= #{updateuser,jdbcType=VARCHAR},Sequence=#{seqence,jdbcType=INTEGER}
+        where CatagoryID=#{catagoryid}
+   </update> -->
+   
+   
+   
+ 
+</mapper>

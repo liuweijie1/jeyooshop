@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.PropertyMapper">
+<mapper namespace="com.jeyoo.mapper.PropertyMapper">
 
-    <select id="findReleasePage"   resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+    <select id="findReleasePage"   resultType="com.jeyoo.resultpojo.PropertyReleaseResult">
         select
         u.UserID,
         p.PropertyID,
@@ -85,7 +85,7 @@
         <!-- limit #{page},#{limit} -->
     </select>
 
-    <select id="findReleaseDetailByPropertyId"   resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+    <select id="findReleaseDetailByPropertyId"   resultType="com.jeyoo.resultpojo.PropertyReleaseResult">
         select
         p.PropertyID,
         p.EstateID,
@@ -127,7 +127,7 @@
     </select>
 
 
-    <select id="getAuditPage" resultType="com.house730.admin.resultpojo.PropertyAuditResult">
+    <select id="getAuditPage" resultType="com.jeyoo.resultpojo.PropertyAuditResult">
         select PropertyID ,EstateName,RentalType , PropertySource,IsVerifyLabel,PublicTime from property
         where IsDelete=0 and (IsVerify=1 or IsVerifyImage=1 ) and PaymentStatus=1
         <if test="propertyid!=null and propertyid!=''">
@@ -146,7 +146,7 @@
             <![CDATA[ and PublicTime <=  #{endTime}  ]]>
         </if>
     </select>
-    <select id="getDetailPage" resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+    <select id="getDetailPage" resultType="com.jeyoo.resultpojo.PropertyReleaseResult">
     SELECT
     p.PropertyID,
 	p.EstateID,
@@ -185,7 +185,7 @@ AND p.PropertyID = #{propertyid}
 AND (IsVerify=1 or IsVerifyImage=1)
     </select>
 
-    <select id="getUserBypropertyid" resultType="com.house730.admin.resultpojo.Agent">
+    <select id="getUserBypropertyid" resultType="com.jeyoo.resultpojo.Agent">
         SELECT
 	p.ContactNameCN,
 	p.ContactNameEN,
@@ -208,7 +208,7 @@ WHERE
     <select id="getLabelImage" resultType="java.lang.String">
         select ImagePath from property_image where IsVerifyImage=1 and IsDelete=0 and PropertyID=#{propertyid}
     </select>
-    <update id="updateProperty" parameterType="com.house730.admin.resultpojo.PropertyReleaseResult" >
+    <update id="updateProperty" parameterType="com.jeyoo.resultpojo.PropertyReleaseResult" >
         update property
         <set>
             <if test="isadminoffline != null" >
@@ -259,10 +259,10 @@ WHERE
 		AND DictionaryValue = ( SELECT PropertyCategory FROM property WHERE propertyid = #{propertyid} )
 	)
     </select>
-    <select id="similarProperty" resultType="com.house730.admin.pojo.PropertySimilar">
+    <select id="similarProperty" resultType="com.jeyoo.pojo.PropertySimilar">
         select * from property_similar where PropertyID = #{propertyid}
     </select>
-    <select id="getselfPage" resultType="com.house730.admin.resultpojo.PropertyAuditResult">
+    <select id="getselfPage" resultType="com.jeyoo.resultpojo.PropertyAuditResult">
         select PropertyID ,EstateName,RentalType , PropertySource,ApprovalStatus,PublicTime from property
         where IsDelete=0 and EstateID=0 and PaymentStatus=1
         <if test="propertyid!=null and propertyid!=''">
@@ -281,7 +281,7 @@ WHERE
             <![CDATA[ and PublicTime <=  #{endTime}  ]]>
         </if>
     </select>
-    <select id="getSelfDetailPage"  resultType="com.house730.admin.resultpojo.PropertyReleaseResult">
+    <select id="getSelfDetailPage"  resultType="com.jeyoo.resultpojo.PropertyReleaseResult">
          SELECT
     p.PropertyID,
 	p.EstateID,

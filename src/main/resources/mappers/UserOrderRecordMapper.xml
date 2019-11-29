@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserOrderRecordMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserOrderRecord" >
+<mapper namespace="com.jeyoo.mapper.UserOrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.UserOrderRecord" >
     <constructor >
       <arg column="OrderID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -17,7 +17,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.UserOrderRecord" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.UserOrderRecord" >
     insert into user_orderrecord (OrderID, UserID, OrderCode, 
       Item, PropertyCoin, Money, 
       Status, PaymentType, PropertyCoinSetID, 
@@ -29,7 +29,7 @@
       #{sourceid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserOrderRecord" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.UserOrderRecord" >
     insert into user_orderrecord
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderid != null" >
@@ -116,7 +116,7 @@
   </insert>
   
   
-  <!-- <resultMap id="TradManagerResultMap" type="com.house730.admin.resultpojo.UserOrderRecordResult" >
+  <!-- <resultMap id="TradManagerResultMap" type="com.jeyoo.resultpojo.UserOrderRecordResult" >
     <constructor >
       <arg column="OrderID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -131,7 +131,7 @@
     </constructor>
   </resultMap> -->
 <!--   <select id="getPage"   resultMap="TradManagerResultMap"> -->
- 	<select id="getPage"   resultType="com.house730.admin.resultpojo.UserOrderRecordResult">
+ 	<select id="getPage"   resultType="com.jeyoo.resultpojo.UserOrderRecordResult">
   		select 
 			o.OrderID,
 			u.UserCode as usercode,
@@ -181,7 +181,7 @@
         <!-- limit #{page},#{limit} -->
     </select>
   	
-  	<select id="findTradeDetailByOrderId"   resultType="com.house730.admin.resultpojo.UserOrderRecordResult">
+  	<select id="findTradeDetailByOrderId"   resultType="com.jeyoo.resultpojo.UserOrderRecordResult">
   		select 
 			o.OrderID,
 			o.UserID,
@@ -202,7 +202,7 @@
 				AND o.OrderID = #{orderid,jdbcType=BIGINT}
   	</select>
   	
-  	<update id="updateStoreValue" parameterType="com.house730.admin.resultpojo.UserOrderRecordResult" >
+  	<update id="updateStoreValue" parameterType="com.jeyoo.resultpojo.UserOrderRecordResult" >
     update user_orderrecord
     <set>
       <if test="userid != null" >

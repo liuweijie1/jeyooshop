@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserFurnitureMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserFurniture" >
+<mapper namespace="com.jeyoo.mapper.UserFurnitureMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.UserFurniture" >
     <constructor >
       <arg column="FurnitureID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="UserID" jdbcType="BIGINT" javaType="java.lang.Long" />
@@ -37,7 +37,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.UserFurniture" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.UserFurniture" >
     insert into user_furniture (FurnitureID, UserID, FurnitureCategory, 
       Name, NameEN, IsDonation, 
       DonationDESC, FurnitureItem, Brand, 
@@ -61,7 +61,7 @@
       #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserFurniture" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.UserFurniture" >
     insert into user_furniture
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="furnitureid != null" >

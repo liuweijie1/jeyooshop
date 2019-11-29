@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserCompanyAccountMapper">
+<mapper namespace="com.jeyoo.mapper.UserCompanyAccountMapper">
     
-    <select id="agentlist" resultType="com.house730.admin.resultpojo.DepartmentEmplResult">
+    <select id="agentlist" resultType="com.jeyoo.resultpojo.DepartmentEmplResult">
 SELECT
     dd.RoleName as rolename,
 	( SELECT CompanyName FROM user_agentcompany ac WHERE ca.CompanyID = ac.CompanyID ) as companyname,

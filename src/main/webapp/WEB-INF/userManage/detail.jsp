@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ime-mode" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="com.house730.admin.pojo.User" %><%--
+<%@ page import="com.jeyoo.pojo.User" %><%--
   Created by IntelliJ IDEA.
   User: wbwuxd
   Date: 2019/4/25

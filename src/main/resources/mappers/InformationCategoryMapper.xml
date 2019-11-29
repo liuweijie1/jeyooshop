@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.InformationCategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.InformationCategory" >
+<mapper namespace="com.jeyoo.mapper.InformationCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.InformationCategory" >
     <constructor >
       <arg column="CatagoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="CategoryName" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -16,7 +16,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.InformationCategory" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.InformationCategory" >
     insert into information_category (CatagoryID, CategoryName, CategoryNameEN, 
       ParentCategoryID, IsShow, Seqence, 
       CreateUser, CreateTime, UpdateUser, 
@@ -26,7 +26,7 @@
       #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.InformationCategory" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.InformationCategory" >
     insert into information_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="catagoryid != null" >

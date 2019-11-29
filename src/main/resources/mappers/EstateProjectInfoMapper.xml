@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.EstateProjectInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.EstateProjectInfo" >
+<mapper namespace="com.jeyoo.mapper.EstateProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.EstateProjectInfo" >
     <constructor >
       <arg column="EstateID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="DecorationSituation" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -27,7 +27,7 @@
       <arg column="PriceNumber" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.EstateProjectInfo" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.EstateProjectInfo" >
     insert into estate_projectinfo (EstateID, DecorationSituation, ArchitecturalStyle, 
       OpeningDate, UnitAreaInterval, FloorHeight, 
       FloorCondition, FloorNumber, Area, 
@@ -45,7 +45,7 @@
       #{telephone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{dealnumber,jdbcType=INTEGER}, 
       #{pricenumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.EstateProjectInfo" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.EstateProjectInfo" >
     insert into estate_projectinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="estateid != null" >

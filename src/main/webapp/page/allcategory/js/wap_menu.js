@@ -279,16 +279,17 @@ function food_img(obj){
     if(tag){
         foodImgPath.width("100%").height("80%").attr("src","").attr("src",rel);
     }else{
-        foodImgPath.width(150).height(120).attr("src","").attr("src",img);
+        foodImgPath.width("100%").height("100%").attr("src","").attr("src",img);
+        foodImgPath.css("object-fit","cover")
     }
     $("#cainame").html(name);
     if(des!=null && des!=''){
-        des = "&nbsp;&nbsp;&nbsp;&nbsp;"+des;
+        des = "商品描述</br>&nbsp;&nbsp;&nbsp;&nbsp;"+des;
         $("#food_desc").html("").html(des);
     }else{
         $("#food_desc").html("");
     }
-    if(food_id*1 > 0){
+   /* if(food_id*1 > 0){
         $.ajax({
             url:'wap/index/getFoodDetail',
             data:{food_id:food_id},
@@ -303,9 +304,14 @@ function food_img(obj){
             },
             fail:function(){}
         })
-    }
-    $(".img_list_price_box").html($(obj).parent().parent().find(".img_list_price").html());
-
+    }*/
+    setTimeout(function(){
+        popshow("#food_img");
+    },300);
+   /* $(".img_list_price_box").html($(obj).parent().parent().find(".img_list_price").html());*/
+   $(".food_price_dilog").html('¥'+$(obj).parent().parent().find('span[id^=food_price_num_]').html())
+    
+   
     shareqq_config = {
         url:location.href,
         showcount:'0', /*是否显示分享总数,显示：'1'，不显示：'0' */

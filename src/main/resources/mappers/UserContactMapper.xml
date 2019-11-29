@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserContactMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserContact" >
+<mapper namespace="com.jeyoo.mapper.UserContactMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.UserContact" >
     <constructor >
       <arg column="ContactID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="ContactPerson" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -20,7 +20,7 @@
   </resultMap>
   
   
-   <select id="queryList" resultType="com.house730.admin.resultpojo.UserContactResult">
+   <select id="queryList" resultType="com.jeyoo.resultpojo.UserContactResult">
 			SELECT
 					a.ContactID AS contactid,
 					a.ContactPerson AS contactperson,
@@ -63,12 +63,12 @@
 		    
    </select>
    
-   <select id="getTachmentById" resultType="com.house730.admin.pojo.UserContactattachment">
+   <select id="getTachmentById" resultType="com.jeyoo.pojo.UserContactattachment">
        select AttachmentPath from user_contactattachment where ContactID = #{contactID}   and isdelete=0
    </select>
    
    
-  <insert id="insert" parameterType="com.house730.admin.pojo.UserContact" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.UserContact" >
     insert into user_contact (ContactID, ContactPerson, Email, 
       Phone, HelpTopic, Title, 
       Content, Status, CreateUser, 
@@ -80,7 +80,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserContact" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.UserContact" >
     insert into user_contact
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="contactid != null" >

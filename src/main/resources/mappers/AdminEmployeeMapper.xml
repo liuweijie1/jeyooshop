@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.AdminEmployeeMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.AdminEmployee" >
+<mapper namespace="com.jeyoo.mapper.AdminEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.AdminEmployee" >
     <constructor >
       <arg column="EmployeeID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="DepartmentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -18,7 +18,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.AdminEmployee" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.AdminEmployee" >
     insert into admin_employee (EmployeeID, DepartmentID, EmployeeName, 
       EmployeeNo, Password, Mobile, 
       Remarks, Status, CreateUser, 
@@ -30,7 +30,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.AdminEmployee" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.AdminEmployee" >
     insert into admin_employee
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="employeeid != null" >
@@ -115,7 +115,7 @@
       </if>
     </trim>
   </insert>
-  <select id="selectByUsernameAndPassword" resultType="com.house730.admin.pojo.AdminEmployee">
+  <select id="selectByUsernameAndPassword" resultType="com.jeyoo.pojo.AdminEmployee">
     select * from admin_employee
     where EmployeeNo =#{username} and Password =#{password} and IsDelete=0
   </select>

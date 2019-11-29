@@ -55,7 +55,7 @@
 <script>
 
 
-  /*   //读取cookies
+  //读取cookies
     function gCookie(name)
     {
         var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
@@ -141,7 +141,7 @@
         console.log('no get cdn length,next timeout ');
         setTimeout(function(){getCdnRs();},3000);  
       }
-    } */
+    } 
 </script>
 
 </head>
@@ -162,9 +162,10 @@
 	</div>
 	<div class="center clof shop_name">
 	
-		<a class="nou head_back" href="javascript:history.back();">&nbsp;</a>
-		<a class="nou head_title" href="javascript:history.back();">杰悠披萨®</a>
-			<a class="right" id="food_user"></a>
+		<!-- <a class="nou head_back" href="javascript:history.back();">&nbsp;</a> -->
+		<a class="nou head_back" href="/page/index/process">&nbsp;</a>
+		<a class="nou head_title" href="/page/index/process;"> 杰悠披萨®</a>
+			<a href="/page/customer/process" class="right" id="food_user"></a>
 		<a class="right" id="food_search"></a>
      <!-- 	
 	   <ul id="restype_ul">
@@ -176,7 +177,7 @@
 	<!--   ------------------------------------------------   ------------------------------------------------------------               -->
 	<div class="food_list_body ovh">
 		<div id="scroll_sort" class="left"
-			style="width: 22%; overflow: auto; height: 525px;">
+			style="width: 22%; overflow: auto; height: 100%;">
 			<ul id="food_sort"
 				style="padding-bottom: 70px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
 				<li id="sort_rush" data-sortid="_rush" class="foodsort"
@@ -185,18 +186,18 @@
 					class="res_sort_num" style="display: inline-block;">7</span></li>
 				<li id="sort_50635" data-sortid="50635" rel="2" class="foodsort">炒菜<span
 					class="res_sort_num">0</span></li> -->
-				<li id="sort_50634" data-sortid="50634" rel="3" class="foodsort">
+				<li id="sort_50634" data-sortid="50634" rel="3" class="foodsort hover">
 				 
 				     <div class="yb-item" data-cuid="1502940403004727341" data-category="星冰乐®">
 				     <img class="yb-category-image" onerror="javasrcipt:this.src='//imgw.pospal.cn/we/weidian/img/icons/categorynull.png';this.onerror=null;" src=" //img.pospal.cn/EShopCategoryImage/7e92fb41-d707-47f2-93f2-7e133df77a00.png">
-				     <p class="yb-spw-showName">披萨</p>
+				     <p class="yb-spw-showName">超值热卖</p>
 				     </div>
-				   <span class="res_sort_num" style="display: inline-block;">3</span>
+				   <span class="res_sort_num" ></span>
 				</li>
-				<li id="sort_50632" data-sortid="50632" rel="4" class="foodsort hover">
+				<li id="sort_50632" data-sortid="50632" rel="4" class="foodsort">
 				<div class="yb-item" data-cuid="1502940403004727341" data-category="星冰乐®">
 				     <img class="yb-category-image" onerror="javasrcipt:this.src='//imgw.pospal.cn/we/weidian/img/icons/categorynull.png';this.onerror=null;" src=" //img.pospal.cn/EShopCategoryImage/6584d584-fc1c-408f-ae87-f4f390cd12ef.png">
-				     <p class="yb-spw-showName">奶茶</p>
+				     <p class="yb-spw-showName">暖冬饮品</p>
 				     </div>
 				<span class="res_sort_num">0</span>
 				</li>
@@ -204,7 +205,7 @@
 		</div>
 		
 		
-		<div id="scroll_food" class="right" style="width: 78%; overflow: auto;height: 100%;background: #fff;">
+		<div id="scroll_food" class="right" style="width: 78%; overflow: auto;height: auto;background: #fff;">
 	
 	
 	      <!-- 
@@ -234,7 +235,7 @@
 					<ul>
 					
 					
-			 	<li class="food_rest_50634 food_847666" data-pack="0.00">
+			 	<li class="food_rest_50634 food_847666 swiperli" data-pack="0.00">
 					<div class="paddinggd">
 					<div class="swiper-container">
 					<div class="swiper-wrapper" >
@@ -251,21 +252,21 @@
 					<div class="swiper-pagination"></div>
 					</div>
 						</div>
-							</li>
+				</li>
 					
 					<h3 class="foodlist_label">干锅</h3>
 					
 						<li class="food_rest_50634 food_847666" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="847666"
-									data-src="https://ali-img.0xiao.cn/3cfood/client/code/image/cf0ab833d2d31750.jpeg"
-									des="" src="./三餐美食餐厅（请勿下单）_files/cf0ab833d2d31750.jpeg"
-									style="width: 80px; height: 64px;" alt="干锅花菜"
+									data-src="../allcategory/shopimg/182_92293.jpg"
+									des="选泰国进口金枕榴莲，搭配香浓芝士，对策曾多次大V发背单词非常的方法是发放人吧吃饭饭烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/182_92293.jpg"
+									style="width: 90px; height: 75px;" alt="干锅花菜"
 									onclick="food_img(this);">
 							</div>
 							<div>
-								<h3 class="food_img_name">干锅花菜</h3>
-								<p class="font12 clo9">销量：40</p>
+								<span class="food_img_name">榴莲披萨</span>
+								<p class="font12 clo9">选泰国进口金枕榴莲，搭配香浓芝士，对策曾多次大V发背单词非常的方法是发放人吧吃饭饭烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_847666">
 									<div class="img_list_price">
@@ -285,14 +286,14 @@
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_847666">13</span></span>
+										id="food_price_num_847666">13</span><del class="yb-checkout-origin-price">¥0.01</del></span>
 								</div>
 							</div></li>
 						<li class="food_rest_50634 food_402798" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402798"
 									data-src="https://ali-img.0xiao.cn/3cfood/client/code/image/1bffac55a5620063.jpeg"
-									des="麻辣鲜香" src="./三餐美食餐厅（请勿下单）_files/1bffac55a5620063.jpeg"
+									des="麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香" src="https://ali-img.0xiao.cn/3cfood/client/code/image/1bffac55a5620063.jpeg"
 									style="width: 80px; height: 64px;" alt="干锅兔"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
@@ -326,7 +327,7 @@
 								class="img_list_box">
 								<img class="img_list_img" data-food="402807"
 									data-src="https://ali-img.0xiao.cn/food/client/code/image/20150401/551b9a9ddf692.jpg"
-									des="" src="./三餐美食餐厅（请勿下单）_files/551b9a9ddf692.jpg"
+									des="" src="https://ali-img.0xiao.cn/food/client/code/image/20150401/551b9a9ddf692.jpg"
 									style="width: 80px; height: 64px;" alt="干锅排骨"
 									onclick="food_img(this);">
 							</div>
@@ -338,18 +339,18 @@
 									<div class="img_list_price">
 										<div id="addcart_btn_402807" class="right img_plus"
 											data-foodid="402807" data-foodname="干锅排骨"
-											data-foodprice="40.00"
+											data-foodprice="40.00" 
 											data-foodimg="/food/client/code/image/20150401/551b9a9ddf692.jpg"
 											data-foodsort="50634" data-foodpack="0.00">+</div>
 										<div class="right hide isnum" id="402807_amount_imglist"
-											style="display: block;">
+											>
 											<div id="cutcart_btn_402807" class="left img_cut"
 												data-foodid="402807" data-foodname="干锅排骨"
 												data-foodprice="40.00"
 												data-foodimg="/food/client/code/image/20150401/551b9a9ddf692.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
-												id="402807_amount_num_imglist">2</div>
+												id="402807_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
@@ -360,7 +361,7 @@
 								class="img_list_box">
 								<img class="img_list_img" data-food="402808"
 									data-src="https://ali-img.0xiao.cn/food/client/code/image/20150326/5513beec2a9ce.jpg"
-									des="麻辣鲜香" src="./三餐美食餐厅（请勿下单）_files/5513beec2a9ce.jpg"
+									des="麻辣鲜香" src="https://ali-img.0xiao.cn/food/client/code/image/20150326/5513beec2a9ce.jpg"
 									style="width: 80px; height: 64px;" alt="干锅牛肉"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
@@ -377,14 +378,14 @@
 											data-foodimg="/food/client/code/image/20150326/5513beec2a9ce.jpg"
 											data-foodsort="50634" data-foodpack="0.00">+</div>
 										<div class="right hide isnum" id="402808_amount_imglist"
-											style="display: block;">
+											>
 											<div id="cutcart_btn_402808" class="left img_cut"
 												data-foodid="402808" data-foodname="干锅牛肉"
 												data-foodprice="60.00"
 												data-foodimg="/food/client/code/image/20150326/5513beec2a9ce.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
-												id="402808_amount_num_imglist">1</div>
+												id="402808_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
@@ -400,7 +401,7 @@
 								class="img_list_box">
 								<img class="img_list_img" data-food="402799"
 									data-src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
-									des="香甜酥脆" src="./三餐美食餐厅（请勿下单）_files/55a62d22bf620.jpg"
+									des="香甜酥脆" src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
 									style="width: 80px; height: 64px;" alt="糍粑"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
@@ -435,7 +436,7 @@
 								<img class="img_list_img" data-food="402800"
 									data-src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
 									data-rel=" https://ali-img.0xiao.cn/3cfood/listlogo/image/20151031/56346076a62d0.jpg"
-									des="冰凉甜爽" src="./三餐美食餐厅（请勿下单）_files/556f3826b33b4.jpg"
+									des="冰凉甜爽" src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
 									style="width: 80px; height: 64px;" alt="凉糕"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
@@ -468,7 +469,7 @@
 								class="img_list_box">
 								<img class="img_list_img" data-food="402809"
 									data-src="https://ali-img.0xiao.cn/3cfood/client/code/image/20150522/555ece2f4f571.jpg"
-									des="" src="./三餐美食餐厅（请勿下单）_files/555ece2f4f571.jpg"
+									des="" src="https://ali-img.0xiao.cn/3cfood/client/code/image/20150522/555ece2f4f571.jpg"
 									style="width: 80px; height: 64px;" alt="薯条"
 									onclick="food_img(this);">
 							</div>
@@ -514,14 +515,18 @@
 			onclick="$(&#39;#food_img .close&#39;).hide()"></div>
 		<i class="close" onclick="$(&#39;#food_img&#39;).hide()"></i>
 		<div class="food_img_box pop">
-			<div id="cainame" class="center ovh font16"></div>
+			
 			<p class="food_img_see">
-				<img src="https://www.3cfood.com/resm3c4tx" id="food_img_path"
-					onclick="popclose(&#39;#food_img&#39;)">
+				<img src="" id="food_img_path"
+					onclick="popclose(&#39;#food_img&#39;)" >
 			</p>
+			<div id="cainame" class="ovh font15 cainame"></div>
 			<div id="img_list_price_box"></div>
 			<p id="food_desc"></p>
-			<!-- <div id="ckepop" class="center"><a href="javascript:void(0);" onclick="shareQQ()" class="font14 clo3 nou share_sdk_button qq_sdk_button">QQ空间</a><a href="javascript:void(0);" onclick="shareSina()" class="font14 clo3 nou share_sdk_button sina_sdk_button">新浪微博</a></div>-->
+			<!--  <div id="ckepop" class="center"><a href="javascript:void(0);" onclick="shareQQ()" class="font14 clo3 nou share_sdk_button qq_sdk_button">QQ空间</a><a href="javascript:void(0);" onclick="shareSina()" class="font14 clo3 nou share_sdk_button sina_sdk_button">新浪微博</a></div> -->
+		<div id="ckepop" class="center">
+		<span class="clofe line25 food_price_dilog"></span><del class="yb-checkout-origin-price left">¥0.01</del>
+		</div>
 		</div>
 	</div>
 	
@@ -551,15 +556,15 @@
 	<div id="food_car" class="center clof pointer"
 		style="position: fixed; bottom: 0px; height: 50px;">
 		<div class="food_car_more" onclick="carItemShow()" style="z-index: 1">
-			<span class="font12" id="all_count">10</span>
+			<span class="font12" id="all_count"></span>
 		</div>
 		<p class="clof left car_all font20"
 			style="margin-left: 82px; text-align: left; display: inline-block; line-height: 50px;">
-			<span class="orange fontb">¥<span id="price_count">155</span></span><br>
+			<span class="orange fontb">¥<span id="price_count"></span></span><br>
 			<!--<span class="font12 clo9">另需配送费¥<span id="need_delivery"></span></span>-->
 		</p>
 		<!--<p class="font12 left car_copies"><span id="sort_count"></span>样<span id="all_count"></span>份</p>-->
-		<span id="car_btn" class="car_btn left" style="line-height: 50px">去结算</span><span
+		<span id="car_btn" class="car_btn left" style="line-height: 50px">选好了</span><span
 			class="right clofqingkong font16" onclick="emptyCars()"
 			style="margin-right: 15px; line-height: 50px">清空</span>
 			
@@ -592,7 +597,7 @@
 		<div class="fullbg" onclick="$(this).parent().hide();"></div>
 		<div id="attr_choose_box" class="pop" style="padding: 0"></div>
 	</div>
-	<footer>
+	<!-- <footer>
 		<table border="0" cellpadding="0" cellspacing="0" id="foot_menu">
 			<tbody>
 				<tr>
@@ -607,9 +612,32 @@
 								class="foot_ico foot_goods"></div>商品</span></td>
 					<td id="foot_order" width="1" data-name="foot_order"><a
 						href="https://www.3cfood.com/shopcarm3c4tx.html"><div
-								class="foot_ico foot_order"></div>购物车</a></td>
+								class="foot_ico foot_order"></div>订单</a></td>
 					<td id="foot_user" width="1" data-name="foot_user"><a
 						href="https://www.3cfood.com/index/ucenter.html?wxt="><div
+								class="foot_ico foot_user"></div>我的</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</footer> -->
+	<footer>
+		<table border="0" cellpadding="0" cellspacing="0" id="foot_menu">
+			<tbody>
+				<tr>
+					<td id="foot_back" width="1" style="display: none;"><span
+						class="footback" style="color: #b9b9b9"><div
+								class="foot_ico foot_back"></div>返回</span></td>
+					<!-- <td id="foot_home" width="1" data-name="foot_home"><a
+						href="https://www.3cfood.com/homem3c4tx.html"><div
+								class="foot_ico foot_home"></div>店铺</a></td> -->
+					<td id="foot_goods" width="1" data-name="foot_goods"><a
+						href="/page/allcategory/process" class="hover"><div
+								class="foot_ico foot_goods"></div>商品</a></td>
+					<td id="foot_order" width="1" data-name="foot_order"><a
+						href="/page/order/orderlist"><div
+								class="foot_ico foot_order"></div>订单</a></td>
+					<td id="foot_user" width="1" data-name="foot_user"><a
+						href="/page/customer/process"><div
 								class="foot_ico foot_user"></div>我的</a></td>
 				</tr>
 			</tbody>
@@ -619,15 +647,15 @@
 	
 	
     
-	<script type="text/javascript">
-/* 	$(document.body).pullToRefresh(function () {
+	<script type="text/javascript"> 	
+	/* $(document.body).pullToRefresh(function () {
 		 location.reload() ;
 		// 下拉刷新触发时执行的操作放这里。
 		// 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
-		});
-		 */
-	/* var GROUP = "/wap";
-	var APP = ""; */
+		}); */
+		 
+	 var GROUP = "/wap";
+	var APP = ""; 
     var mySwiper = new Swiper ('.swiper-container', {
       // 滚动方向 horizontal/vertical
     direction: 'horizontal',
@@ -651,9 +679,9 @@
     autoplayDisableOnInteraction:false,
   }) 
 
+/* 
 
-
-	/* 
+	 
         var has_si = "",
             si = "",
             foodUrl = "/resm3c4tx.html",
@@ -718,7 +746,7 @@
                 }
             });
         }
-        initPlatReturn(); */ 
+        initPlatReturn();  */
     </script>
   <script src="./js/wap.min.js"></script> 
     <script src="./js/template.js"></script>

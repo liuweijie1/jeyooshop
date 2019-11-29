@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserCollectionMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserCollection" >
+<mapper namespace="com.jeyoo.mapper.UserCollectionMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.UserCollection" >
     <constructor >
       <arg column="CollectionID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="UserID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -15,7 +15,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.UserCollection" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.UserCollection" >
     insert into user_collection (CollectionID, UserID, SourceType, 
       SourceID, Source, CreateUser, 
       CreateTime, UpdateUser, UpdateTime, 
@@ -25,7 +25,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserCollection" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.UserCollection" >
     insert into user_collection
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="collectionid != null" >

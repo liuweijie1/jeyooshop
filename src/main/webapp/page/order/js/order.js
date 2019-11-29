@@ -29,6 +29,7 @@
                 var myshop = $.cookie(key), kindCount =0, foodTotal = 0, priceTotal = 0;
                 if(myshop){
                     var myshop_array = $.parseJSON(myshop);
+                    $("#goodslist").val(myshop);
                     if(myshop_array[resId]){  /*存在该店铺*/
                         //if(isNotEmpty(myshop_array[resId])){
                         if(myshop_array[resId].length> 0) {
@@ -141,6 +142,8 @@
                             priceTotal = priceTotal.toFixed(2)*1;
                             $(".totalAmount").html("¥"+priceTotal);
                             $(".totalCount").html(foodTotal);
+                            
+                            $("#totalamount").val(priceTotal)
                         }else{
                             $("#food_empty").show();
                             $("#food_cars").hide();
@@ -288,3 +291,41 @@
                 carsScroll.refresh();
             }
         }
+        
+        function plaorder(state){
+        	var goodlist=$("#goodslist").val();
+        	var qctime=$("#OrderTime").html();
+        	var remark=$("#Comment").val();
+        	var pricetotal=$("#totalamount").val();
+        	var totalcount=$(".totalCount").html();
+        	$.ajax({
+    			url : "/page/order/plaorder",
+    			async: true,
+    			contentType : "application/x-www-form-urlencoded;charset=utf-8",
+    			data : {
+    				goodlist : goodlist,
+    				qctime:qctime,
+    				remark:remark,
+    				state:state,
+    				pricetotal:pricetotal,
+    				totalcount:totalcount
+    			},
+    			type : "post",
+    			/*contentType : "application/json;charset=utf-8",*/
+    			success : function(res) {
+    				window.location="/page/order/orderlist"
+    			}
+
+    		});
+
+        	
+        }
+        
+        
+        function showdetails(number){
+        	
+    	   window.location="/page/order/showdetails?number="+number;
+
+        }
+        
+        

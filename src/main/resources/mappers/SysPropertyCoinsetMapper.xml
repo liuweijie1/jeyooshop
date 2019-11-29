@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.SysPropertyCoinsetMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.SysPropertyCoinset" >
+<mapper namespace="com.jeyoo.mapper.SysPropertyCoinsetMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.SysPropertyCoinset" >
     <constructor >
       <arg column="SetID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="PropertyCoin" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -15,7 +15,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.SysPropertyCoinset" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.SysPropertyCoinset" >
     insert into sys_propertycoinset (SetID, PropertyCoin, Money, 
       discount, IsShow, CreateUser, 
       CreateTime, UpdateUser, UpdateTime, 
@@ -25,7 +25,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.SysPropertyCoinset" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.SysPropertyCoinset" >
     insert into sys_propertycoinset
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="setid != null" >
@@ -99,7 +99,7 @@
     </trim>
   </insert>
   
-  <select id="findCoinsetPage"   resultType="com.house730.admin.pojo.SysPropertyCoinset">
+  <select id="findCoinsetPage"   resultType="com.jeyoo.pojo.SysPropertyCoinset">
   		select 
 			*
 		from sys_propertycoinset s
@@ -113,7 +113,7 @@
 		ORDER BY s.CreateTime desc
   	</select>
   
-  <select id="findCoinsetBySetId"   resultType="com.house730.admin.pojo.SysPropertyCoinset">
+  <select id="findCoinsetBySetId"   resultType="com.jeyoo.pojo.SysPropertyCoinset">
   		select 
 			*
 		from sys_propertycoinset s
@@ -123,7 +123,7 @@
 	      	</if>
   	</select>
   
-  <update id="upOrDownCoinset" parameterType="com.house730.admin.pojo.SysPropertyCoinset" >
+  <update id="upOrDownCoinset" parameterType="com.jeyoo.pojo.SysPropertyCoinset" >
         update sys_propertycoinset
         <set>
             <if test="isshow != null" >

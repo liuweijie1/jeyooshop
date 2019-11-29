@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.propertyIntroduceMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyIntroduce" >
+<mapper namespace="com.jeyoo.mapper.propertyIntroduceMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.PropertyIntroduce" >
     <constructor >
       <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="IntroduceCN" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="IntroduceEN" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyIntroduce" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.PropertyIntroduce" >
     insert into property_introduce (PropertyID, IntroduceCN, IntroduceEN
       )
     values (#{propertyid,jdbcType=BIGINT}, #{introducecn,jdbcType=VARCHAR}, #{introduceen,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyIntroduce" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.PropertyIntroduce" >
     insert into property_introduce
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="propertyid != null" >

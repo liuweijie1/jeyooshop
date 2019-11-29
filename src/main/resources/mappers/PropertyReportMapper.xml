@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.PropertyReportMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyReport" >
+<mapper namespace="com.jeyoo.mapper.PropertyReportMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.PropertyReport" >
     <constructor >
       <arg column="ReportID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
@@ -16,7 +16,7 @@
     </constructor>
   </resultMap>
   
-   <select id="queryPropertyReportList" resultType="com.house730.admin.pojo.PropertyReport">
+   <select id="queryPropertyReportList" resultType="com.jeyoo.pojo.PropertyReport">
         select ReportID,PropertyID, Source,Content,CreateTime from property_report  where isdelete=0
 		  
 		      <if test="propertyID!=null and propertyID !=''">
@@ -36,7 +36,7 @@
 		   
    </select>
    
-  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyReport" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.PropertyReport" >
     insert into Property_Report (ReportID, PropertyID, Name, 
       Email, Telephone, Content, 
       CreateTime, IsDelete, IsHandle
@@ -46,7 +46,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}, #{ishandle,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyReport" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.PropertyReport" >
     insert into Property_Report
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="reportid != null" >

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.SchoolMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.School" >
+<mapper namespace="com.jeyoo.mapper.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.School" >
     <constructor >
       <arg column="SchoolID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -30,7 +30,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.School" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.School" >
     insert into school (SchoolID, GscopeCode, SchoolGrade, 
       SchoolName, SchoolNameEN, NetWork, 
       Sex, SupportType, Religion, 
@@ -50,7 +50,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.School" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.School" >
     insert into school
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="schoolid != null" >

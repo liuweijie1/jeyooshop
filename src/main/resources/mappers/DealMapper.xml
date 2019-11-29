@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.DealMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Deal" >
+<mapper namespace="com.jeyoo.mapper.DealMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.Deal" >
     <constructor >
       <arg column="DealCode" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="DealID" jdbcType="BIGINT" javaType="java.lang.Long" />
@@ -51,7 +51,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.Deal" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.Deal" >
     insert into deal (DealCode, DealID, DealTime, 
       GscopeCode, EstateID, ParentEstateID, 
       BuildingID, DealPrice, BuildingArea, 
@@ -85,7 +85,7 @@
       #{lastholddays,jdbcType=INTEGER}, #{profit,jdbcType=DECIMAL}, #{profitpercent,jdbcType=DECIMAL}, 
       #{profitpercentyear,jdbcType=DECIMAL}, #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Deal" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.Deal" >
     insert into deal
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="dealcode != null" >

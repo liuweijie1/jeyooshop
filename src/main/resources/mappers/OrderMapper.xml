@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jeyoo.mapper.OrderMapper" >
+ 
+ 
+  
+  
+  
+  <!--  <select id="queryCatagoryList" resultType="com.jeyoo.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, isShow,Sequence as seqence,CreateTime,UpdateTime from information_category 
+         where  isdelete=0 
+         <if test="parentcategoryid!=null and parentcategoryid !=''">
+		      and  ParentCategoryID = #{parentcategoryid,jdbcType=INTEGER}
+		 </if>
+		  <if test="categoryname == 'true'">
+		      and  ParentCategoryID =0
+		 </if>
+		  <if test="subcategoryname == 'true'">
+		      and  ParentCategoryID != 0
+		 </if>
+		  <if test="sequence!=null and sequence !=''">
+		      and  Sequence = #{sequence,jdbcType=INTEGER}
+		 </if>
+		  <if test="catagoryid!=null and catagoryid !=''">
+		      and  CatagoryID != #{catagoryid,jdbcType=INTEGER}
+		 </if>
+		 
+		 order by Sequence asc
+   </select>
+    
+    
+ 
+   
+   
+   
+   <update id="delCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where CatagoryID=#{catagoryID}
+   </update>
+   
+   <update id="delSubCategory"  parameterType="java.lang.String">
+        update information_category  set isdelete=1 where ParentCategoryID=#{catagoryID}
+   </update> -->
+   
+   
+     <insert id="insert" parameterType="com.jeyoo.pojo.Order">
+		insert into orders (orderid, userid, number,
+		paymenttype, totalmoney,totalcount, ordertime,
+		deliverytype, deliverytime, state,
+		remark, sort,isdelete)
+		values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT},
+		#{number,jdbcType=BIGINT},
+		1, #{totalmoney,jdbcType=DOUBLE},#{totalcount,jdbcType=INTEGER},
+		now(), 1, #{deliverytime,jdbcType=VARCHAR},
+		#{state,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},
+		(SELECT nextval('Order')), 0)
+     </insert>
+  
+    <insert id="insert_Goods" >
+    insert into order_goods (ordergoodid,orderid,goodsid,amount,sort)
+      values (#{ordergoodid,jdbcType=BIGINT}, #{orderid,jdbcType=BIGINT}, #{goodsid,jdbcType=BIGINT}, 
+      #{amount,jdbcType=INTEGER}, (SELECT nextval('Order_Goods')) )
+  </insert>
+  
+     <select id="getOrder" resultType="com.jeyoo.pojo.Order">
+        SELECT o.orderid,o.number,o.ordertime,o.remark,o.totalmoney ,o.state,o.totalcount from orders o 
+        WHERE  o.ordertime>=  CURDATE()
+        <if test="number!=null and number !=''">
+		     and  o.number = #{number,jdbcType=BIGINT}
+		</if>
+   </select>
+   
+     <select id="queryOrderDetails" resultType="com.jeyoo.pojo.Order">
+<!--        SELECT o.orderid,o.number,o.ordertime,o.remark,o.totalmoney,  g.foodname,g.foodprice,g.goodimg from orders o,goods g , order_goods og WHERE o.orderid=og.orderid and og.goodsid=g.goodid and  o.ordertime>=  CURDATE()
+ -->   
+				 SELECT
+					o.orderid,
+					o.number,
+					o.ordertime,
+					o.remark,
+					o.totalmoney,
+					g.foodname,
+					g.foodprice,
+					g.goodimg,
+					og.amount
+				FROM
+					orders o,
+					goods g,
+					order_goods og
+				WHERE
+					o.orderid = og.orderid
+				AND og.goodsid = g.goodid
+				AND o.ordertime >= CURDATE()
+				
+				<if test="number!=null and number !=''">
+		          and  o.number = #{number,jdbcType=BIGINT}
+		       </if>
+				 
+     </select>
+ <!--  
+   <select id="getCategoryById" resultType="com.jeyoo.pojo.InformationCategory">
+        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,isShow from information_category 
+         where CatagoryID=#{catagoryID} and isdelete=0
+   </select>
+   
+    <update id="editCategory"  parameterType="com.jeyoo.pojo.InformationCategory">
+        update information_category  set 
+        CategoryName=#{categoryname,jdbcType=VARCHAR},CategoryNameEN=#{categorynameen,jdbcType=VARCHAR}, 
+        IsShow=<if test="isshow == true" >1,</if>  <if test="isshow == false" >0, </if>UpdateTime=#{updatetime,jdbcType=TIMESTAMP},
+        UpdateUser= #{updateuser,jdbcType=VARCHAR},Sequence=#{seqence,jdbcType=INTEGER}
+        where CatagoryID=#{catagoryid}
+   </update> -->
+   
+   
+   
+ 
+</mapper>

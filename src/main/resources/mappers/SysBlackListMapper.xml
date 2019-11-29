@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.SysBlackListMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.SysBlackList" >
+<mapper namespace="com.jeyoo.mapper.SysBlackListMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.SysBlackList" >
     <constructor >
       <arg column="BlackID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="Model" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -10,13 +10,13 @@
       <arg column="CreateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.SysBlackList" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.SysBlackList" >
     insert into sys_blacklist (BlackID, Model, ModelValue, 
       Remark, CreateTime)
     values (#{blackid,jdbcType=INTEGER}, #{model,jdbcType=VARCHAR}, #{modelvalue,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.SysBlackList" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.SysBlackList" >
     insert into sys_blacklist
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="blackid != null" >

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.DealGscopedealhistoryMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.DealGscopedealhistory" >
+<mapper namespace="com.jeyoo.mapper.DealGscopedealhistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.DealGscopedealhistory" >
     <constructor >
       <arg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="GscopeCode" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -15,7 +15,7 @@
       <arg column="SaleableAvgPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.DealGscopedealhistory" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.DealGscopedealhistory" >
     insert into deal_gscopedealhistory (ID, GscopeCode, Year, 
       Month, DealNumber, DealTotalPrice, 
       Rise, Level, BuildingAvgPrice, 
@@ -25,7 +25,7 @@
       #{rise,jdbcType=DECIMAL}, #{level,jdbcType=INTEGER}, #{buildingavgprice,jdbcType=DECIMAL}, 
       #{saleableavgprice,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.DealGscopedealhistory" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.DealGscopedealhistory" >
     insert into deal_gscopedealhistory
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

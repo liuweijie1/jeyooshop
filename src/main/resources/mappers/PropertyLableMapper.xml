@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.PropertyLableMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertyLable" >
+<mapper namespace="com.jeyoo.mapper.PropertyLableMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.PropertyLable" >
     <constructor >
       <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="Lable" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="LableType" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.PropertyLable" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.PropertyLable" >
     insert into property_lable (PropertyID, Lable, LableType
       )
     values (#{propertyid,jdbcType=BIGINT}, #{lable,jdbcType=INTEGER}, #{labletype,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertyLable" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.PropertyLable" >
     insert into property_lable
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="propertyid != null" >

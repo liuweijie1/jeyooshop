@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.BuildingMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Building" >
+<mapper namespace="com.jeyoo.mapper.BuildingMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.Building" >
     <constructor >
       <arg column="BuildingID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="BuildingCode" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -45,7 +45,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.house730.admin.pojo.Building" >
+  <resultMap id="ResultMapWithBLOBs" type="com.jeyoo.pojo.Building" >
     <constructor >
       <arg column="BuildingID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="BuildingCode" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -93,7 +93,7 @@
   <sql id="Blob_Column_List" >
     Geo
   </sql>
-  <insert id="insert" parameterType="com.house730.admin.pojo.Building" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.Building" >
     insert into building (BuildingID, BuildingCode, EstateID, 
       ParentEstateID, GscopeCode, BuildingName, 
       BuildingNameEN, BuildingAlias, BuildingAliasEN, 
@@ -123,7 +123,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdelete,jdbcType=BIT}, #{geo,jdbcType=BINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Building" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.Building" >
     insert into building
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="buildingid != null" >

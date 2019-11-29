@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.GeoGscopeMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.GeoGscope" >
+<mapper namespace="com.jeyoo.mapper.GeoGscopeMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.GeoGscope" >
     <constructor >
       <arg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="RegionCode" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -19,7 +19,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.GeoGscope" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.GeoGscope" >
     insert into geo_gscope (ID, RegionCode, GscopeCode, 
       RegionName, RegionNameEN, ZoneName, 
       ZoneNameEN, GscopeName, GscopeNameEN, 
@@ -31,7 +31,7 @@
       #{longitudes,jdbcType=REAL}, #{latitudes,jdbcType=REAL}, #{sequence,jdbcType=INTEGER}, 
       #{isshow,jdbcType=BIT}, #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.GeoGscope" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.GeoGscope" >
     insert into geo_gscope
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

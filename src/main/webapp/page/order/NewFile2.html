@@ -1,0 +1,335 @@
+<html data-dpr="1" style="font-size: 44px;">
+<head>
+<title>我的订单列表</title>
+<meta name="Description" content="我的订单列表">
+<meta name="Keywords" content="我的订单列表">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" type="image/x-icon"
+	href="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/img/favicon.ico">
+<script>
+	//读取cookies
+	function gCookie(name) {
+		var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+		if (arr = document.cookie.match(reg)) {
+			return unescape(arr[2]);
+		} else {
+			return null;
+		}
+	}
+
+	//设置cookie
+	function sCookie(name, value, time) {
+		var Days = 30;
+		var exp = new Date();
+		if (time) {
+			exp.setTime(exp.getTime() + time);
+		} else {
+			exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+		}
+		document.cookie = name + "=" + escape(value)
+				+ ";domain=.3cfood.com;path=/;expires=" + exp.toGMTString();
+	}
+
+	var cdnGetResult = new Array();
+	function checkCdn() {
+		if (!window.sessionStorage.getItem('checked_cdn')) {
+			var gCdn = "ali,up";
+			var gCdnArray = gCdn.split(",");
+			var url = "https://prefix-s.0xiao.cn/test.html?v="
+					+ parseInt(Math.random() * 10000);
+			for ( var i in gCdnArray) {
+				var prefix = gCdnArray[i];
+				var newurl = url;
+				newurl = newurl.replace('prefix', prefix);
+				ajaxCheck(newurl, prefix);
+			}
+
+			function ajaxCheck(url, prefix) {
+				var obj = new XMLHttpRequest(); // XMLHttpRequest对象用于在后台与服务器交换数据          
+				obj.open('GET', url, true);
+				obj.onreadystatechange = function() {
+					if (obj.readyState == 4) { // readyState==4说明请求已完成
+						if (obj.status == 200 || obj.status == 304) {
+							console.log(url, obj.responseText);
+							console.log("get url: " + url + ",success");
+							var tmp = {};
+							tmp['prefix'] = prefix;
+							tmp['rs'] = true;
+							cdnGetResult.push(tmp);
+						} else {
+							console.log("get cdn:" + url + ",fail :".text);
+							var tmp = {};
+							tmp['prefix'] = prefix;
+							tmp['rs'] = false;
+							cdnGetResult.push(tmp);
+						}
+					}
+				};
+				obj.send(null);
+			}
+			setTimeout(function() {
+				getCdnRs();
+			}, 3000);
+		}
+	}
+	checkCdn();
+	function getCdnRs() {
+		console.log('enter get cdn callback ');
+		if (cdnGetResult.length >= 1) {
+			console.log("cdn rs length," + cdnGetResult.length);
+			var cookieV = "";
+			for ( var i in cdnGetResult) {
+				var result = cdnGetResult[i].rs;
+				if (result === true) {
+					cookieV = cookieV + cdnGetResult[i].prefix + "|";
+				}
+			}
+			sCookie("cdn", cookieV);
+			console.log("cookie value:" + cookieV);
+			window.sessionStorage.setItem("checked_cdn", true);
+			if (cdnGetResult.length < 2) {
+				console.log("because cdn success less than 2 ,so reload page");
+				window.location.reload();
+			}
+		} else {
+			console.log('no get cdn length,next timeout ');
+			setTimeout(function() {
+				getCdnRs();
+			}, 3000);
+		}
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="../allcategory/css/wap.min.css">
+<script
+	src="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/js/flexible.min.js"></script>
+</head>
+<body data-mobile="1" data-iphone="0" data-weixin="0"
+	data-pagename="myorder" currency="元" sign="¥" style="font-size: 12px;">
+	<div class="center shop_name_order"
+		style="height: 1.2rem; line-height: 1.2rem; font-size: .43rem;">
+		<a class="left nou head_back_order" href="javascript:history.back();"
+			style="line-height: 1.2rem; width: 1.2rem; height: 1.2rem">&nbsp;</a><a
+			class="right nou head_right" href="javascript:;"
+			style="line-height: 1.2rem; width: 1.2rem; height: 1.2rem">&nbsp;</a>
+		<p class="clof pointer"
+			style="line-height: 1.2rem; font-size: .43rem;">我的订单列表</p>
+	</div>
+	<div id="myorderWrap" class="ovh" style="height: 605px;">
+		<div class="relative"
+			style="padding-bottom: 65px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+			<ul class="ovh" id="myorder_ul" style="padding-top: 15px" page="1">
+				<li>
+					<a class="clo0 nou myorder_tit" href="http://www.3cfood.com/resm3c4tx">
+					   <span class="fontb">三餐美食餐厅（请勿下单）</span>
+					</a>
+					<span class="order_state"> <!--在线支付--> 
+					   <span>待付款</span>
+					</span>
+					<img class="left order_pic_img" src="https://ali-img.0xiao.cn/3cfood/food/res/image/t_003c75780c58e31c.png">
+					<a class="myorder_content clo3 nou" href="/index/orderinfo?order_id=35949596">
+						<p style="line-height: .35rem; font-size: .35rem"> 总计：<span class="red">¥33</span>—— <span class="clo9">未支付</span></p>
+						<p style="line-height: 1.12rem; font-size: .35rem; color: #787878">时间：2019-10-29 10:28:36</p>
+						<p class="order_content">1份鱼香茄子(12x1),3份杂酱面(小份)(8x3),</p>
+					</a>
+					<div class="myorder_state">
+						<!--被撤销-->
+						<button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">询问</button>
+					</div>
+				</li>
+					
+					
+					<li><a class="clo0 nou myorder_tit"
+					href="http://www.3cfood.com/resm3c4tx"><span class="fontb"></span></a><span
+					class="order_state"> <!--在线支付--> <span>待付款</span>
+				</span><img class="left order_pic_img"
+					src="https://ali-img.0xiao.cn/3cfood/food/res/image/t_003c75780c58e31c.png"><a
+					class="myorder_content clo3 nou"
+					href="/index/orderinfo?order_id=35949596"><p
+							style="line-height: .35rem; font-size: .35rem">
+							总计：<span class="red">¥33</span>—— <span class="clo9">未支付</span>
+						</p>
+						<p style="line-height: 1.12rem; font-size: .35rem; color: #787878">时间：2019-10-29
+							10:28:36</p>
+						<p class="order_content">1份鱼香茄子(12x1),3份杂酱面(小份)(8x3),</p></a>
+					<div class="myorder_state">
+						<!--被撤销-->
+						<button class="myorder_state_btn"
+							onclick="showOrderPhone('18105264512')">询问</button>
+					</div></li>
+			</ul>
+			<div id="load_more" class="center clo9" style="">加载更多...</div>
+		</div>
+	</div>
+	<div id="order_phone" style="display: none">
+		<div class="fullbg" onclick="$(this).parent().hide();"></div>
+		<div class="pop font18" id="order_phone_pop" style="top: 25vh">
+			<p style="padding: 15px 15px 5px;">商家电话：</p>
+		</div>
+	</div>
+	<script
+		src="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/js/page/wap.min.js"></script>
+	<script>
+		var GROUP = "/wap";
+		var APP = "";
+	</script>
+	<link rel="stylesheet"
+		href="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/css/home_iconfont.css">
+	<footer>
+		<table border="0" cellpadding="0" cellspacing="0" id="foot_menu">
+			<tbody>
+				<tr>
+					<td id="foot_back" width="1" class="spread_theme_color"
+						style="display: none"><a id="home"
+						class="spread_theme_color  "><div class="iconfont icon-home "
+								style="font-size: 25px; padding: 14px 5px 5px;"></div>首页</a></td>
+					<td id="foot_home" width="1" data-name="foot_home"><a
+						href="../Index/myorder.html" id="foot_order" class="hover"><div
+								class="foot_ico foot_from"></div>订单</a></td>
+					<td id="foot_user" width="1" data-name="foot_user"><a
+						href="/Index/ucenter.html"><div class="foot_ico foot_user"></div>我的</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</footer>
+	<script>
+		var getspread = $.parseJSON(getCookie("from_spread")), from_where = null;
+		if (getspread && getspread.hasOwnProperty("from_where")) {
+			from_where = getspread['from_where'];
+		}
+		if (getspread && from_where) {
+			try {
+				from_where += from_where.indexOf('position') > -1 ? '?id='
+						+ getspread['spread_token'] + '&' : '?';
+				$('#home').attr("href", from_where + Math.random());
+				$('#foot_back').show();
+			} catch (e) {
+			}
+		}
+	</script>
+	<script>
+		$(function() {
+			var wxt = "";
+			if (typeof (wxt) != "undefined" && wxt != "null" && wxt != "") {
+				wxt = "?=" + wxt;
+			} else {
+				wxt = "";
+			}
+			/*var navhref =localStorage.getItem("text");
+			$('#home').attr("href",navhref)
+			//首页返回*/
+			$("#myorderWrap").height($("body").height() - 45);
+			myorder_init(); /*页面初始化*/
+
+			var success = localStorage.getItem("success");
+			if (success) {
+				$("a.head_back").attr("href", "/index/ucenter.html" + wxt);
+				localStorage.removeItem("success");
+			}
+
+			var url_ref = document.referrer;
+			if (!url_ref || url_ref.indexOf("pay") > -1) {
+				$("a.head_back").attr("href", "/index/ucenter.html" + wxt);
+			}
+		});
+
+		var myorderScroll = new IScroll("#myorderWrap", {
+			scrollbars : false
+		});
+		/*加载我的订单页面*/
+		function getOrderContent(p, opt) {
+			$.get("/wap/index/orderContent", {
+				"p" : p
+			}, function(data) {
+				if (data.data != "") {
+					p = parseInt(p) + 1;
+					$("#myorder_ul").attr("page", p);
+					if (p > 0) {
+						$("#myorder_ul").append(data.data);
+						if (myorderScroll) {
+							setTimeout(function() {
+								myorderScroll.refresh();
+							}, 100)
+						}
+					} else {
+						$("#myorder_ul").html(data.data);
+					}
+					$("#load_more").show();
+				} else {
+					if (p > 0) {
+						clearpop(jsLangChange('没有信息了'));
+					} else {
+						$("#myorder_ul").html(
+								"<p class='center cloc' style='padding: 50px 0'>"
+										+ jsLangChange('还没有订单信息') + "</p>");
+					}
+					$("#load_more").hide();
+				}
+			}, 'json');
+		}
+
+		//我的订单
+		function myorder_init() {
+			$("#load_more").bind("click", function(data) {
+				var p = $("#myorder_ul").attr("page");
+				if (!p) {
+					p = 0;
+				}
+				getOrderContent(p);
+			});
+			var ok_callback = function() {
+				$("#load_more").click();
+			};
+			var fail_callback = function() {
+				//get_login_box(ok_callback);
+			};
+			check_user_login(ok_callback, fail_callback);
+		}
+
+		/*催单电话弹框*/
+		function showOrderPhone(tel) {
+			var arr = tel.split(",");
+			var str = "";
+			for (var i = 0; i < arr.length; i++) {
+				str += "<a class='blue order_phone_a after_delete' href='tel:"+arr[i]+"'>"
+						+ arr[i] + "</a>";
+			}
+			$("#order_phone_pop").find('.after_delete').remove();
+			$("#order_phone_pop").append(str);
+			$("#order_phone").show();
+		}
+		/*催单电话弹框（商家+快递员信息）*/
+		function showOrderDeliveryPhone(tel, delivery_tel, name) {
+			var arr = tel.split(",");
+			var str = "";
+			for (var i = 0; i < arr.length; i++) {
+				str += "<a class='blue order_phone_a after_delete' href='tel:"+arr[i]+"'>"
+						+ arr[i] + "</a>";
+			}
+			var str = str
+					+ '<p class="after_delete" style="padding:15px 15px 5px;">配送员电话：</p>'
+					+ '<a class="blue order_phone_a  after_delete" href="tel:'+delivery_tel+'">'
+					+ delivery_tel + '</a>';
+
+			$("#order_phone_pop").find('.after_delete').remove();
+			$("#order_phone_pop").append(str);
+			$("#order_phone").show();
+		}
+
+		/*去写评论*/
+		function goCommentWrite(orderId, event) {
+			if (event) {
+				if (event.preventDefault)
+					event.preventDefault();
+				else
+					event.cancelBubble = true;
+			}
+			window.location.href = '/index/commentWrite?order_id=' + orderId;
+		}
+	</script>
+</body>
+</html>

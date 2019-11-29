@@ -15,13 +15,20 @@
 	content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="description"
 	content="网上商城，最经济实惠的网上购物商城，不用排队，方便实惠送上门，为您提供愉悦的网上商城购物体验！">
+	
+	    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+	
 <link rel="stylesheet" href="./css/weui.min.css">
 <link rel="stylesheet" href="./css/jquery-weui.min.css">
 <link rel="stylesheet" href="./css/checkout.min.css">
 
+ <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+
 
 <link rel="stylesheet" href="./css/page.css">
- <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+
  <script src="../allcategory/js/wap.min.js"></script>
 <script type="text/javascript">
       /*   window.YB_DEFAULTLANG = "zh";
@@ -33,26 +40,31 @@
     </script>
 
 </head>
-<body pagename="shopcar" data-res_id="7727" data-mobile="1" data-iphone="0" data-weixin="0" currency="元" sign="¥">
-
+<body pagename="shopcar" data-res_id="7727" data-mobile="1" data-iphone="0" data-weixin="0" currency="元" sign="¥" >
+<input type="hidden" id="goodslist" value="">
+<input type="hidden" id="totalamount" value="">
 	<div id="checkoutView" data-route="default" class=" yb-page"
 		style="display: block;">
 		<div class="yb-page-inner">
 			<div class="checkoutResult">
 				<div class="yb-checkoutModeList">
 					<div class="yb-cell weui-cells_checkbox  yb-takeFood-type ">
-						<span class=" yb-edibleWay yb-raido_r1 " data-mode="1"
-							data-modename="配送"><label for="s13"
-							class="weui-check__label"><input type="radio"
-								class="weui-check" name="checkbox1" id="s13"><i
-								class="weui-icon-checked"></i><span class="yb-ridao_text">配送</span></label></span><span
-							class=" yb-edibleWay yb-raido_r1 " data-mode="takeout"
-							data-modename="自取"><label for="s14"
-							class="weui-check__label"><input type="radio"
-								class="weui-check" name="checkbox1" id="s14" checked="true"><i
-								class="weui-icon-checked"></i><span class="yb-ridao_text">自取</span></label></span>
+						<!-- <span class=" yb-edibleWay yb-raido_r1 " data-mode="1" data-modename="配送">
+						<label for="s13" class="weui-check__label">
+						<input type="radio" class="weui-check" name="checkbox1" id="s13">
+						<i class="weui-icon-checked"></i>
+						<span class="yb-ridao_text">配送</span>
+						</label>
+						</span> -->
+						<span class=" yb-edibleWay yb-raido_r1 " data-mode="takeout" data-modename="自取">
+						<label for="s14" class="weui-check__label">
+						<input type="radio" class="weui-check" name="checkbox1" id="s14" checked="true">
+						<i class="weui-icon-checked"></i>
+						<span class="yb-ridao_text" >自取</span> <div style="margin: 2px 0px 0px 13px;float: right; color: #FF6D5A; " id="timeDiv"></div>
+						</label>
+						</span>
 					</div>
-					<div class="yb-cell arrows  yb-appointment">
+		<!-- 		 <div class="yb-cell arrows  yb-appointment">
 						<div class="yb-cell__hd">
 							<div class="yb-appointment-icon"></div>
 						</div>
@@ -64,7 +76,33 @@
 						<div class="yb-cell__ft"></div>
 						<span style="display: none;" id="OrderTime">2019/10/18
 							17:00:00</span>
+					</div> -->
+						<div class="yb-cell arrows  yb-appointment ">
+							<div class="yb-cell__hd">
+								<div class="yb-appointment-icon"></div>
+							</div>
+							<div class="yb-cell__bd">
+								<input class="" id="nammm" type="text" value="" placeholder="立即自取">
+							</div>
+							<div class="yb-cell__ft"></div>
+						<span style="display: none;" id="OrderTime">now</span>
+						</div>
+
+					
+
+				<!-- 	<div class="weui-cells weui-cells_form ">
+						<div class="weui-cell ">
+							<div class="weui-cell__hd ">
+								<label for="name" class="weui-label">请选择时间：</label>
+							</div>
+							<div class="weui-cell__bd">
+								<input class="weui-input" id="name" type="text" value="立即领取">
+							</div>
+							<div class="yb-cell__ft"></div>
+						</div>
+
 					</div>
+ -->
 				</div>
 				<div
 					class="weui-cells yb-checkout_hd yb-cells-noLine yb-address_hide"
@@ -92,7 +130,7 @@
 				<div id="checkoutItems">
 				
 				
-					<div class="weui-cell yb-checkout-cont yb-cell-noDowmLine ">
+					<!-- <div class="weui-cell yb-checkout-cont yb-cell-noDowmLine ">
 						<div class="weui-cell__hd ">
 							<img class="yb-checkout-img"
 								src="./image/cbe7dba5-17a5-4f92-8751-000657fc57c9_200x200.png"
@@ -109,7 +147,7 @@
 							<div class="yb-checkout-price">¥0.00</div>
 							<del class="yb-checkout-origin-price">¥0.01</del>
 						</div>
-					</div>
+					</div> -->
 					
 					
 					
@@ -140,7 +178,7 @@
 							class="weui-switch yb-checkout-tog">
 					</div>
 				</div>
-				<div id="showCouponSelects"
+			<!-- 	<div id="showCouponSelects"
 					class="weui-cell weui-cell_access yb-checkout-list">
 					<div class="weui-cell__hd">店铺优惠</div>
 					<div class="weui-cell__bd">
@@ -149,15 +187,15 @@
 						</div>
 					</div>
 					<div class="weui-cell__ft"></div>
-				</div>
+				</div> -->
 				<input id="CouponUId" type="hidden" value=""><input
 					id="CouponCode" type="hidden" value="">
 				<div class="weui-cell yb-checkout-list">
-					<div class="weui-cell__hd">买家备注</div>
+					<div class="weui-cell__hd">备注</div>
 					<div class="weui-cell__bd"></div>
 					<div class="weui-cell__ft">
 						<input type="text" class="yb-checkout-say" id="Comment"
-							placeholder="对本次交易的说明(选填)">
+							placeholder="如需备注，请输入(选填)">
 					</div>
 				</div>
 				<div style="display: none;"
@@ -221,7 +259,7 @@
 						件
 					</span> 总计：<span class="yb-foot-price totalAmount" data-totalamount="0.1">¥0.10</span>
 				</div>
-				<a class="yb-foot-right" href="javascript:" id="confirmPay">
+				<a class="yb-foot-right" href="javascript:plaorder(1)" id="confirmPay">
 					确定付款 </a>
 			</div>
 
@@ -362,7 +400,81 @@
 
 
 
+	<script type="text/javascript">
+ 
+    $("#nammm").picker({
+        title: "请选择时间",
+        cols: [
+          {
+            textAlign: 'center',
+            values: [ '今天']
+          },
+          {
+            textAlign: 'center',
+            values: ['8点', '9点', '10点', '11点', '12点', '13点', '14点','15点','16点','17点','18点','19点','20点','21点']
+          },
+          {
+              textAlign: 'center',
+              values: ['10分', '20分', '30分', '40分', '50分']
+            }
+        ],
+        onChange: function(p, v, dv) {
+           $('#OrderTime').html(v);
+          },
+        
+       
+      });
+    
+   
+    
+    function check(val) {
+		if (val < 10) {
+			return ("0" + val);
+		} 
+		else {
+			return (val);
+		}
+	}
+	function displayTime() {
+		//获取div元素
+		var timeDiv=document.getElementById("timeDiv");
+		//获取系统当前的年、月、日、小时、分钟、毫秒
+		var date = new Date();
+		//var year = date.getFullYear();
+		//var month = date.getMonth() + 1;
+		//var day = date.getDate();
+		var hour = date.getHours();
+		var minutes = date.getMinutes();
+		var second = date.getSeconds();
+		var timestr ="当前&nbsp"+check(hour)+ ":" + check(minutes) + ":" + check(second);
+		//将系统时间设置到div元素中
+		timeDiv.innerHTML = timestr;
+	}
+	//每隔1秒调用一次displayTime函数
+	function start(){
+        window.setInterval("displayTime()",1000)//单位是毫秒
+        }
+	$(document).ready(function(){ 
+		　 start();
+		}); 
+		/*  var $circle = $("#circle")
+	      $(document.body).pullToRefresh({
+	        distance: 80,
+	        onRefresh: function() {
+	          setTimeout(function() {
+	            $("#time").text(new Date);
+	            $(document.body).pullToRefreshDone();
+	          }, 2000);
+	        },
+	        onPull: function (percent) {
+	          if (percent > 100) percent = 100
+	          $circle.html(percent);
+	          $circle.css('background-image', 'linear-gradient(0deg, #3cc51f ' + percent + '%, #3cc51f ' + percent + '%, transparent 50%, transparent 100%)')
+	        }
+	      }); */
+		
 
+</script>
 </body>
 <script src="./js/order.js"></script>
 </html>

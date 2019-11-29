@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.UserSmsLogMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.UserSmsLog" >
+<mapper namespace="com.jeyoo.mapper.UserSmsLogMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.UserSmsLog" >
     <constructor >
       <arg column="SMSID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="SendType" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -15,7 +15,7 @@
       <arg column="IsSuccess" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.UserSmsLog" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.UserSmsLog" >
     insert into user_smslog (SMSID, SendType, UserID, 
       Mobile, SourceType, SendContent, 
       Remark, CreateTime, SendTime, 
@@ -25,7 +25,7 @@
       #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{sendtime,jdbcType=TIMESTAMP}, 
       #{issuccess,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.UserSmsLog" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.UserSmsLog" >
     insert into user_smslog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="smsid != null" >

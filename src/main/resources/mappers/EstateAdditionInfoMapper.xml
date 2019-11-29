@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.EstateAdditionInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.EstateAdditionInfo" >
+<mapper namespace="com.jeyoo.mapper.EstateAdditionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.EstateAdditionInfo" >
     <constructor >
       <arg column="EstateID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="EstateIntroduce" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -25,7 +25,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.EstateAdditionInfo" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.EstateAdditionInfo" >
     insert into estate_additioninfo (EstateID, EstateIntroduce, EstateIntroduceEN, 
       Facilities, FacilitiesEN, Service, 
       ServiceEN, Charge, ChargeEN, 
@@ -41,7 +41,7 @@
       #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.EstateAdditionInfo" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.EstateAdditionInfo" >
     insert into estate_additioninfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="estateid != null" >

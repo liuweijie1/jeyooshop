@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.PropertySimilarMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.PropertySimilar" >
+<mapper namespace="com.jeyoo.mapper.PropertySimilarMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.PropertySimilar" >
     <constructor >
       <arg column="PropertyID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="SalePrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
@@ -14,7 +14,7 @@
       <arg column="Sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.house730.admin.pojo.PropertySimilar" >
+  <insert id="insert" parameterType="com.jeyoo.pojo.PropertySimilar" >
     insert into property_similar (PropertyID, SalePrice, RentPrice, 
       BuildingArea, SaleableArea, BuildingAvgPrice, 
       SaleableAvgPrice, UnitRemark, Sequence
@@ -24,7 +24,7 @@
       #{saleableavgprice,jdbcType=DECIMAL}, #{unitremark,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.PropertySimilar" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.PropertySimilar" >
     insert into property_similar
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="propertyid != null" >

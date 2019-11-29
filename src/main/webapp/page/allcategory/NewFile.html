@@ -90,6 +90,14 @@
 
 	</div>
 
+     <div class="weui-cells weui-cells_form ">
+      <div class="weui-cell ">
+        <div class="weui-cell__hd "><label for="name" class="weui-label">称呼</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" id="name" type="text" value="立即领取">
+        </div>
+      </div>
+     </div>
 	<script type="text/javascript">
  	$(document.body).pullToRefresh(function () {
 		 location.reload() ;
@@ -97,7 +105,29 @@
 		// 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
 		}); 
  	$(document.body).pullToRefreshDone();
-		
+    $("#name").picker({
+        title: "怎么称呼您？",
+        cols: [
+          {
+            textAlign: 'center',
+            values: [ '今天']
+          },
+          {
+            textAlign: 'center',
+            values: ['8点', '9点', '10点', '11点', '12点', '13点', '14点','15点','16点','17点','18点','19点','20点','21点']
+          },
+          {
+              textAlign: 'center',
+              values: ['10分', '20分', '30分', '40分', '50分']
+            }
+        ],
+        onChange: function(p, v, dv) {
+           $('.weui-input').val("");
+          },
+        
+       
+      });
+ 
 		/*  var $circle = $("#circle")
 	      $(document.body).pullToRefresh({
 	        distance: 80,

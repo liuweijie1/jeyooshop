@@ -7,7 +7,7 @@
 /*#restype_ul li{background-color:#e6e6e6;color:#787878;}*/
  
   .paddinggd{
-  padding: 0px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
   }  
 .img_list_price{position:absolute;right:10px;z-index:9}
 .shop_hd_marq{width:88%;margin:0 4%;line-height:30px;color:#555555}
@@ -17,8 +17,13 @@
 #food_search{width:45px;height:45px;background:url(../image/searchBlack@2x.png) center center no-repeat;background-size:70%}
 #food_user{width:45px;height:45px;background:url(../image/person@2x.png) center center no-repeat;background-size:70%}
 
-.food_img_see{margin:15px 0;text-align:center}
-.food_img_see img{box-shadow:2px 3px 1px #bbb}
+.food_img_see{/* margin:15px 0px 0px 0px !important;text-align:center;width: 315px;height: 173px; */    margin: -10px 0px 8px -10px !important;
+    text-align: center;
+    width: 337px;
+    height: 173px;}
+    
+    #food_desc{font-size: 12px;color: #666;}
+/* .food_img_see img{box-shadow:2px 3px 1px #bbb} */
 #ckepop{margin:10px auto 0;overflow:hidden;text-align:center;border-top:1px solid #dfdfdf;padding-top:5px}
 
 
@@ -28,9 +33,9 @@
 
 
 .foodlist_label{padding-left:9px;height:25px;line-height:25px;background:#ffffff;font-size:14px;font-weight:normal;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.img_list_box{position:relative;margin-right:7px;float:left}
-.food_img_name{height:19px;margin-bottom:5px;overflow:hidden;font-size:13px}
-.img_list_img{border:1px solid #f4f4f4;border-radius:7px;cursor:pointer}
+.img_list_box{position:relative;margin:4px 9px 0px 6px;float:left}
+.food_img_name{ font-weight: normal; /* font-weight: bold; */height:19px;margin-bottom:2px;overflow:hidden;font-size:13px;font-family: "Helvetica Neue","Microsoft Yahei",sans-serif;}
+.img_list_img{/* border:1px solid #f4f4f4; */border-radius:7px;cursor:pointer}
 #foot_search_box{position:absolute;top:0;bottom:0;left:0;right:0;z-index:101;background:rgba(0,0,0,0.5)}
 #foot_search_input,.foot_search_input{padding:8px 10px;border-radius:3px;border:1px solid #ccc;vertical-align:middle}
 .car_copies{line-height:12px;margin-top:17px;color:#a4a4a4;font-size:14px;border-left:2px solid #a4a4a4;padding-left:6px}

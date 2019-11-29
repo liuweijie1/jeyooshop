@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.house730.admin.mapper.InfomationMapper" >
-  <resultMap id="BaseResultMap" type="com.house730.admin.pojo.Infomation" >
+<mapper namespace="com.jeyoo.mapper.InfomationMapper" >
+  <resultMap id="BaseResultMap" type="com.jeyoo.pojo.Infomation" >
     <constructor >
       <arg column="InformationID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="CategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -20,7 +20,7 @@
       <arg column="IsDelete" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.house730.admin.pojo.Infomation" >
+  <resultMap id="ResultMapWithBLOBs" type="com.jeyoo.pojo.Infomation" >
     <constructor >
       <arg column="InformationID" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="CategoryID" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -47,7 +47,7 @@
   
   
   
-   <select id="queryCatagoryList" resultType="com.house730.admin.pojo.InformationCategory">
+   <select id="queryCatagoryList" resultType="com.jeyoo.pojo.InformationCategory">
         select CatagoryID,CategoryName,CategoryNameEN, isShow,Sequence as seqence,CreateTime,UpdateTime from information_category 
          where  isdelete=0 
          <if test="parentcategoryid!=null and parentcategoryid !=''">
@@ -68,7 +68,7 @@
 		 
 		 order by Sequence asc
    </select>
-    <select id="findSubCategoryByParentID" resultType="com.house730.admin.pojo.InformationCategory">
+    <select id="findSubCategoryByParentID" resultType="com.jeyoo.pojo.InformationCategory">
         select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,CreateTime,UpdateTime from information_category 
          where ParentCategoryID=#{catagoryID} and isdelete=0 
    </select>
@@ -84,7 +84,7 @@
    </update>
    
    
-     <insert id="addCategory" parameterType="com.house730.admin.pojo.InformationCategory" >
+     <insert id="addCategory" parameterType="com.jeyoo.pojo.InformationCategory" >
     insert into information_category (CatagoryID, CategoryName, CategoryNameEN, 
       ParentCategoryID, IsShow, Sequence, 
       CreateUser, CreateTime, UpdateUser, 
@@ -95,12 +95,12 @@
       #{updatetime,jdbcType=TIMESTAMP}, 0)
   </insert>
   
-   <select id="getCategoryById" resultType="com.house730.admin.pojo.InformationCategory">
+   <select id="getCategoryById" resultType="com.jeyoo.pojo.InformationCategory">
         select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,isShow from information_category 
          where CatagoryID=#{catagoryID} and isdelete=0
    </select>
    
-    <update id="editCategory"  parameterType="com.house730.admin.pojo.InformationCategory">
+    <update id="editCategory"  parameterType="com.jeyoo.pojo.InformationCategory">
         update information_category  set 
         CategoryName=#{categoryname,jdbcType=VARCHAR},CategoryNameEN=#{categorynameen,jdbcType=VARCHAR}, 
         IsShow=<if test="isshow == true" >1,</if>  <if test="isshow == false" >0, </if>UpdateTime=#{updatetime,jdbcType=TIMESTAMP},
@@ -112,7 +112,7 @@
    
    
   <!--  *******************************************小分類開始 **************************************8  -->
-  <select id="querySubCatagoryList" resultType="com.house730.admin.resultpojo.InformationCategoryResult">
+  <select id="querySubCatagoryList" resultType="com.jeyoo.resultpojo.InformationCategoryResult">
        SELECT a.CatagoryID,a.CategoryName AS subCategoryName,a.CategoryNameEN AS subCategoryNameEN,b.CategoryName ,b.CategoryNameEN ,
        a.Sequence AS seqence,a.CreateTime,a.UpdateTime,a.isShow
        FROM information_category a
@@ -125,7 +125,7 @@
   
   <!--  *******************************************新聞资讯開始 **************************************8  -->
   
-   <select id="queryInfomationList" resultType="com.house730.admin.resultpojo.InfomationResult">
+   <select id="queryInfomationList" resultType="com.jeyoo.resultpojo.InfomationResult">
        SELECT c.InformationID,c.CategoryID,c.SubCategoryID,c.ImagePath,c.Title,c.TitleEN,c.Content,c.ContentEN,c.IsPush,c.PushTime,c.PushPlatForm,c.PublishTime,c.UpdateTime,d.* FROM information c LEFT JOIN
          (SELECT a.CatagoryID as d_CatagoryID , a.CategoryName AS subCategoryName,a.CategoryNameEN AS subCategoryNameEN,b.CategoryName ,b.CategoryNameEN 
            FROM information_category a
@@ -170,7 +170,7 @@
         update information  set isdelete=1 where InformationID=#{informationId}
    </update>
    
-  <insert id="addInfomation" parameterType="com.house730.admin.pojo.Infomation" >
+  <insert id="addInfomation" parameterType="com.jeyoo.pojo.Infomation" >
   
     insert into information (InformationID, CategoryID, SubCategoryID, 
       ImagePath, titleen, title, PushPlatForm,PushTime, CreateUser, CreateTime, PublishTime,
@@ -183,7 +183,7 @@
   
   
   
- <update id="updataInfomation" parameterType="com.house730.admin.pojo.Infomation" >
+ <update id="updataInfomation" parameterType="com.jeyoo.pojo.Infomation" >
    update information  set CategoryID=#{categoryid,jdbcType=INTEGER}, SubCategoryID=#{subcategoryid,jdbcType=INTEGER}, 
     ImagePath= #{imagepath,jdbcType=VARCHAR},titleen= #{titleen,jdbcType=VARCHAR}, title=#{title,jdbcType=VARCHAR}, 
     PushPlatForm=#{pushplatform,jdbcType=VARCHAR},PushTime= #{pushtime,jdbcType=TIMESTAMP}, UpdateUser=#{updateuser,jdbcType=VARCHAR},
@@ -202,7 +202,7 @@
   
   
   
-  <insert id="insertSelective" parameterType="com.house730.admin.pojo.Infomation" >
+  <insert id="insertSelective" parameterType="com.jeyoo.pojo.Infomation" >
     insert into information
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="informationid != null" >
