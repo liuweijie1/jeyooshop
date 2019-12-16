@@ -35,7 +35,7 @@
 					<div data-v-0aa61ae0="" class="recharges-con">
 						<div data-v-0aa61ae0="" class="recharges-tab">
 							<div data-v-0aa61ae0=""
-								class="rechargestab-item rechargestab-item-active">充值活动：充值满100及以上金额，赠送全场任意披萨一份！奶茶一杯！另立赠相应余额！！</div>
+								class="rechargestab-item rechargestab-item-active">充值活动：新店钜惠，充值立赠相应余额，余额可用于线上支付，充值越多优惠越多！！</div>
 							<!-- <div data-v-0aa61ae0="" class="rechargestab-item">自定义金额充值</div> -->
 						</div>
 						<div data-v-0aa61ae0="" class="recharges-tabcon">
@@ -43,33 +43,38 @@
 								<div data-v-0aa61ae0="" class="fixed-tip">请选择充值金额</div>
 								<div data-v-0aa61ae0="" class="fixed-list">
 									<div data-v-0aa61ae0="" class="fixed-item borde-red" onclick="Amoptions(this)">
-									    <input type="hidden" value='100'>
+									    <input type="hidden" id="num" value='100'>
+									    <input type="hidden" id="plus" value='30'>
 										<div data-v-0aa61ae0="" class="fixed-num">100元</div>
-										<div data-v-0aa61ae0="" class="fixed-gift">立赠0元余额</div>
-										<!---->
-									</div>
-									<div data-v-0aa61ae0="" class="fixed-item" onclick="Amoptions(this)">
-									    <input type="hidden" value='200'>
-										<div data-v-0aa61ae0="" class="fixed-num">200元</div>
-										<div data-v-0aa61ae0="" class="fixed-gift">立赠15元余额</div>
-										<!---->
-									</div>
-									<div data-v-0aa61ae0="" class="fixed-item"  onclick="Amoptions(this)">
-									    <input type="hidden" value='300'>
-										<div data-v-0aa61ae0="" class="fixed-num">300元</div>
 										<div data-v-0aa61ae0="" class="fixed-gift">立赠30元余额</div>
 										<!---->
 									</div>
 									<div data-v-0aa61ae0="" class="fixed-item" onclick="Amoptions(this)">
-									    <input type="hidden" value='500'>
-										<div data-v-0aa61ae0="" class="fixed-num">500元</div>
-										<div data-v-0aa61ae0="" class="fixed-gift">立赠50元余额</div>
+									    <input type="hidden" id="num" value='200'>
+									    <input type="hidden" id="plus" value='80'>
+										<div data-v-0aa61ae0="" class="fixed-num">200元</div>
+										<div data-v-0aa61ae0="" class="fixed-gift">立赠80元余额</div>
+										<!---->
+									</div>
+									<div data-v-0aa61ae0="" class="fixed-item"  onclick="Amoptions(this)">
+									     <input type="hidden" id="num" value='300'>
+									     <input type="hidden" id="plus" value='120'>
+										<div data-v-0aa61ae0="" class="fixed-num">300元</div>
+										<div data-v-0aa61ae0="" class="fixed-gift">立赠120元余额</div>
 										<!---->
 									</div>
 									<div data-v-0aa61ae0="" class="fixed-item" onclick="Amoptions(this)">
-									    <input type="hidden" value='1000'>
+									     <input type="hidden" id="num" value='500'>
+									     <input type="hidden" id="plus" value='220'>
+										<div data-v-0aa61ae0="" class="fixed-num">500元</div>
+										<div data-v-0aa61ae0="" class="fixed-gift">立赠220元余额</div>
+										<!---->
+									</div>
+									<div data-v-0aa61ae0="" class="fixed-item" onclick="Amoptions(this)">
+									     <input type="hidden" id="num" value='1000'>
+									     <input type="hidden" id="plus" value='480'>
 										<div data-v-0aa61ae0="" class="fixed-num">1000元</div>
-										<div data-v-0aa61ae0="" class="fixed-gift">立赠120元余额</div>
+										<div data-v-0aa61ae0="" class="fixed-gift">立赠480元余额</div>
 										<!---->
 									</div>
 									<div data-v-0aa61ae0="" class="fixed-item"
@@ -86,7 +91,7 @@
 				</div>
 				
 				
-				<div data-v-201b00fc="" class="new-couponBtn" onclick="recharge(obj)">立即支付 | ¥100</div>
+				<div data-v-201b00fc="" class="new-couponBtn" onclick="recharge(obj)">支付¥100 | 到账¥130</div>
 			</div>
 		</div>
 	</div>

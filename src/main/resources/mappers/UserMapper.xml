@@ -1,73 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeyoo.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.jeyoo.pojo.User">
-        <constructor>
-            <arg column="UserID" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="UserName" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="UserCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="Password" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="NickName" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="Email" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="Telephone" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="IsReceiveMessage" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="IsReceiveSMS" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="IsPropertyAgent" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="CompanyNameCN" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="CompanyNameEN" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="CompanyTelephone" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="CompanyAddress" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="CompanyAddressEN" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="Signature" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="CompanyLicense" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="License" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="IsImportEstate" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="PropertyNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="DealNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="BrowseNumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="Status" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="RemainderPropertyCoin" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="LastLoginTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="Gender" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="AgeType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="SalaryType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="LiveType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="FaceBookAccount" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="GoogleAccount" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="LanguageType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="CreateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="IsDelete" javaType="java.lang.Boolean" jdbcType="BIT"/>
-        </constructor>
-    </resultMap>
-    <resultMap id="idMap" type="java.lang.String">
-        <result column="UserCode" javaType="java.lang.Integer"></result>
-    </resultMap>
+   
+   
+     <select id="getUser" resultType="com.jeyoo.pojo.User">
+	    select * from user
+	    where shopid = #{shopid} and openid = #{openid}  and IsDelete = 0
+     </select>
+  
     <insert id="insert" parameterType="com.jeyoo.pojo.User">
-    insert into user (UserID, UserName, UserCode, 
+    insert into user (UserID, openid, shopid,UserName,
       Password, NickName, Email, 
-      Telephone, IsReceiveMessage, IsReceiveSMS, 
-      IsPropertyAgent, CompanyNameCN, CompanyNameEN, 
-      CompanyTelephone, CompanyAddress, CompanyAddressEN, 
-      Signature, CompanyLicense, License, 
-      IsImportEstate, PropertyNumber, DealNumber, 
-      BrowseNumber, Status, RemainderPropertyCoin, 
-      LastLoginTime, Gender, AgeType, 
-      SalaryType, LiveType, FaceBookAccount, 
-      GoogleAccount, LanguageType, CreateTime, 
-      UpdateTime, IsDelete)
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, 
+      Telephone,CreateTime, vipstate,vipcard,balance,
+     IsDelete)
+    values (#{userid,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR},#{shopid,jdbcType=BIGINT},#{username,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{telephone,jdbcType=VARCHAR}, #{isreceivemessage,jdbcType=BIT}, #{isreceivesms,jdbcType=BIT}, 
-      #{ispropertyagent,jdbcType=BIT}, #{companynamecn,jdbcType=VARCHAR}, #{companynameen,jdbcType=VARCHAR}, 
-      #{companytelephone,jdbcType=VARCHAR}, #{companyaddress,jdbcType=VARCHAR}, #{companyaddressen,jdbcType=VARCHAR}, 
-      #{signature,jdbcType=VARCHAR}, #{companylicense,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, 
-      #{isimportestate,jdbcType=BIT}, #{propertynumber,jdbcType=INTEGER}, #{dealnumber,jdbcType=INTEGER}, 
-      #{browsenumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{remainderpropertycoin,jdbcType=INTEGER}, 
-      #{lastlogintime,jdbcType=TIMESTAMP}, #{gender,jdbcType=INTEGER}, #{agetype,jdbcType=INTEGER}, 
-      #{salarytype,jdbcType=INTEGER}, #{livetype,jdbcType=INTEGER}, #{facebookaccount,jdbcType=VARCHAR}, 
-      #{googleaccount,jdbcType=VARCHAR}, #{languagetype,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+      #{telephone,jdbcType=VARCHAR}, now(),0,#{vipcard,jdbcType=VARCHAR},0.00, 0)
   </insert>
     <insert id="insertSelective" parameterType="com.jeyoo.pojo.User">
         insert into user

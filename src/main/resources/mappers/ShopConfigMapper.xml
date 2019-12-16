@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jeyoo.mapper.ShopConfigMapper" >
+ 
+ 
+  
+     <!-- <insert id="getShopConfig" parameterType="com.jeyoo.pojo.Order">
+		insert into orders (orderid, userid, number,
+		paymenttype, totalmoney,totalcount, ordertime,
+		deliverytype, deliverytime, state,
+		remark, sort,isdelete)
+		values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT},
+		#{number,jdbcType=BIGINT},
+		1, #{totalmoney,jdbcType=DOUBLE},#{totalcount,jdbcType=INTEGER},
+		now(), 1, #{deliverytime,jdbcType=VARCHAR},
+		#{state,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},
+		(SELECT nextval('Order')), 0)
+     </insert>
+  
+    <insert id="insert_Goods" >
+    insert into order_goods (ordergoodid,orderid,goodsid,amount,sort)
+      values (#{ordergoodid,jdbcType=BIGINT}, #{orderid,jdbcType=BIGINT}, #{goodsid,jdbcType=BIGINT}, 
+      #{amount,jdbcType=INTEGER}, (SELECT nextval('Order_Goods')) )
+  </insert> -->
+  
+     <select id="getShopConfig" resultType="com.jeyoo.pojo.ShopConfig">
+        SELECT s.shopid,s.shopname from shopconfig s 
+        WHERE   now() <![CDATA[ <= ]]>  s.duetime and now()  <![CDATA[ >= ]]>  s.creattime and isdelete=0
+       
+		     and  s.shopid = #{shopid,jdbcType=BIGINT}
+		
+   </select>
+   
+    <!--  <select id="queryOrderDetails" resultType="com.jeyoo.pojo.Order">
+
+				 SELECT
+					o.orderid,
+					o.number,
+					o.ordertime,
+					o.remark,
+					o.totalmoney,
+					g.foodname,
+					g.foodprice,
+					g.goodimg,
+					og.amount
+				FROM
+					orders o,
+					goods g,
+					order_goods og
+				WHERE
+					o.orderid = og.orderid
+				AND og.goodsid = g.goodid
+				AND o.ordertime >= CURDATE()
+				
+				<if test="number!=null and number !=''">
+		          and  o.number = #{number,jdbcType=BIGINT}
+		       </if>
+				 
+     </select> -->
+ 
+   
+   
+ 
+</mapper>

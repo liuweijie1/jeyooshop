@@ -24,5 +24,6 @@ public interface UserService {
 
     Map<String,Object> recharge(Map<String, Object> paramMap);
     
-	String getUserInfo(HttpServletRequest request);
+	User getUserInfo(HttpServletRequest request);
+	String getUserStauts(HttpServletRequest request);
 }

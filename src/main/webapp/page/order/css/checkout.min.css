@@ -332,7 +332,7 @@ li {
 
 .yb-checkout_bd .yb-checkout-cont .yb-checkout-img {
 	height: 2.8rem;
-	width: 2.8rem;
+	width: 3rem;
 	margin-right: .5rem
 }
 
@@ -2444,20 +2444,4 @@ input[type=text]:disabled {
 	-webkit-flex: 1;
 	flex: 1;
 	outline: 0
-}
-
-#StoreListView .yb-search-input .yb-input-icon {
-	display: inline-block;
-	height: 1rem;
-	width: 1rem;
-	background-image:
-		url(//imgw.pospal.cn/we/nearyByStore/img/home_search.svg);
-	background-size: 100%;
-	margin-right: .3rem
-}
-
-#StoreListView .yb-search-input .input-cancel {
-	font-size: .8rem;
-	color: #3A3C4C;
-	padding: .3rem 0 .3rem .6rem
 }

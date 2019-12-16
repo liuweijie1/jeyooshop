@@ -1,5 +1,5 @@
-/*Copyright:成都零点信息技术有限公司 QQ:863230477*/
-/*手机wap端，商品页*/
+
+
 
 $(function () {
     $("#scroll_sort,#scroll_food").height($("body").height()-89);
@@ -62,7 +62,7 @@ $(function () {
 });
 
 /*获取特价商品列表*/
-function getSpecialList(){
+/*function getSpecialList(){
     $.ajax({
         url:'common/promotion/getStartedPromotions',
         type:'GET',
@@ -81,11 +81,11 @@ function getSpecialList(){
                         showFlag = true;
                     }
                     // 删除已过期的
-                    /*if(data.data[i].sub_time < 0){
+                    if(data.data[i].sub_time < 0){
                      $('#food_price_num_'+data.data[i].food_id).text(data.data[i].native_price);
                      delete data.data[i];
                      continue;
-                     }*/
+                     }
                     if(parseInt(data.data[i].promotion_count) <= parseInt(data.data[i].seller_count)){
                         $('#food_'+data.data[i].food_id+' .img_list_price').html('<div class="img_plus sale_over">'+jsLangChange("完")+'</div>');
                     }
@@ -168,7 +168,7 @@ function getSpecialList(){
             }
         }
     });
-}
+}*/
 
 function onlyType(obj){
     var object = $(obj),

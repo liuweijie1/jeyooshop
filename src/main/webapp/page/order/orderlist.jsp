@@ -70,19 +70,21 @@
 					   <span>已接单</span>
 					 </c:if>
 					</span>
-					<div id="order_imgbox">
+						<a href="javascript:showdetails('${li.number}')">
+					<div id="order_imgbox" onclick="showdetails('${li.number}">
 					<div>
 					   <c:forEach items="${orderimg}" var ="img" varStatus="status">
 					    <c:if test="${li.number==img.number}">
-					       <img class="order_pic_img" src="https://ali-img.0xiao.cn/3cfood/food/res/image/t_003c75780c58e31c.png">
+					       <img class="order_pic_img" src="${img.goodimg}">
 					    </c:if>
 					</c:forEach>	
-					
+				
 					
 					</div>
 					</div>
 				
-					<div class="clo0 nou myorder_titbott">
+					</a>
+					<div class="clo0 nou myorder_titbott" >
 					<c:if test="${li.state==2}">
 					   <button class="myorder_state_btn_ok" onclick="showOrderPhone('18105264512')">取消订单</button>
 					   <button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">马上付款</button>

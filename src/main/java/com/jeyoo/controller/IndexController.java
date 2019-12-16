@@ -8,9 +8,13 @@ import com.jeyoo.pojo.Order;
 import com.jeyoo.pojo.PropertyReport;
 import com.jeyoo.service.OrderService;
 import com.jeyoo.service.PropertyReportManageService;
+import com.jeyoo.service.ShopConfigService;
 import com.jeyoo.service.UserService;
 import com.jeyoo.utils.PageUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,15 +39,23 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("page/index")
+@Slf4j
 public class IndexController {
   
     @Autowired
-    private OrderService orderService;
+    private ShopConfigService shopConfigService;
     @Autowired
     private UserService userService;
    
     @GetMapping("/process")
-   	public String placeOrder(Model model) {
+   	public String placeOrder(Model model,HttpServletRequest request, HttpServletResponse response ) {
+    	
+    	//判断用户有没有登录即有没有用户
+    	if(!"1".equals(userService.getUserStauts(request))) {
+    		log.info("用户有没有登录");
+			return "";
+    	}
+    
    		return "/home/index";
    	}
     
@@ -73,10 +85,10 @@ public class IndexController {
     }*/
     
     
-    
+    /*
     @ResponseBody
   	@PostMapping(value ="/plaorder")
-      public String  plaorder( HttpServletResponse response, HttpServletRequest request,/*@RequestParam Map<String, String> paramMap*/String goodlist,
+      public String  plaorder( HttpServletResponse response, HttpServletRequest request,@RequestParam Map<String, String> paramMapString goodlist,
     		  String qctime,String remark,String pricetotal,String state,int totalcount) {
           try {
         	  String userid=userService.getUserInfo(request);
@@ -110,7 +122,7 @@ public class IndexController {
     	 modelMap.addAttribute("orderDetail",orderDetail);
    		return "/order/orderdetail";
    	}
-    
+    */
     /**
 
      *导出

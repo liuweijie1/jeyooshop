@@ -21,7 +21,7 @@ public class ID
             {
                 tmpIDlocked = true;
                 //当前：（年、月、日、时、分、秒、毫秒）*10000
-                ltime = Long.valueOf(new SimpleDateFormat("yyMMddhhmmssSSS").format(new Date()).toString()) * 10000;
+                ltime = Long.valueOf(new SimpleDateFormat("yyMMddhhmmssSSS").format(new Date()).toString());
                 if(tmpID < ltime)
                 {
                     tmpID = ltime;
@@ -36,4 +36,6 @@ public class ID
             }
         }
     }
+    
+  
 }

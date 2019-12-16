@@ -7,17 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="viewport"
-	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<!-- <meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> -->
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>会员中心</title>
 <link rel="shortcut icon" href="http://masr8-26.pospal.cn/favicon.ico">
 <link href="./css/app.css" rel="stylesheet">
 
-<script type="text/javascript">
-	window.YB_RETURNURL = "";
-	window.YB_INDUSTRY = "餐饮行业";
-	window.YB_CURRENCYSYMBOL = "¥";
-</script>
+
 </head>
 
 <body>
@@ -33,28 +30,42 @@
 						<div data-v-5a777799="" class="weui-cell">
 							<div data-v-5a777799="" class="weui-cell__hd yb-menber_headImg">
 								<img data-v-5a777799=""
-									src="data:image/png;base64,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"
+									src="${headimgurl}"
 									onerror="this.src=&quot;data:image/png;base64,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&quot;"
 									alt="" class="weui-media-box__thumb">
 							</div>
 							<div data-v-5a777799="" id="CustomerName"
-								class="weui-cell__bd yb-menber_name">18396861925</div>
-							<a data-v-5a777799=""
+								class="weui-cell__bd yb-menber_name">${nickname}</div>
+						<!-- 	<a data-v-5a777799=""
 								href="http://masr8-26.pospal.cn/m/accountv4#/setting"
-								class="weui-cell__ft yb-menber_set"> 设置 </a>
+								class="weui-cell__ft yb-menber_set"> 设置 </a> -->
 						</div>
 					</div>
 					<div data-v-9d601076="" data-v-bebda20a="" class="yb-mian my-main">
+					
+				
+				   
+					<div data-v-9d601076="" class="ppl_row">
 						<div data-v-9d601076="" class="ppl_row">
+						
+						
+						
 							<div data-v-9d601076="" class="yb-card_img">
+							<p class="myorder_state_shopname">${shop.shopname}</p> 
 								<img data-v-9d601076="" src="./img/vip.png"
 									onerror="this.src=&#39;//imgw.pospal.cn/account/accountV4/img/newcardbackground.png&#39;"
 									alt="会员卡">
 								<!---->
-								 <button class="myorder_state_btn" onclick="getmember()">领取会员</button>
+								 <button class="myorder_state_btn" onclick="getmember()">会员储值</button>
+								 <p class="myorder_state_NO">NO.</p>
+								 <p class="myorder_state_vipno">${user.vipcard}</p>
 							</div>
+							
+							
 						</div>
 					</div>
+					
+					
 					<div data-v-d6f17a64="" data-v-bebda20a="" class="yb-account_hd">
 						<div data-v-d6f17a64="" class="yb-bounceInLeft">
 							<a data-v-d6f17a64=""
@@ -67,7 +78,7 @@
 								</div>
 								<div data-v-d6f17a64="" class="yb-fontGray">余额</div>
 								<div data-v-d6f17a64="" class="yb-fontRed">
-									<span data-v-d6f17a64="" id="cM">0</span>
+									<span data-v-d6f17a64="" id="cM">${user.balance}</span>
 								</div>
 								<div data-v-d6f17a64="" class="Segmentingline"></div></a> <a
 								data-v-d6f17a64=""
@@ -171,7 +182,7 @@
 								</div> <span data-v-29e47ff9="" class="weui-cell__ft"></span></a> --> 
 								<a
 								data-v-29e47ff9=""
-								href="http://masr8-26.pospal.cn/m/accountv4#/location"
+								href="javascript:void();"
 								class="weui-cell weui-cell_access yb-itemContent"><div
 									data-v-29e47ff9="" class="weui-cell__hd">
 									<img data-v-29e47ff9="" src="./img/address@2x.png"
@@ -182,7 +193,7 @@
 									<p data-v-29e47ff9="">商家地址</p>
 								</div> <span data-v-29e47ff9="" class="weui-cell__ft"></span></a> <a
 								data-v-29e47ff9=""
-								href="http://masr8-26.pospal.cn/m/feedback/indexnew"
+								href="javascript:void();"
 								class="weui-cell weui-cell_access yb-itemContent"><div
 									data-v-29e47ff9="" class="weui-cell__hd">
 									<img data-v-29e47ff9=""
@@ -191,7 +202,7 @@
 								</div>
 								<div data-v-29e47ff9=""
 									class="weui-cell__bd weui-cell_primary yb-item">
-									<p data-v-29e47ff9="">反馈通道</p>
+									<p data-v-29e47ff9="">意见反馈</p>
 								</div> <span data-v-29e47ff9="" class="weui-cell__ft"></span></a>
 								
 								

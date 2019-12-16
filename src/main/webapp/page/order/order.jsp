@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- saved from url=(0049)http://masr8-26.pospal.cn/m/order?tmpl=1#/default -->
 <html lang="zh"
 	class="pixel-ratio-2 retina android android-6 android-6-0">
 <head>
@@ -11,33 +10,18 @@
 
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="description"
-	content="网上商城，最经济实惠的网上购物商城，不用排队，方便实惠送上门，为您提供愉悦的网上商城购物体验！">
-	
-	    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description" content="网上商城，最经济实惠的网上购物商城，不用排队，方便实惠送上门，为您提供愉悦的网上商城购物体验！">
+ <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
-	
 <link rel="stylesheet" href="./css/weui.min.css">
 <link rel="stylesheet" href="./css/jquery-weui.min.css">
 <link rel="stylesheet" href="./css/checkout.min.css">
-
- <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-
-
 <link rel="stylesheet" href="./css/page.css">
+<script src="../allcategory/js/wap.min.js"></script> 
 
- <script src="../allcategory/js/wap.min.js"></script>
-<script type="text/javascript">
-      /*   window.YB_DEFAULTLANG = "zh";
-        window.YB_CURRENCYSYMBOL = "¥";
-        window.YB_INDUSTRY = '餐饮行业';
-        $('document').ready(function () {
-            initApp($, window);
-        }); */
-    </script>
 
 </head>
 <body pagename="shopcar" data-res_id="7727" data-mobile="1" data-iphone="0" data-weixin="0" currency="元" sign="¥" >
@@ -222,20 +206,9 @@
 			</div>
 
 			<div class="yb-paymethod-list yb-actionsheet-list" id="paymethodList">
-				<label class="yb-paymethod-item weui-cells_checkbox " for="pay1">
-					<div class="yb-paymethod-head">
-						<img src="./image/bank_pay@2x.png" alt="">
-					</div>
-					<div class="yb-paymethod-body">
-						<div class="yb-paymethod-name">当面付款</div>
-
-					</div>
-					<div class="yb-paymethod-foot  yb-actionsheet-origin">
-						<input type="radio" name="paymethodName" data-code="1"
-							data-name="当面付款" id="pay1" class="weui-check" checked="checked">
-						<i class="weui-icon-checked"></i>
-					</div>
-				</label> <label class="yb-paymethod-item weui-cells_checkbox " for="pay2">
+			
+			
+			<label class="yb-paymethod-item weui-cells_checkbox " for="pay2">
 					<div class="yb-paymethod-head">
 						<img src="./image/balance_pay@2x.png" alt="">
 					</div>
@@ -247,10 +220,29 @@
 					</div>
 					<div class="yb-paymethod-foot  yb-actionsheet-origin">
 						<input type="radio" name="paymethodName" data-code="2"
-							data-name="会员余额" id="pay2" class="weui-check"> <i
-							class="weui-icon-checked"></i>
+							data-name="会员余额" id="pay2" class="weui-check" checked="checked"> 
+							 <i class="weui-icon-checked"></i> 
 					</div>
 				</label>
+			
+			
+				<label class="yb-paymethod-item weui-cells_checkbox " for="pay1">
+					<div class="yb-paymethod-head">
+						<img src="./image/bank_pay@2x.png" alt="">
+					</div>
+					<div class="yb-paymethod-body">
+						<div class="yb-paymethod-name">当面付款</div>
+
+					</div>
+					<div class="yb-paymethod-foot  yb-actionsheet-origin">
+						<input type="radio" name="paymethodName" data-code="1"
+							data-name="当面付款" id="pay1" class="weui-check">
+						 <i class="weui-icon-checked"></i> 
+					</div>
+				</label> 
+				
+				
+				
 			</div>
 
 			<div class="yb-checkout_ft">
@@ -400,7 +392,7 @@
 
 
 
-	<script type="text/javascript">
+	<script>
  
     $("#nammm").picker({
         title: "请选择时间",

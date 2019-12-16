@@ -768,14 +768,14 @@ li.order_opt_box{border:none;padding-bottom:20px}
 /*鎴戠殑璁㈠崟鍒楄〃*/
 #myorder_ul li{margin-bottom:.3rem;line-height:.64rem;background:#FFFFFF;cursor:pointer;overflow:hidden;position: relative;}
 
-.myorder_tit{display:block;height:.96rem;font-size:.37rem;padding:0 .48rem;margin-bottom:.27rem;line-height:.96rem;border-bottom:1px solid #f1f1f1;}
+.myorder_tit{display:block;height:.96rem;font-size:.37rem;padding:0 .48rem;margin-bottom:.22rem;line-height:.96rem;border-bottom:1px solid #f1f1f1;}
 .order_state{width:1.33rem;line-height:.96rem;position:absolute;top:0;right:.48rem;color:#f60;font-size:.37rem;}
-.order_pic_img{margin:0 .18rem .15rem;width:1.87rem;height:1.87rem; display:inline-block;-webkit-overflow-scrolling:touch;}
+.order_pic_img{object-fit: cover;border-radius: 7px;margin:0px 2px;width:1.7rem;height:1.5rem; display:inline-block;-webkit-overflow-scrolling:touch;}
 
 .order_content{line-height:.37rem;font-size:.35rem;color:#a0a0a0;white-space: nowrap;overflow: hidden;width: 4.5rem;text-overflow:ellipsis}
 .myorder_tit span {display:inline-block;max-width:7.2rem;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;background: url(../../img/right_go.png) no-repeat right center/.53rem;padding-right: 1rem;}
 #order_imgbox{ 
-	white-space: nowrap;border:0px;margin:0px 0px 0px 10px; width:92%; height:77px; LINE-HEIGHT: 20px;  overflow-x:auto; 
+	white-space: nowrap;border:0px;margin:0px 0px 0px 10px; width:92%; height:64px; LINE-HEIGHT: 20px;  overflow-x:auto; 
 }
 #total_money{
 	line-height: 1rem; margin-left:19px;  font-size: .4rem

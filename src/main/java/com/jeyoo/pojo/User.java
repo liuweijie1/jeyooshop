@@ -6,8 +6,12 @@ import java.util.Date;
 
 @Data
 public class User {
-    private Integer userid;
+    private long userid;
 
+    private String openid;
+    
+    private long shopid;
+    
     private String username;
 
     private String usercode;
@@ -19,6 +23,15 @@ public class User {
     private String email;
 
     private String telephone;
+    
+    private String vipcard;
+    
+    private Double balance;
+    
+    private Integer vipstate;
+    
+    
+    
 
     private Boolean isreceivemessage;
 

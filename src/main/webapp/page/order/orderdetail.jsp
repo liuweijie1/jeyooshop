@@ -12,7 +12,7 @@
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>订单详情</title>
 <link rel="shortcut icon" href="http://masr8-26.pospal.cn/favicon.ico">
-<link href="./css/app.css" rel="stylesheet">
+<link href="../customer/css/app.css" rel="stylesheet">
 
 </head>
 
@@ -37,17 +37,17 @@
 								<div data-v-3cd90192=""
 									class="state-nav-item state-nav-item_active">
 									<div data-v-3cd90192="" class="item-point"></div>
-									<div data-v-3cd90192="" class="item-state">等待接单</div>
+									<div data-v-3cd90192="" class="item-state">已接单</div>
 								</div>
-								<div data-v-3cd90192="" class="state-nav-item-separate">
+								<!-- <div data-v-3cd90192="" class="state-nav-item-separate">
 									<svg data-v-21c0a497="" data-v-3cd90192="" aria-hidden="true"
 										class="svg-icon">
 										<use data-v-21c0a497="" xlink:href="#icon-arrow_right"></use></svg>
-								</div>
-								<div data-v-3cd90192="" class="state-nav-item">
+								</div> -->
+								<!-- <div data-v-3cd90192="" class="state-nav-item">
 									<div data-v-3cd90192="" class="item-point"></div>
 									<div data-v-3cd90192="" class="item-state">配送中</div>
-								</div>
+								</div> -->
 								<div data-v-3cd90192="" class="state-nav-item-separate">
 									<svg data-v-21c0a497="" data-v-3cd90192="" aria-hidden="true"
 										class="svg-icon">
@@ -66,7 +66,7 @@
 								<!---->
 								<div data-v-8ced8152="" class="yb-order_but">
 									<a data-v-8ced8152=""
-										href="http://masr8-26.pospal.cn/m/accountv4"
+										href="/page/allcategory/process"
 										class="yb-order_buy">再次购买</a>
 								</div>
 							</div>
@@ -140,7 +140,7 @@
 							</div>
 							<div data-v-8ced8152="" class="yb-order_notes_itme clearfix">
 								<div data-v-8ced8152="" class="yb-order_notes_title">消费门店</div>
-								<div data-v-8ced8152="" class="yb-order_notes_text">杰悠披萨</div>
+								<div data-v-8ced8152="" class="yb-order_notes_text">杰悠披萨旗舰店</div>
 							</div>
 							<!---->
 						</div>
@@ -148,7 +148,7 @@
 							<div data-v-8ced8152="">售后问题</div>
 							<div data-v-8ced8152="">
 								<span data-v-8ced8152=""></span> <a data-v-8ced8152=""
-									href="tel:15111111111">联系商家</a>
+									href="tel:18396861925">联系商家</a>
 							</div>
 						</div>
 					</div>

@@ -41,4 +41,6 @@ public interface UserMapper {
     int changePropertycoin(User user);
     
     Map<String,Object> querydetailAll(@Param("userid") Integer userid);
+
+	User getUser(@Param("shopid") Long shopid, @Param("openid") String openid);
 }

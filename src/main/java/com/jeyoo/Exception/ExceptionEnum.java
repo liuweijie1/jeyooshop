@@ -10,6 +10,7 @@ public enum ExceptionEnum {
     FILE_UPLOAD_ERROR(500, "文件上传异常"),
     INVALID_FILE_TYPE(400, "无效的文件类型"),
     SERVER_ERROR(500, "服务器异常"),
+    NOT_SHOP_ERROR(501, "店铺不存在"),
     BAD_REQUEST(400, "参数异常"),
     DATA_TYPE_ERROR(400, "数据类型错误"),
     INVALID_UN_OR_PW(400, "账号&密码不存在或者数据错误"),

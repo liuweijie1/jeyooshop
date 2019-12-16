@@ -17,6 +17,9 @@ public interface OrderService {
 	List<Order> queryOrderDetails(String number);
 
 
+	void cheakOrder(String userid, String goodlist);
+
+
 	
     
 	

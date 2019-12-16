@@ -98,6 +98,35 @@ html {
 	z-index: 3;
 }
 
+.newcsst{
+   
+
+    height: 2.1rem;
+  
+
+    margin: 3rem auto 0;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    line-height: 2.1rem;
+    border-radius: 4px;
+  width: 22.95rem !important;
+    background: #da9fac !important;
+    max-width: 100%;
+	max-height: 100%;
+	display: block;
+	position: absolute;
+	top: 88%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 3;
+}
+.liji{
+
+ font-size: 13px !important;
+ margin: 0px 0px 0px 0px;
+
+}
 </style>
 </head>
 
@@ -111,7 +140,8 @@ html {
 			
 			<img class="img2" src="../home/img/pisa.png"
 			alt="">
-    <div data-v-201b00fc="" class="new-couponBtn newcss" onclick="goshop()">立即点餐</div>
+       <div data-v-201b00fc="" class="new-couponBtn newcss" onclick="goshop()">立即点餐</div>
+      <div data-v-201b00fc="" class="new-couponBtn newcsst" onclick="goshop()">预约点餐 到店即取 自助点餐  快人一步</div>
 		</div>
 		
 			

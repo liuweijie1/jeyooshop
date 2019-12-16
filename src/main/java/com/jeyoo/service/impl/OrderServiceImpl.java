@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +38,76 @@ public class OrderServiceImpl implements OrderService {
 	private OrderMapper ordermapper;
 	@Autowired
 	private GoodsMapper goodsmapper;
+	
+	
+	
+	@Override
+	public void cheakOrder(String userid, String goodsmap) {
+		// 加入中间表
+		int pisa = 0;
+		int naicha = 0;
+		double total = 0.00;
+		String code = null;
+		List<Double> pisaDel = new ArrayList<Double>();
+		List<Double> naichaDel = new ArrayList<Double>();
+		double money = 0.00;
+	
 
+			Map<String, Object> map = JSONArray.parseObject(goodsmap);
+			List goods = (List) map.get("7727");
+			for (int i = 0; i < goods.size(); i++) {
+				Map<String, Object> goodmap = new HashMap<>();
+				goodmap = (Map<String, Object>) goods.get(i);
+				// 后台计算商品总价格
+				int amount = Integer.valueOf(goodmap.get("amount").toString());
+				Long foodid = Long.valueOf(goodmap.get("food_id").toString());
+				String foodtype = (String) goodmap.get("food_type");
+				Goods gd = new Goods();
+				gd.setGoodid(Long.valueOf(goodmap.get("food_id").toString()));
+				Goods good = goodsmapper.getFood(gd);
+				total += good.getFoodprice() * amount;// 总价格
+				
+				
+				// 判断有没有披萨或奶茶，并计算最大减免金额
+				if ("1".equals(foodtype)) {
+					pisa = +1;
+					pisaDel.add(good.getFoodprice());
+				}
+				if ("2".equals(foodtype)) {
+					naicha = +1;
+					naichaDel.add(good.getFoodprice());
+				}
+			}
+			
+			if (1 == 1) {
+
+			if (pisa == 0) {
+				code = "11";
+			}
+			if (naicha == 0) {
+				code = "12";
+			}
+			if (naicha == 0 && pisa == 0) {
+				code = "13";
+			}
+			if (naicha > 0 && pisa > 0) {
+				double maxDel = Collections.max(pisaDel) + Collections.max(naichaDel);
+				if (money-(total - maxDel)> 0) {
+					code = "14";
+				} else {
+					code = "15";
+				}
+			}
+		} else {
+			if(money-total>0) {
+				code = "21";
+			}else {
+				code = "22";
+			}
+
+		}
+	}
+	
 	@Override
 	@Transactional
 	public void plaOrder(String userid,String goodsmap, String qctime, String remark, String pricetotal,String state,int totalcount) {

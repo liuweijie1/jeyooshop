@@ -28,6 +28,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /**
  *  检举管理
  * @author wbliuwjs
@@ -75,12 +76,32 @@ public class OrderController {
     
     
     @ResponseBody
+  	@PostMapping(value ="/payinnit")
+      public String  payInit( HttpServletResponse response, HttpServletRequest request,String goodlist) {
+          try {
+        	  HttpSession session = request.getSession();
+      		String shopid = session.getAttribute("shopid")==null ? "": session.getAttribute("shopid").toString();
+      		String openid = session.getAttribute("WX_OPEN_ID")==null ? "": session.getAttribute("WX_OPEN_ID").toString();
+      		String userid = session.getAttribute(shopid+openid)==null ? "": session.getAttribute(shopid+openid).toString();
+        	  orderService.cheakOrder(userid,goodlist);
+      	      return "success";
+            
+              
+          } catch (Exception e) {
+          	e.printStackTrace();
+          	throw new  JeyooException(ExceptionEnum.SERVER_ERROR, e);
+          }
+      }
+    
+    @ResponseBody
   	@PostMapping(value ="/plaorder")
       public String  plaorder( HttpServletResponse response, HttpServletRequest request,/*@RequestParam Map<String, String> paramMap*/String goodlist,
     		  String qctime,String remark,String pricetotal,String state,int totalcount) {
           try {
-        	  String userid=userService.getUserInfo(request);
-        	 
+        	  HttpSession session = request.getSession();
+        		String shopid = session.getAttribute("shopid")==null ? "": session.getAttribute("shopid").toString();
+        		String openid = session.getAttribute("WX_OPEN_ID")==null ? "": session.getAttribute("WX_OPEN_ID").toString();
+        		String userid = session.getAttribute(shopid+openid)==null ? "": session.getAttribute(shopid+openid).toString();
         	  orderService.plaOrder(userid,goodlist,qctime,remark,pricetotal,state,totalcount);
       	      return "success";
             
@@ -92,7 +113,10 @@ public class OrderController {
       }
     
     @RequestMapping("/orderlist")
-   	public String orderlist( ModelMap modelMap) {
+   	public String orderlist( ModelMap modelMap,HttpServletRequest request, HttpServletResponse response) {
+    	
+    	HttpSession session = request.getSession();
+    	String openId = (String) session.getAttribute("WX_OPEN_ID");
     	 List<Order>  order=orderService.getOrder(null);
     	 List<Order> ordermap=orderService.queryOrderDetails(null);
     	 modelMap.addAttribute("order",order);

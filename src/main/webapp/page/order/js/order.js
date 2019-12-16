@@ -58,7 +58,8 @@
                                         notDiscount = myshop_array[resId][i].not_discount;
 
                                     if(food_img){
-                                        food_img = "http://u2.0xiao.cn/"+food_img;
+                                    	var host=window.location.protocol+"//"+window.location.host;
+                                        food_img = host+food_img;
                                     }else{
                                         food_img="http://static.3cfood.com/Public/static/img/dish_nopic.png";
                                     }
@@ -95,7 +96,10 @@
                                         str += '<div class="weui-cell yb-checkout-cont yb-cell-noDowmLine ">';
                                     }
                                     str +='<div class="weui-cell__hd "><img class="yb-checkout-img"src="'+food_img+'" alt=""></div>';
-                                    str +='<div class="weui-cell__bd"><div><span class="yb-checkout-name">'+food_name+'</span><spanclass="yb-checkout-attrs"> [正常杯] [半糖50%] [去冰]</span></div><div class="yb-checkout-Num">x'+count+'</div></div>';
+                                   /* str +='<div class="weui-cell__bd"><div><span class="yb-checkout-name">'+food_name+'</span><spanclass="yb-checkout-attrs"> [正常杯] [半糖50%] [去冰]</span></div><div class="yb-checkout-Num">x'+count+'</div></div>';*/
+                                   
+                                    str +='<div class="weui-cell__bd"><div><span class="yb-checkout-name">'+food_name+'</span></div><div class="yb-checkout-Num">x'+count+'</div></div>';
+                                    
                                     str += '<div class="weui-cell__ft"><div class="yb-checkout-price">'+sign+price+'</div><del class="yb-checkout-origin-price">¥0.01</del></div></div>';
                                    
 

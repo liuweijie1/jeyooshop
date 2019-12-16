@@ -190,14 +190,14 @@
 				 
 				     <div class="yb-item" data-cuid="1502940403004727341" data-category="星冰乐®">
 				     <img class="yb-category-image" onerror="javasrcipt:this.src='//imgw.pospal.cn/we/weidian/img/icons/categorynull.png';this.onerror=null;" src=" //img.pospal.cn/EShopCategoryImage/7e92fb41-d707-47f2-93f2-7e133df77a00.png">
-				     <p class="yb-spw-showName">超值热卖</p>
+				     <p class="yb-spw-showName">火爆披萨</p>
 				     </div>
 				   <span class="res_sort_num" ></span>
 				</li>
 				<li id="sort_50632" data-sortid="50632" rel="4" class="foodsort">
 				<div class="yb-item" data-cuid="1502940403004727341" data-category="星冰乐®">
 				     <img class="yb-category-image" onerror="javasrcipt:this.src='//imgw.pospal.cn/we/weidian/img/icons/categorynull.png';this.onerror=null;" src=" //img.pospal.cn/EShopCategoryImage/6584d584-fc1c-408f-ae87-f4f390cd12ef.png">
-				     <p class="yb-spw-showName">暖冬饮品</p>
+				     <p class="yb-spw-showName">超值特惠</p>
 				     </div>
 				<span class="res_sort_num">0</span>
 				</li>
@@ -254,208 +254,326 @@
 						</div>
 				</li>
 					
-					<h3 class="foodlist_label">干锅</h3>
+					<h3 class="foodlist_label">火爆披萨</h3>
+					
+					
 					
 						<li class="food_rest_50634 food_847666" data-pack="0.00"><div
 								class="img_list_box">
-								<img class="img_list_img" data-food="847666"
+								<!-- <img class="img_list_img" data-food="847666"
 									data-src="../allcategory/shopimg/182_92293.jpg"
-									des="选泰国进口金枕榴莲，搭配香浓芝士，对策曾多次大V发背单词非常的方法是发放人吧吃饭饭烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/182_92293.jpg"
-									style="width: 90px; height: 75px;" alt="干锅花菜"
+									des="选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/182_92293.jpg"
+									style="width: 90px; height: 75px;" alt="榴莲皇后披萨"
+									onclick="food_img(this);"> -->
+									<img class="img_list_img" data-food="847666"
+									data-src="../allcategory/shopimg/liulian.jpg"
+									des="选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/liulian.jpg"
+									style="width: 80px; height: 64px;" alt="榴莲皇后披萨"
 									onclick="food_img(this);">
 							</div>
 							<div>
-								<span class="food_img_name">榴莲披萨</span>
-								<p class="font12 clo9">选泰国进口金枕榴莲，搭配香浓芝士，对策曾多次大V发背单词非常的方法是发放人吧吃饭饭烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
+								<span class="food_img_name">榴莲皇后披萨</span>
+								<p class="font12 clo9">选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_847666">
 									<div class="img_list_price">
 										<div id="addcart_btn_847666" class="right img_plus"
-											data-foodid="847666" data-foodname="干锅花菜"
-											data-foodprice="13.00"
-											data-foodimg="/3cfood/client/code/image/cf0ab833d2d31750.jpeg"
-											data-foodsort="50634" data-foodpack="0.00">+</div>
+											data-foodid="847666" data-foodname="榴莲皇后披萨"
+											data-foodprice="29.00"
+											data-foodimg="/page/allcategory/shopimg/liulian.jpg"
+											data-foodsort="50634" 
+											data-foodpack="0.00"
+											data-foodtype="1"
+											>+</div>
 										<div class="right hide isnum" id="847666_amount_imglist">
 											<div id="cutcart_btn_847666" class="left img_cut"
-												data-foodid="847666" data-foodname="干锅花菜"
-												data-foodprice="13.00"
-												data-foodimg="/3cfood/client/code/image/cf0ab833d2d31750.jpeg"
+												data-foodid="847666" data-foodname="榴莲皇后披萨"
+												data-foodprice="29.00"
+												data-foodimg="/page/allcategory/shopimg/liulian.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
 												id="847666_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_847666">13</span><del class="yb-checkout-origin-price">¥0.01</del></span>
+										id="food_price_num_847666">29</span><del class="yb-checkout-origin-price">¥88</del></span>
 								</div>
-							</div></li>
+							</div>
+							</li>
+							
+							
+							
+							
 						<li class="food_rest_50634 food_402798" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402798"
-									data-src="https://ali-img.0xiao.cn/3cfood/client/code/image/1bffac55a5620063.jpeg"
-									des="麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香麻辣鲜香" src="https://ali-img.0xiao.cn/3cfood/client/code/image/1bffac55a5620063.jpeg"
-									style="width: 80px; height: 64px;" alt="干锅兔"
+									data-src="../allcategory/shopimg/shuiguo.jpg"
+									des="选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/shuiguo.jpg"
+									style="width: 80px; height: 64px;" alt="缤纷水果披萨"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
 							</div>
 							<div>
-								<h3 class="food_img_name">干锅兔</h3>
-								<p class="font12 clo9">销量：20</p>
+								<h3 class="food_img_name">缤纷水果披萨</h3>
+								<p class="font12 clo9">选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_402798">
 									<div class="img_list_price">
 										<div id="addcart_btn_402798" class="right img_plus"
-											data-foodid="402798" data-foodname="干锅兔"
-											data-foodprice="50.00"
-											data-foodimg="/3cfood/client/code/image/1bffac55a5620063.jpeg"
-											data-foodsort="50634" data-foodpack="0.00">+</div>
+											data-foodid="402798" data-foodname="缤纷水果披萨"
+											data-foodprice="18.00"
+											data-foodimg="/page/allcategory/shopimg/shuiguo.jpg"
+											data-foodsort="50634" data-foodpack="0.00"
+											data-foodtype="1"
+											>+</div>
 										<div class="right hide isnum" id="402798_amount_imglist">
 											<div id="cutcart_btn_402798" class="left img_cut"
-												data-foodid="402798" data-foodname="干锅兔"
-												data-foodprice="50.00"
-												data-foodimg="/3cfood/client/code/image/1bffac55a5620063.jpeg"
+												data-foodid="402798" data-foodname="缤纷水果披萨"
+												data-foodprice="18.00"
+												data-foodimg="/page/allcategory/shopimg/shuiguo.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
 												id="402798_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_402798">50</span></span>
+										id="food_price_num_402798">18</span><del class="yb-checkout-origin-price">¥48</del></span>
 								</div>
-							</div></li>
+							</div>
+							
+							</li>
+							
+							
+							
 						<li class="food_rest_50634 food_402807" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402807"
-									data-src="https://ali-img.0xiao.cn/food/client/code/image/20150401/551b9a9ddf692.jpg"
-									des="" src="https://ali-img.0xiao.cn/food/client/code/image/20150401/551b9a9ddf692.jpg"
-									style="width: 80px; height: 64px;" alt="干锅排骨"
+									data-src="../allcategory/shopimg/niurou.jpg"
+									des="选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/niurou.jpg"
+									style="width: 80px; height: 64px;" alt="炭烤牛肉披萨"
 									onclick="food_img(this);">
 							</div>
+							
 							<div>
-								<h3 class="food_img_name">干锅排骨</h3>
-								<p class="font12 clo9">销量：28</p>
+								<h3 class="food_img_name">炭烤牛肉披萨</h3>
+								<p class="font12 clo9">就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_402807">
 									<div class="img_list_price">
 										<div id="addcart_btn_402807" class="right img_plus"
-											data-foodid="402807" data-foodname="干锅排骨"
-											data-foodprice="40.00" 
-											data-foodimg="/food/client/code/image/20150401/551b9a9ddf692.jpg"
-											data-foodsort="50634" data-foodpack="0.00">+</div>
+											data-foodid="402807" data-foodname="炭烤牛肉披萨"
+											data-foodprice="25.00" 
+											data-foodimg="/page/allcategory/shopimg/niurou.jpg"
+											data-foodsort="50634" data-foodpack="0.00"
+											data-foodtype="1">+</div>
 										<div class="right hide isnum" id="402807_amount_imglist"
 											>
 											<div id="cutcart_btn_402807" class="left img_cut"
-												data-foodid="402807" data-foodname="干锅排骨"
-												data-foodprice="40.00"
-												data-foodimg="/food/client/code/image/20150401/551b9a9ddf692.jpg"
+												data-foodid="402807" data-foodname="炭烤牛肉披萨"
+												data-foodprice="25.00"
+												data-foodimg="/page/allcategory/shopimg/niurou.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
 												id="402807_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_402807">40</span></span>
+										id="food_price_num_402807">25</span><del class="yb-checkout-origin-price">¥68</del></span>
 								</div>
 							</div></li>
+							
+							
+							
+							
 						<li class="food_rest_50634 food_402808" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402808"
-									data-src="https://ali-img.0xiao.cn/food/client/code/image/20150326/5513beec2a9ce.jpg"
-									des="麻辣鲜香" src="https://ali-img.0xiao.cn/food/client/code/image/20150326/5513beec2a9ce.jpg"
-									style="width: 80px; height: 64px;" alt="干锅牛肉"
+									data-src="../allcategory/shopimg/jirou.jpg"
+									des="就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/jirou.jpg"
+									style="width: 80px; height: 64px;" alt="新奥尔良鸡肉披萨"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
 							</div>
 							<div>
-								<h3 class="food_img_name">干锅牛肉</h3>
-								<p class="font12 clo9">销量：30</p>
+								<h3 class="food_img_name">新奥尔良鸡肉披萨</h3>
+								<p class="font12 clo9">就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_402808">
 									<div class="img_list_price">
 										<div id="addcart_btn_402808" class="right img_plus"
-											data-foodid="402808" data-foodname="干锅牛肉"
-											data-foodprice="60.00"
-											data-foodimg="/food/client/code/image/20150326/5513beec2a9ce.jpg"
-											data-foodsort="50634" data-foodpack="0.00">+</div>
+											data-foodid="402808" data-foodname="新奥尔良鸡肉披萨"
+											data-foodprice="22.00"
+											data-foodimg="/page/allcategory/shopimg/jirou.jpg"
+											data-foodsort="50634" data-foodpack="0.00"
+											data-foodtype="1">+</div>
 										<div class="right hide isnum" id="402808_amount_imglist"
 											>
 											<div id="cutcart_btn_402808" class="left img_cut"
-												data-foodid="402808" data-foodname="干锅牛肉"
-												data-foodprice="60.00"
-												data-foodimg="/food/client/code/image/20150326/5513beec2a9ce.jpg"
+												data-foodid="402808" data-foodname="新奥尔良鸡肉披萨"
+												data-foodprice="22.00"
+												data-foodimg="/page/allcategory/shopimg/jirou.jpg"
 												data-foodsort="50634" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
 												id="402808_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_402808">60</span></span>
+										id="food_price_num_402808">22</span><del class="yb-checkout-origin-price">¥55</del></span>
 								</div>
 							</div></li>
-					</ul>
-				</div>
-				<div id="foodlist50632" data-tagid="50632" class="foodlist_box">
-					<h3 class="foodlist_label">小吃</h3>
-					<ul>
-						<li class="food_rest_50632 food_402799" data-pack="0.00"><div
+							
+							
+							
+							<li class="food_rest_50634 food_402809" data-pack="0.00"><div
 								class="img_list_box">
-								<img class="img_list_img" data-food="402799"
-									data-src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
-									des="香甜酥脆" src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
-									style="width: 80px; height: 64px;" alt="糍粑"
+								<img class="img_list_img" data-food="402809"
+									data-src="../allcategory/shopimg/haixian.jpg"
+									des="就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/haixian.jpg"
+									style="width: 80px; height: 64px;" alt="新奥尔良鸡肉披萨"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
 							</div>
 							<div>
-								<h3 class="food_img_name">糍粑</h3>
+								<h3 class="food_img_name">豪华海鲜披萨</h3>
+								<p class="font12 clo9">就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
+								<!--无大小份-->
+								<div class="relative food_box" id="food_402809">
+									<div class="img_list_price">
+										<div id="addcart_btn_402809" class="right img_plus"
+											data-foodid="402809" data-foodname="豪华海鲜披萨"
+											data-foodprice="27.00"
+											data-foodimg="/page/allcategory/shopimg/haixian.jpg"
+											data-foodsort="50634" data-foodpack="0.00"
+											data-foodtype="1">+</div>
+										<div class="right hide isnum" id="402809_amount_imglist"
+											>
+											<div id="cutcart_btn_402809" class="left img_cut"
+												data-foodid="402809" data-foodname="豪华海鲜披萨"
+												data-foodprice="27.00"
+												data-foodimg="/page/allcategory/shopimg/haixian.jpg"
+												data-foodsort="50634" data-foodpack="0.00">-</div>
+											<div class="left order_count_imglist"
+												id="402809_amount_num_imglist">0</div>
+										</div>
+									</div>
+									<span class="clofe line25">¥<span
+										id="food_price_num_402809">27</span><del class="yb-checkout-origin-price">¥78</del></span>
+								</div>
+							</div></li>
+							
+							
+							
+							
+							
+							<li class="food_rest_50634 food_402818" data-pack="0.00"><div
+								class="img_list_box">
+								<img class="img_list_img" data-food="402818"
+									data-src="../allcategory/shopimg/zishu.jpg"
+									des="就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻" src="../allcategory/shopimg/zishu.jpg"
+									style="width: 80px; height: 64px;" alt="夏威夷风情披萨"
+									onclick="food_img(this);">
+								<div class="img_state img_jian">荐</div>
+							</div>
+							<div>
+								<h3 class="food_img_name">夏威夷风情披萨</h3>
+								<p class="font12 clo9">就是好吃，买就完了，别犹豫。选泰国进口金枕榴莲，搭配香浓芝士，烘烤后的大块榴莲和芝士美妙融合，香气扑鼻</p>
+								<!--无大小份-->
+								<div class="relative food_box" id="food_402818">
+									<div class="img_list_price">
+										<div id="addcart_btn_402818" class="right img_plus"
+											data-foodid="402818" data-foodname="夏威夷风情披萨"
+											data-foodprice="23.00"
+											data-foodimg="/page/allcategory/shopimg/zishu.jpg"
+											data-foodsort="50634" data-foodpack="0.00"
+											data-foodtype="1">+</div>
+										<div class="right hide isnum" id="402818_amount_imglist"
+											>
+											<div id="cutcart_btn_402818" class="left img_cut"
+												data-foodid="402818" data-foodname="夏威夷风情披萨"
+												data-foodprice="23.00"
+												data-foodimg="/page/allcategory/shopimg/zishu.jpg"
+												data-foodsort="50634" data-foodpack="0.00">-</div>
+											<div class="left order_count_imglist"
+												id="402818_amount_num_imglist">0</div>
+										</div>
+									</div>
+									<span class="clofe line25">¥<span
+										id="food_price_num_402818">23</span><del class="yb-checkout-origin-price">¥49</del></span>
+								</div>
+							</div></li>
+							
+							
+					</ul>
+				</div>
+				<div id="foodlist50632" data-tagid="50632" class="foodlist_box">
+					<h3 class="foodlist_label">超值特惠</h3>
+					<ul>
+					
+					
+						<li class="food_rest_50632 food_402799" data-pack="0.00"><div
+								class="img_list_box">
+								<img class="img_list_img" data-food="402799"
+									data-src="../allcategory/shopimg/danta.jpg"
+									des="香甜酥脆" src="../allcategory/shopimg/danta.jpg"
+									style="width: 80px; height: 64px;" alt="蛋挞"
+									onclick="food_img(this);">
+								<div class="img_state img_jian">荐</div>
+							</div>
+							<div>
+								<h3 class="food_img_name">蛋挞</h3>
 								<p class="font12 clo9">销量：30</p>
 								<!--无大小份-->
 								<div class="relative food_box" id="food_402799">
 									<div class="img_list_price">
 										<div id="addcart_btn_402799" class="right img_plus"
-											data-foodid="402799" data-foodname="糍粑"
-											data-foodprice="10.00"
-											data-foodimg="/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
-											data-foodsort="50632" data-foodpack="0.00">+</div>
+											data-foodid="402799" data-foodname="蛋挞"
+											data-foodprice="1.00"
+											data-foodimg="/page/allcategory/shopimg/danta.jpg"
+											data-foodsort="50632" data-foodpack="0.00"
+											data-foodtype="3">+</div>
 										<div class="right hide isnum" id="402799_amount_imglist">
 											<div id="cutcart_btn_402799" class="left img_cut"
-												data-foodid="402799" data-foodname="糍粑"
-												data-foodprice="10.00"
-												data-foodimg="/3cfood/food/menu/image/20150715/55a62d22bf620.jpg"
+												data-foodid="402799" data-foodname="蛋挞"
+												data-foodprice="1.00"
+												data-foodimg="/page/allcategory/shopimg/danta.jpg"
 												data-foodsort="50632" data-foodpack="0.00">-</div>
 											<div class="left order_count_imglist"
 												id="402799_amount_num_imglist">0</div>
 										</div>
 									</div>
 									<span class="clofe line25">¥<span
-										id="food_price_num_402799">10</span></span>
+										id="food_price_num_402799">1</span></span>
 								</div>
 							</div></li>
-						<li class="food_rest_50632 food_402800" data-pack="1.00"><div
+							
+							
+							
+						<li class="food_rest_50632 food_402800" data-pack="5.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402800"
-									data-src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
-									data-rel=" https://ali-img.0xiao.cn/3cfood/listlogo/image/20151031/56346076a62d0.jpg"
-									des="冰凉甜爽" src="https://ali-img.0xiao.cn/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
-									style="width: 80px; height: 64px;" alt="凉糕"
+									data-src="../allcategory/shopimg/naicha.jpg"
+									
+									des="浓郁香甜" src="../allcategory/shopimg/naicha.jpg"
+									style="width: 80px; height: 64px;" alt="奶茶"
 									onclick="food_img(this);">
 								<div class="img_state img_jian">荐</div>
 							</div>
 							<div>
-								<h3 class="food_img_name">凉糕</h3>
+								<h3 class="food_img_name">奶茶</h3>
 								<p class="font12 clo9">销量：89</p>
-								<!--无大小份-->
+								<!-- 无大小份 -->
 								<div class="relative food_box" id="food_402800">
 									<div class="img_list_price">
 										<div id="addcart_btn_402800" class="right img_plus"
-											data-foodid="402800" data-foodname="凉糕" data-foodprice="5.00"
-											data-foodimg="/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
-											data-foodsort="50632" data-foodpack="1.00">+</div>
+											data-foodid="402800" data-foodname="奶茶" data-foodprice="5.00"
+											data-foodimg="/page/allcategory/shopimg/naicha.jpg"
+											data-foodsort="50632" data-foodpack="1.00"
+											data-foodtype="2">+</div>
 										<div class="right hide isnum" id="402800_amount_imglist">
 											<div id="cutcart_btn_402800" class="left img_cut"
-												data-foodid="402800" data-foodname="凉糕"
+												data-foodid="402800" data-foodname="奶茶"
 												data-foodprice="5.00"
-												data-foodimg="/3cfood/food/menu/image/20150604/556f3826b33b4.jpg"
+												data-foodimg="/page/allcategory/shopimg/naicha.jpg"
 												data-foodsort="50632" data-foodpack="1.00">-</div>
 											<div class="left order_count_imglist"
 												id="402800_amount_num_imglist">0</div>
@@ -465,6 +583,8 @@
 										id="food_price_num_402800">5</span></span>
 								</div>
 							</div></li>
+							
+							<!-- 
 						<li class="food_rest_50632 food_402809" data-pack="0.00"><div
 								class="img_list_box">
 								<img class="img_list_img" data-food="402809"
@@ -476,7 +596,7 @@
 							<div>
 								<h3 class="food_img_name">薯条</h3>
 								<p class="font12 clo9">销量：99</p>
-								<!--无大小份-->
+								无大小份
 								<div class="relative food_box" id="food_402809">
 									<div class="img_list_price">
 										<div id="addcart_btn_402809" class="right img_plus"
@@ -496,7 +616,7 @@
 									<span class="clofe line25">¥<span
 										id="food_price_num_402809">8</span></span>
 								</div>
-							</div></li>
+							</div></li> -->
 					</ul>
 				</div>
 				<!--没有搜到相关商品-->
@@ -554,7 +674,7 @@
 	
 	
 	<div id="food_car" class="center clof pointer"
-		style="position: fixed; bottom: 0px; height: 50px;">
+		style="position: fixed; bottom: 0px; height: 50px;display: none;">
 		<div class="food_car_more" onclick="carItemShow()" style="z-index: 1">
 			<span class="font12" id="all_count"></span>
 		</div>

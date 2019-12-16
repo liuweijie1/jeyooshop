@@ -4,11 +4,17 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.jeyoo.Exception.ExceptionEnum;
 import com.jeyoo.Exception.JeyooException;
+import com.jeyoo.mapper.ShopConfigMapper;
+import com.jeyoo.pojo.ShopConfig;
 import com.jeyoo.pojo.UserOrderRecord;
 import com.jeyoo.resultpojo.UserOrderRecordResult;
 import com.jeyoo.service.IUserOrderRecordService;
+import com.jeyoo.service.impl.UserServiceImpl;
 import com.jeyoo.utils.PageUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +37,11 @@ import com.github.pagehelper.PageInfo;
  */
 @Controller
 @RequestMapping(value = "page/customer")
-public class CustomerController {
-	
+public class UserController {
 	@Autowired
-	private IUserOrderRecordService userOrderRecordService;
+	private ShopConfigMapper shopConfigmapper;
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 	
 	/**
 	 *  交易管理页面
@@ -42,7 +49,18 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value ="/process" ,method =RequestMethod.GET)
-	public String toProcess(Model model) {
+	public String toProcess(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String nickname = session.getAttribute("nickname")==null ? "": session.getAttribute("nickname").toString();
+		String headimgurl = session.getAttribute("headimgurl")==null ? "": session.getAttribute("headimgurl").toString();
+		 model.addAttribute("nickname", nickname);
+		 model.addAttribute("headimgurl", headimgurl);
+		 model.addAttribute("user",userServiceImpl.getUserInfo(request));
+		 
+		 String shopid = session.getAttribute("shopid") == null ? "": session.getAttribute("shopid").toString().trim();
+		 ShopConfig shopConfig=shopConfigmapper.getShopConfig(Long.valueOf(shopid));
+		 model.addAttribute("shop",shopConfig);
+		
 		return "customer/customer";
 	}
 	
@@ -66,13 +84,13 @@ public class CustomerController {
 	 * @param paramMap
 	 * @return
 	 */
-	@ResponseBody
+	/*@ResponseBody
 	@PostMapping(value ="/getPage")
 	public Object getPage(Model model,@RequestParam Map<String, String> paramMap) {
 		PageInfo<UserOrderRecordResult> pageInfo = userOrderRecordService.findPage(paramMap);
 		Map<String, Object> map = PageUtils.getMap(pageInfo);
 		return map;
-	}
+	}*/
 	
 	/**
 	 * 獲取訂單詳情
@@ -80,7 +98,7 @@ public class CustomerController {
 	 * @param orderid
 	 * @return
 	 */
-	@GetMapping(value = "/tradeDetail")
+	/*@GetMapping(value = "/tradeDetail")
 	public String getDetail(Model model,@RequestParam(value = "orderid") Long orderid) {
 		try {
 			if(null == orderid) {
@@ -93,7 +111,7 @@ public class CustomerController {
 		}
 		
 		return "trade-manage/checkOrder";
-	}
+	}*/
 	
 	/**
 	 *  储值屋币
@@ -101,7 +119,7 @@ public class CustomerController {
 	 * @param userOrder
 	 * @return
 	 */
-	@PostMapping(value = "/storeValue")
+	/*@PostMapping(value = "/storeValue")
 	@ResponseBody
 	public Map<String,Object> storeValue(UserOrderRecordResult userOrder) {
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -115,5 +133,5 @@ public class CustomerController {
 			map.put("message", e.getMessage());
 		}
 		return map;
-	}
+	}*/
 }

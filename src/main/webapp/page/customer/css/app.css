@@ -3332,7 +3332,7 @@ body {
 	-webkit-align-items: center;
 	-ms-flex-align: center;
 	align-items: center;
-	margin-bottom: .25rem
+	margin-bottom: .4rem
 }
 
 .yb-myOrder-details .yb-order_item_hd {
@@ -3340,11 +3340,12 @@ body {
 }
 
 .yb-myOrder-details .yb-order_item_hd img {
-	width: 3rem;
+	width: 3.5rem;
 	height: 3rem;
 	-o-object-fit: cover;
 	object-fit: cover;
-	margin-right: .5rem
+	margin-right: .5rem;
+	border-radius: 7px;
 }
 
 .yb-myOrder-details .yb-order_item_bd {
@@ -3943,6 +3944,7 @@ body {
 .yb-card_img {
 	position: relative;
 	height: 9rem;
+	width: 21.5em;
 	margin: .5rem .75rem 0
 }
 
@@ -3959,6 +3961,9 @@ body {
 } */
 
 .yb-card_img img {
+	top:50%;
+left:50%;
+transition:translate(-50% -50%);
 	width: 100%;
     height: 100%;
     z-index: 0;
@@ -5326,7 +5331,7 @@ body {
 #accountIndex.yb-new-account .yb-page-inner .my-main .yb-card_img {
 	position: relative;
 	height: 9rem;
-	margin: .75rem .75rem 0
+	margin: .35rem auto 0
 }
 
 #accountIndex.yb-new-account .yb-page-inner .my-main .yb-card_img .yb-inactivated-cover
@@ -13290,7 +13295,7 @@ li[data-v-c5ae4450] {
     position: absolute;
     display: block;
     margin: 0px 0px -15px 0px;
-    right: 134px;
+    right: 41%;
     bottom: 1.11rem;
     z-index: 5;
     font-size: 14px;
@@ -13303,6 +13308,68 @@ li[data-v-c5ae4450] {
     color: #fafafa;
 }
 
+.myorder_state_shopname {
+	   top: 8%;
+    left: 38%;
+    float: right;
+    position: absolute;
+    display: block;
+    margin: 2px 0px 34% 0px;
+    right: 34%;
+ /*  bottom: 1.11rem;  */
+    z-index: 5;
+    font-size: 14px;
+    line-height: 22px;
+ 
+transition:translate(-50% -50%);
+   
+    /* border: none; */
+  
+  
+    color: #fafafa;
+}
+
+.myorder_state_NO {
+	   top: 57%;
+    left: -41%;
+    float: right;
+    position: absolute;
+    display: block;
+    margin: 2px 0px 34% 0px;
+    right: 34%;
+ /*  bottom: 1.11rem;  */
+    z-index: 5;
+    font-size: 15px;
+    line-height: 22px;
+ 
+transition:translate(-50% -50%);
+   
+    /* border: none; */
+  
+  
+    color: #fafafa;
+}
+
+.myorder_state_vipno {
+	   top: 57%;
+    left: -7%;
+    float: right;
+    position: absolute;
+    display: block;
+    margin: 2px 0px 34% 0px;
+    right: 34%;
+ /*  bottom: 1.11rem;  */
+    z-index: 5;
+    font-size: 15px;
+    line-height: 22px;
+ 
+transition:translate(-50% -50%);
+   
+    /* border: none; */
+  
+  
+    color: #fafafa;
+}
 .borde-red {
 	border: .05rem solid #ff6d5a !important;
 }
