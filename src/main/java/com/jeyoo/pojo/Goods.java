@@ -18,7 +18,7 @@ public class Goods {
 
     private Integer sort;
 
-    private Double foodprice;
+    private BigDecimal foodprice;
 
    
 

@@ -17,6 +17,22 @@
       #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{telephone,jdbcType=VARCHAR}, now(),0,#{vipcard,jdbcType=VARCHAR},0.00, 0)
   </insert>
+  
+    <update id="setVipPay">
+		   update user SET balance=#{balance},vipstate=0
+		 where userid=#{userid}
+	 </update>
+      <update id="updatePhone">
+		   update user SET Telephone=#{mobilephone}
+		 where userid=#{userid}
+	 </update>
+ 
+    <select id="queryRecord" resultType="java.util.HashMap">
+	    select * from curecord
+	    where userid=#{userid} and creattime>DATE_SUB(CURDATE(), INTERVAL 3 MONTH)  order by creattime desc
+     </select>
+ 
+ 
     <insert id="insertSelective" parameterType="com.jeyoo.pojo.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">

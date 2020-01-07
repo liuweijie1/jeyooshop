@@ -24,7 +24,7 @@
   </insert> -->
   
      <select id="getShopConfig" resultType="com.jeyoo.pojo.ShopConfig">
-        SELECT s.shopid,s.shopname from shopconfig s 
+        SELECT s.shopid,s.shopname, s.shoptel from shopconfig s 
         WHERE   now() <![CDATA[ <= ]]>  s.duetime and now()  <![CDATA[ >= ]]>  s.creattime and isdelete=0
        
 		     and  s.shopid = #{shopid,jdbcType=BIGINT}

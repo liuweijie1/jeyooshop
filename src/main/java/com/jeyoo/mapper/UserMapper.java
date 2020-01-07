@@ -7,6 +7,7 @@ import com.jeyoo.resultpojo.UserExcel;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -43,4 +44,10 @@ public interface UserMapper {
     Map<String,Object> querydetailAll(@Param("userid") Integer userid);
 
 	User getUser(@Param("shopid") Long shopid, @Param("openid") String openid);
+
+	void setVipPay(@Param("userid")long userid, @Param("balance") BigDecimal balance);
+
+	List<Map<String, String>> queryRecord(@Param("userid")long userid);
+
+	int updatePhone(@Param("userid")Long userid, @Param("mobilephone")String mobilephone);
 }

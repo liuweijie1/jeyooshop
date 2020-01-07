@@ -82,7 +82,7 @@
 								</div>
 								<div data-v-d6f17a64="" class="Segmentingline"></div></a> <a
 								data-v-d6f17a64=""
-								href="http://masr8-26.pospal.cn/m/accountv4#/myCoupon"
+								href=""
 								class="yb-mypromotion"><div data-v-d6f17a64=""
 									class="yb-fontGray">
 									<img data-v-d6f17a64=""
@@ -93,7 +93,7 @@
 								<div data-v-d6f17a64="" class="yb-fontRed">0</div>
 								<div data-v-d6f17a64="" class="Segmentingline"></div></a> <a
 								data-v-d6f17a64=""
-								href="http://masr8-26.pospal.cn/m/accountv4#/integral"
+								href=""
 								class="yb-mypromotion"><div data-v-d6f17a64=""
 									class="yb-mypromotion">
 									<div data-v-d6f17a64="" class="yb-fontGray">
@@ -211,9 +211,9 @@
 						<!---->
 					</div>
 					
-					<div data-v-7c1af045="" style="text-align: center;width: 16.95rem;height: 2.1rem;background: #ff6d5a;margin: 1.5rem auto 1rem;color: #fff;font-size: 16px;background: #fff;box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);line-height: 2.1rem;border-radius: 4px;">
+					<!-- <div data-v-7c1af045="" style="text-align: center;width: 16.95rem;height: 2.1rem;background: #ff6d5a;margin: 1.5rem auto 1rem;color: #fff;font-size: 16px;background: #fff;box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);line-height: 2.1rem;border-radius: 4px;">
 					<a style="color: #3a3c4c;" data-v-7c1af045="" href="javascript:;">退出账户</a></div>
-					
+					 -->
 				    </div>
 				
 			

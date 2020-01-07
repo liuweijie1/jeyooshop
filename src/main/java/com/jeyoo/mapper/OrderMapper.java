@@ -1,10 +1,8 @@
 package com.jeyoo.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
-import com.jeyoo.pojo.AdminDepartment;
 import com.jeyoo.pojo.Order;
 
 public interface OrderMapper {
@@ -20,5 +18,11 @@ public interface OrderMapper {
 
 
 	List<Order> queryOrderDetails(@Param("number")String number);
+
+	void insertRecord(@Param("userid")long userid, @Param("recordid")long recordid, @Param("type") int type, @Param("title")String title, @Param("amount")BigDecimal amount, @Param("number")String number);
+
+	int qrBuy(@Param("number") String number);
+
+	List<Order> getOrderToday();
     
 }

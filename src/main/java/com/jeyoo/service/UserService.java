@@ -3,6 +3,7 @@ package com.jeyoo.service;
 import com.github.pagehelper.PageInfo;
 import com.jeyoo.pojo.User;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,5 +26,12 @@ public interface UserService {
     Map<String,Object> recharge(Map<String, Object> paramMap);
     
 	User getUserInfo(HttpServletRequest request);
+	
 	String getUserStauts(HttpServletRequest request);
+	
+	List<Map<String, String>> queryRecord(long userid);
+	
+	String getUserId(HttpServletRequest request);
+	
+	int updatePhone(Long userid, String mobilephone);
 }

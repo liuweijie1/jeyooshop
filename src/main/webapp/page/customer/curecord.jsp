@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,8 +30,15 @@
 			<div data-v-547ab184="" class="yb-page-inner">
 				<div data-v-547ab184="" class="yb-integral">
 					<div data-v-547ab184="" class="scroll-box">
+					
+					<c:choose> 
 
-						<div class="yb-myCouponNull">
+                      <c:when test="${fn:length(recordMap) <= 0}">   
+
+ 
+                      
+
+						 <div class="yb-myCouponNull">
 							<div class="yb-null_img"></div>
 							<div class="yb-null_text">
 								<div class="yb-null_title">暂无消费记录</div>
@@ -40,7 +49,16 @@
 							</div> -->
 						</div>
 						
-					<!-- 	<div data-v-547ab184="" class="yb-interal_items"
+						
+						 
+						 </c:when>      
+
+                         <c:otherwise> 
+					   <c:forEach items="${recordMap}" var="record">
+					       
+					  
+                        <c:if test="${record.type eq '1'}">
+						<div data-v-547ab184="" class="yb-interal_items"
 							style="overflow-y: scroll;">
 							<a data-v-547ab184="" href="#/balanceLogDetail" class=""><div
 									data-v-547ab184="" class="yb-interal_item yb-itmes_access">
@@ -54,19 +72,19 @@
 											</svg>
 									</div>
 									<div data-v-547ab184="" class="yb-interal_item_bd">
-										<div data-v-547ab184="">微信支付充值</div>
-										<div data-v-547ab184="" class="yb-interal_time">2019-11-20
-											17:27:30</div>
+										<div data-v-547ab184="">${record.title}</div>
+										<div data-v-547ab184="" class="yb-interal_time"><fmt:formatDate value="${record.creattime}" pattern="yyyy-MM-dd HH:mm:ss" /> </div>
 									</div>
 									<div data-v-547ab184="" class="yb-interal_item_ft">
-										<span data-v-547ab184="">+</span>0.10
+										<span data-v-547ab184="">+</span>${record.amount}
 									</div>
 								</div></a>
 						</div>
-						
+						</c:if>
+						 <c:if test="${record.type eq '-1'}">
 						<div data-v-547ab184="" class="yb-interal_items"
 							style="overflow-y: scroll;">
-							<a data-v-547ab184="" href="#/balanceLogDetail" class=""><div
+							<a data-v-547ab184="" href="/page/order/showdetails?number=${record.number}" class=""><div
 									data-v-547ab184="" class="yb-interal_item yb-itmes_access">
 									<div data-v-547ab184="" class="yb-interal_item_hd">
 										<svg data-v-21c0a497="" data-v-547ab184="" aria-hidden="true"
@@ -78,20 +96,26 @@
 											</svg>
 									</div>
 									<div data-v-547ab184="" class="yb-interal_item_bd">
-										<div data-v-547ab184="">微信支付充值</div>
-										<div data-v-547ab184="" class="yb-interal_time">2019-11-20
-											17:27:30</div>
+										<div data-v-547ab184="">${record.title}</div>
+										<div data-v-547ab184="" class="yb-interal_time"><fmt:formatDate value="${record.creattime}" pattern="yyyy-MM-dd HH:mm:ss" /> </div>
 									</div>
 									<div data-v-547ab184="" class="yb-interal_item_ft">
-										<span data-v-547ab184="">+</span>0.10
+										<span data-v-547ab184="">-</span>${record.amount}
 									</div>
 								</div></a>
 						</div>
 						
-						 -->
+						</c:if>
+						 </c:forEach>
+					</c:otherwise> 
+
+                   </c:choose>
 						
 						
 					</div>
+					
+					
+					
 				</div>
 			</div>
 			<div data-v-1c47b319="" data-v-bebda20a="">

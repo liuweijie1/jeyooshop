@@ -1,15 +1,13 @@
 package com.jeyoo.service;
 
-import com.github.pagehelper.PageInfo;
 import com.jeyoo.pojo.Order;
 import com.jeyoo.pojo.User;
-
 import java.util.List;
 import java.util.Map;
 
 public interface OrderService {
 
-	void plaOrder(String userid,String goodlist, String qctime, String remark, String pricetotal,String state, int totalcount);
+	
 
 
 	List<Order> getOrder(String number);
@@ -17,7 +15,17 @@ public interface OrderService {
 	List<Order> queryOrderDetails(String number);
 
 
-	void cheakOrder(String userid, String goodlist);
+	Map<String, String> cheakOrder(User user, String goodsmap, String paytype);
+
+
+	String plaOrder(long l, String goodsmap, String qctime, String remark, String pricetotal, String state,
+			int totalcount, String paytype, Map<String, String> map);
+
+	void setVipPay(User user, Map<String, String> map, String number);
+
+	int qrBuy(String number);
+
+	List<Order> getOrderToday();
 
 
 	

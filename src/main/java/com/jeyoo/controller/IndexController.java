@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
  *  检举管理
- * @author wbliuwjs
+ * @author wbliuwj
  *
  */
 @Controller

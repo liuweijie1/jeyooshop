@@ -44,29 +44,39 @@
    
      <insert id="insert" parameterType="com.jeyoo.pojo.Order">
 		insert into orders (orderid, userid, number,
-		paymenttype, totalmoney,totalcount, ordertime,
+		paymenttype, totalmoney, realmoney,maxdel,totalcount, ordertime,
 		deliverytype, deliverytime, state,
 		remark, sort,isdelete)
-		values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT},
-		#{number,jdbcType=BIGINT},
-		1, #{totalmoney,jdbcType=DOUBLE},#{totalcount,jdbcType=INTEGER},
+		values (#{orderid,jdbcType=BIGINT}, #{userid},
+		#{number,jdbcType=BIGINT},	#{paymenttype,jdbcType=BIGINT},
+		#{totalmoney},#{realmoney},#{maxdel},#{totalcount,jdbcType=INTEGER},
 		now(), 1, #{deliverytime,jdbcType=VARCHAR},
 		#{state,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},
 		(SELECT nextval('Order')), 0)
      </insert>
   
+    <insert id="insertRecord" >
+    insert into curecord (userid,recordid,type,title,amount,creattime,number)
+      values (#{userid}, #{recordid}, #{type}, #{title}, #{amount},now(),#{number})
+    </insert>
+    
     <insert id="insert_Goods" >
-    insert into order_goods (ordergoodid,orderid,goodsid,amount,sort)
+    insert into order_goods (ordergoodid,orderid,goodsid,amount,creattime,sort)
       values (#{ordergoodid,jdbcType=BIGINT}, #{orderid,jdbcType=BIGINT}, #{goodsid,jdbcType=BIGINT}, 
-      #{amount,jdbcType=INTEGER}, (SELECT nextval('Order_Goods')) )
-  </insert>
-  
+      #{amount,jdbcType=INTEGER}, now(),(SELECT nextval('Order_Goods')) )
+    </insert>
+    
      <select id="getOrder" resultType="com.jeyoo.pojo.Order">
-        SELECT o.orderid,o.number,o.ordertime,o.remark,o.totalmoney ,o.state,o.totalcount from orders o 
+        SELECT o.orderid,o.number,o.ordertime,o.paymenttype,o.remark,o.totalmoney ,o.realmoney,o.state,o.totalcount from orders o 
+        WHERE  o.number = #{number}
+		
+		order by  o.ordertime desc
+   </select>
+      <select id="getOrderToday" resultType="com.jeyoo.pojo.Order">
+        SELECT o.orderid,o.number,o.ordertime,o.paymenttype,o.remark,o.totalmoney ,o.realmoney,o.state,o.totalcount from orders o 
         WHERE  o.ordertime>=  CURDATE()
-        <if test="number!=null and number !=''">
-		     and  o.number = #{number,jdbcType=BIGINT}
-		</if>
+       
+		order by  o.ordertime desc
    </select>
    
      <select id="queryOrderDetails" resultType="com.jeyoo.pojo.Order">
@@ -78,6 +88,8 @@
 					o.ordertime,
 					o.remark,
 					o.totalmoney,
+					o.state,
+					
 					g.foodname,
 					g.foodprice,
 					g.goodimg,
@@ -89,17 +101,57 @@
 				WHERE
 					o.orderid = og.orderid
 				AND og.goodsid = g.goodid
-				AND o.ordertime >= CURDATE()
+				<!-- AND o.ordertime >= CURDATE() -->
 				
 				<if test="number!=null and number !=''">
-		          and  o.number = #{number,jdbcType=BIGINT}
+		          and  o.number = #{number}
 		       </if>
 				 
      </select>
+     
+     
+       <update id="qrBuy"  parameterType="java.lang.String">
+        update orders  set state=3 where number=#{number}
+       </update>
  <!--  
    <select id="getCategoryById" resultType="com.jeyoo.pojo.InformationCategory">
-        select CatagoryID,CategoryName,CategoryNameEN, Sequence as seqence,isShow from information_category 
-         where CatagoryID=#{catagoryID} and isdelete=0
+       
+SELECT
+	*,
+	round(
+		2 * asin(
+			sqrt(
+				pow(
+					sin(
+						(latitude * pi() / 180 - 31.18317 * pi() / 180) / 2
+					),
+					2
+				) + cos(latitude * pi() / 180) * cos(31.18317 * pi() / 180) * pow(
+					sin(
+						(longitude * pi() / 180 - 121.48245 * pi() / 180) / 2
+					),
+					2
+				)
+			)
+		) * 6378.137,
+		1
+	) AS distance
+FROM
+	shopconfig
+ORDER BY
+	distance ASC
+
+
+    select * from shopconfig where sqrt((((121.48245 - longitude) *
+        PI() * 12656 * cos(((31.18317 + latitude) /
+            2) * PI() / 180) /
+        180) * ((121.48245 - longitude) *
+        PI() * 12656 * cos(((31.18317 + latitude) /
+            2) * PI() / 180) /
+        180)) + (((31.18317 - latitude) *
+        PI() * 12656 / 180) * (
+        (31.18317 - latitude) * PI() *
+        12656 / 180))) < 5
    </select>
    
     <update id="editCategory"  parameterType="com.jeyoo.pojo.InformationCategory">

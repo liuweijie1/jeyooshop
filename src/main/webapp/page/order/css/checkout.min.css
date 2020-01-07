@@ -660,9 +660,33 @@ input[type=text]:disabled {
 }
 
 [for=pay2] .yb-paymethod-name {
+	width: 70%;
 	display: inline-block
 }
 
+.yb-paymethod-vip {
+	display: inline-block
+	/* height: 17px; */
+	float:left;
+	display: -webkit-box!important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.recharge_btn{
+	border: 1px solid #ff6d5a;
+       margin-right: 10px;
+    bottom: 1.11rem;
+    z-index: 5;
+    font-size: 12px;
+    line-height: 22px;
+    /* padding: .19rem .32rem; */
+    padding: 1px 7px;
+    /* border: none; */
+    border-radius: 6px;
+    background: rgb(255, 109, 90);
+    color: #fafafa;
+}
 [for=pay2] .yb-shoppingCart-txt {
 	display: inline-block;
 	font-size: .55rem;
@@ -980,7 +1004,12 @@ input[type=text]:disabled {
 	height: 24px;
 	margin-right: 6.5px
 }
-
+ /* .yb-paymethod-foot {
+ float:right;
+	width: 48px;
+	height: 24px;
+	padding: 6.5px 0px 0px 0px
+}  */
 .yb-paymethod-list .yb-paymethod-head img {
 	width: 100%;
 	height: 100%;
@@ -996,9 +1025,12 @@ input[type=text]:disabled {
 }
 
 .yb-paymethod-list .yb-paymethod-cb {
-	color: #757575
+	color: #FF6D5A;
 }
-
+.yb-paymethod-vip {
+	font-size: 10px;
+	color: #FF6D5A;
+}
 .yb-charge-list {
 	position: relative
 }
@@ -1010,8 +1042,22 @@ input[type=text]:disabled {
 	white-space: nowrap;
 	overflow: hidden
 }
-
-.yb-charge-list .yb-charge-info {
+.yb-charge-info {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	right: 33px;
+	width: 12%;
+	max-width: 4.1rem;
+	background-color: #FFF;
+	display: none;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	flex-direction: column
+}
+/* .yb-charge-list .yb-charge-info {
 	position: absolute;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
@@ -1025,7 +1071,7 @@ input[type=text]:disabled {
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
 	flex-direction: column
-}
+} */
 
 .yb-charge-list .yb-charge-info .yb-charge-rules {
 	color: #FF6D5A;
@@ -1035,8 +1081,7 @@ input[type=text]:disabled {
 	height: auto;
 	margin: 0
 }
-
-.yb-charge-list .yb-charge-btn {
+.yb-charge-btn {
 	width: 2.2rem;
 	-webkit-align-self: flex-end;
 	align-self: flex-end;
@@ -1049,7 +1094,20 @@ input[type=text]:disabled {
 	border: 0;
 	display: block
 }
-
+/* .yb-charge-list .yb-charge-btn {
+	width: 2.2rem;
+	-webkit-align-self: flex-end;
+	align-self: flex-end;
+	margin-top: .1rem;
+	background-color: #FF6D5A;
+	padding: .1rem .4rem;
+	font-size: .7rem;
+	color: #fff;
+	border-radius: .1rem;
+	border: 0;
+	display: block
+}
+ */
 .yb-newAddres-bd:after, .yb-newAddres-hd:after {
 	border-top: 0 solid transparent
 }
@@ -1058,7 +1116,7 @@ input[type=text]:disabled {
 	outline: 0
 }
 
-.yb-charge-list .yb-charge-rules {
+/* .yb-charge-list .yb-charge-rules {
 	font-size: 10px;
 	color: #FFF;
 	background: #FF6D5A;
@@ -1071,6 +1129,21 @@ input[type=text]:disabled {
 	padding: 0 .2rem;
 	min-width: 3rem;
 	width: 33%
+} */
+.yb-charge-list .yb-charge-rules {
+    font-size: 10px;
+    color: #FFF;
+    background: #FF6D5A;
+    border-radius: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    height: .9rem;
+ /*    margin: 1.1rem -8.8rem 0 ; */
+ margin: 8% 0% 0% -70%;
+    padding: 0 .2rem;
+    min-width: 3rem;
+    width: 73%;
 }
 
 .yb-charge-list .yb-charge-rules .yb-charge-rule {
@@ -1080,18 +1153,18 @@ input[type=text]:disabled {
 	text-overflow: ellipsis
 }
 
-.willBeRich .weui-icon-checked {
+/* .willBeRich .weui-icon-checked {
 	position: absolute;
-	left: -99999px
-}
+	left: 273px
+} */
 
 .willBeRich .yb-paymethod-cb {
 	color: #FF6D5A
 }
 
-.willBeRich .yb-paymethod-body .yb-charge-rules {
+/* .willBeRich .yb-paymethod-body .yb-charge-rules {
 	display: none
-}
+} */
 
 .willBeRich .yb-charge-info {
 	display: -webkit-box;

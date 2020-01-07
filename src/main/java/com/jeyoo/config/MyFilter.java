@@ -62,6 +62,15 @@ public class MyFilter implements WebMvcConfigurer {
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
         	
+        	String openid = request.getParameter("openid") == null ? "": request.getParameter("openid").toString().trim();
+    		if (StringUtils.isBlank(openid)) {
+    			openid = request.getSession().getAttribute("WX_OPEN_ID")==null ? "": request.getSession().getAttribute("WX_OPEN_ID").toString();
+    			
+    			
+    		}
+        	
+    		request.getSession().setAttribute("WX_OPEN_ID", openid);
+        	
         	String nickname = request.getSession().getAttribute("nickname")==null ? "": request.getSession().getAttribute("nickname").toString();
         	//判断店铺参数是否存在
     		String shopid = request.getParameter("shopid") == null ? "": request.getParameter("shopid").toString().trim();
@@ -100,12 +109,13 @@ public class MyFilter implements WebMvcConfigurer {
             Object user = session.getAttribute("USER_TOKEN");
             //获取登录的session信息
           
-    		if(null == user ){
+    		/*if(null == user ){
     			
     			//判断是否为微信环境，微信环境未登陆，进行AUTH登陆
     			String userAgent = request.getHeader("user-agent").toLowerCase();
     			log.info("--micromessenger--" + userAgent);
-    			if(userAgent.indexOf("micromessenger") > -1){//微信环境
+    			//if(userAgent.indexOf("micromessenger") > -1){//微信环境
+    				if(true){//微信环境
     				Map<String, Object> authLogin = LoginAuthUtil.authLogin(request, httpServletResponse);//进行auto登录
     				boolean status = (Boolean)authLogin.get("status");//auth登录是否成功
     				boolean isAuthIfNesscary = (Boolean)authLogin.get("isAuthIfNesscary");//auth登录操作是否有重定向(1授权2绑定手机号)
@@ -122,7 +132,7 @@ public class MyFilter implements WebMvcConfigurer {
         			return false;
     			}
     			return false;
-    		}
+    		}*/
     		return true;
     	}
         	

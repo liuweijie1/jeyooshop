@@ -1,26 +1,14 @@
 package com.jeyoo.controller;
 
 
-import com.github.pagehelper.PageInfo;
-import com.jeyoo.Exception.ExceptionEnum;
-import com.jeyoo.Exception.JeyooException;
-import com.jeyoo.pojo.UserContact;
-import com.jeyoo.pojo.UserContactattachment;
-import com.jeyoo.resultpojo.UserContactResult;
-import com.jeyoo.service.UserContactManageService;
-import com.jeyoo.utils.PageUtils;
-
+import com.jeyoo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 /**
  *  联络我们管理
  * @author wbliuwj
@@ -28,19 +16,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("page/allcategory")
+@Slf4j
 public class UserContactManageController {
   
+    
     @Autowired
-    private UserContactManageService userContactService;
-
+  	private UserService userService;
     
    
     @GetMapping("/process")
-	public String toProcess(Model model) {
+	public String toProcess(Model model,HttpServletRequest request) {
+    	//判断用户有没有登录即有没有用户
+    	if(!"1".equals(userService.getUserStauts(request))) {
+    		log.info("用户有没有登录");
+			return "";
+    	}
 		return "/allcategory/allcategory2";
 	}
     
- 
+}
     
     /**
 
@@ -50,7 +44,7 @@ public class UserContactManageController {
    */
 
 
-    @ResponseBody
+   /* @ResponseBody
 	@GetMapping(value ="/getPage")
     public Object  getPage( HttpServletResponse response, HttpServletRequest request,@RequestParam Map<String, String> paramMap) {
         try {
@@ -67,7 +61,7 @@ public class UserContactManageController {
     }
     
 
-    
+    */
     /**
      * 查看詳情
      * @param response
@@ -76,7 +70,7 @@ public class UserContactManageController {
      * @return
      */
   
-	@GetMapping(value ="/toDetail")
+	/*@GetMapping(value ="/toDetail")
        public String  toDetail( Model model,HttpServletResponse response, HttpServletRequest request,@RequestParam Map<String, String> paramMap) {
            try {
            	
@@ -95,3 +89,4 @@ public class UserContactManageController {
            }
        }
 }
+*/

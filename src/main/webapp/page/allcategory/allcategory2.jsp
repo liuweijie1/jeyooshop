@@ -7,24 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="Description" content="三餐美食网，您身边的美食专家。各色餐厅，精彩呈送，外卖订餐，手机微信点单，快捷享受！">
 <meta name="Keywords" content="美食,餐厅,订餐,外卖,送餐,订餐网,微信订餐,手机点餐">
-<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover"> -->
 
 
 <title>杰悠意大利披萨</title>
+ <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<!--   <script src="../allcategory/js/jquery-1.8.3.min.js"></script> -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">  
   <link rel="stylesheet" type="text/css" href="./css/wap.min.css">
   <link rel="stylesheet" type="text/css" href="./css/wap_menu.css">
+  
    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
-<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">  -->
-  <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">   -->
+
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script> 
-<!--   <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>  -->
+
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/img/favicon.ico">
 	
   
@@ -48,11 +52,49 @@
         overflow:scroll; 
         -webkit-overflow-scrolling: touch; 
        
-/*   overflow: auto;
-  -webkit-overflow-scrolling: touch; */
+
+
 }
+
+
+
+
+
+.imgContainer {
+ background: url("../allcategory/image/tempimg.jpg") no-repeat;
+  background-size: 100% 100%;
+  height: 100%; 
+   /*  min-height: 100%; */
+  position: fixed;
+  width: 100%;
+   /*  -webkit-background-size: 100% 100%; */
+ -moz-background-size: 100% 100%; 
+ /*  -o-background-size: 100% 100%; */
+ 
+
+
+}
+
+.img1 {
+	/* display: block;
+	background-size:contain|cover;
+
+    width:100%;
+
+    height:auto ;
+	
+	position: absolute; */
+	
+	  /* display: inline-block; */
+	/*   max-height:100%;
+	  width:auto; */
+  /*  height: auto;
+  max-width: 100%; */
+}
+
+
 </style>
-<script>
+<!-- <script>
 
 
   //读取cookies
@@ -142,7 +184,7 @@
         setTimeout(function(){getCdnRs();},3000);  
       }
     } 
-</script>
+</script> -->
 
 </head>
 
@@ -150,9 +192,20 @@
 
 <body pagename="res" data-res_id="7727" data-res_token="m3c4tx"
 	data-min_price="0" data-state="0" data-mobile="1" data-iphone="0"
-	data-weixin="0" data-currency="¥">
+	data-weixin="0" data-currency="¥"  id="bodys">
 
-
+ 	<div id="temppage">
+		<div class="imgContainer">
+			<div class="weui-toast weui_loading_toast weui-toast--visible">
+				<div class="weui_loading">
+					<i class="weui-loading weui-icon_toast"></i>
+				</div>
+				<p class="weui-toast_content">正在加载</p>
+			</div>
+			
+		</div>
+	</div>
+	<div id="shoppage" style="display: none">
 	<div id="rebate_shade" class="rebate_shade" style="display: none"
 		onclick="$(&#39;#rebate_shade&#39;).hide()">
 		<p class="mb10 font16">【优惠信息】</p>
@@ -763,7 +816,7 @@
 			</tbody>
 		</table>
 	</footer>
-	
+	<div id="toastok" style="display: none;" class="weui-toast  weui-toast--visible"><i class="weui-icon-success-no-circle weui-icon_toast"></i><p class="weui-toast_content">添加成功</p></div>
 	
 	
     
@@ -780,7 +833,7 @@
       // 滚动方向 horizontal/vertical
     direction: 'horizontal',
     // 自动播放
-    autoplay:2000,
+    autoplay:3000,
     // 是否循环播放
     loop: true,
     // 如果需要分页器（小圆点）
@@ -797,7 +850,7 @@
     // 如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
     // 操作包括触碰，拖动，点击pagination等。
     autoplayDisableOnInteraction:false,
-  }) 
+  })  
 
 /* 
 
@@ -868,9 +921,9 @@
         }
         initPlatReturn();  */
     </script>
-  <script src="./js/wap.min.js"></script> 
+ </div>
+</body>
+ <script src="./js/wap.min.js"></script> 
     <script src="./js/template.js"></script>
 	<script src="./js/wap_menu.js"></script>
-</body>
-
 </html>

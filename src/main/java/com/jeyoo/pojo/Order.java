@@ -14,9 +14,13 @@ public class Order {
 
     private String number;
 
-    private Integer paymenttype;
+    private String paymenttype;
     
-    private double totalmoney;
+    private BigDecimal totalmoney;
+    
+    private BigDecimal realmoney;
+    
+    private BigDecimal maxdel;
     
     private Integer totalcount;
     

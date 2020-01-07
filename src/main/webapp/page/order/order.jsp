@@ -44,7 +44,7 @@
 						<label for="s14" class="weui-check__label">
 						<input type="radio" class="weui-check" name="checkbox1" id="s14" checked="true">
 						<i class="weui-icon-checked"></i>
-						<span class="yb-ridao_text" >自取</span> <div style="margin: 2px 0px 0px 13px;float: right; color: #FF6D5A; " id="timeDiv"></div>
+						<span class="yb-ridao_text" >自取</span> <div style="margin: 2px 0px 0px 13px;float: right; color: #999; " id="timeDiv"></div>
 						</label>
 						</span>
 					</div>
@@ -175,13 +175,32 @@
 				<input id="CouponUId" type="hidden" value=""><input
 					id="CouponCode" type="hidden" value="">
 				<div class="weui-cell yb-checkout-list">
-					<div class="weui-cell__hd">备注</div>
+					<div class="weui-cell__hd">备注:</div>
 					<div class="weui-cell__bd"></div>
 					<div class="weui-cell__ft">
 						<input type="text" class="yb-checkout-say" id="Comment"
 							placeholder="如需备注，请输入(选填)">
 					</div>
 				</div>
+			
+				<div id="addphone" <c:if test="${mobilephone != null}">style="display: none;"</c:if> class="weui-cell yb-checkout-list">
+					<div class="weui-cell__hd"><span style="color:red ">*</span>联系方式:</div>
+					<div class="weui-cell__bd"></div>
+					<div class="weui-cell__ft">
+						<input type="text" class="yb-checkout-say" id="phone" onkeyup="value=value.replace(/[^0-9\s]/g,'')"
+							placeholder="" maxlength="11" value="">
+					</div>
+				</div>
+			
+				
+				<div  id="edphone" <c:if test="${mobilephone eq null}">style="display: none;"</c:if>class="weui-cell yb-checkout-list">
+					<div class="weui-cell__hd"><span style="color:red ">*</span>联系方式:</div>
+					<div class="weui-cell__bd"></div>
+					<div class="weui-cell__ft"  onclick="edphonehide()">
+						<input type="text" class="yb-checkout-say" id="edtphone" value="${mobilephone}" disabled="true">
+					</div>
+				</div>
+			
 				<div style="display: none;"
 					class="weui-cell yb-checkout-list minAmountDiv">
 					<div class="weui-cell__hd">起送价</div>
@@ -194,21 +213,31 @@
 					</div>
 					<div class="weui-cell__ft yb-total_ft">
 						<div class="yb-total-totalSell">
-							小计:<span class="yb-total-price totalSellPrice">¥0.10</span>
+							总计:<span class="yb-total-price totalSellPrice" id="totalSellPrice"></span>
 						</div>
-						<div>
-							实付:<span class="yb-total-price totalAmount"
-								data-totalamount="0.1">¥0.10</span><span
+						
+						<div id="vipdel" style="display: none;">
+							会员减免:<span class="yb-total-price totalAmount"
+								data-totalamount="0.1" id="vipdelnum">¥0.10</span><span
 								class="yb-total-postage"></span>
 						</div>
+						<div >
+							实付:
+							<span class="yb-total-price totalAmount" data-totalamount="0.1" style="display: none;" id="yb-total-price-vip" >¥0.10</span>
+							 <span class="yb-total-price totalAmount" data-totalamount="0.1" style="display: none;" id="yb-total-price">¥0.10</span> 
+							<span class="yb-total-postage"></span>
+						</div>
+						
 					</div>
 				</div>
 			</div>
-
+<!-- <div class="yb-paymethod-foot" id="yb-paymethod-foot">
+						<button class="recharge_btn">充值</button>
+					</div>  -->
 			<div class="yb-paymethod-list yb-actionsheet-list" id="paymethodList">
 			
-			
-			<label class="yb-paymethod-item weui-cells_checkbox " for="pay2">
+			 <div class="yb-charge-list willBeRich" id="UseBalance"> 
+			<label class="yb-paymethod-item weui-cells_checkbox vippay"  for="pay2">
 					<div class="yb-paymethod-head">
 						<img src="./image/balance_pay@2x.png" alt="">
 					</div>
@@ -216,17 +245,32 @@
 						<div class="yb-paymethod-name">
 							会员余额<span class="yb-paymethod-cb">（会员余额：0元）</span>
 						</div>
+						<div class="yb-charge-rules">会员充值免费赠送任意披萨和奶茶，另立赠相应余额</div>
+						<!-- <div class="yb-paymethod-vip">
+							<span class="yb-paymethod-vip">充值满100赠披萨一份奶茶一杯，另立赠相应余额</span>
+						</div>  -->
+						
 
 					</div>
+					<!--  <div class="yb-paymethod-foot" id="yb-paymethod-foot">
+						<button class="recharge_btn">充值</button>
+					</div>  -->
 					<div class="yb-paymethod-foot  yb-actionsheet-origin">
 						<input type="radio" name="paymethodName" data-code="2"
-							data-name="会员余额" id="pay2" class="weui-check" checked="checked"> 
+							data-name="会员余额" id="pay2" class="weui-check" checked="checked" value="pay2"> 
 							 <i class="weui-icon-checked"></i> 
 					</div>
 				</label>
+			        <div class="yb-charge-info">
+						<button class="yb-charge-btn">充值</button>
+						
+					</div>  
+			
+			</div> 
 			
 			
-				<label class="yb-paymethod-item weui-cells_checkbox " for="pay1">
+			
+				<!-- <label class="yb-paymethod-item weui-cells_checkbox " for="pay1">
 					<div class="yb-paymethod-head">
 						<img src="./image/bank_pay@2x.png" alt="">
 					</div>
@@ -236,12 +280,27 @@
 					</div>
 					<div class="yb-paymethod-foot  yb-actionsheet-origin">
 						<input type="radio" name="paymethodName" data-code="1"
-							data-name="当面付款" id="pay1" class="weui-check">
+							data-name="当面付款" id="pay1" class="weui-check" value="pay1">
 						 <i class="weui-icon-checked"></i> 
 					</div>
+				</label>  -->
+				
+				<label class="yb-paymethod-item weui-cells_checkbox weixinpay" for="pay4">
+					<div class="yb-paymethod-head">
+						<img
+							src="//imgw.pospal.cn/we/westroe/img/payments/wechat_pay@2x.png"
+							alt="">
+					</div>
+					<div class="yb-paymethod-body">
+						<div class="yb-paymethod-name">微信支付</div>
+
+					</div>
+					<div class="yb-paymethod-foot  yb-actionsheet-origin">
+						<input type="radio" name="paymethodName" data-code="4"
+							data-name="微信支付" id="pay4" class="weui-check" value="pay4" >
+						<i class="weui-icon-checked"></i>
+					</div>
 				</label> 
-				
-				
 				
 			</div>
 
@@ -249,9 +308,11 @@
 				<div class="yb-foot-left">
 					<span class="yb-foot-totalNum">共 <span class="totalCount">2</span>
 						件
-					</span> 总计：<span class="yb-foot-price totalAmount" data-totalamount="0.1">¥0.10</span>
+					</span> 实付：<span class="yb-foot-price totalAmount" id="yb-foot-price-vip" style="display: none;" data-totalamount="0.1">¥0.10</span>
+					             <span class="yb-foot-price totalAmount" id="yb-foot-price" style="display: none;" data-totalamount="0.1">¥0.10</span>
+					
 				</div>
-				<a class="yb-foot-right" href="javascript:plaorder(1)" id="confirmPay">
+				<a class="yb-foot-right" href="javascript:plaorder()" id="confirmPay">
 					确定付款 </a>
 			</div>
 

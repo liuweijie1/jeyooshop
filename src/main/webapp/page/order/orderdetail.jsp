@@ -13,6 +13,8 @@
 <title>订单详情</title>
 <link rel="shortcut icon" href="http://masr8-26.pospal.cn/favicon.ico">
 <link href="../customer/css/app.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
 
 </head>
 
@@ -34,7 +36,7 @@
 										class="svg-icon">
 										<use data-v-21c0a497="" xlink:href="#icon-arrow_right"></use></svg>
 								</div>
-								<div data-v-3cd90192=""
+								<div data-v-3cd90192=""<c:if test="${order.state==1}">class="state-nav-item state-nav-item_active"</c:if> <c:if test="${order.state==3}">class="state-nav-item"</c:if>
 									class="state-nav-item state-nav-item_active">
 									<div data-v-3cd90192="" class="item-point"></div>
 									<div data-v-3cd90192="" class="item-state">已接单</div>
@@ -53,11 +55,13 @@
 										class="svg-icon">
 										<use data-v-21c0a497="" xlink:href="#icon-arrow_right"></use></svg>
 								</div>
-								<div data-v-3cd90192="" class="state-nav-item">
+								
+								<div data-v-3cd90192="" <c:if test="${order.state==3}">class="state-nav-item state-nav-item_active"</c:if> <c:if test="${order.state==1}">class="state-nav-item"</c:if>>
 									<div data-v-3cd90192="" class="item-point"></div>
 									<div data-v-3cd90192="" class="item-state">交易完成</div>
 								</div>
 							</div>
+							<input type="hidden" id="orderstate" value="${order.state}">
 							<div data-v-8ced8152="" class="yb-order_text"></div>
 							<!---->
 							<div data-v-8ced8152="">
@@ -106,7 +110,7 @@
 							<div data-v-8ced8152="" class="yb-order_foot">
 								共<span>${order.totalcount}</span>件商品&nbsp;&nbsp;总计:<span>¥${order.totalmoney}</span>元
 								<div class="yb-order_payNum">
-									实付:<span>¥${order.totalmoney}</span>
+									实付:<span>¥${order.realmoney}</span>
 								</div>
 							</div>
 						</div>
@@ -136,20 +140,21 @@
 							</div>
 							<div data-v-8ced8152="" class="yb-order_notes_itme clearfix">
 								<div data-v-8ced8152="" class="yb-order_notes_title">支付方式</div>
-								<div data-v-8ced8152="" class="yb-order_notes_text">货到付款</div>
+								<div data-v-8ced8152="" class="yb-order_notes_text"><c:if test="${order.paymenttype == 'pay2'}">会员支付</c:if> <c:if test="${order.paymenttype =='pay4'}">微信支付</c:if></div>
 							</div>
 							<div data-v-8ced8152="" class="yb-order_notes_itme clearfix">
 								<div data-v-8ced8152="" class="yb-order_notes_title">消费门店</div>
-								<div data-v-8ced8152="" class="yb-order_notes_text">杰悠披萨旗舰店</div>
+								<div data-v-8ced8152="" class="yb-order_notes_text">${shop.shopname}</div>
 							</div>
 							<!---->
 						</div>
 						<div data-v-8ced8152="" class="yb-order_call">
-							<div data-v-8ced8152="">售后问题</div>
+							
 							<div data-v-8ced8152="">
 								<span data-v-8ced8152=""></span> <a data-v-8ced8152=""
-									href="tel:18396861925">联系商家</a>
+									href="${shop.shoptel}">联系商家</a>
 							</div>
+							<div data-v-8ced8152=""><a href="javascript:qrbuy('${order.number}')">确认取餐</a></div>
 						</div>
 					</div>
 				</div>
@@ -232,4 +237,8 @@
 		<div class="mint-indicator-mask"></div>
 	</div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+<script src="./js/orderdetail.js"></script>
 </html>

@@ -28,7 +28,7 @@
 								class="header-balance">
 								<div data-v-0aa61ae0="" class="header-balance-tip">会员余额
 									(元)</div>
-								<div data-v-0aa61ae0="" class="header-balance-num">0.10</div>
+								<div data-v-0aa61ae0="" class="header-balance-num">${user.balance}</div>
 							</div>
 							<div data-v-0aa61ae0="" class="header-navigate">交易明细</div></a> 
 					</div>

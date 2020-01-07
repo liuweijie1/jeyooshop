@@ -1,7 +1,9 @@
 
 
-
+ 
 $(function () {
+	
+
     $("#scroll_sort,#scroll_food").height($("body").height()-89);
     calcStartPrice();
     /*商品页面滑动*/
@@ -58,8 +60,82 @@ $(function () {
     });
     foodIScroll.refresh();
     sortIScroll.refresh();
-    getSpecialList();
+  /*  getSpecialList();*/
+  /*  $.showLoading("正在付款",10000);*/
+ 
+  
+    
+    
+    
 });
+
+
+window.onload=function(){
+  
+ 
+    	$("#temppage").hide();
+        $("#shoppage").show();
+ 
+     
+        var mySwiper = new Swiper ('.swiper-container', {
+          // 滚动方向 horizontal/vertical
+        direction: 'horizontal',
+        // 自动播放
+        autoplay:3000,
+        // 是否循环播放
+        loop: true,
+        // 如果需要分页器（小圆点）
+        // 是否需要分页器
+        pagination: '.swiper-pagination',
+        // 点击分页器是否切换到对应的图片 是 true 否 false
+        paginationClickable:true,
+
+        // 如果需要前进后退按钮
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+
+         // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+        // 如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
+        // 操作包括触碰，拖动，点击pagination等。
+        autoplayDisableOnInteraction:false,
+      })  
+
+}
+/*
+var t_img; // 定时器
+var isLoad = true; // 控制变量
+
+// 判断图片加载状况，加载完成后回调
+isImgLoad(function(){
+    // 加载完成
+	$("#temppage").hide();
+    $("#shoppage").show();
+});
+
+// 判断图片加载的函数
+function isImgLoad(callback){
+    // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+    // 查找所有封面图，迭代处理
+    $('img').each(function(){
+        // 找到为0就将isLoad设为false，并退出each
+        if(this.height === 0){
+            isLoad = false;
+            return false;
+        }
+    });
+    // 为true，没有发现为0的。加载完毕
+    if(isLoad){
+        clearTimeout(t_img); // 清除定时器
+        // 回调函数
+        callback();
+    // 为false，因为找到了没有加载完成的图，将调用定时器递归
+    }else{
+        isLoad = true;
+        t_img = setTimeout(function(){
+            isImgLoad(callback); // 递归扫描
+        },500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+    }
+}*/
 
 /*获取特价商品列表*/
 /*function getSpecialList(){

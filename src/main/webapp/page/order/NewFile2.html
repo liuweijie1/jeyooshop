@@ -1,335 +1,408 @@
-<html data-dpr="1" style="font-size: 44px;">
+<!DOCTYPE html>
+<html lang="zh" class="pixel-ratio-1">
 <head>
-<title>我的订单列表</title>
-<meta name="Description" content="我的订单列表">
-<meta name="Keywords" content="我的订单列表">
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>下单</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
-	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-<meta name="format-detection" content="telephone=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/img/favicon.ico">
-<script>
-	//读取cookies
-	function gCookie(name) {
-		var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-		if (arr = document.cookie.match(reg)) {
-			return unescape(arr[2]);
-		} else {
-			return null;
-		}
-	}
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description"
+	content="网上商城，最经济实惠的网上购物商城，不用排队，方便实惠送上门，为您提供愉悦的网上商城购物体验！">
+<link rel="stylesheet" href="//imgw.pospal.cn/we/lib/weui.min.css">
+<link rel="stylesheet"
+	href="//imgw.pospal.cn/we/css/jquery-weui.min.css">
+<link rel="stylesheet"
+	href="//imgw.pospal.cn/we/westroe/version/v1.2/css/checkout.v3.min.css">
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="//imgw.pospal.cn/we/lib/zepto.min.js"></script>
 
-	//设置cookie
-	function sCookie(name, value, time) {
-		var Days = 30;
-		var exp = new Date();
-		if (time) {
-			exp.setTime(exp.getTime() + time);
-		} else {
-			exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-		}
-		document.cookie = name + "=" + escape(value)
-				+ ";domain=.3cfood.com;path=/;expires=" + exp.toGMTString();
-	}
+<link rel="stylesheet" href="/wxapi/store/pagecss">
+<script type="text/javascript">
+        window.YB_DEFAULTLANG = "zh";
+        window.YB_CURRENCYSYMBOL = "¥";
+        window.YB_INDUSTRY = '烘焙行业';
+        $('document').ready(function () {
+            initApp($, window);
+        });
+    </script>
 
-	var cdnGetResult = new Array();
-	function checkCdn() {
-		if (!window.sessionStorage.getItem('checked_cdn')) {
-			var gCdn = "ali,up";
-			var gCdnArray = gCdn.split(",");
-			var url = "https://prefix-s.0xiao.cn/test.html?v="
-					+ parseInt(Math.random() * 10000);
-			for ( var i in gCdnArray) {
-				var prefix = gCdnArray[i];
-				var newurl = url;
-				newurl = newurl.replace('prefix', prefix);
-				ajaxCheck(newurl, prefix);
-			}
+<style id="__WXWORK_INNER_SCROLLBAR_CSS">
+::-webkit-scrollbar {
+	width: 12px !important;
+	height: 12px !important;
+}
 
-			function ajaxCheck(url, prefix) {
-				var obj = new XMLHttpRequest(); // XMLHttpRequest对象用于在后台与服务器交换数据          
-				obj.open('GET', url, true);
-				obj.onreadystatechange = function() {
-					if (obj.readyState == 4) { // readyState==4说明请求已完成
-						if (obj.status == 200 || obj.status == 304) {
-							console.log(url, obj.responseText);
-							console.log("get url: " + url + ",success");
-							var tmp = {};
-							tmp['prefix'] = prefix;
-							tmp['rs'] = true;
-							cdnGetResult.push(tmp);
-						} else {
-							console.log("get cdn:" + url + ",fail :".text);
-							var tmp = {};
-							tmp['prefix'] = prefix;
-							tmp['rs'] = false;
-							cdnGetResult.push(tmp);
-						}
-					}
-				};
-				obj.send(null);
-			}
-			setTimeout(function() {
-				getCdnRs();
-			}, 3000);
-		}
-	}
-	checkCdn();
-	function getCdnRs() {
-		console.log('enter get cdn callback ');
-		if (cdnGetResult.length >= 1) {
-			console.log("cdn rs length," + cdnGetResult.length);
-			var cookieV = "";
-			for ( var i in cdnGetResult) {
-				var result = cdnGetResult[i].rs;
-				if (result === true) {
-					cookieV = cookieV + cdnGetResult[i].prefix + "|";
-				}
-			}
-			sCookie("cdn", cookieV);
-			console.log("cookie value:" + cookieV);
-			window.sessionStorage.setItem("checked_cdn", true);
-			if (cdnGetResult.length < 2) {
-				console.log("because cdn success less than 2 ,so reload page");
-				window.location.reload();
-			}
-		} else {
-			console.log('no get cdn length,next timeout ');
-			setTimeout(function() {
-				getCdnRs();
-			}, 3000);
-		}
-	}
-</script>
-<link rel="stylesheet" type="text/css" href="../allcategory/css/wap.min.css">
-<script
-	src="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/js/flexible.min.js"></script>
+::-webkit-scrollbar-track:vertical {
+	
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	background-color: rgba(136, 141, 152, 0.5) !important;
+	border-radius: 10px !important;
+	background-clip: content-box !important;
+	border: 2px solid transparent !important;
+}
+
+::-webkit-scrollbar-track:horizontal {
+	
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	background-color: rgba(136, 141, 152, 0.5) !important;
+	border-radius: 10px !important;
+	background-clip: content-box !important;
+	border: 2px solid transparent !important;
+}
+
+::-webkit-resizer {
+	display: none !important;
+}
+</style>
 </head>
-<body data-mobile="1" data-iphone="0" data-weixin="0"
-	data-pagename="myorder" currency="元" sign="¥" style="font-size: 12px;">
-	<div class="center shop_name_order"
-		style="height: 1.2rem; line-height: 1.2rem; font-size: .43rem;">
-		<a class="left nou head_back_order" href="javascript:history.back();"
-			style="line-height: 1.2rem; width: 1.2rem; height: 1.2rem">&nbsp;</a><a
-			class="right nou head_right" href="javascript:;"
-			style="line-height: 1.2rem; width: 1.2rem; height: 1.2rem">&nbsp;</a>
-		<p class="clof pointer"
-			style="line-height: 1.2rem; font-size: .43rem;">我的订单列表</p>
-	</div>
-	<div id="myorderWrap" class="ovh" style="height: 605px;">
-		<div class="relative"
-			style="padding-bottom: 65px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-			<ul class="ovh" id="myorder_ul" style="padding-top: 15px" page="1">
-				<li>
-					<a class="clo0 nou myorder_tit" href="http://www.3cfood.com/resm3c4tx">
-					   <span class="fontb">三餐美食餐厅（请勿下单）</span>
-					</a>
-					<span class="order_state"> <!--在线支付--> 
-					   <span>待付款</span>
-					</span>
-					<img class="left order_pic_img" src="https://ali-img.0xiao.cn/3cfood/food/res/image/t_003c75780c58e31c.png">
-					<a class="myorder_content clo3 nou" href="/index/orderinfo?order_id=35949596">
-						<p style="line-height: .35rem; font-size: .35rem"> 总计：<span class="red">¥33</span>—— <span class="clo9">未支付</span></p>
-						<p style="line-height: 1.12rem; font-size: .35rem; color: #787878">时间：2019-10-29 10:28:36</p>
-						<p class="order_content">1份鱼香茄子(12x1),3份杂酱面(小份)(8x3),</p>
-					</a>
-					<div class="myorder_state">
-						<!--被撤销-->
-						<button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">询问</button>
+<body ontouchstart="">
+
+	<div id="checkoutView" data-route="default" class=" yb-page"
+		style="display: block;">
+		<div class="yb-page-inner">
+			<div class="checkoutResult">
+				<div class="yb-checkoutModeList">
+					<div class="yb-cell weui-cells_checkbox  yb-takeFood-type ">
+						<span class=" yb-edibleWay yb-raido_r1 " data-mode="1"
+							data-modename="配送"><label for="s13"
+							class="weui-check__label"><input type="radio"
+								class="weui-check" name="checkbox1" id="s13" checked="true"><i
+								class="weui-icon-checked"></i><span class="yb-ridao_text">配送</span></label></span><span
+							class=" yb-edibleWay yb-raido_r1 " data-mode="takeout"
+							data-modename="自取"><label for="s14"
+							class="weui-check__label"><input type="radio"
+								class="weui-check" name="checkbox1" id="s14"><i
+								class="weui-icon-checked"></i><span class="yb-ridao_text">自取</span></label></span>
 					</div>
-				</li>
-					
-					
-					<li><a class="clo0 nou myorder_tit"
-					href="http://www.3cfood.com/resm3c4tx"><span class="fontb"></span></a><span
-					class="order_state"> <!--在线支付--> <span>待付款</span>
-				</span><img class="left order_pic_img"
-					src="https://ali-img.0xiao.cn/3cfood/food/res/image/t_003c75780c58e31c.png"><a
-					class="myorder_content clo3 nou"
-					href="/index/orderinfo?order_id=35949596"><p
-							style="line-height: .35rem; font-size: .35rem">
-							总计：<span class="red">¥33</span>—— <span class="clo9">未支付</span>
-						</p>
-						<p style="line-height: 1.12rem; font-size: .35rem; color: #787878">时间：2019-10-29
-							10:28:36</p>
-						<p class="order_content">1份鱼香茄子(12x1),3份杂酱面(小份)(8x3),</p></a>
-					<div class="myorder_state">
-						<!--被撤销-->
-						<button class="myorder_state_btn"
-							onclick="showOrderPhone('18105264512')">询问</button>
-					</div></li>
-			</ul>
-			<div id="load_more" class="center clo9" style="">加载更多...</div>
+					<div class="yb-cell arrows  yb-appointment">
+						<div class="yb-cell__hd">
+							<div class="yb-appointment-icon"></div>
+						</div>
+						<div class="yb-cell__bd">
+							<input type="text" class="" name="" value="" placeholder="立即配送"
+								id="OrderAppointmentTime" readonly=""
+								data-picker="[object Object]">
+						</div>
+						<div class="yb-cell__ft"></div>
+						<span style="display: none;" id="OrderTime">2019-12-18
+							17:10:00</span>
+					</div>
+				</div>
+				<div
+					class="weui-cells yb-checkout_hd yb-cells-noLine yb-address_show"
+					id="addressSection">
+					<a class="weui-cell weui-cell_access yb-address" href="#/addresses"><div
+							class="weui-cell__hd yb-address-ico"></div>
+						<div class="weui-cell__bd yb-address-add">
+							<div class="yb-address-name">添加收货地址</div>
+						</div>
+						<div class="weui-cell__ft"></div></a>
+				</div>
+
+				<span style="display: none;" id="OtherComment">配送</span>
+			</div>
+
+			<div class="weui-cells yb-checkout_bd yb-cells-noLine"
+				id="checkoutBody">
+				<div id="checkoutItems">
+					<div class="weui-cell yb-checkout-cont yb-cell-noDowmLine  ">
+						<div class="weui-cell__hd ">
+							<img class="yb-checkout-img"
+								src="http://pospalstoreimg.area6.pospal.cn/productImages/2890393/ecbd5aaf-ba62-4b75-a476-42076a5fc86e_200x200.jpg"
+								alt="">
+						</div>
+						<div class="weui-cell__bd">
+							<div>
+								<span class="yb-checkout-name">补差价</span>
+							</div>
+							<div class="yb-checkout-Num">x1</div>
+						</div>
+						<div class="weui-cell__ft">
+							<div class="yb-checkout-price">¥6.00</div>
+						</div>
+					</div>
+				</div>
+				<div id="showCouponSelects"
+					class="weui-cell weui-cell_access yb-checkout-list">
+					<div class="weui-cell__hd">店铺优惠</div>
+					<div class="weui-cell__bd">
+						<div class="yb-checkout-discount">
+							<span>有 0 张可用券 </span>
+						</div>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</div>
+				<input id="CouponUId" type="hidden" value=""><input
+					id="CouponCode" type="hidden" value="">
+				<div class="weui-cell yb-checkout-card" id="YBCustomerCard"
+					style="display: none;">
+					<div class="weui-cell__bd ">是否抵扣次卡</div>
+					<div class="weui-cell__ft">
+						<input type="checkbox" id="appliedCard"
+							class="weui-switch yb-checkout-tog">
+					</div>
+				</div>
+				<div class="weui-cell yb-checkout-integral" id="YBCustomerPoint"
+					style="display: none;">
+					<div class="weui-cell__bd "></div>
+					<div class="weui-cell__ft">
+						<input type="checkbox" id="appliedPoint"
+							class="weui-switch yb-checkout-tog">
+					</div>
+				</div>
+				<div class="weui-cell yb-checkout-list">
+					<div class="weui-cell__hd">买家备注</div>
+					<div class="weui-cell__bd"></div>
+					<div class="weui-cell__ft">
+						<input type="text" class="yb-checkout-say" id="Comment"
+							placeholder="对本次交易的说明(选填)">
+					</div>
+				</div>
+				<div class="weui-cell yb-checkout-list minAmountDiv">
+					<div class="weui-cell__hd">起送价</div>
+					<div class="weui-cell__bd"></div>
+					<div class="weui-cell__ft minAmount">¥68.00</div>
+				</div>
+				<div class="weui-cell  yb-total ">
+					<div class="weui-cell__hd" style="margin-right: 0.4rem">
+						共<span class="yb-total-Num totalCount">1</span>件商品
+					</div>
+					<div class="weui-cell__ft yb-total_ft">
+						<div class="yb-total-totalSell">
+							小计:<span class="yb-total-price totalSellPrice">¥6.00</span>
+						</div>
+						<div>
+							实付:<span class="yb-total-price totalAmount" data-totalamount="6">¥6.00</span><span
+								class="yb-total-postage"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="yb-paymethod-list yb-actionsheet-list" id="paymethodList">
+				<label class="yb-paymethod-item weui-cells_checkbox " for="pay4">
+					<div class="yb-paymethod-head">
+						<img
+							src="//imgw.pospal.cn/we/westroe/img/payments/wechat_pay@2x.png"
+							alt="">
+					</div>
+					<div class="yb-paymethod-body">
+						<div class="yb-paymethod-name">微信支付</div>
+
+					</div>
+					<div class="yb-paymethod-foot  yb-actionsheet-origin">
+						<input type="radio" name="paymethodName" data-code="4"
+							data-name="微信支付" id="pay4" class="weui-check" checked="checked">
+						<i class="weui-icon-checked"></i>
+					</div>
+				</label> 
+				
+				<label class="yb-paymethod-item weui-cells_checkbox " for="pay1">
+					<div class="yb-paymethod-head">
+						<img
+							src="//imgw.pospal.cn/we/westroe/img/payments/bank_pay@2x.png"
+							alt="">
+					</div>
+					<div class="yb-paymethod-body">
+						<div class="yb-paymethod-name">当面付款</div>
+
+					</div>
+					<div class="yb-paymethod-foot  yb-actionsheet-origin">
+						<input type="radio" name="paymethodName" data-code="1"
+							data-name="当面付款" id="pay1" class="weui-check"> <i
+							class="weui-icon-checked"></i>
+					</div>
+				</label>
+				
+				
+				<div class="yb-charge-list willBeRich" id="UseBalance">
+
+					<label class="yb-paymethod-item weui-cells_checkbox " for="pay2">
+						<div class="yb-paymethod-head">
+							<img
+								src="//imgw.pospal.cn/we/westroe/img/payments/balance_pay@2x.png"
+								alt="">
+						</div>
+						<div class="yb-paymethod-body">
+							<div class="yb-paymethod-name">
+								会员余额<span class="yb-paymethod-cb">(余额不足：0.1)</span>
+							</div>
+							<div class="yb-charge-rules">充100立赠0元余额 充200立赠15元余额
+								充300立赠30元余额 充500立赠50元余额 充1000立赠120元余额</div>
+						</div>
+						<div class="yb-paymethod-foot  yb-actionsheet-origin">
+							<input type="radio" name="paymethodName" data-code="2"
+								data-name="会员余额" id="pay2" class="weui-check"> <i
+								class="weui-icon-checked"></i>
+						</div>
+					</label>
+					<div class="yb-charge-info">
+						<button class="yb-charge-btn">充值</button>
+						<div class="yb-charge-rules">充100立赠0元余额 充200立赠15元余额
+							充300立赠30元余额 充500立赠50元余额 充1000立赠120元余额</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="yb-checkout_ft">
+				<div class="yb-foot-left">
+					<span class="yb-foot-totalNum">共 <span class="totalCount">1</span>
+						件
+					</span> 总计：<span class="yb-foot-price totalAmount" data-totalamount="6">¥6.00</span>
+				</div>
+				<a class="yb-foot-right" href="javascript:" id="confirmPay">
+					确定付款 </a>
+			</div>
+
+			<div>
+				<div class="weui-mask yb-actionsheet-black yb-page-mask"
+					id="actionMask" style="opacity: 0; display: none;"></div>
+				<div class=" yb-actionsheet-contant weui-actionsheet"
+					id="couponSelects">
+					<div
+						class="weui-actionsheet__title yb-actionsheet-contant yb-coupons-head">
+						<p class="weui-actionsheet__title-text">选择优惠券</p>
+						<div class="yb-coupon-addnew">
+							<span></span> 兑换优惠券
+						</div>
+						<d class="yb-coupon-close"></d>
+					</div>
+					<div
+						class=" yb-actionsheet-list weui-actionsheet__menu weui-cells weui-cells_checkbox">
+						<div class="yb-couponWarning">
+							<img src="//imgw.pospal.cn/we/westroe/img/icons/coupon_null.png"
+								class="yb-searchWarning_img">
+							<p class="yb-searchWarning_title">无可用优惠券</p>
+						</div>
+					</div>
+					<div class="weui-actionsheet__action yb-actionsheet-close">
+						<div class="weui-actionsheet__cell actionsheetConfirm">确定</div>
+					</div>
+
+					<div class="yb-coupon-addinpunt">
+						<div class="yb-coupon-useTitle">
+							<div class="">兑换优惠券</div>
+							<div class="yb-coupon-useCancel">取消</div>
+						</div>
+						<div class="yb-coupon-usebody">
+							<div class="yb-coupon-input">
+								<input type="number" placeholder="请输入优惠券码">
+							</div>
+							<div class="yb-coupon-confirm">兑换</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
-	<div id="order_phone" style="display: none">
-		<div class="fullbg" onclick="$(this).parent().hide();"></div>
-		<div class="pop font18" id="order_phone_pop" style="top: 25vh">
-			<p style="padding: 15px 15px 5px;">商家电话：</p>
+
+	<div id="addressesView" data-route="addresses" class="yb-page"
+		style="display: none;">
+		<div class="yb-page-inner">
+			<div class="weui-cells yb-checkout_hd yb-cells-noLine">
+				<a class="weui-cell weui-cell_access yb-address" href="#/address/0">
+					<div class="weui-cell__hd yb-address-ico"></div>
+					<div class="weui-cell__bd yb-address-add">
+						<div class="yb-address-name">新增收货地址</div>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+			</div>
+			<div class="yb-address-content">
+				<div id="yb-address-list"
+					class="weui-cells yb-address-list weui-cells_checkbox"></div>
+			</div>
+			<div class="ybShippingRemark"></div>
+			<a class="yb-address-ft" href="javascript:" id="confirmAddrSel">
+				确定 </a>
 		</div>
 	</div>
+
+
+	<div id="addressView" data-route="address" class="yb-page"
+		style="display: none;">
+		<div class="yb-page-inner">
+			<div class="ybShippingRemark"></div>
+			<div class="yb-newAddres">
+				<div class="yb-newAddres-hd weui-cells ">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">收货人</div>
+						<div class="weui-cell__bd">
+							<input id="txtRecipient" required=""
+								class="weui-input yb-newAddres-name" type="text"
+								placeholder="请填入有效姓名">
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">联系电话</div>
+						<div class="weui-cell__bd">
+							<input id="txtPhone" class="weui-input  yb-newAddres-tell"
+								type="tel" pattern="\d{11}" placeholder="请填入有效联系号码">
+						</div>
+					</div>
+					<div class="weui-cell weui-cell_access">
+						<div class="weui-cell__hd">所在地区</div>
+						<div class="weui-cell__bd yb-newAddres-add_hd ">
+							<input id="txtDistrict" class="weui-input " type="text"
+								placeholder="请选择">
+						</div>
+						<div class="weui-cell__ft"></div>
+					</div>
+					<div class="weui-cell ">
+						<div class="weui-cell__hd yb-newAddres-add_text">详细地址</div>
+						<div class="weui-cell__bd yb-newAddres-add_ft">
+							<textarea id="txtAddress1" class="weui-textarea"
+								placeholder="请详细填写收货地址" rows="3"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="yb-newAddres-bd weui-cells ">
+					<div class="weui-cell yb-checkout-integral">
+						<div class="weui-cell__hd">设为默认</div>
+						<div class="weui-cell__bd"></div>
+						<div class="weui-cell__ft ">
+							<input id="chkDefault" type="checkbox"
+								class="weui-switch yb-checkout-tog">
+						</div>
+					</div>
+				</div>
+				<div class="yb-newAddres-del" id="btnDelete">删除收货地址</div>
+				<div class="yb-newAddres-ft" id="btnConfirm">确定</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="addressAutoListview" data-route="addressMap" class="yb-page"
+		style="display: none;"></div>
+
+	<div id="recommendView"
+		class="weui-popup__container_noClose popup-bottom">
+		<div class="weui-popup__overlay_noClose"></div>
+		<div class="weui-popup__modal">
+			<a href="javascript:;" class="yb-close-popup">&nbsp;</a>
+			<div class="yb-page-inner">
+				<div class="yb-recommend-wrapper"></div>
+				<div class="yb-recommendAttr-wrapper"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--<script src="../lib/fastclick.js"></script>-->
+	<script src="//imgw.pospal.cn/we/westroe/version/v1.2/js/core.min.js"></script>
+	<script src="//imgw.pospal.cn/we/westroe/lib/jquery-weui.min.js"></script>
+	<script src="//imgw.pospal.cn/we/lib/director.min.js"></script>
+	<script src="//imgw.pospal.cn/we/westroe/lib/city-picker.min.js"></script>
 	<script
-		src="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/js/page/wap.min.js"></script>
-	<script>
-		var GROUP = "/wap";
-		var APP = "";
-	</script>
-	<link rel="stylesheet"
-		href="https://ali-s.0xiao.cn/3cfood/Public/2018-10-30-1126/static/css/home_iconfont.css">
-	<footer>
-		<table border="0" cellpadding="0" cellspacing="0" id="foot_menu">
-			<tbody>
-				<tr>
-					<td id="foot_back" width="1" class="spread_theme_color"
-						style="display: none"><a id="home"
-						class="spread_theme_color  "><div class="iconfont icon-home "
-								style="font-size: 25px; padding: 14px 5px 5px;"></div>首页</a></td>
-					<td id="foot_home" width="1" data-name="foot_home"><a
-						href="../Index/myorder.html" id="foot_order" class="hover"><div
-								class="foot_ico foot_from"></div>订单</a></td>
-					<td id="foot_user" width="1" data-name="foot_user"><a
-						href="/Index/ucenter.html"><div class="foot_ico foot_user"></div>我的</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</footer>
-	<script>
-		var getspread = $.parseJSON(getCookie("from_spread")), from_where = null;
-		if (getspread && getspread.hasOwnProperty("from_where")) {
-			from_where = getspread['from_where'];
-		}
-		if (getspread && from_where) {
-			try {
-				from_where += from_where.indexOf('position') > -1 ? '?id='
-						+ getspread['spread_token'] + '&' : '?';
-				$('#home').attr("href", from_where + Math.random());
-				$('#foot_back').show();
-			} catch (e) {
-			}
-		}
-	</script>
-	<script>
-		$(function() {
-			var wxt = "";
-			if (typeof (wxt) != "undefined" && wxt != "null" && wxt != "") {
-				wxt = "?=" + wxt;
-			} else {
-				wxt = "";
-			}
-			/*var navhref =localStorage.getItem("text");
-			$('#home').attr("href",navhref)
-			//首页返回*/
-			$("#myorderWrap").height($("body").height() - 45);
-			myorder_init(); /*页面初始化*/
+		src="//imgw.pospal.cn/we/westroe/version/v1.2/js/checkout.v3.min.js"></script>
+	<script src="/wxapi/store/pagejs"></script>
 
-			var success = localStorage.getItem("success");
-			if (success) {
-				$("a.head_back").attr("href", "/index/ucenter.html" + wxt);
-				localStorage.removeItem("success");
-			}
 
-			var url_ref = document.referrer;
-			if (!url_ref || url_ref.indexOf("pay") > -1) {
-				$("a.head_back").attr("href", "/index/ucenter.html" + wxt);
-			}
-		});
 
-		var myorderScroll = new IScroll("#myorderWrap", {
-			scrollbars : false
-		});
-		/*加载我的订单页面*/
-		function getOrderContent(p, opt) {
-			$.get("/wap/index/orderContent", {
-				"p" : p
-			}, function(data) {
-				if (data.data != "") {
-					p = parseInt(p) + 1;
-					$("#myorder_ul").attr("page", p);
-					if (p > 0) {
-						$("#myorder_ul").append(data.data);
-						if (myorderScroll) {
-							setTimeout(function() {
-								myorderScroll.refresh();
-							}, 100)
-						}
-					} else {
-						$("#myorder_ul").html(data.data);
-					}
-					$("#load_more").show();
-				} else {
-					if (p > 0) {
-						clearpop(jsLangChange('没有信息了'));
-					} else {
-						$("#myorder_ul").html(
-								"<p class='center cloc' style='padding: 50px 0'>"
-										+ jsLangChange('还没有订单信息') + "</p>");
-					}
-					$("#load_more").hide();
-				}
-			}, 'json');
-		}
-
-		//我的订单
-		function myorder_init() {
-			$("#load_more").bind("click", function(data) {
-				var p = $("#myorder_ul").attr("page");
-				if (!p) {
-					p = 0;
-				}
-				getOrderContent(p);
-			});
-			var ok_callback = function() {
-				$("#load_more").click();
-			};
-			var fail_callback = function() {
-				//get_login_box(ok_callback);
-			};
-			check_user_login(ok_callback, fail_callback);
-		}
-
-		/*催单电话弹框*/
-		function showOrderPhone(tel) {
-			var arr = tel.split(",");
-			var str = "";
-			for (var i = 0; i < arr.length; i++) {
-				str += "<a class='blue order_phone_a after_delete' href='tel:"+arr[i]+"'>"
-						+ arr[i] + "</a>";
-			}
-			$("#order_phone_pop").find('.after_delete').remove();
-			$("#order_phone_pop").append(str);
-			$("#order_phone").show();
-		}
-		/*催单电话弹框（商家+快递员信息）*/
-		function showOrderDeliveryPhone(tel, delivery_tel, name) {
-			var arr = tel.split(",");
-			var str = "";
-			for (var i = 0; i < arr.length; i++) {
-				str += "<a class='blue order_phone_a after_delete' href='tel:"+arr[i]+"'>"
-						+ arr[i] + "</a>";
-			}
-			var str = str
-					+ '<p class="after_delete" style="padding:15px 15px 5px;">配送员电话：</p>'
-					+ '<a class="blue order_phone_a  after_delete" href="tel:'+delivery_tel+'">'
-					+ delivery_tel + '</a>';
-
-			$("#order_phone_pop").find('.after_delete').remove();
-			$("#order_phone_pop").append(str);
-			$("#order_phone").show();
-		}
-
-		/*去写评论*/
-		function goCommentWrite(orderId, event) {
-			if (event) {
-				if (event.preventDefault)
-					event.preventDefault();
-				else
-					event.cancelBubble = true;
-			}
-			window.location.href = '/index/commentWrite?order_id=' + orderId;
-		}
-	</script>
 </body>
 </html>

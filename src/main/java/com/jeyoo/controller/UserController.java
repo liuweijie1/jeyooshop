@@ -2,6 +2,7 @@ package com.jeyoo.controller;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,11 @@ import com.jeyoo.Exception.ExceptionEnum;
 import com.jeyoo.Exception.JeyooException;
 import com.jeyoo.mapper.ShopConfigMapper;
 import com.jeyoo.pojo.ShopConfig;
+import com.jeyoo.pojo.User;
 import com.jeyoo.pojo.UserOrderRecord;
 import com.jeyoo.resultpojo.UserOrderRecordResult;
 import com.jeyoo.service.IUserOrderRecordService;
+import com.jeyoo.service.UserService;
 import com.jeyoo.service.impl.UserServiceImpl;
 import com.jeyoo.utils.PageUtils;
 
@@ -41,10 +44,10 @@ public class UserController {
 	@Autowired
 	private ShopConfigMapper shopConfigmapper;
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 	
 	/**
-	 *  交易管理页面
+	 *  会员页面
 	 * @param model
 	 * @return
 	 */
@@ -55,7 +58,7 @@ public class UserController {
 		String headimgurl = session.getAttribute("headimgurl")==null ? "": session.getAttribute("headimgurl").toString();
 		 model.addAttribute("nickname", nickname);
 		 model.addAttribute("headimgurl", headimgurl);
-		 model.addAttribute("user",userServiceImpl.getUserInfo(request));
+		 model.addAttribute("user",userService.getUserInfo(request));
 		 
 		 String shopid = session.getAttribute("shopid") == null ? "": session.getAttribute("shopid").toString().trim();
 		 ShopConfig shopConfig=shopConfigmapper.getShopConfig(Long.valueOf(shopid));
@@ -65,17 +68,26 @@ public class UserController {
 	}
 	
 	/**
-	 *  交易管理页面
+	 *  会员充值页面
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value ="/member" ,method =RequestMethod.GET)
-	public String toMember(Model model) {
+	public String toMember(Model model,HttpServletRequest request) {
+		 model.addAttribute("user",userService.getUserInfo(request));
 		return "customer/member";
 	}
-	
+	/**
+	 *  会员消费记录
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value ="/record" ,method =RequestMethod.GET)
-	public String torecord(Model model) {
+	public String torecord(Model model,HttpServletRequest request) {
+	
+		String userid=userService.getUserId(request);
+		List<Map<String,String>> record=userService.queryRecord(Long.valueOf(userid));
+		 model.addAttribute("recordMap",record);
 		return "customer/curecord";
 	}
 	/**

@@ -3,6 +3,8 @@ package com.jeyoo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.jeyoo.Exception.ExceptionEnum;
+import com.jeyoo.Exception.JeyooException;
 import com.jeyoo.mapper.UserMapper;
 import com.jeyoo.pojo.User;
 import com.jeyoo.service.AdminLogService;
@@ -42,6 +44,24 @@ public class UserServiceImpl implements UserService {
     private HouseApiProperties apiProperties;*/
     
     
+    
+    @Override
+   	public String  getUserId(HttpServletRequest request) {
+   		String userid="";
+   		HttpSession session = request.getSession();
+   		String shopid = session.getAttribute("shopid")==null ? "": session.getAttribute("shopid").toString();
+   		String openid = session.getAttribute("WX_OPEN_ID")==null ? "": session.getAttribute("WX_OPEN_ID").toString();
+   		if(StringUtils.isNotBlank(shopid)&&StringUtils.isNotBlank(openid)) {
+   		
+   			userid = session.getAttribute(shopid+openid)==null ? "": session.getAttribute(shopid+openid).toString();
+   		}
+   		if(StringUtils.isBlank(userid)) {
+   			throw new JeyooException(ExceptionEnum.SERVER_ERROR);
+   		}
+   		
+   		return userid;
+   	}
+    
 	@Override
 	public User getUserInfo(HttpServletRequest request) {
 		User user =new User();
@@ -72,7 +92,8 @@ public class UserServiceImpl implements UserService {
 			String accesstoken = session.getAttribute("ACCESSTOKEN")==null ? "": session.getAttribute("ACCESSTOKEN").toString();
 			
 			String str=LoginAuthUtil.getWXUserInfo(openid, accesstoken);
-			if (StringUtils.isNotBlank(str)) {// 有返回值
+			Map<?, ?> map = JSONObject.fromObject(str);
+			if (map.containsKey("nickname")) {// 有返回值
 				JSONObject obj = JSONObject.fromObject(str);
 				String nicknamestr = obj.getString("nickname");
 				String headimgurlstr = obj.getString("headimgurl");
@@ -106,7 +127,7 @@ public class UserServiceImpl implements UserService {
 		usernew.setUserid(id);
 		usernew.setOpenid(openid);
 		usernew.setShopid(Long.valueOf(shopid));
-		usernew.setVipcard(String.valueOf(Long.valueOf(new SimpleDateFormat("yymmssSSS").format(new Date()).toString())*2));
+		usernew.setVipcard(String.valueOf(Long.valueOf(new SimpleDateFormat("yymmssSSS").format(new Date()).toString())*2));//登录即会员，生成会员号
 		int i=mapper.insert(usernew);
 		if(i==1) {
 			session.setAttribute(shopid+openid,String.valueOf(id));
@@ -117,8 +138,17 @@ public class UserServiceImpl implements UserService {
 		
 		return "";
 	}
-	
-	
+	@Override
+	public int updatePhone(Long userid,String mobilephone) {
+		int i=mapper.updatePhone(userid,mobilephone);
+		return i;
+	}
+
+	@Override
+	public List<Map<String,String>>  queryRecord(long userid) {
+		
+		return mapper.queryRecord(userid);
+	}
     @Override
     public Map<String, Object> recharge(Map<String, Object> paramMap) {
         Map<String, Object> map = new HashMap<>();
@@ -228,6 +258,11 @@ public class UserServiceImpl implements UserService {
         }
         return pageInfo;
     }
+
+	
+
+
+	
 
 
 	

@@ -69,6 +69,9 @@
 					 <c:if test="${li.state==1}">
 					   <span>已接单</span>
 					 </c:if>
+					  <c:if test="${li.state==3}">
+					   <span>已完成</span>
+					 </c:if>
 					</span>
 						<a href="javascript:showdetails('${li.number}')">
 					<div id="order_imgbox" onclick="showdetails('${li.number}">
@@ -90,7 +93,11 @@
 					   <button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">马上付款</button>
 					   
 					   </c:if>
-					   <c:if test="${li.state==1}">
+					   <c:if test="${li.state==3}">
+					   <button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">再来一单</button>
+					   
+					   </c:if>
+					    <c:if test="${li.state==1}">
 					   <button class="myorder_state_btn" onclick="showOrderPhone('18105264512')">再来一单</button>
 					   
 					   </c:if>

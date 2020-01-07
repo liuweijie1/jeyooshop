@@ -2,6 +2,7 @@ package com.jeyoo.pojo;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -26,7 +27,7 @@ public class User {
     
     private String vipcard;
     
-    private Double balance;
+    private BigDecimal balance;
     
     private Integer vipstate;
     

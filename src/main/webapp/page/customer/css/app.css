@@ -3938,6 +3938,7 @@ body {
 	box-sizing: border-box;
 	overflow: hidden;
 	text-align: center;
+	background-color: #fff;
 	position: relative
 }
 
@@ -4661,7 +4662,7 @@ transition:translate(-50% -50%);
 	background-color: #f4f4f4;
 	font-size: .8rem;
 	color: #3a3c4c;
-	overflow: hidden
+	/* overflow: hidden */
 }
 
 .yb-integral .yb-integral_head {
@@ -13309,8 +13310,8 @@ li[data-v-c5ae4450] {
 }
 
 .myorder_state_shopname {
-	   top: 8%;
-    left: 38%;
+	   top: 9%;
+    left: 33%;
     float: right;
     position: absolute;
     display: block;
@@ -13318,7 +13319,7 @@ li[data-v-c5ae4450] {
     right: 34%;
  /*  bottom: 1.11rem;  */
     z-index: 5;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 22px;
  
 transition:translate(-50% -50%);

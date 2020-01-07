@@ -1,4 +1,7 @@
  $(function () {
+	         $.showLoading("加载中...");
+	        
+
             foodorder_init();
 
            /* getFoodStockCount($("body").data("res_id"));*/ /*获取库存放入全局变量*/
@@ -17,6 +20,18 @@
                 }
             }
             carIscrollInit();
+            payinit()
+          
+            $.hideLoading();
+         /*   
+            $('#paymethodList').on('click','#yb-paymethod-foot',function(){
+                console.log("hahah");
+                window.location="/page/customer/member";
+            });*/
+            
+            
+            
+            
         });
         //店铺下单确认页初始化
         function foodorder_init(){
@@ -100,7 +115,7 @@
                                    
                                     str +='<div class="weui-cell__bd"><div><span class="yb-checkout-name">'+food_name+'</span></div><div class="yb-checkout-Num">x'+count+'</div></div>';
                                     
-                                    str += '<div class="weui-cell__ft"><div class="yb-checkout-price">'+sign+price+'</div><del class="yb-checkout-origin-price">¥0.01</del></div></div>';
+                                    str += '<div class="weui-cell__ft"><div class="yb-checkout-price">'+sign+price+'</div></div></div>';
                                    
 
                 					
@@ -146,7 +161,7 @@
                             priceTotal = priceTotal.toFixed(2)*1;
                             $(".totalAmount").html("¥"+priceTotal);
                             $(".totalCount").html(foodTotal);
-                            
+                            $("#totalSellPrice").html("¥"+priceTotal);
                             $("#totalamount").val(priceTotal)
                         }else{
                             $("#food_empty").show();
@@ -295,29 +310,261 @@
                 carsScroll.refresh();
             }
         }
+      function edphonehide(){
+    	  $("#edphone").hide();
+    	  $("#addphone").show();
+    	  $("#edtphone").val('');
+      }
+      
+      
+      
+    	//下单前判断
+        function plaorder(){
+        	  var paytype=$("input[name='paymethodName']:checked").val();
+        	  var mobilephone=$("#phone").val();
+        	  var edmobilephone=$("#edtphone").val();
+        	  if(mobilephone==""&&edmobilephone==''){
+        		  $.toast("请填写联系方式", "text");
+        			return false;
+        	  }
+        	  if(mobilephone!=''&&edmobilephone!=null){
+        		  if(!(/^1[3456789]\d{9}$/.test(mobilephone))){ 
+            		  $.toast("手机号码有误，请重新填写", "text");
+            	        return false; 
+            	    } 
+        	  
+        	  }
+        		 
+        	
+ 
+        	if(paytype=='pay2'){
+				if(issufficient=='0'){
+					$.alert("您的会员余额不足", "支付失败", function() {
+					
+						});
+					return false;
+				}
+				if(issufficient=='1'){
+					
+					$.confirm({
+						  title: '确定支付？',
+						  text: ' ',
+						  onOK: function () {
+							  payorder(paytype)
+						  },
+						  onCancel: function () {
+							  return false;
+						  }
+						});
+				}
+				
+				if(code=='11'){
+					$.modal({
+						  title: "确定支付？",
+						  text: "会员储值首单免费赠送</br>全场任意送披萨一份和奶茶一杯</br>你还未选择披萨</br>",
+						  buttons: [
+						    { text: "暂时放弃", className: "default", onClick: function(){ return false;} },
+						    { text: "去选择", onClick: function(){window.location="/page/allcategory/process"} },
+						    { text: "确定付款",  onClick: function(){ payorder(paytype)} },
+						  ]
+						});
+					
+				
+				}
+				if(code=='12'){
+					$.modal({
+						  title: "确定支付？",
+						  text: "会员储值首单免费赠送</br>全场任意送披萨一份和奶茶一杯</br>你还未选择奶茶</br>",
+						  buttons: [
+						    { text: "暂时放弃", className: "default", onClick: function(){ return false;} },
+						    { text: "去选择", onClick: function(){window.location="/page/allcategory/process"} },
+						    { text: "确定付款",  onClick: function(){payorder(paytype)} },
+						  ]
+						});
+					
+				}
+				if(code=='13'){
+					$.modal({
+						  title: "确定下单？",
+						  text: "会员储值首单免费赠送</br>全场任意送披萨一份和奶茶一杯</br>你还未选择披萨和奶茶</br>",
+						  buttons: [
+						    { text: "暂时放弃", className: "default", onClick: function(){ return false;} },
+						    { text: "去选择", onClick: function(){window.location="/page/allcategory/process"} },
+						    { text: "确定付款",  onClick: function(){payorder(paytype)} },
+						  ]
+						});
+					
+					
+				}
+				
+				
+			}else{
+				payorder(paytype)
+			}
         
-        function plaorder(state){
-        	var goodlist=$("#goodslist").val();
-        	var qctime=$("#OrderTime").html();
-        	var remark=$("#Comment").val();
-        	var pricetotal=$("#totalamount").val();
-        	var totalcount=$(".totalCount").html();
+
+        	
+        }
+        //支付
+       
+         function payorder(paytype){
+        	 
+        	 
+        	 $.showLoading("正在付款");
+        	 savephone(paytype)
+        	
+          }
+         
+         function setorder(paytype){
+        	 
+        	 var goodlist=$("#goodslist").val();
+          	var qctime=$("#OrderTime").html();
+          	var remark=$("#Comment").val();
+          	var pricetotal=$("#totalamount").val();
+          	var totalcount=$(".totalCount").html();
+         		$.ajax({
+         			url : "/page/order/plaorder",
+         			async: true,
+         			contentType : "application/x-www-form-urlencoded;charset=utf-8",
+         			data : {
+         				goodlist : goodlist,
+         				qctime:qctime,
+         				remark:remark,
+         				paytype:paytype,
+         				pricetotal:pricetotal,
+         				state:'1',
+         				totalcount:totalcount
+         			},
+         			type : "post",
+         			success : function(res) {
+         				$.hideLoading();
+         			
+         				$.modal({
+   						  title: "支付成功",
+   						  text: "<img src='../allcategory/image/cshierweima.jpg' style='width:85%;height:10%'>",
+   						  buttons: [
+   						    { text: "查看订单",  onClick: function(){window.location="/page/order/showdetails?number="+res} },
+   						    { text: "再来一单",  onClick: function(){ window.location="/page/allcategory/process"} },
+   						  ]
+   						});
+         				
+         			},
+         				
+         			error: function () {
+         				$.hideLoading();
+         			　　　$.toast("支付失败", "cancel");
+         			　　}
+
+         		});
+         }
+         
+         // 保存手机号
+         function savephone(paytype){
+         	var mobilephone=$("#phone").val();
+          	 
+         	  if(mobilephone!=''&&(/^1[3456789]\d{9}$/.test(mobilephone))){ 
+         		  $.ajax({
+           			url : "/page/order/savephone",
+           			async: true,
+           			contentType : "application/x-www-form-urlencoded;charset=utf-8",
+           			data : {
+           				mobilephone : mobilephone
+           				
+           			},
+           			type : "post",
+           			success : function(res) {
+           				if(res!='suceess'){
+           					setorder(paytype)
+           				}
+           				
+           			
+           			},
+           				
+           			error: function () {
+           				$.hideLoading();
+           			　　　$.toast("支付失败", "cancel");
+           			　　}
+
+           		});
+         	    } else{
+         	    	setorder(paytype)
+         	    }
+         }
+         
+         
+        var code=''
+		var balance=''
+		var issufficient=''
+		var maxdel=''
+		var totalamount=''
+        //初始化下单数据
+        function payinit(){
+        	var paytype=$("input[name='paymethodName']:checked").val();
+        	
         	$.ajax({
-    			url : "/page/order/plaorder",
+    			url : "/page/order/payinit",
     			async: true,
     			contentType : "application/x-www-form-urlencoded;charset=utf-8",
     			data : {
-    				goodlist : goodlist,
-    				qctime:qctime,
-    				remark:remark,
-    				state:state,
-    				pricetotal:pricetotal,
-    				totalcount:totalcount
+    				goodlist : $("#goodslist").val(),
+    				paytype:paytype
     			},
     			type : "post",
     			/*contentType : "application/json;charset=utf-8",*/
     			success : function(res) {
-    				window.location="/page/order/orderlist"
+    				code=res.code
+    				balance=res.balance
+    				issufficient=res.issufficient
+    				maxdel=res.maxdel
+    				totalamount=res.realmoney
+    				if(issufficient=="1"){
+    					$('.yb-paymethod-cb').html("(会员余额:"+balance+")");
+    				}else if(issufficient=="0"){
+    					$('.yb-paymethod-cb').html("(余额不足:"+balance+")");
+    				}
+    				if(code == '11'){
+    					
+    					$('#vipdel').show();
+    					$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+    					$("#yb-total-price-vip").html("¥"+totalamount).show();
+    				
+    					$("#yb-foot-price-vip").html("¥"+totalamount).show();
+    				}else if(code  ==  '12'){
+    					$('#vipdel').show();
+    					$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+    					$("#yb-total-price-vip").html("¥"+totalamount).show();
+    				
+    					$("#yb-foot-price-vip").html("¥"+totalamount).show();
+    				}else if(code  ==  '13'){
+    					$('#vipdel').show();
+    					$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+    					$("#yb-total-price-vip").html("¥"+totalamount).show();
+    				
+    					$("#yb-foot-price-vip").html("¥"+totalamount).show();
+    				}else if(code  ==  '14'){
+    					$('#vipdel').show();
+    					$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+    					$("#yb-total-price-vip").html("¥"+totalamount).show();
+    					
+    					$("#yb-foot-price-vip").html("¥"+totalamount).show();
+    				}else if(code  ==  '15'){
+    					$('#vipdel').show();
+    					$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+    					$("#yb-total-price-vip").html("¥"+totalamount).show();
+    				
+    					$("#yb-foot-price-vip").html("¥"+totalamount).show();
+    				}else if(code  ==  '21'){
+    					$('#vipdel').hide();
+    					$("#yb-total-price").show();
+    					$("#yb-foot-price").html("¥"+totalamount).show();
+    				}else if(code  ==  '22'){
+    					$('#vipdel').hide();
+    					$("#yb-total-price").show();
+    					$("#yb-foot-price").html("¥"+totalamount).show();
+    				}else{
+    					　$.toast("数据异常", "forbidden");
+    				}
+    				
     			}
 
     		});
@@ -325,11 +572,91 @@
         	
         }
         
-        
         function showdetails(number){
         	
     	   window.location="/page/order/showdetails?number="+number;
 
         }
         
+        $('.yb-charge-btn').on('click',function(){
+        	
+            window.location="/page/customer/member";
+        });
+        
+        
+       
+        
+  $('.weixinpay').on('click',function(){
+	  var paytype=$("input[name='paymethodName']:checked").val();
+	  if(paytype=='pay4'){
+		  
+		$('#vipdel').hide();
+		$("#yb-total-price-vip").hide()
+		$("#yb-total-price").show();
+		$("#yb-foot-price-vip").hide()
+		$("#yb-foot-price").show();
+	  }
+          
+        });
+  
+  
+  $('.vippay').on('click',function(){
+	  var paytype=$("input[name='paymethodName']:checked").val();
+	  if(paytype=='pay4'){
+		  if(issufficient=="1"){
+				$('.yb-paymethod-cb').html("(会员余额:"+balance+")");
+			}else{
+				$('.yb-paymethod-cb').html("(余额不足:"+balance+")");
+			}
+			if(code == '11'){
+				
+				$('#vipdel').show();
+				$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+				$("#yb-total-price").hide();
+				$("#yb-total-price-vip").html("¥"+totalamount).show();
+				$("#yb-foot-price").hide();
+				$("#yb-foot-price-vip").html("¥"+totalamount).show();
+			}else if(code  ==  '12'){
+				$('#vipdel').show();
+				$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+				$("#yb-total-price").hide();
+				$("#yb-total-price-vip").html("¥"+totalamount).show();
+				$("#yb-foot-price").hide();
+				$("#yb-foot-price-vip").html("¥"+totalamount).show();
+			}else if(code  ==  '13'){
+				$('#vipdel').show();
+				$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+				$("#yb-total-price").hide();
+				$("#yb-total-price-vip").html("¥"+totalamount).show();
+				$("#yb-foot-price").hide();
+				$("#yb-foot-price-vip").html("¥"+totalamount).show();
+			}else if(code  ==  '14'){
+				$('#vipdel').show();
+				$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+				$("#yb-total-price").hide();
+				$("#yb-total-price-vip").html("¥"+totalamount).show();
+				$("#yb-foot-price").hide();
+				$("#yb-foot-price-vip").html("¥"+totalamount).show();
+			}else if(code  ==  '15'){
+				$('#vipdel').show();
+				$('#vipdelnum').html("¥"+maxdel+"&nbsp&nbsp");
+				$("#yb-total-price").hide();
+				$("#yb-total-price-vip").html("¥"+totalamount).show();
+				$("#yb-foot-price").hide();
+				$("#yb-foot-price-vip").html("¥"+totalamount).show();
+			}else if(code  ==  '21'){
+				$('#vipdel').hide();
+				$("#yb-total-price").show();
+				$("#yb-foot-price").html("¥"+totalamount).show();
+			}else if(code  ==  '22'){
+				$('#vipdel').hide();
+				$("#yb-total-price").show();
+				$("#yb-foot-price").html("¥"+totalamount).show();
+			}else{
+				
+			}
+	  }
+     
+   });
+     
         
